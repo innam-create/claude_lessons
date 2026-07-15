@@ -1,0 +1,161 @@
+[
+  {
+    "id": "zx-spectrum-16k",
+    "title": { "uk": "ZX Spectrum 16K", "en": "ZX Spectrum 16K" },
+    "manufacturer": "Sinclair",
+    "country": "GB",
+    "year": "1982",
+    "ram": "16 KB",
+    "ramKb": 16,
+    "desc": {
+      "uk": "Базова 16-КБ версія з гумовою клавіатурою.",
+      "en": "Entry-level 16 KB version with a rubber keyboard."
+    },
+    "image": "zx-48k.jpg",
+    "imageAlt": {
+      "uk": "ZX Spectrum з чорним корпусом і гумовою клавіатурою, райдужна смуга праворуч від клавіш",
+      "en": "ZX Spectrum with a black case and rubber keyboard, rainbow stripe to the right of the keys"
+    },
+    "credit": "Bill Bertram · CC BY-SA 2.5 · Wikimedia",
+    "inMuseum": true,
+    "confidence": "high"
+  },
+  {
+    "id": "zx-spectrum-48k",
+    "title": { "uk": "ZX Spectrum 48K", "en": "ZX Spectrum 48K" },
+    "manufacturer": "Sinclair",
+    "country": "GB",
+    "year": "1982",
+    "ram": "48 KB",
+    "ramKb": 48,
+    "desc": {
+      "uk": "Класична 48-КБ модель — головна машина лінійки.",
+      "en": "The classic 48 KB model — the flagship of the line."
+    },
+    "image": "zx-48k.jpg",
+    "imageAlt": {
+      "uk": "ZX Spectrum 48K з чорним корпусом і гумовою клавіатурою, райдужна смуга праворуч від клавіш",
+      "en": "ZX Spectrum 48K with a black case and rubber keyboard, rainbow stripe to the right of the keys"
+    },
+    "credit": "Bill Bertram · CC BY-SA 2.5 · Wikimedia",
+    "inMuseum": true,
+    "confidence": "high"
+  },
+  {
+    "id": "zx-spectrum-plus",
+    "title": { "uk": "ZX Spectrum+", "en": "ZX Spectrum+" },
+    "manufacturer": "Sinclair",
+    "country": "GB",
+    "year": "1984",
+    "ram": "48 KB",
+    "ramKb": 48,
+    "desc": {
+      "uk": "Оновлений корпус із «справжньою» клавіатурою.",
+      "en": "Redesigned case with a \"proper\" keyboard."
+    },
+    "image": "zx-plus.jpg",
+    "imageAlt": {
+      "uk": "ZX Spectrum+ з жорсткою повнорозмірною клавіатурою",
+      "en": "ZX Spectrum+ with a rigid full-size keyboard"
+    },
+    "credit": "CC BY-SA 2.5 · Wikimedia",
+    "inMuseum": false,
+    "confidence": "high"
+  },
+  {
+    "id": "zx-spectrum-128",
+    "title": { "uk": "ZX Spectrum 128", "en": "ZX Spectrum 128" },
+    "manufacturer": "Sinclair",
+    "country": "GB",
+    "year": "1985",
+    "ram": "128 KB",
+    "ramKb": 128,
+    "desc": {
+      "uk": "128 КБ пам’яті та звуковий чип AY-3-8912.",
+      "en": "128 KB of memory and the AY-3-8912 sound chip."
+    },
+    "image": "zx-128.jpg",
+    "imageAlt": {
+      "uk": "ZX Spectrum 128 «Toastrack» з бічним радіатором",
+      "en": "ZX Spectrum 128 \"Toastrack\" with a side heatsink"
+    },
+    "credit": "CC BY-SA · Wikimedia",
+    "inMuseum": false,
+    "confidence": "high"
+  },
+  {
+    "id": "zx-spectrum-plus2",
+    "title": { "uk": "ZX Spectrum +2", "en": "ZX Spectrum +2" },
+    "manufacturer": "Amstrad",
+    "country": "GB",
+    "year": "1986",
+    "ram": "128 KB",
+    "ramKb": 128,
+    "desc": {
+      "uk": "Amstrad-версія з вбудованим касетником.",
+      "en": "Amstrad version with a built-in cassette deck."
+    },
+    "image": null,
+    "imageAlt": null,
+    "credit": null,
+    "inMuseum": true,
+    "confidence": "high"
+  },
+  {
+    "id": "zx-spectrum-plus3",
+    "title": { "uk": "ZX Spectrum +3", "en": "ZX Spectrum +3" },
+    "manufacturer": "Amstrad",
+    "country": "GB",
+    "year": "1987",
+    "ram": "128 KB",
+    "ramKb": 128,
+    "desc": {
+      "uk": "Модель із вбудованим 3″ дисководом.",
+      "en": "Model with a built-in 3″ floppy drive."
+    },
+    "image": "zx-plus3.jpg",
+    "imageAlt": {
+      "uk": "ZX Spectrum +3 з вбудованим 3-дюймовим дисководом",
+      "en": "ZX Spectrum +3 with a built-in 3-inch floppy drive"
+    },
+    "credit": "CC BY-SA · Wikimedia",
+    "inMuseum": false,
+    "confidence": "high"
+  },
+  {
+    "id": "timex-tc2048",
+    "title": { "uk": "Timex TC2048", "en": "Timex TC2048" },
+    "manufacturer": "Timex",
+    "country": "PT",
+    "year": "1984",
+    "ram": "48 KB",
+    "ramKb": 48,
+    "desc": {
+      "uk": "Ліцензійний варіант Timex для Європи.",
+      "en": "Licensed Timex variant for Europe."
+    },
+    "image": null,
+    "imageAlt": null,
+    "credit": null,
+    "inMuseum": false,
+    "confidence": "high"
+  },
+  {
+    "id": "zx-spectrum-plus2a",
+    "title": { "uk": "ZX Spectrum +2A", "en": "ZX Spectrum +2A" },
+    "manufacturer": "Amstrad",
+    "country": "GB",
+    "year": "1987",
+    "ram": "128 KB",
+    "ramKb": 128,
+    "desc": {
+      "uk": "Ревізія +2 з іншою материнською платою.",
+      "en": "A +2 revision with a different motherboard."
+    },
+    "image": null,
+    "imageAlt": null,
+    "credit": null,
+    "inMuseum": false,
+    "confidence": "low"
+  }
+]

@@ -1,0 +1,302 @@
+---
+import type { Lang } from '../i18n/ui';
+import { useTranslations, localizePath } from '../i18n/ui';
+import RainbowBar from './RainbowBar.astro';
+
+interface Props {
+  lang: Lang;
+  /** Активний пункт меню (ключ nav.* без префікса), напр. "models". */
+  active?: string;
+  /** Поточний шлях без мовного префікса (для перемикача мов). */
+  path: string;
+}
+
+const { lang, active = '', path } = Astro.props;
+const t = useTranslations(lang);
+
+const items = [
+  { key: 'history', href: '/history/' },
+  { key: 'models', href: '/models/' },
+  { key: 'clones', href: '/clones/' },
+  { key: 'exhibits', href: '/exhibits/' },
+  { key: 'software', href: '/software/' },
+  { key: 'peripherals', href: '/peripherals/' },
+  { key: 'contacts', href: '/contacts/' },
+].map((i) => ({
+  ...i,
+  label: t(`nav.${i.key}` as Parameters<typeof t>[0]),
+  url: localizePath(i.href, lang),
+  on: i.key === active,
+}));
+
+const home = localizePath('/', lang);
+const uaHref = localizePath(path, 'uk');
+const enHref = localizePath(path, 'en');
+---
+
+<header class="site-header">
+  <div class="hd-inner">
+    <a class="wordmark" href={home}>ZX&nbsp;SPECTRUM</a>
+
+    <nav class="hd-nav" aria-label={t('nav.models')}>
+      {
+        items.map((i) => (
+          <a
+            class:list={['hd-link', { on: i.on }]}
+            href={i.url}
+            aria-current={i.on ? 'page' : undefined}
+          >
+            {i.label}
+            {i.on && <span class="hd-underline" aria-hidden="true" />}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="hd-tools">
+      <div class="lang-switch" role="group" aria-label="UA / EN">
+        <a href={uaHref} class:list={['lang', { on: lang === 'uk' }]}>UA</a>
+        <a href={enHref} class:list={['lang', { on: lang === 'en' }]}>EN</a>
+      </div>
+
+      <button
+        type="button"
+        id="crt-toggle"
+        class="crt-toggle"
+        aria-pressed="false"
+        data-on={t('crt.on')}
+        data-off={t('crt.off')}
+      >
+        <span class="crt-knob" aria-hidden="true"><span class="crt-dot"></span></span>
+        <span class="crt-label">{t('crt.off')}</span>
+      </button>
+
+      <a class="to-museum" href="https://sncmuseum.org">{t('nav.toMuseum')}</a>
+
+      <button
+        type="button"
+        id="menu-toggle"
+        class="menu-toggle"
+        aria-expanded="false"
+        aria-controls="mobile-nav"
+        aria-label={t('nav.models')}
+      >
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Мобільне випадне меню -->
+  <nav class="mobile-nav" id="mobile-nav" hidden>
+    {items.map((i) => <a href={i.url} class:list={['m-link', { on: i.on }]}>{i.label}</a>)}
+    <a class="m-link to-museum-m" href="https://sncmuseum.org">{t('nav.toMuseum')}</a>
+  </nav>
+
+  <RainbowBar height={6} />
+</header>
+
+<style>
+  .site-header {
+    background: var(--bg);
+    position: relative;
+    z-index: 20;
+  }
+  .hd-inner {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+    padding: 16px 32px;
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+  .wordmark {
+    font-family: var(--font-pixel);
+    font-size: 26px;
+    color: var(--zx-white);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    flex: none;
+  }
+
+  .hd-nav {
+    display: flex;
+    gap: 22px;
+    margin-left: 6px;
+  }
+  .hd-link {
+    position: relative;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--text-dim);
+    text-decoration: none;
+    padding-bottom: 7px;
+    white-space: nowrap;
+    transition: color var(--dur) var(--ease-out);
+  }
+  .hd-link:hover { color: var(--zx-white); }
+  .hd-link.on { color: var(--zx-white); }
+  .hd-underline {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #ff0000, #ffff00, #00ff00, #00ffff);
+  }
+
+  .hd-tools {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex: none;
+  }
+  .lang-switch {
+    display: flex;
+    border: 1px solid var(--border-2);
+    font-family: var(--font-mono);
+    font-size: 12px;
+  }
+  .lang-switch .lang {
+    padding: 5px 9px;
+    color: var(--text-dim);
+    text-decoration: none;
+  }
+  .lang-switch .lang.on {
+    background: var(--zx-yellow);
+    color: #000;
+  }
+
+  .crt-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--dim-6);
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+  .crt-knob {
+    position: relative;
+    width: 30px;
+    height: 16px;
+    border: 1px solid var(--border-2);
+    display: inline-block;
+    background: var(--surface);
+  }
+  .crt-dot {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 10px;
+    height: 10px;
+    background: #555;
+    transition: left var(--dur) var(--ease-out);
+  }
+  :global(html.crt) .crt-toggle { color: var(--zx-cyan); }
+  :global(html.crt) .crt-dot { left: 16px; background: var(--zx-green); }
+
+  .to-museum {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    background: var(--museum-navy);
+    color: var(--museum-gold);
+    border: 2px solid var(--museum-gold);
+    padding: 7px 12px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background var(--dur) var(--ease-out);
+  }
+  .to-museum:hover { background: #1d3872; }
+
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    width: 26px;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+  .menu-toggle span {
+    height: 3px;
+    width: 100%;
+  }
+  .menu-toggle span:nth-child(1) { background: var(--zx-red); }
+  .menu-toggle span:nth-child(2) { background: var(--zx-yellow); }
+  .menu-toggle span:nth-child(3) { background: var(--zx-green); }
+
+  .mobile-nav {
+    display: none;
+    flex-direction: column;
+    padding: 8px 18px 18px;
+    gap: 2px;
+    border-top: 1px solid var(--hair);
+  }
+  .mobile-nav[hidden] { display: none; }
+  .m-link {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+    text-decoration: none;
+    padding: 12px 4px;
+    border-bottom: 1px solid var(--hair);
+  }
+  .m-link.on { color: var(--zx-white); }
+  .to-museum-m {
+    color: var(--museum-gold);
+    border-bottom: none;
+    margin-top: 6px;
+  }
+
+  /* --- мобільний брейкпоінт (ТЗ: 768px) --- */
+  @media (max-width: 768px) {
+    .hd-inner { padding: 14px 18px; gap: 14px; }
+    .wordmark { font-size: 19px; }
+    .hd-nav { display: none; }
+    .lang-switch,
+    .to-museum { display: none; }
+    .menu-toggle { display: flex; }
+    .mobile-nav.open { display: flex; }
+  }
+</style>
+
+<script>
+  // CRT-перемикач: стан у localStorage, клас на <html>, оновлення підпису/кнопки.
+  function syncCrt() {
+    const on = document.documentElement.classList.contains('crt');
+    const btn = document.getElementById('crt-toggle');
+    if (!btn) return;
+    btn.setAttribute('aria-pressed', String(on));
+    const label = btn.querySelector('.crt-label');
+    if (label) label.textContent = on ? btn.dataset.on! : btn.dataset.off!;
+  }
+  const crtBtn = document.getElementById('crt-toggle');
+  crtBtn?.addEventListener('click', () => {
+    const on = document.documentElement.classList.toggle('crt');
+    try {
+      localStorage.setItem('zx-crt', on ? 'on' : 'off');
+    } catch (e) {}
+    syncCrt();
+  });
+  syncCrt();
+
+  // Мобільне меню (бургер).
+  const menuBtn = document.getElementById('menu-toggle');
+  const mobileNav = document.getElementById('mobile-nav');
+  menuBtn?.addEventListener('click', () => {
+    const open = mobileNav?.classList.toggle('open');
+    if (mobileNav) mobileNav.hidden = !open;
+    menuBtn.setAttribute('aria-expanded', String(!!open));
+  });
+</script>

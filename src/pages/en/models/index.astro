@@ -1,0 +1,21 @@
+---
+import type { Lang } from '../../../i18n/ui';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import CatalogView from '../../../components/CatalogView.astro';
+
+const lang: Lang = 'en';
+const path = '/models/';
+---
+
+<BaseLayout
+  lang={lang}
+  path={path}
+  title="Models · ZX Spectrum — SnC Museum"
+  description="Catalogue of ZX Spectrum models and compatible machines: filter by year, manufacturer, country and RAM. An educational project by the Software and Computer Museum."
+>
+  <Header lang={lang} active="models" path={path} />
+  <CatalogView lang={lang} path={path} />
+  <Footer lang={lang} />
+</BaseLayout>

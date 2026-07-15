@@ -1,0 +1,21 @@
+---
+import type { Lang } from '../../i18n/ui';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import CatalogView from '../../components/CatalogView.astro';
+
+const lang: Lang = 'uk';
+const path = '/models/';
+---
+
+<BaseLayout
+  lang={lang}
+  path={path}
+  title="Моделі · ZX Spectrum — SnC Museum"
+  description="Каталог моделей ZX Spectrum і сумісних машин: фільтри за роком, виробником, країною та обсягом пам’яті. Освітній проєкт Software and Computer Museum."
+>
+  <Header lang={lang} active="models" path={path} />
+  <CatalogView lang={lang} path={path} />
+  <Footer lang={lang} />
+</BaseLayout>

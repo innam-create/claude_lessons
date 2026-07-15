@@ -1,0 +1,20 @@
+{
+  "name": "spectrum-sncmuseum",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Освітній сайт ZX Spectrum — spectrum.sncmuseum.org (Software and Computer Museum, Харків)",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check"
+  },
+  "dependencies": {
+    "astro": "^5.13.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "typescript": "^5.6.3"
+  }
+}

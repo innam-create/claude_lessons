@@ -1,0 +1,125 @@
+---
+import type { Lang } from '../i18n/ui';
+import { useTranslations, localizePath } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const sections = [
+  { label: t('nav.history'), href: localizePath('/history/', lang) },
+  { label: t('nav.models'), href: localizePath('/models/', lang) },
+  { label: t('nav.clones'), href: localizePath('/clones/', lang) },
+  { label: t('footer.software'), href: localizePath('/software/', lang) },
+];
+---
+
+<footer class="site-footer">
+  <div class="ft-top">
+    <div class="ft-about">
+      <div class="ft-logo">SnC Museum</div>
+      <p class="ft-tagline">{t('footer.tagline')}</p>
+      <p class="ft-addr" set:html={`${t('footer.address')}<br>${t('footer.hours')}`}></p>
+    </div>
+
+    <div class="ft-cols">
+      <div>
+        <div class="ft-head">{t('footer.sections')}</div>
+        <div class="ft-links">
+          {sections.map((s) => <a href={s.href}>{s.label}</a>)}
+        </div>
+      </div>
+      <div>
+        <div class="ft-head">{t('footer.contact')}</div>
+        <div class="ft-links">
+          <a class="gold" href="https://sncmuseum.org">sncmuseum.org</a>
+          <a class="gold" href="https://www.instagram.com/sncmuseum/">Instagram</a>
+          <a class="gold" href="https://www.facebook.com/sncmuseum/">Facebook</a>
+          <a class="mail" href="mailto:contact@sncmuseum.org">contact@sncmuseum.org</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ft-license">{t('footer.license')}</div>
+</footer>
+
+<style>
+  .site-footer {
+    width: 100%;
+    border-top: 3px solid var(--museum-gold);
+    background: var(--museum-navy);
+    padding: 40px 36px;
+    box-sizing: border-box;
+  }
+  .ft-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 32px;
+    flex-wrap: wrap;
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+  .ft-about { max-width: 340px; }
+  .ft-logo {
+    font-family: var(--font-pixel);
+    font-weight: 700;
+    font-size: 24px;
+    color: var(--zx-white);
+    text-transform: uppercase;
+  }
+  .ft-tagline {
+    font-size: 15px;
+    color: #c9d3e8;
+    margin: 12px 0 0;
+    line-height: 1.6;
+  }
+  .ft-addr {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: #8fa0c4;
+    margin: 16px 0 0;
+    line-height: 1.7;
+  }
+  .ft-cols {
+    display: flex;
+    gap: 56px;
+    flex-wrap: wrap;
+  }
+  .ft-head {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #8fa0c4;
+    margin-bottom: 14px;
+  }
+  .ft-links {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    font-size: 14px;
+  }
+  .ft-links a {
+    color: #c9d3e8;
+    text-decoration: none;
+  }
+  .ft-links a:hover { text-decoration: underline; }
+  .ft-links a.gold { color: var(--museum-gold); }
+  .ft-links a.mail {
+    font-family: var(--font-mono);
+    font-size: 13px;
+  }
+  .ft-license {
+    border-top: 1px solid #2c437a;
+    margin: 32px auto 0;
+    padding-top: 18px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: #8fa0c4;
+    line-height: 1.6;
+    max-width: 1440px;
+  }
+</style>

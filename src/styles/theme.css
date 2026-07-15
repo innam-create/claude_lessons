@@ -1,0 +1,141 @@
+/* ============================================================
+   ZX Spectrum — тематичний розділ SnC Museum
+   Токени взято з дизайн-системи (Дизайн-система.dc.html / handoff README).
+   Ретро-шар ZX поверх музейного бренду: чорне тло, палітра Spectrum,
+   Retroville для заголовків, музейні navy/gold — лише у службових зонах.
+   ============================================================ */
+
+/* Піксельний заголовковий шрифт — self-hosted (декоративно, ≥16px). */
+@font-face {
+  font-family: 'Retroville';
+  src: url('/fonts/Retroville_NC.ttf') format('truetype');
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+:root {
+  /* --- база --- */
+  --bg: #000000;
+  --text: #d7d7d7;
+  --text-dim: #a8a8a8;
+
+  /* --- сірі UI-відтінки --- */
+  --hair: #1c1c1c;      /* тонкі роздільники */
+  --border: #2a2a2a;    /* рамки карток (спокій) */
+  --border-2: #333333;  /* рамки чипсів/кнопок */
+  --surface: #0a0a0a;   /* тло карток / службові смуги */
+  --surface-2: #0d0d0d; /* тло зображень-плейсхолдерів */
+  --dim-4: #444444;
+  --dim-6: #666666;
+
+  /* --- акценти ZX Spectrum (BRIGHT) --- */
+  --zx-blue: #0000ff;   /* лише заливка/рамка/іконка */
+  --zx-red: #ff0000;
+  --zx-magenta: #ff00ff;
+  --zx-green: #00ff00;  /* лише заливка/рамка/іконка */
+  --zx-cyan: #00ffff;
+  --zx-yellow: #ffff00;
+  --zx-white: #ffffff;
+
+  /* --- бренд музею (службові зони) --- */
+  --museum-navy: #152a52;
+  --museum-gold: #ffd700;
+
+  /* --- типографіка --- */
+  --font-pixel: 'Retroville', 'Handjet', monospace;
+  --font-body: 'Golos Text', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  /* --- рух --- */
+  --dur: 200ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --content-max: 1180px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--zx-magenta);
+  color: #000;
+}
+
+a {
+  color: var(--zx-yellow);
+}
+
+/* Видимий фокус — тверда вимога доступності (не прибирати). */
+:focus-visible {
+  outline: 2px solid var(--zx-blue);
+  outline-offset: 2px;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Фірмова райдужна смуга Sinclair (Red → Yellow → Green → Cyan). */
+.rainbow-bar {
+  display: flex;
+  width: 100%;
+  height: 6px;
+}
+.rainbow-bar > span {
+  flex: 1;
+}
+.rainbow-bar .r { background: var(--zx-red); }
+.rainbow-bar .y { background: var(--zx-yellow); }
+.rainbow-bar .g { background: var(--zx-green); }
+.rainbow-bar .c { background: var(--zx-cyan); }
+
+/* ---------- CRT-режим (опційний, за замовчуванням вимкнений) ---------- */
+/* Стан у localStorage, вмикається класом на <html>. */
+.crt-overlay {
+  display: none;
+}
+html.crt .crt-overlay {
+  display: block;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0,
+    transparent 2px,
+    rgba(0, 0, 0, 0.28) 3px,
+    rgba(0, 0, 0, 0.28) 4px
+  );
+  box-shadow: inset 0 0 80px rgba(0, 255, 120, 0.1);
+  animation: zxflicker 4s infinite steps(60);
+}
+@keyframes zxflicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.96; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html.crt .crt-overlay {
+    animation: none;
+  }
+}

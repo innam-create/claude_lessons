@@ -1,0 +1,14 @@
+---
+// Фірмова райдужна смуга Sinclair: Red → Yellow → Green → Cyan.
+interface Props {
+  height?: number;
+}
+const { height = 6 } = Astro.props;
+---
+
+<div class="rainbow-bar" style={`height:${height}px`} aria-hidden="true">
+  <span class="r"></span>
+  <span class="y"></span>
+  <span class="g"></span>
+  <span class="c"></span>
+</div>

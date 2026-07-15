@@ -1,0 +1,53 @@
+---
+import '../styles/theme.css';
+import type { Lang } from '../i18n/ui';
+import { localizePath } from '../i18n/ui';
+
+interface Props {
+  title: string;
+  description?: string;
+  lang: Lang;
+  /** Шлях сторінки без мовного префікса, напр. "/models/". Для hreflang. */
+  path: string;
+}
+
+const { title, description, lang, path } = Astro.props;
+const site = Astro.site?.toString().replace(/\/$/, '') ?? '';
+---
+
+<!doctype html>
+<html lang={lang === 'uk' ? 'uk' : 'en'}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+
+    <!-- hreflang для UA/EN (ТЗ §9) -->
+    <link rel="alternate" hreflang="uk" href={`${site}${localizePath(path, 'uk')}`} />
+    <link rel="alternate" hreflang="en" href={`${site}${localizePath(path, 'en')}`} />
+    <link rel="alternate" hreflang="x-default" href={`${site}${localizePath(path, 'uk')}`} />
+
+    <!-- Golos Text (body) · IBM Plex Mono (метадані/роки) · Handjet (фолбек піксельного) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Handjet:wght@400;500;600;700&display=swap"
+    />
+
+    <!-- CRT-режим: застосувати збережений стан ДО першого малювання (без спалаху). -->
+    <script is:inline>
+      try {
+        if (localStorage.getItem('zx-crt') === 'on') {
+          document.documentElement.classList.add('crt');
+        }
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <slot />
+    <div class="crt-overlay" aria-hidden="true"></div>
+  </body>
+</html>

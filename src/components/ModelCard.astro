@@ -1,0 +1,200 @@
+---
+import { Image } from 'astro:assets';
+import type { Model } from '../lib/catalog';
+import type { Lang } from '../i18n/ui';
+import { useTranslations } from '../i18n/ui';
+import { getModelImage } from '../lib/images';
+
+interface Props {
+  model: Model;
+  lang: Lang;
+}
+const { model, lang } = Astro.props;
+const t = useTranslations(lang);
+
+const img = getModelImage(model.image);
+const hasImage = !!img;
+---
+
+<a
+  class="card"
+  href={model.href}
+  data-card
+  data-year={model.year}
+  data-maker={model.maker}
+  data-country={model.countryCode}
+  data-ram={model.ram}
+  data-museum={String(model.inMuseum)}
+>
+  {
+    hasImage ? (
+      <>
+        <div class="media">
+          <Image
+            src={img!}
+            alt={model.imageAlt ?? model.title}
+            widths={[340, 680]}
+            sizes="(max-width: 768px) 100vw, 380px"
+            class="photo"
+          />
+          <span class="corner" aria-hidden="true">
+            <span style="background:#ff0000" /><span style="background:#ffff00" />
+            <span style="background:#00ff00" /><span style="background:#00ffff" />
+          </span>
+        </div>
+        <div class="credit" title={model.credit ?? ''}>{model.credit}</div>
+      </>
+    ) : (
+      <div class="noimg">
+        <div class="q">?</div>
+        <div class="seek" set:html={t('card.seeking')} />
+        <div class="mail">contact@sncmuseum.org</div>
+      </div>
+    )
+  }
+
+  <div class="body">
+    <div class="row">
+      <div class="badges">
+        {model.inMuseum && <span class="badge museum">{t('card.inMuseum')}</span>}
+        {model.lowConf && <span class="badge low">{t('card.unverified')}</span>}
+      </div>
+      <span class="year">{model.year}</span>
+    </div>
+    <div class="name">{model.title}</div>
+    <div class="country">{model.countryLabel}</div>
+    <p class="desc">{model.desc}</p>
+  </div>
+</a>
+
+<style>
+  .card {
+    display: block;
+    border: 2px solid var(--border);
+    background: var(--surface);
+    text-decoration: none;
+    height: 100%;
+    box-sizing: border-box;
+    transition: border-color var(--dur) var(--ease-out);
+  }
+  .card:hover { border-color: var(--zx-cyan); }
+
+  .media {
+    aspect-ratio: 4 / 3;
+    position: relative;
+    overflow: hidden;
+    background: var(--surface-2);
+  }
+  .photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .corner {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    height: 8px;
+    width: 64px;
+    z-index: 2;
+  }
+  .corner > span { flex: 1; }
+
+  .credit {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--dim-6);
+    padding: 6px 12px;
+    border-bottom: 1px solid var(--hair);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .noimg {
+    aspect-ratio: 4 / 3;
+    background: var(--surface-2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px;
+    text-align: center;
+    border-bottom: 1px solid var(--hair);
+  }
+  .noimg .q {
+    font-family: var(--font-pixel);
+    font-size: 30px;
+    color: var(--zx-magenta);
+  }
+  .noimg .seek {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.4;
+  }
+  .noimg .mail {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--zx-cyan);
+  }
+
+  .body { padding: 14px 16px 18px; }
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    min-height: 24px;
+  }
+  .badges { display: flex; gap: 6px; }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+  }
+  .badge.museum {
+    background: var(--museum-gold);
+    color: var(--museum-navy);
+    padding: 4px 9px;
+  }
+  .badge.low {
+    color: var(--zx-yellow);
+    border: 1px dashed var(--zx-yellow);
+    padding: 3px 7px;
+  }
+  .year {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--zx-cyan);
+    flex: none;
+  }
+  .name {
+    font-family: var(--font-pixel);
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--zx-white);
+    text-transform: uppercase;
+    margin: 12px 0 6px;
+    line-height: 1.15;
+  }
+  .country {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+  }
+  .desc {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.5;
+    margin: 0;
+  }
+</style>

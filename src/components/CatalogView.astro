@@ -1,0 +1,482 @@
+---
+import { getCollection } from 'astro:content';
+import type { Lang } from '../i18n/ui';
+import { useTranslations, localizePath } from '../i18n/ui';
+import { normalizeModels, buildFilterGroups } from '../lib/catalog';
+import ModelCard from './ModelCard.astro';
+
+interface Props {
+  lang: Lang;
+  path: string;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const entries = await getCollection('models');
+const models = normalizeModels(entries, lang);
+const groups = buildFilterGroups(models, lang);
+
+const homeHref = localizePath('/', lang);
+
+// Компаратор (ТЗ §5.2): до 3 моделей. У дизайні панель стартує з двома
+// обраними моделями; чипси знімаються (×). Повна таблиця відмінностей —
+// наступний крок.
+const preselect = ['zx-spectrum-48k', 'zx-spectrum-128']
+  .map((slug) => models.find((m) => m.slug === slug))
+  .filter((m): m is NonNullable<typeof m> => !!m);
+---
+
+<main>
+  <div class="wrap">
+    <!-- хлібні крихти -->
+    <nav class="crumbs" aria-label="breadcrumbs">
+      <a href={homeHref}>{t('nav.home')}</a>
+      <span class="sep">/</span>
+      <span class="here">{t('catalog.title')}</span>
+    </nav>
+
+    <div class="title-row">
+      <h1>{t('catalog.title')}</h1>
+      <div
+        class="count"
+        id="catalog-count"
+        data-total={models.length}
+        data-suffix={t('catalog.count.suffix')}
+        data-of={t('catalog.count.of')}
+      >
+        {models.length} {t('catalog.count.suffix')}
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap layout">
+    <!-- ФІЛЬТРИ -->
+    <aside class="filters" aria-label={t('catalog.filters')}>
+      <div class="filters-head">
+        <span class="mini-bar" aria-hidden="true">
+          <span style="background:#ff0000"></span>
+          <span style="background:#ffff00"></span>
+          <span style="background:#00ff00"></span>
+        </span>
+        {t('catalog.filters')}
+      </div>
+
+      {
+        groups.map((g) => (
+          <div class="group">
+            <div class="group-label">{g.label}</div>
+            <div class="chips">
+              {g.chips.map((c) => (
+                <button
+                  type="button"
+                  class="chip"
+                  data-group={g.key}
+                  data-value={c.value}
+                  aria-pressed="false"
+                >
+                  {c.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+
+      <button type="button" class="reset js-reset">{t('catalog.reset')}</button>
+    </aside>
+
+    <!-- РЕЗУЛЬТАТИ -->
+    <div class="results">
+      <div class="grid" id="catalog-grid">
+        {models.map((m) => <ModelCard model={m} lang={lang} />)}
+      </div>
+
+      <!-- стан «нічого не знайдено» -->
+      <div class="empty" id="catalog-empty" hidden>
+        <div class="empty-dots" aria-hidden="true">
+          <span style="background:#ff0000"></span><span style="background:#1c1c1c"></span>
+          <span style="background:#ffff00"></span><span style="background:#1c1c1c"></span>
+          <span style="background:#1c1c1c"></span><span style="background:#00ff00"></span>
+          <span style="background:#1c1c1c"></span><span style="background:#00ffff"></span>
+        </div>
+        <div class="empty-title">{t('catalog.empty.title')}</div>
+        <p class="empty-body">{t('catalog.empty.body')}</p>
+        <button type="button" class="empty-reset js-reset">{t('catalog.reset')}</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- КОМПАРАТОР -->
+  <div class="comparator" id="comparator" data-cta={t('compare.cta')}>
+    <div class="wrap cmp-inner">
+      <span class="cmp-title">{t('compare.title')}</span>
+      <div class="cmp-slots">
+        {
+          preselect.map((m) => (
+            <span class="cmp-chip filled">
+              {m.title}
+              <button type="button" class="cmp-remove" aria-label="×">
+                {' '}×
+              </button>
+            </span>
+          ))
+        }
+        <span class="cmp-chip empty">{t('compare.add')}</span>
+      </div>
+      <button type="button" class="cmp-cta" disabled={preselect.length < 2}>
+        {t('compare.cta')} ({preselect.length}/3)
+      </button>
+    </div>
+  </div>
+</main>
+
+<style>
+  .wrap {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  .crumbs {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-dim);
+    padding: 20px 0 4px;
+    letter-spacing: 0.04em;
+  }
+  .crumbs a { color: var(--text-dim); text-decoration: none; }
+  .crumbs a:hover { color: var(--zx-cyan); }
+  .crumbs .sep { color: var(--dim-4); margin: 0 8px; }
+  .crumbs .here { color: var(--zx-cyan); }
+
+  .title-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding: 18px 0 8px;
+    border-bottom: 1px solid var(--hair);
+  }
+  h1 {
+    font-family: var(--font-pixel);
+    font-weight: 700;
+    font-size: 44px;
+    color: var(--zx-white);
+    text-transform: uppercase;
+    margin: 0;
+    line-height: 1;
+  }
+  .count {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  .layout {
+    display: flex;
+    gap: 28px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding-top: 26px;
+    padding-bottom: 60px;
+  }
+
+  /* --- фільтри --- */
+  .filters {
+    flex: 0 0 240px;
+    width: 240px;
+    border: 2px solid var(--border);
+    padding: 22px;
+    box-sizing: border-box;
+    position: sticky;
+    top: 16px;
+  }
+  .filters-head {
+    font-family: var(--font-pixel);
+    font-size: 16px;
+    color: var(--zx-white);
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .mini-bar { display: inline-flex; gap: 3px; }
+  .mini-bar > span { width: 5px; height: 14px; }
+
+  .group { margin-bottom: 22px; }
+  .group-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--text-dim);
+    margin-bottom: 11px;
+  }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    padding: 6px 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    cursor: pointer;
+    border: 1px solid var(--border-2);
+    color: var(--text-dim);
+    background: transparent;
+    transition:
+      border-color var(--dur) var(--ease-out),
+      color var(--dur) var(--ease-out);
+  }
+  .chip:hover { color: var(--zx-white); }
+  .chip.on {
+    border-color: var(--zx-cyan);
+    color: var(--zx-cyan);
+    background: rgba(0, 255, 255, 0.08);
+  }
+
+  .reset {
+    width: 100%;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    background: transparent;
+    color: var(--text-dim);
+    border: 1px solid var(--border-2);
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 4px;
+  }
+  .reset:hover { color: var(--zx-white); border-color: var(--text-dim); }
+
+  /* --- результати --- */
+  .results { flex: 1 1 560px; min-width: 280px; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+
+  .empty {
+    border: 2px dashed var(--border);
+    padding: 56px 28px;
+    text-align: center;
+  }
+  .empty-dots {
+    display: inline-grid;
+    grid-template-columns: repeat(4, 12px);
+    gap: 4px;
+    margin-bottom: 22px;
+  }
+  .empty-dots > span { width: 12px; height: 12px; }
+  .empty-title {
+    font-family: var(--font-pixel);
+    font-size: 24px;
+    color: var(--zx-white);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .empty-body {
+    font-size: 16px;
+    color: var(--text-dim);
+    line-height: 1.6;
+    max-width: 420px;
+    margin: 0 auto 22px;
+  }
+  .empty-reset {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    background: var(--zx-yellow);
+    color: #000;
+    border: none;
+    padding: 12px 22px;
+    cursor: pointer;
+  }
+
+  /* --- компаратор --- */
+  .comparator {
+    position: sticky;
+    bottom: 0;
+    background: var(--surface);
+    border-top: 2px solid var(--zx-magenta);
+    z-index: 10;
+  }
+  .comparator[hidden] { display: none; }
+  .cmp-inner {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+  .cmp-title {
+    font-family: var(--font-pixel);
+    font-size: 15px;
+    color: var(--zx-magenta);
+    text-transform: uppercase;
+    flex: none;
+  }
+  .cmp-slots {
+    display: flex;
+    gap: 8px;
+    flex: 1 1 auto;
+    flex-wrap: wrap;
+  }
+  .cmp-chip {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    padding: 6px 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  .cmp-chip.filled {
+    border: 1px solid var(--zx-magenta);
+    color: var(--zx-white);
+    background: rgba(255, 0, 255, 0.08);
+  }
+  .cmp-chip.empty {
+    border: 1px dashed var(--dim-4);
+    color: var(--dim-6);
+  }
+  .cmp-remove {
+    background: none;
+    border: none;
+    color: var(--zx-magenta);
+    cursor: pointer;
+    font-weight: 700;
+    font-family: inherit;
+    font-size: inherit;
+    padding: 0 0 0 2px;
+  }
+  .cmp-cta {
+    font-family: var(--font-pixel);
+    font-size: 14px;
+    text-transform: uppercase;
+    background: var(--zx-magenta);
+    color: #000;
+    border: none;
+    padding: 11px 20px;
+    cursor: pointer;
+    flex: none;
+  }
+  .cmp-cta:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  /* --- адаптивність (ТЗ: каталог 1/2/3/4 колонки) --- */
+  @media (max-width: 1024px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 768px) {
+    .filters {
+      flex: 1 1 100%;
+      width: 100%;
+      position: static;
+      padding: 20px;
+    }
+    .grid { grid-template-columns: 1fr; }
+    h1 { font-size: 34px; }
+  }
+  @media (min-width: 1440px) {
+    .grid { grid-template-columns: repeat(4, 1fr); }
+  }
+</style>
+
+<script>
+  // Острівна логіка фільтрів каталогу (ТЗ §5.2): клієнтська, без перезавантаження.
+  const grid = document.getElementById('catalog-grid');
+  const countEl = document.getElementById('catalog-count');
+  const emptyEl = document.getElementById('catalog-empty');
+  const comparator = document.getElementById('comparator');
+
+  if (grid && countEl && emptyEl) {
+    const cards = Array.from(grid.querySelectorAll<HTMLElement>('[data-card]'));
+    const chips = Array.from(document.querySelectorAll<HTMLElement>('.chip'));
+    const total = cards.length;
+    const suffix = countEl.dataset.suffix ?? '';
+    const ofWord = countEl.dataset.of ?? '';
+
+    // group -> Set(active values)
+    const selected: Record<string, Set<string>> = {};
+
+    function cardPasses(card: HTMLElement): boolean {
+      return Object.entries(selected).every(([group, set]) => {
+        if (set.size === 0) return true;
+        if (group === 'avail') return card.dataset.museum === 'true';
+        const val = card.dataset[group] ?? '';
+        return set.has(val);
+      });
+    }
+
+    function apply() {
+      let visible = 0;
+      for (const card of cards) {
+        const ok = cardPasses(card);
+        card.style.display = ok ? '' : 'none';
+        if (ok) visible++;
+      }
+      const anySel = Object.values(selected).some((s) => s.size > 0);
+      countEl!.textContent = anySel
+        ? `${visible} ${ofWord} ${total} ${suffix}`
+        : `${total} ${suffix}`;
+
+      const isEmpty = visible === 0;
+      emptyEl!.hidden = !isEmpty;
+      grid!.hidden = isEmpty;
+      if (comparator) comparator.hidden = isEmpty;
+    }
+
+    for (const chip of chips) {
+      chip.addEventListener('click', () => {
+        const g = chip.dataset.group!;
+        const v = chip.dataset.value!;
+        if (!selected[g]) selected[g] = new Set();
+        const set = selected[g];
+        if (set.has(v)) {
+          set.delete(v);
+          chip.classList.remove('on');
+          chip.setAttribute('aria-pressed', 'false');
+        } else {
+          set.add(v);
+          chip.classList.add('on');
+          chip.setAttribute('aria-pressed', 'true');
+        }
+        apply();
+      });
+    }
+
+    for (const btn of Array.from(document.querySelectorAll('.js-reset'))) {
+      btn.addEventListener('click', () => {
+        for (const k in selected) selected[k].clear();
+        for (const chip of chips) {
+          chip.classList.remove('on');
+          chip.setAttribute('aria-pressed', 'false');
+        }
+        apply();
+      });
+    }
+  }
+
+  // Компаратор: зняття моделі (×) + оновлення лічильника/кнопки.
+  if (comparator) {
+    const cta = comparator.querySelector<HTMLButtonElement>('.cmp-cta');
+    const ctaLabel = comparator.dataset.cta ?? 'Compare';
+    function updateCmp() {
+      const n = comparator!.querySelectorAll('.cmp-chip.filled').length;
+      if (cta) {
+        cta.textContent = `${ctaLabel} (${n}/3)`;
+        cta.disabled = n < 2;
+      }
+    }
+    for (const x of Array.from(comparator.querySelectorAll('.cmp-remove'))) {
+      x.addEventListener('click', (e) => {
+        e.preventDefault();
+        x.closest('.cmp-chip')?.remove();
+        updateCmp();
+      });
+    }
+  }
+</script>

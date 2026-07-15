@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="stylesheet" href="_ds/snc-museum-design-system-42b720aa-6f4e-4adb-ad53-66fb6593e8fe/colors_and_type.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Handjet:wght@400;500;600;700&display=swap">
+<style>
+  @font-face { font-family:'Retroville'; src:url('fonts/Retroville_NC.ttf') format('truetype'); font-weight:400 700; font-display:swap; }
+  html,body{margin:0;padding:0;}
+  body{background:#0e0e0e;color:#D7D7D7;font-family:'Golos Text',system-ui,sans-serif;}
+</style>
+</helmet>
+<div style="padding:70px; background:#0e0e0e; display:flex; flex-direction:column; gap:90px; width:max-content;">
+
+  <!-- HOME · normal -->
+  <section>
+    <div style="display:flex; align-items:baseline; gap:16px; margin-bottom:22px;">
+      <span style="font-family:'Retroville','Handjet',monospace; font-size:24px; color:#fff; text-transform:uppercase;">02 · Головна</span>
+      <span style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:#A8A8A8; text-transform:uppercase; letter-spacing:.12em;">звичайний стан</span>
+    </div>
+    <div style="display:flex; gap:44px; align-items:flex-start;">
+      <div style="flex:none;">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#666; margin-bottom:10px;">DESKTOP · 1280</div>
+        <div style="width:1280px; border:2px solid #333;">
+          <dc-import name="HomePage" variant="desktop" crt="false" hint-size="1280,1700"></dc-import>
+        </div>
+      </div>
+      <div style="flex:none;">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#666; margin-bottom:10px;">MOBILE · 390</div>
+        <div style="width:390px; border:2px solid #333;">
+          <dc-import name="HomePage" variant="mobile" crt="false" hint-size="390,2400"></dc-import>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOME · CRT -->
+  <section>
+    <div style="display:flex; align-items:baseline; gap:16px; margin-bottom:22px;">
+      <span style="font-family:'Retroville','Handjet',monospace; font-size:24px; color:#fff; text-transform:uppercase;">02 · Головна</span>
+      <span style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:#00FFFF; text-transform:uppercase; letter-spacing:.12em;">CRT-режим увімкнено</span>
+    </div>
+    <div style="display:flex; gap:44px; align-items:flex-start;">
+      <div style="flex:none;">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#666; margin-bottom:10px;">DESKTOP · 1280</div>
+        <div style="width:1280px; border:2px solid #333;">
+          <dc-import name="HomePage" variant="desktop" crt="true" hint-size="1280,1700"></dc-import>
+        </div>
+      </div>
+      <div style="flex:none;">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#666; margin-bottom:10px;">MOBILE · 390</div>
+        <div style="width:390px; border:2px solid #333;">
+          <dc-import name="HomePage" variant="mobile" crt="true" hint-size="390,2400"></dc-import>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATALOG -->
+  <section>
+    <div style="display:flex; align-items:baseline; gap:16px; margin-bottom:22px;">
+      <span style="font-family:'Retroville','Handjet',monospace; font-size:24px; color:#fff; text-transform:uppercase;">04 · Каталог моделей</span>
+      <span style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:#A8A8A8; text-transform:uppercase; letter-spacing:.12em;">сітка + фільтри + компаратор</span>
+    </div>
+    <div style="display:flex; gap:44px; align-items:flex-start;">
+      <div style="flex:none;">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#666; margin-bottom:10px;">DESKTOP · 1280</div>
+        <div style="width:1280px; border:2px solid #333;">
+          <dc-import name="CatalogPage" variant="desktop" empty="false" hint-size="1280,1500"></dc-import>
+        </div>
+      </div>
+      <div style="flex:none;">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#666; margin-bottom:10px;">MOBILE · 390</div>
+        <div style="width:390px; border:2px solid #333;">
+          <dc-import name="CatalogPage" variant="mobile" empty="false" hint-size="390,3200"></dc-import>
+        </div>
+      </div>
+      <div style="flex:none;">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#666; margin-bottom:10px;">СТАН · НІЧОГО НЕ ЗНАЙДЕНО · 1280</div>
+        <div style="width:1280px; border:2px solid #333;">
+          <dc-import name="CatalogPage" variant="desktop" empty="true" hint-size="1280,760"></dc-import>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODEL DETAIL -->
+  <section>
+    <div style="display:flex; align-items:baseline; gap:16px; margin-bottom:22px;">
+      <span style="font-family:'Retroville','Handjet',monospace; font-size:24px; color:#fff; text-transform:uppercase;">05 · Картка моделі</span>
+      <span style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:#FFFF00; text-transform:uppercase; letter-spacing:.12em;">найважливіший шаблон</span>
+    </div>
+    <div style="display:flex; gap:44px; align-items:flex-start;">
+      <div style="flex:none;">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#666; margin-bottom:10px;">DESKTOP · 1280</div>
+        <div style="width:1280px; border:2px solid #333;">
+          <dc-import name="ModelDetailPage" variant="desktop" hint-size="1280,1700"></dc-import>
+        </div>
+      </div>
+      <div style="flex:none;">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#666; margin-bottom:10px;">MOBILE · 390</div>
+        <div style="width:390px; border:2px solid #333;">
+          <dc-import name="ModelDetailPage" variant="mobile" hint-size="390,3400"></dc-import>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTS -->
+  <section>
+    <div style="display:flex; align-items:baseline; gap:16px; margin-bottom:22px;">
+      <span style="font-family:'Retroville','Handjet',monospace; font-size:24px; color:#fff; text-transform:uppercase;">03 · Контакти</span>
+      <span style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:#A8A8A8; text-transform:uppercase; letter-spacing:.12em;">адреса + мапа музею</span>
+    </div>
+    <div style="display:flex; gap:44px; align-items:flex-start;">
+      <div style="flex:none;">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#666; margin-bottom:10px;">DESKTOP · 1280</div>
+        <div style="width:1280px; border:2px solid #333;">
+          <dc-import name="ContactsPage" variant="desktop" hint-size="1280,900"></dc-import>
+        </div>
+      </div>
+      <div style="flex:none;">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#666; margin-bottom:10px;">MOBILE · 390</div>
+        <div style="width:390px; border:2px solid #333;">
+          <dc-import name="ContactsPage" variant="mobile" hint-size="390,1500"></dc-import>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HISTORY HUB -->
+  <section>
+    <div style="display:flex; align-items:baseline; gap:16px; margin-bottom:22px;">
+      <span style="font-family:'Retroville','Handjet',monospace; font-size:24px; color:#fff; text-transform:uppercase;">06 · Хаб «Історія»</span>
+      <span style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:#A8A8A8; text-transform:uppercase; letter-spacing:.12em;">таймлайн 1980–1992 + статті</span>
+    </div>
+    <div style="display:flex; gap:44px; align-items:flex-start;">
+      <div style="flex:none;">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#666; margin-bottom:10px;">DESKTOP · 1280</div>
+        <div style="width:1280px; border:2px solid #333;"><dc-import name="HistoryHubPage" variant="desktop" hint-size="1280,1200"></dc-import></div>
+      </div>
+      <div style="flex:none;">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#666; margin-bottom:10px;">MOBILE · 390</div>
+        <div style="width:390px; border:2px solid #333;"><dc-import name="HistoryHubPage" variant="mobile" hint-size="390,2600"></dc-import></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LONGREAD -->
+  <section>
+    <div style="display:flex; align-items:baseline; gap:16px; margin-bottom:22px;">
+      <span style="font-family:'Retroville','Handjet',monospace; font-size:24px; color:#fff; text-transform:uppercase;">07 · Лонгрід</span>
+      <span style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:#A8A8A8; text-transform:uppercase; letter-spacing:.12em;">вузька колонка ~720px</span>
+    </div>
+    <div style="display:flex; gap:44px; align-items:flex-start;">
+      <div style="flex:none;">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#666; margin-bottom:10px;">DESKTOP · 900</div>
+        <div style="width:900px; border:2px solid #333;"><dc-import name="LongreadPage" variant="desktop" hint-size="900,1900"></dc-import></div>
+      </div>
+      <div style="flex:none;">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#666; margin-bottom:10px;">MOBILE · 390</div>
+        <div style="width:390px; border:2px solid #333;"><dc-import name="LongreadPage" variant="mobile" hint-size="390,2600"></dc-import></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLONES -->
+  <section>
+    <div style="display:flex; align-items:baseline; gap:16px; margin-bottom:22px;">
+      <span style="font-family:'Retroville','Handjet',monospace; font-size:24px; color:#fff; text-transform:uppercase;">08 · Хаб «Клони»</span>
+      <span style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:#A8A8A8; text-transform:uppercase; letter-spacing:.12em;">картки без фото + контакт музею</span>
+    </div>
+    <div style="display:flex; gap:44px; align-items:flex-start;">
+      <div style="flex:none;">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#666; margin-bottom:10px;">DESKTOP · 1280</div>
+        <div style="width:1280px; border:2px solid #333;"><dc-import name="ClonesPage" variant="desktop" hint-size="1280,1100"></dc-import></div>
+      </div>
+      <div style="flex:none;">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#666; margin-bottom:10px;">MOBILE · 390</div>
+        <div style="width:390px; border:2px solid #333;"><dc-import name="ClonesPage" variant="mobile" hint-size="390,2600"></dc-import></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOFTWARE -->
+  <section>
+    <div style="display:flex; align-items:baseline; gap:16px; margin-bottom:22px;">
+      <span style="font-family:'Retroville','Handjet',monospace; font-size:24px; color:#fff; text-transform:uppercase;">09 · Софт та ігри</span>
+      <span style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:#A8A8A8; text-transform:uppercase; letter-spacing:.12em;">каталог програм · без «Запустити»</span>
+    </div>
+    <div style="display:flex; gap:44px; align-items:flex-start;">
+      <div style="flex:none;">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#666; margin-bottom:10px;">DESKTOP · 1280</div>
+        <div style="width:1280px; border:2px solid #333;"><dc-import name="SoftwarePage" variant="desktop" hint-size="1280,1000"></dc-import></div>
+      </div>
+      <div style="flex:none;">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#666; margin-bottom:10px;">MOBILE · 390</div>
+        <div style="width:390px; border:2px solid #333;"><dc-import name="SoftwarePage" variant="mobile" hint-size="390,2200"></dc-import></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXHIBITS -->
+  <section>
+    <div style="display:flex; align-items:baseline; gap:16px; margin-bottom:22px;">
+      <span style="font-family:'Retroville','Handjet',monospace; font-size:24px; color:#fff; text-transform:uppercase;">10 · Експонати музею</span>
+      <span style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:#FFD700; text-transform:uppercase; letter-spacing:.12em;">«В музеї» + заклик прийти</span>
+    </div>
+    <div style="display:flex; gap:44px; align-items:flex-start;">
+      <div style="flex:none;">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#666; margin-bottom:10px;">DESKTOP · 1280</div>
+        <div style="width:1280px; border:2px solid #333;"><dc-import name="ExhibitsPage" variant="desktop" hint-size="1280,1150"></dc-import></div>
+      </div>
+      <div style="flex:none;">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#666; margin-bottom:10px;">MOBILE · 390</div>
+        <div style="width:390px; border:2px solid #333;"><dc-import name="ExhibitsPage" variant="mobile" hint-size="390,2800"></dc-import></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 404 -->
+  <section>
+    <div style="display:flex; align-items:baseline; gap:16px; margin-bottom:22px;">
+      <span style="font-family:'Retroville','Handjet',monospace; font-size:24px; color:#fff; text-transform:uppercase;">11 · Службовий стан · 404</span>
+      <span style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:#00FF00; text-transform:uppercase; letter-spacing:.12em;">R Tape loading error</span>
+    </div>
+    <div style="display:flex; gap:44px; align-items:flex-start;">
+      <div style="flex:none;">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#666; margin-bottom:10px;">DESKTOP · 1280</div>
+        <div style="width:1280px; border:2px solid #333;"><dc-import name="NotFoundPage" variant="desktop" hint-size="1280,760"></dc-import></div>
+      </div>
+      <div style="flex:none;">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#666; margin-bottom:10px;">MOBILE · 390</div>
+        <div style="width:390px; border:2px solid #333;"><dc-import name="NotFoundPage" variant="mobile" hint-size="390,900"></dc-import></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+</x-dc>
+</body>
+</html>

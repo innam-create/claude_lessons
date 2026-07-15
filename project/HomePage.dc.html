@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/snc-museum-design-system-42b720aa-6f4e-4adb-ad53-66fb6593e8fe/colors_and_type.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&family=VT323&family=IBM+Plex+Mono:wght@400;500;600&family=Handjet:wght@400;500;600;700&display=swap">
+<style>
+  @font-face { font-family:'Retroville'; src:url('fonts/Retroville_NC.ttf') format('truetype'); font-weight:400 700; font-display:swap; }
+  html,body{margin:0;padding:0;}
+  body{background:#000;color:#D7D7D7;font-family:'Golos Text',system-ui,sans-serif;}
+  @keyframes zxflicker{0%,100%{opacity:.94}50%{opacity:1}}
+</style>
+</helmet>
+<div style="position:relative; width:100%; background:#000; overflow:hidden;">
+  <dc-import name="Header" variant="{{ variant }}" crt="{{ crt }}" active="" hint-size="100%,88px"></dc-import>
+
+  <!-- HERO -->
+  <div style="max-width:1180px; margin:0 auto; padding:56px 28px 40px; box-sizing:border-box;">
+    <div style="display:flex; flex-wrap:wrap; gap:64px; align-items:center;">
+      <div style="flex:1 1 340px; min-width:300px;">
+        <div style="font-family:'IBM Plex Mono',monospace; text-transform:uppercase; letter-spacing:.22em; font-size:12px; color:#00FFFF; margin-bottom:18px;">Software &amp; Computer Museum</div>
+        <h1 style="font-family:'Retroville','Handjet',monospace; font-weight:700; font-size:66px; line-height:.92; margin:0; color:#fff; text-transform:uppercase; letter-spacing:.01em;">ZX&nbsp;SPECTRUM</h1>
+        <p style="font-size:20px; line-height:1.6; color:#D7D7D7; margin:22px 0 30px; max-width:520px;">8-бітний комп'ютер, що приніс програмування й ігри у тисячі домівок. Історія, моделі, клони та софт — і те, що можна побачити наживо в музеї.</p>
+      </div>
+      <!-- first model image (transparent PNG) -->
+      <div style="flex:1 1 320px; min-width:280px; margin-top:114px;">
+        <div style="border:2px solid #2a2a2a; background:#060606; padding:22px; position:relative;">
+          <div style="position:absolute; top:0; left:0; display:flex; height:10px; width:100%; z-index:2;"><div style="flex:1;background:#FF0000;"></div><div style="flex:1;background:#FFFF00;"></div><div style="flex:1;background:#00FF00;"></div><div style="flex:1;background:#00FFFF;"></div></div>
+          <div style="position:relative; width:100%; aspect-ratio:4/3; margin-top:8px; background:radial-gradient(ellipse at 50% 55%, rgba(0,255,255,.07), transparent 68%);">
+            <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="hero-model-48k" shape="rect" fit="contain" src="assets/zx-spectrum-48k.jpg" placeholder="Перетягни фото першої моделі — ZX Spectrum 48K" hint-size="100%,100%"></x-import>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:baseline; margin-top:14px;">
+            <span style="font-family:'Retroville','Handjet',monospace; font-size:15px; color:#D7D7D7; text-transform:uppercase;">ZX Spectrum 48K</span>
+            <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:#666;">1982 · GB</span>
+          </div>
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#555; margin-top:6px;">фото експоната · колекція SnC Museum</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTRO -->
+  <div style="max-width:1180px; margin:0 auto; padding:24px 28px 8px; box-sizing:border-box;">
+    <div style="border-top:1px solid #1c1c1c; padding-top:36px; display:flex; flex-wrap:wrap; gap:32px;">
+      <div style="flex:0 0 auto; width:220px; min-width:180px; font-family:'IBM Plex Mono',monospace; text-transform:uppercase; letter-spacing:.2em; font-size:12px; color:#A8A8A8;">Про проєкт</div>
+      <p style="flex:1 1 380px; margin:0; font-size:19px; line-height:1.65; color:#D7D7D7; max-width:680px;">Освітній розділ музею про машину, з якої для багатьох почалося знайомство з комп'ютерами. Кожен факт верифіковано, чернетки готує ШІ, а публікуємо лише після затвердження музеєм.</p>
+    </div>
+  </div>
+
+  <!-- 6 SECTION TILES -->
+  <div style="max-width:1180px; margin:0 auto; padding:44px 28px; box-sizing:border-box;">
+    <div style="font-family:'Retroville','Handjet',monospace; font-weight:700; font-size:26px; color:#fff; text-transform:uppercase; margin-bottom:22px;">Розділи</div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:16px;">
+      <sc-for list="{{ tiles }}" as="t" hint-placeholder-count="6">
+        <a href="{{ t.href }}" style="display:block; border:2px solid #2a2a2a; background:#0a0a0a; text-decoration:none; padding:0;" style-hover="border-color:#00FFFF;">
+          <div style="{{ t.barStyle }}"></div>
+          <div style="padding:20px 18px 22px;">
+            <div style="font-family:'Retroville','Handjet',monospace; font-weight:600; font-size:21px; color:#fff; text-transform:uppercase; margin-bottom:10px;">{{ t.title }}</div>
+            <div style="font-size:15px; color:#A8A8A8; line-height:1.5; margin-bottom:16px;">{{ t.desc }}</div>
+            <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:#FFFF00;">Детальніше →</div>
+          </div>
+        </a>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- NEW MATERIALS -->
+  <div style="max-width:1180px; margin:0 auto; padding:12px 28px 48px; box-sizing:border-box;">
+    <div style="display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:22px;">
+      <div style="font-family:'Retroville','Handjet',monospace; font-weight:700; font-size:26px; color:#fff; text-transform:uppercase;">Нові матеріали</div>
+      <a href="HistoryHubPage.dc.html" style="font-family:'IBM Plex Mono',monospace; font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:#00FFFF; text-decoration:none;">Усі статті →</a>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px;">
+      <sc-for list="{{ articles }}" as="a" hint-placeholder-count="3">
+        <a href="{{ a.href }}" style="display:block; border:2px solid #2a2a2a; background:#0a0a0a; text-decoration:none;" style-hover="border-color:#FFFF00;">
+          <div style="aspect-ratio:16/7; background-color:#0d0d0d; background-image:linear-gradient(#161616 1px,transparent 1px),linear-gradient(90deg,#161616 1px,transparent 1px); background-size:16px 16px; border-bottom:1px solid #1c1c1c;"></div>
+          <div style="padding:16px 18px 20px;">
+            <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#00FFFF; margin-bottom:10px;">{{ a.date }}</div>
+            <div style="font-size:18px; font-weight:600; color:#fff; line-height:1.3; margin-bottom:8px;">{{ a.title }}</div>
+            <div style="font-size:14px; color:#A8A8A8; line-height:1.5;">{{ a.snippet }}</div>
+          </div>
+        </a>
+      </sc-for>
+    </div>
+  </div>
+
+  <dc-import name="Footer" hint-size="100%,260px"></dc-import>
+
+  <sc-if value="{{ crt }}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute; inset:0; pointer-events:none; z-index:20; background:repeating-linear-gradient(0deg,rgba(0,0,0,0) 0px,rgba(0,0,0,0) 2px,rgba(0,0,0,.30) 3px,rgba(0,0,0,.30) 4px); box-shadow:inset 0 0 140px rgba(0,255,120,.12); animation:zxflicker 4.5s infinite;"></div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:820},&quot;variant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;desktop&quot;,&quot;mobile&quot;],&quot;default&quot;:&quot;desktop&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;crt&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const b = v => v === true || v === 'true';
+    const bar = c => ({ height: '5px', background: c });
+    const tiles = [
+      { title: 'Історія', desc: '1980–1992: від задуму Sinclair до кінця епохи.', c: '#FF0000', href: 'HistoryHubPage.dc.html' },
+      { title: 'Моделі', desc: 'Офіційні машини: 16K, 48K, +, 128K, +2, +3.', c: '#FFFF00', href: 'CatalogPage.dc.html' },
+      { title: 'Клони', desc: 'Радянські та українські клони Spectrum.', c: '#00FF00', href: 'ClonesPage.dc.html' },
+      { title: 'Експонати', desc: 'Що можна побачити й торкнутися в музеї.', c: '#00FFFF', href: 'ExhibitsPage.dc.html' },
+      { title: 'Софт та ігри', desc: 'Програми, ігри та легендарні касети.', c: '#FF00FF', href: 'SoftwarePage.dc.html' },
+      { title: 'Периферія', desc: 'Магнітофони, джойстики, принтери, мікродрайви.', c: '#FFFFFF', href: 'PeripheralsPage.dc.html' },
+      { title: 'Контакти', desc: 'Як дістатися, графік роботи та мапа музею.', c: '#FFD700', href: 'ContactsPage.dc.html' },
+    ].map(t => ({ ...t, barStyle: bar(t.c), href: t.href || '#' }));
+
+    const articles = [
+      { date: '2026 · Історія', title: 'Як завантажували ігри з касети', snippet: 'Скрип, писк і смуги на екрані — ритуал, знайомий кожному власнику Spectrum.', href: 'Лонгрід-касета.dc.html' },
+      { date: '2026 · Клони', title: 'Клони Spectrum в Україні', snippet: '«Дельта», «Ленінград» та інші машини, зібрані на кухнях і в НДІ.', href: 'ClonesPage.dc.html' },
+      { date: '2026 · Залізо', title: 'Пам\u2019ять 48K: що всередині', snippet: 'Чому саме 48 кілобайт і як вони змінили ринок домашніх комп\u2019ютерів.', href: 'Лонгрід-48k.dc.html' },
+    ];
+
+    const keys = Array.from({ length: 40 }, (_, i) => i);
+
+    return { tiles, articles, keys, crt: b(this.props.crt), variant: this.props.variant || 'desktop' };
+  }
+}
+</script>
+</body>
+</html>

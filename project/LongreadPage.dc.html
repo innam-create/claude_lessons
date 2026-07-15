@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/snc-museum-design-system-42b720aa-6f4e-4adb-ad53-66fb6593e8fe/colors_and_type.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Handjet:wght@400;500;600;700&display=swap">
+<style>
+  @font-face { font-family:'Retroville'; src:url('fonts/Retroville_NC.ttf') format('truetype'); font-weight:400 700; font-display:swap; }
+  html,body{margin:0;padding:0;}
+  body{background:#000;color:#D7D7D7;font-family:'Golos Text',system-ui,sans-serif;}
+</style>
+</helmet>
+<div style="width:100%; background:#000;">
+  <dc-import name="Header" variant="{{ variant }}" crt="false" active="Історія" hint-size="100%,88px"></dc-import>
+
+  <article style="max-width:720px; margin:0 auto; padding:0 24px 60px; box-sizing:border-box;">
+    <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#A8A8A8; padding:20px 0 0; letter-spacing:.04em;">
+      <a href="HomePage.dc.html" style="color:#A8A8A8; text-decoration:none;">Головна</a><span style="color:#444; margin:0 8px;">/</span>
+      <a href="HistoryHubPage.dc.html" style="color:#A8A8A8; text-decoration:none;">Історія</a><span style="color:#444; margin:0 8px;">/</span><span style="color:#00FFFF;">{{ crumb }}</span>
+    </div>
+
+    <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#00FFFF; text-transform:uppercase; letter-spacing:.14em; margin-top:26px;">{{ eyebrow }}</div>
+    <h1 style="font-family:'Retroville','Handjet',monospace; font-weight:700; font-size:42px; color:#fff; text-transform:uppercase; margin:14px 0 0; line-height:1.05;">{{ title }}</h1>
+    <div style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:#A8A8A8; margin-top:16px; padding-bottom:20px; border-bottom:1px solid #1c1c1c;">{{ byline }}</div>
+
+    <p style="font-size:19px; line-height:1.75; color:#D7D7D7; margin:26px 0;">{{ lead }}</p>
+
+    <h2 style="font-family:'Retroville','Handjet',monospace; font-weight:700; font-size:26px; color:#fff; text-transform:uppercase; margin:38px 0 14px;">{{ h2a }}</h2>
+    <p style="font-size:19px; line-height:1.75; color:#D7D7D7; margin:0 0 22px;">{{ pa }}</p>
+
+    <!-- inline image with license -->
+    <figure style="margin:30px 0; border:2px solid #2a2a2a;">
+      <div style="aspect-ratio:16/9; position:relative; overflow:hidden; background:#0d0d0d;">
+        <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="{{ slotId }}" shape="rect" fit="cover" src="{{ img }}" credit="{{ credit }}" credit-href="{{ creditHref }}" placeholder="{{ imgPlaceholder }}" hint-size="100%,100%"></x-import>
+      </div>
+      <figcaption style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:#666; padding:8px 12px; border-top:1px solid #1c1c1c;">{{ figcaption }}</figcaption>
+    </figure>
+
+    <!-- pull quote -->
+    <blockquote style="margin:34px 0; border-left:4px solid #FFFF00; padding:6px 0 6px 22px;">
+      <p style="font-family:'Golos Text',sans-serif; font-size:24px; line-height:1.4; color:#fff; font-weight:600; margin:0;">{{ quote }}</p>
+    </blockquote>
+
+    <p style="font-size:19px; line-height:1.75; color:#D7D7D7; margin:0 0 22px;">{{ pb }}</p>
+
+    <!-- BASIC listing -->
+    <div style="border:1px solid #00FF00; background:#020402; padding:18px 20px; margin:28px 0; font-family:'IBM Plex Mono',monospace; font-size:15px; line-height:1.5; color:#00FF00; overflow-x:auto;">
+      <sc-for list="{{ basic }}" as="ln" hint-placeholder-count="3">
+        <div><span style="color:#FFFF00;">{{ ln.n }}</span> {{ ln.code }}</div>
+      </sc-for>
+    </div>
+
+    <h2 style="font-family:'Retroville','Handjet',monospace; font-weight:700; font-size:26px; color:#fff; text-transform:uppercase; margin:38px 0 14px;">{{ h2b }}</h2>
+    <p style="font-size:19px; line-height:1.75; color:#D7D7D7; margin:0 0 22px;">{{ pc }}</p>
+
+    <!-- SOURCES -->
+    <h2 style="font-family:'Retroville','Handjet',monospace; font-weight:700; font-size:24px; color:#fff; text-transform:uppercase; margin:40px 0 14px;">Джерела</h2>
+    <ol style="margin:0; padding-left:22px; color:#D7D7D7; font-size:16px; line-height:1.9;">
+      <sc-for list="{{ sources }}" as="s" hint-placeholder-count="3">
+        <li style="padding-left:6px;">{{ s.text }} — <a href="#" style="color:#FFFF00;">{{ s.link }}</a></li>
+      </sc-for>
+    </ol>
+  </article>
+
+  <dc-import name="Footer" hint-size="100%,260px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:820,&quot;height&quot;:1200},&quot;variant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;desktop&quot;,&quot;mobile&quot;],&quot;default&quot;:&quot;desktop&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;article&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;48k&quot;,&quot;tape&quot;,&quot;zx81&quot;],&quot;default&quot;:&quot;48k&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const variant = this.props.variant || 'desktop';
+
+    let article = this.props.article;
+    if (!article && typeof window !== 'undefined') {
+      try { article = new URLSearchParams(window.location.search).get('article'); } catch (e) {}
+    }
+    article = article || '48k';
+
+    const data = {
+      '48k': {
+        crumb: 'Чому саме 48 кілобайт', eyebrow: '1982 · Залізо', title: 'Чому саме 48 кілобайт',
+        byline: 'Редакція SnC Museum · 8 хв читання',
+        lead: 'Коли 1982 року Sinclair Research випустила ZX Spectrum, вибір обсягу пам\u2019яті був не технічною дрібницею, а стратегічним рішенням. Саме воно визначило, які програми та ігри взагалі стануть можливими на цій машині.',
+        h2a: 'Дві версії однієї машини',
+        pa: 'Spectrum вийшов у двох варіантах — на 16 та 48 кілобайт. Молодша версія була дешевшою, але швидко стало зрозуміло: серйозні ігри потребують більше простору. 48-кілобайтна модель стала стандартом де-факто.',
+        slotId: 'longread-48k-img', img: 'assets/zx-board.jpg',
+        credit: 'Bill Bertram · CC BY-SA 2.5 · Wikimedia', creditHref: 'https://commons.wikimedia.org/wiki/File:ZXspectrum_mb.jpg',
+        imgPlaceholder: 'Фото плати ZX Spectrum 48K', figcaption: 'Плата ZX Spectrum 48K · Bill Bertram · CC BY-SA 2.5 · Wikimedia',
+        quote: '«48 кілобайт здавалися розкішшю — а стали робочим мінімумом для цілого покоління розробників.»',
+        pb: 'Обмеження пам\u2019яті змушувало програмістів до винахідливості: стиснення графіки, повторне використання коду, хитрощі з атрибутами кольору. Ці прийоми згодом стали окремим видом мистецтва демосцени.',
+        basic: [{ n: '10', code: 'PRINT "FREE MEMORY:"' }, { n: '20', code: 'PRINT 65535-USR 7962' }, { n: '30', code: 'GO TO 10' }],
+        h2b: 'Спадщина',
+        pc: 'Сьогодні 48 КБ — менше за одну іконку на сучасному екрані. Але саме в цих межах народилися тисячі ігор, які досі згадують з теплом. Обмеження виявилося не вадою, а творчим викликом.',
+        sources: [
+          { text: 'Sinclair ZX Spectrum — технічна документація', link: 'sinclair-docs' },
+          { text: 'World of Spectrum, архів пам\u2019яті', link: 'worldofspectrum.org' },
+          { text: 'Wikipedia — ZX Spectrum', link: 'uk.wikipedia.org' },
+        ],
+      },
+      'tape': {
+        crumb: 'Ритуал завантаження з касети', eyebrow: 'Культура', title: 'Ритуал завантаження з касети',
+        byline: 'Редакція SnC Museum · 6 хв читання',
+        lead: 'Для власника Spectrum гра починалася задовго до першого кадру — з магнітофона. Вставити касету, натиснути LOAD "", play — і чекати кілька хвилин під характерний скрип.',
+        h2a: 'Звук, який пам\u2019ятає покоління',
+        pa: 'Дані зберігалися як аудіосигнал: серії пищання різної частоти. На екрані миготіли кольорові смуги — це і був «вигляд» програми, що завантажується. Досвідчене вухо навіть чуло, чи все йде гладко.',
+        slotId: 'longread-tape-img', img: 'assets/cassette.jpg',
+        credit: 'BASF · CC BY-SA · Wikimedia', creditHref: 'https://commons.wikimedia.org/wiki/File:CompactCassetteBASF1973.jpg',
+        imgPlaceholder: 'Фото компакт-касети', figcaption: 'Компакт-касета — носій ігор для Spectrum · CC BY-SA · Wikimedia',
+        quote: '«Ти запам\u2019ятовував гру не за обкладинкою, а за звуком її завантаження.»',
+        pb: 'Іноді касета «не бралася» — і на екрані з\u2019являвся сумнозвісний напис R Tape loading error. Тоді все починали спочатку: перемотати, підкрутити гучність, спробувати ще раз.',
+        basic: [{ n: '10', code: 'LOAD ""' }, { n: '20', code: 'REM \u043d\u0430\u0442\u0438\u0441\u043d\u0456\u0442\u044c PLAY \u043d\u0430 \u043c\u0430\u0433\u043d\u0456\u0442\u043e\u0444\u043e\u043d\u0456' }],
+        h2b: 'Чому це важливо',
+        pc: 'Завантаження з касети — не просто технічне обмеження, а спільний досвід цілого покоління. Саме це очікування зробило запуск гри маленьким святом.',
+        sources: [
+          { text: 'World of Spectrum — про формати завантаження', link: 'worldofspectrum.org' },
+          { text: 'Wikipedia — ZX Spectrum software', link: 'en.wikipedia.org' },
+          { text: 'Матеріали колекції SnC Museum', link: 'sncmuseum.org' },
+        ],
+      },
+      'zx81': {
+        crumb: 'ZX81: машина, що проклала шлях', eyebrow: '1981 · Попередник', title: 'ZX81: машина, що проклала шлях',
+        byline: 'Редакція SnC Museum · 7 хв читання',
+        lead: 'До Spectrum був ZX81 — крихітний, дешевий і напрочуд масовий. Саме він привчив сотні тисяч людей до думки, що комп\u2019ютер може стояти вдома.',
+        h2a: 'Мінімум заліза, максимум охоплення',
+        pa: 'ZX81 коштував недорого й продавався навіть у вигляді набору для самостійного складання. Один кілобайт пам\u2019яті, чорно-білий вивід — але цього вистачило, щоб закохати покупців у програмування.',
+        slotId: 'longread-zx81-img', img: 'assets/zx81.jpg',
+        credit: 'Evan-Amos · Public domain · Wikimedia', creditHref: 'https://commons.wikimedia.org/wiki/File:Sinclair_ZX81.jpg',
+        imgPlaceholder: 'Фото Sinclair ZX81', figcaption: 'Sinclair ZX81 · Evan-Amos · Public domain · Wikimedia',
+        quote: '«ZX81 навчив Британію не боятися комп\u2019ютера — Spectrum лишалося тільки додати колір.»',
+        pb: 'Успіх ZX81 довів: ринок домашніх машин реальний і величезний. Наступний крок — колір і звук — став логічним продовженням, і ним став ZX Spectrum.',
+        basic: [{ n: '10', code: 'PRINT "HELLO ZX81"' }, { n: '20', code: 'GO TO 10' }],
+        h2b: 'Місток до Spectrum',
+        pc: 'Багато перших користувачів Spectrum прийшли саме з ZX81. Вони вже знали Sinclair BASIC і чекали на потужнішу машину — і отримали її 1982 року.',
+        sources: [
+          { text: 'Wikipedia — Sinclair ZX81', link: 'uk.wikipedia.org' },
+          { text: 'World of Spectrum — попередники', link: 'worldofspectrum.org' },
+          { text: 'Матеріали колекції SnC Museum', link: 'sncmuseum.org' },
+        ],
+      },
+    };
+
+    const d = data[article] || data['48k'];
+    return { variant, ...d };
+  }
+}
+</script>
+</body>
+</html>

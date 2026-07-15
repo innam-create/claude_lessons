@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/snc-museum-design-system-42b720aa-6f4e-4adb-ad53-66fb6593e8fe/colors_and_type.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Handjet:wght@400;500;600;700&display=swap">
+<style>
+  @font-face { font-family:'Retroville'; src:url('fonts/Retroville_NC.ttf') format('truetype'); font-weight:400 700; font-display:swap; }
+  html,body{margin:0;padding:0;}
+  body{background:#000;color:#D7D7D7;font-family:'Golos Text',system-ui,sans-serif;}
+</style>
+</helmet>
+<div style="width:100%; background:#000;">
+  <dc-import name="Header" variant="{{ variant }}" active="" hint-size="100%,88px"></dc-import>
+
+  <div style="max-width:1180px; margin:0 auto; padding:28px 28px 8px; box-sizing:border-box;">
+    <!-- breadcrumbs -->
+    <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#A8A8A8; text-transform:uppercase; letter-spacing:.08em;">
+      <a href="HomePage.dc.html" style="color:#A8A8A8; text-decoration:none;">Головна</a>
+      <span style="color:#444; margin:0 8px;">/</span>
+      <span style="color:#FFFF00;">Контакти</span>
+    </div>
+    <h1 style="font-family:'Retroville','Handjet',monospace; font-weight:700; font-size:46px; color:#fff; text-transform:uppercase; margin:22px 0 0; line-height:.95;">Контакти</h1>
+    <p style="font-size:19px; color:#D7D7D7; max-width:640px; margin:18px 0 0; line-height:1.6;">Приходьте подивитися й доторкнутися до історії комп'ютерних технологій. Вхід вільний — просто завітайте у робочий час.</p>
+  </div>
+
+  <div style="max-width:1180px; margin:0 auto; padding:36px 28px 64px; box-sizing:border-box;">
+    <div style="display:flex; flex-wrap:wrap; gap:32px; align-items:stretch;">
+      <!-- details -->
+      <div style="flex:1 1 300px; min-width:270px; display:flex; flex-direction:column; gap:2px;">
+        <sc-for list="{{ rows }}" as="r" hint-placeholder-count="4">
+          <div style="border:2px solid #2a2a2a; background:#0a0a0a; padding:18px 20px;">
+            <div style="{{ r.labelStyle }}">{{ r.label }}</div>
+            <div style="font-size:17px; color:#fff; line-height:1.5;">{{ r.value }}</div>
+            <sc-if value="{{ r.sub }}" hint-placeholder-val="{{ false }}"><div style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:#A8A8A8; margin-top:4px;">{{ r.sub }}</div></sc-if>
+          </div>
+        </sc-for>
+        <div style="display:flex; gap:12px; margin-top:14px; flex-wrap:wrap;">
+          <a href="https://sncmuseum.org" style="font-family:'IBM Plex Mono',monospace; font-size:13px; text-transform:uppercase; letter-spacing:.06em; color:#00FFFF; border:2px solid #00FFFF; padding:11px 18px; text-decoration:none;">sncmuseum.org</a>
+          <a href="https://www.instagram.com/sncmuseum/" target="_blank" style="font-family:'IBM Plex Mono',monospace; font-size:13px; text-transform:uppercase; letter-spacing:.06em; color:#00FFFF; border:2px solid #00FFFF; padding:11px 18px; text-decoration:none;">Instagram</a>
+          <a href="https://www.facebook.com/sncmuseum/" target="_blank" style="font-family:'IBM Plex Mono',monospace; font-size:13px; text-transform:uppercase; letter-spacing:.06em; color:#00FFFF; border:2px solid #00FFFF; padding:11px 18px; text-decoration:none;">Facebook</a>
+        </div>
+      </div>
+
+      <!-- map -->
+      <div style="flex:1 1 400px; min-width:300px; display:flex; flex-direction:column;">
+        <div style="font-family:'IBM Plex Mono',monospace; text-transform:uppercase; letter-spacing:.2em; font-size:12px; color:#FFD700; margin-bottom:12px;">Як дістатися</div>
+        <div style="position:relative; flex:1; width:100%; min-height:320px; overflow:hidden; border:2px solid #FFD700; background:#0b1020;">
+          <iframe title="Мапа — SnC Museum" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2564.276405319766!2d36.2496656!3d50.0061743!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4127a13661e2d187%3A0x2dd29ae821c5804d!2sSoftware%20and%20Computer%20Museum!5e0!3m2!1suk!2sua!4v1783690705885!5m2!1suk!2sua" style="position:absolute; inset:0; width:100%; height:100%; border:0; display:block;" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+        <a href="https://maps.app.goo.gl/fTdUZmm8ojqFqqG2A" target="_blank" style="font-family:'Retroville','Handjet',monospace; font-weight:600; font-size:14px; text-transform:uppercase; background:#FFD700; color:#152A52; padding:14px 22px; text-decoration:none; text-align:center; margin-top:14px;">Відкрити в Google Maps →</a>
+      </div>
+    </div>
+  </div>
+
+  <dc-import name="Footer" hint-size="100%,260px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:760},&quot;variant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;desktop&quot;,&quot;mobile&quot;],&quot;default&quot;:&quot;desktop&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const labelStyle = { fontFamily: "'IBM Plex Mono',monospace", fontSize: '11px', textTransform: 'uppercase', letterSpacing: '.16em', color: '#00FFFF', marginBottom: '8px' };
+    const rows = [
+      { label: 'Адреса', value: 'вул. Григорія Сковороди, 79/1', sub: 'Харків · гуртожиток «Гігант» ХПІ' },
+      { label: 'Графік', value: 'вт–сб · 10:00–18:00', sub: 'нд, пн — вихідні · вхід вільний' },
+      { label: 'Пошта', value: 'contact@sncmuseum.org', sub: '' },
+    ].map(r => ({ ...r, labelStyle }));
+    return { rows, variant: this.props.variant || 'desktop' };
+  }
+}
+</script>
+</body>
+</html>

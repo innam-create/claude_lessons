@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/snc-museum-design-system-42b720aa-6f4e-4adb-ad53-66fb6593e8fe/colors_and_type.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Handjet:wght@400;500;600;700&display=swap">
+<style>
+  @font-face { font-family:'Retroville'; src:url('fonts/Retroville_NC.ttf') format('truetype'); font-weight:400 700; font-display:swap; }
+  html,body{margin:0;padding:0;}
+  body{background:#000;color:#D7D7D7;font-family:'Golos Text',system-ui,sans-serif;}
+</style>
+</helmet>
+<a href="{{ href }}" style="display:block; border:2px solid #2a2a2a; background:#0a0a0a; text-decoration:none; height:100%; box-sizing:border-box;" style-hover="border-color:#00FFFF;">
+  <sc-if value="{{ hasImage }}" hint-placeholder-val="{{ true }}">
+    <div style="aspect-ratio:4/3; position:relative; overflow:hidden; background:#0d0d0d;">
+      <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="{{ slotId }}" shape="rect" fit="cover" src="{{ img }}" placeholder="{{ imageLabel }}" hint-size="100%,100%"></x-import>
+      <span style="position:absolute; top:0; right:0; display:flex; height:8px; width:64px; z-index:2;"><span style="flex:1;background:#FF0000;"></span><span style="flex:1;background:#FFFF00;"></span><span style="flex:1;background:#00FF00;"></span><span style="flex:1;background:#00FFFF;"></span></span>
+    </div>
+    <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:#666; padding:6px 12px; border-bottom:1px solid #1c1c1c; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{{ credit }}</div>
+  </sc-if>
+  <sc-if value="{{ noImage }}" hint-placeholder-val="{{ false }}">
+    <div style="aspect-ratio:4/3; background:#0d0d0d; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; padding:16px; text-align:center; border-bottom:1px solid #1c1c1c;">
+      <div style="font-family:'Retroville','Handjet',monospace; font-size:30px; color:#FF00FF;">?</div>
+      <div style="font-size:14px; color:#A8A8A8; line-height:1.4;">Шукаємо фотографію<br>цієї машини</div>
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#00FFFF;">contact@sncmuseum.org</div>
+    </div>
+  </sc-if>
+  <div style="padding:14px 16px 18px;">
+    <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; min-height:24px;">
+      <div style="display:flex; gap:6px;">
+        <sc-if value="{{ inMuseum }}" hint-placeholder-val="{{ false }}"><span style="display:inline-flex; align-items:center; gap:5px; font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:11px; text-transform:uppercase; background:#FFD700; color:#152A52; padding:4px 9px;">★ В музеї</span></sc-if>
+        <sc-if value="{{ lowConf }}" hint-placeholder-val="{{ false }}"><span style="display:inline-flex; align-items:center; gap:5px; font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:11px; text-transform:uppercase; color:#FFFF00; border:1px dashed #FFFF00; padding:3px 7px;">⚠ уточнення</span></sc-if>
+      </div>
+      <span style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:#00FFFF; flex:none;">{{ year }}</span>
+    </div>
+    <div style="font-family:'Retroville','Handjet',monospace; font-weight:600; font-size:20px; color:#fff; text-transform:uppercase; margin:12px 0 6px; line-height:1.15;">{{ name }}</div>
+    <div style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:#A8A8A8; margin-bottom:10px;">{{ country }}</div>
+    <div style="font-size:15px; color:#A8A8A8; line-height:1.5;">{{ desc }}</div>
+  </div>
+</a>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:340,&quot;height&quot;:400},&quot;title&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;ZX Spectrum 48K&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;year&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;1982&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;country&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;GB · Велика Британія&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;desc&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Класична 48-КБ модель з гумовою клавіатурою.&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;credit&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Sinclair Research · CC BY-SA 4.0 · Wikimedia&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;img&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;slotId&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;href&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;ModelDetailPage.dc.html&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;inMuseum&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;lowConf&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;hasImage&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const b = v => v === true || v === 'true';
+    const hasImage = this.props.hasImage === undefined ? true : b(this.props.hasImage);
+    return {
+      name: this.props.title || 'ZX Spectrum 48K',
+      year: this.props.year || '1982',
+      country: this.props.country || 'GB · Велика Британія',
+      desc: this.props.desc || 'Короткий опис експоната.',
+      href: this.props.href || 'ModelDetailPage.dc.html',
+      img: this.props.img || '',
+      slotId: this.props.slotId || ('card-' + Math.random().toString(36).slice(2, 8)),
+      credit: this.props.credit || 'автор · ліцензія · джерело',
+      imageLabel: this.props.imageLabel || 'зображення 4:3',
+      inMuseum: b(this.props.inMuseum),
+      lowConf: b(this.props.lowConf),
+      hasImage,
+      noImage: !hasImage,
+    };
+  }
+}
+</script>
+</body>
+</html>

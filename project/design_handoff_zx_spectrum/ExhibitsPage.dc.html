@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/snc-museum-design-system-42b720aa-6f4e-4adb-ad53-66fb6593e8fe/colors_and_type.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Handjet:wght@400;500;600;700&display=swap">
+<style>
+  @font-face { font-family:'Retroville'; src:url('fonts/Retroville_NC.ttf') format('truetype'); font-weight:400 700; font-display:swap; }
+  html,body{margin:0;padding:0;}
+  body{background:#000;color:#D7D7D7;font-family:'Golos Text',system-ui,sans-serif;}
+</style>
+</helmet>
+<div style="width:100%; background:#000;">
+  <dc-import name="Header" variant="{{ variant }}" crt="false" active="Експонати" hint-size="100%,88px"></dc-import>
+  <div style="max-width:1180px; margin:0 auto; padding:0 28px; box-sizing:border-box;">
+    <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#A8A8A8; padding:20px 0 0; letter-spacing:.04em;">
+      <a href="HomePage.dc.html" style="color:#A8A8A8; text-decoration:none;">Головна</a><span style="color:#444; margin:0 8px;">/</span><span style="color:#00FFFF;">Експонати</span>
+    </div>
+    <div style="padding:22px 0 8px; border-bottom:1px solid #1c1c1c;">
+      <h1 style="font-family:'Retroville','Handjet',monospace; font-weight:700; font-size:46px; color:#fff; text-transform:uppercase; margin:0; line-height:1;">Експонати музею</h1>
+      <p style="font-size:19px; line-height:1.65; color:#D7D7D7; margin:18px 0 0; max-width:720px;">Те, що можна побачити наживо. Ці машини стоять у залі музею — багато з них досі працюють, і до них можна доторкнутися.</p>
+    </div>
+  </div>
+  <div style="max-width:1180px; margin:0 auto; padding:26px 28px 40px; box-sizing:border-box;">
+    <div style="{{ gridStyle }}">
+      <sc-for list="{{ items }}" as="i" hint-placeholder-count="6">
+        <dc-import name="ExhibitCard" title="{{ i.name }}" year="{{ i.year }}" country="{{ i.country }}" desc="{{ i.desc }}" credit="{{ i.credit }}" in-museum="true" low-conf="{{ i.lowConf }}" has-image="{{ i.hasImage }}" hint-size="100%,380px"></dc-import>
+      </sc-for>
+    </div>
+  </div>
+  <!-- visit CTA -->
+  <div style="background:#152A52; border-top:3px solid #FFD700;">
+    <div style="max-width:1180px; margin:0 auto; padding:40px 28px; box-sizing:border-box;">
+      <div style="font-family:'Retroville','Handjet',monospace; font-weight:700; font-size:28px; color:#fff; text-transform:uppercase; line-height:1;">Приходьте подивитися наживо</div>
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:14px; color:#c9d3e8; margin-top:14px; line-height:1.7;">вул. Григорія Сковороди, 79/1 · Харків · вт–сб · 10:00–18:00 · вхід вільний</div>
+    </div>
+  </div>
+  <dc-import name="Footer" hint-size="100%,260px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900},&quot;variant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;desktop&quot;,&quot;mobile&quot;],&quot;default&quot;:&quot;desktop&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const variant = this.props.variant || 'desktop';
+    const isMobile = variant === 'mobile';
+    const gridStyle = { display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3,1fr)', gap: '18px' };
+    const items = [
+      { name: 'ZX Spectrum 48K', year: '1982', country: 'GB · Велика Британія', desc: 'Робочий екземпляр — можна ввімкнути.', credit: 'SnC Museum · CC BY-SA 4.0', lowConf: false, hasImage: true },
+      { name: 'ZX Spectrum +2', year: '1986', country: 'GB · Велика Британія', desc: 'З вбудованим касетником.', credit: 'SnC Museum · CC BY-SA 4.0', lowConf: false, hasImage: true },
+      { name: 'Ленінград-1', year: '1988', country: 'СРСР · клон', desc: 'Саморобний клон на «розсипусі».', credit: 'SnC Museum · CC BY-SA 4.0', lowConf: false, hasImage: true },
+      { name: 'Дельта-С', year: '1990', country: 'UA · Харків', desc: 'Український клон харківського виробництва.', credit: 'SnC Museum · CC BY-SA 4.0', lowConf: false, hasImage: true },
+      { name: 'Пентагон-128', year: '1989', country: 'СРСР · клон', desc: 'Розширена пам\u2019ять, популярна платформа.', credit: 'SnC Museum · CC BY-SA 4.0', lowConf: false, hasImage: true },
+      { name: 'Магнітофон «Электроника»', year: '1987', country: 'СРСР · периферія', desc: 'Пристрій завантаження ігор із касет.', credit: 'SnC Museum · CC BY-SA 4.0', lowConf: false, hasImage: true },
+    ];
+    return { variant, gridStyle, items };
+  }
+}
+</script>
+</body>
+</html>

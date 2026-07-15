@@ -1,0 +1,207 @@
+/* ============================================================
+   Software & Computer Museum (SnC) — Foundations
+   colors_and_type.css
+   Colors derived from the brand logo (navy + Ukrainian flag
+   blue/yellow). Display type is Montserrat (self-hosted Bold,
+   matching the geometric wordmark); body is PT Sans (self-hosted),
+   with IBM Plex Mono for years, specs & catalog labels.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+/* Self-hosted brand fonts (uploaded by user). The CDN @import above
+   supplies the remaining Montserrat / PT Sans weights. */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('fonts/Montserrat-Bold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'PT Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/PTSans-Regular.ttf') format('truetype');
+}
+
+:root {
+  /* ---------- Brand core palette ---------- */
+  --navy-900: #12203f;   /* deepest — page base, footers */
+  --navy-800: #1a2b59;   /* BRAND navy — primary surface, logo field */
+  --navy-700: #26396f;   /* raised panel on navy */
+  --navy-600: #33498a;   /* hairline / hover on navy */
+
+  --blue:        #0a3c85;  /* flag blue — brand accent, deep */
+  --blue-bright: #1f63c7;  /* interactive blue — links, focus, active */
+  --blue-tint:   #e7eefb;  /* blue wash on light surfaces */
+
+  --yellow:      #fed61f;  /* flag yellow — primary CTA, highlight */
+  --yellow-deep: #e7be00;  /* yellow pressed / border */
+  --yellow-tint: #fff6cc;  /* yellow wash */
+
+  --white:  #ffffff;
+  --paper:  #f3f4f7;   /* light app/page surface */
+  --paper-2:#e8eaf0;   /* light secondary surface */
+  --ink:    #13213f;   /* near-navy ink on light */
+
+  /* ---------- Semantic — on LIGHT (paper/white) ---------- */
+  --fg1: #13213f;                 /* primary text */
+  --fg2: #4a5573;                 /* secondary text */
+  --fg3: #8a93ab;                 /* muted / captions */
+  --bg1: #ffffff;                 /* card / paper */
+  --bg2: #f3f4f7;                 /* page */
+  --bg3: #e8eaf0;                 /* inset / track */
+  --border-1: #d7dbe6;            /* default hairline */
+  --border-2: #b9c0d2;            /* stronger hairline */
+  --border-ink: #13213f;          /* bold outline (brand box) */
+
+  /* ---------- Semantic — on DARK (navy) ---------- */
+  --d-fg1: #f3f6fc;               /* primary text on navy */
+  --d-fg2: rgba(243,246,252,.66); /* secondary on navy */
+  --d-fg3: rgba(243,246,252,.40); /* muted on navy */
+  --d-border:        rgba(255,255,255,.85); /* bold white outline (logo motif) */
+  --d-border-subtle: rgba(255,255,255,.16); /* subtle divider on navy */
+
+  /* ---------- Accent roles ---------- */
+  --link: var(--blue-bright);
+  --focus: var(--blue-bright);
+  --cta: var(--yellow);
+  --cta-ink: #13213f;             /* text on yellow CTA */
+
+  /* ---------- Typography ---------- */
+  --font-display: 'Montserrat', 'Arial', sans-serif;          /* bold geometric, UPPERCASE headings (matches wordmark) */
+  --font-sans:    'PT Sans', system-ui, sans-serif;           /* body & UI (brand body face) */
+  --font-mono:    'IBM Plex Mono', ui-monospace, monospace;   /* labels, years, specs, eyebrows */
+
+  --tracking-display: .01em;
+  --tracking-eyebrow: .22em;   /* wide-spaced mono overlines */
+  --tracking-wordmark: .14em;  /* "MUSEUM" spacing */
+
+  /* ---------- Radii (brand is SQUARE) ---------- */
+  --radius-0: 0px;     /* default — sharp corners */
+  --radius-sm: 2px;    /* inputs, chips */
+  --radius-md: 4px;    /* max — soft cards */
+  --radius-pill: 999px;
+
+  /* ---------- Strokes (bold outlines are core) ---------- */
+  --stroke: 2px;
+  --stroke-thick: 3px;
+
+  /* ---------- Spacing (8px square grid) ---------- */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+  --sp-6: 32px;
+  --sp-7: 48px;
+  --sp-8: 64px;
+  --sp-9: 96px;
+  --sp-10: 128px;
+
+  /* ---------- Elevation (sparingly — brand prefers outlines) ---------- */
+  --shadow-sm: 0 1px 2px rgba(19,33,63,.08);
+  --shadow-md: 0 6px 20px rgba(19,33,63,.12);
+  --shadow-lg: 0 18px 48px rgba(19,33,63,.18);
+
+  /* ---------- Motion ---------- */
+  --ease: cubic-bezier(.2,.7,.2,1);
+  --ease-out: cubic-bezier(.16,1,.3,1);
+  --dur-fast: 120ms;
+  --dur: 200ms;
+  --dur-slow: 360ms;
+}
+
+/* ============================================================
+   Base type roles — apply these classes or copy the rules.
+   ============================================================ */
+
+.display, .h0 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-display);
+  line-height: .94;
+  color: var(--fg1);
+}
+.h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-display);
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  line-height: .98;
+  color: var(--fg1);
+}
+.h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-display);
+  font-size: clamp(1.7rem, 3vw, 2.6rem);
+  line-height: 1.02;
+  color: var(--fg1);
+}
+.h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .02em;
+  font-size: 1.3rem;
+  line-height: 1.1;
+  color: var(--fg1);
+}
+.h4 {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 1.05rem;
+  line-height: 1.25;
+  color: var(--fg1);
+}
+
+/* Eyebrow / overline — wide-tracked mono, the brand's signature label */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-eyebrow);
+  font-size: .72rem;
+  color: var(--blue-bright);
+}
+
+.lead {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 1.18rem;
+  line-height: 1.55;
+  color: var(--fg2);
+}
+.p, p.body {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--fg2);
+}
+.small {
+  font-family: var(--font-sans);
+  font-size: .85rem;
+  line-height: 1.5;
+  color: var(--fg3);
+}
+
+/* Mono — exhibit years, catalog numbers, specs, tags */
+.mono, .tag-num {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  letter-spacing: .02em;
+  color: var(--fg2);
+}
+.year {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  letter-spacing: .04em;
+  color: var(--blue-bright);
+}

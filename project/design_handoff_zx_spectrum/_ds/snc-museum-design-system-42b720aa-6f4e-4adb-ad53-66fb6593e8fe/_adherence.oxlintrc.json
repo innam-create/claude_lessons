@@ -1,0 +1,188 @@
+{
+  "plugins": [
+    "react",
+    "import"
+  ],
+  "rules": {
+    "react/forbid-elements": [
+      "warn",
+      {
+        "forbid": []
+      }
+    ],
+    "no-restricted-imports": [
+      "warn",
+      {
+        "patterns": [
+          {
+            "group": [
+              "ui_kits/website/**"
+            ],
+            "message": "Import design-system components from 'index.js', not component internals."
+          }
+        ]
+      }
+    ],
+    "no-restricted-syntax": [
+      "warn",
+      {
+        "selector": "Literal[value=/#[0-9a-fA-F]{3,8}\\b/]",
+        "message": "Raw hex color — use a design-system color token via var()."
+      },
+      {
+        "selector": "Literal[value=/\\b\\d+px\\b/]",
+        "message": "Raw px value — use a design-system spacing token via var()."
+      },
+      {
+        "selector": "Literal[value=/font-family\\s*:\\s*(?!['\\\"]?(?:Montserrat|PT Sans|IBM Plex Mono))/i]",
+        "message": "Font not provided by the design system. Available: Montserrat, PT Sans, IBM Plex Mono."
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/index.js"
+      ],
+      "rules": {
+        "no-restricted-imports": "off"
+      }
+    }
+  ],
+  "x-omelette": {
+    "components": {},
+    "tokens": [
+      "--bg1",
+      "--bg2",
+      "--bg3",
+      "--blue",
+      "--blue-bright",
+      "--blue-tint",
+      "--border-1",
+      "--border-2",
+      "--border-ink",
+      "--cta",
+      "--cta-ink",
+      "--d-border",
+      "--d-border-subtle",
+      "--d-fg1",
+      "--d-fg2",
+      "--d-fg3",
+      "--dur",
+      "--dur-fast",
+      "--dur-slow",
+      "--ease",
+      "--ease-out",
+      "--fg1",
+      "--fg2",
+      "--fg3",
+      "--focus",
+      "--font-display",
+      "--font-mono",
+      "--font-sans",
+      "--ink",
+      "--link",
+      "--navy-600",
+      "--navy-700",
+      "--navy-800",
+      "--navy-900",
+      "--paper",
+      "--paper-2",
+      "--radius-0",
+      "--radius-md",
+      "--radius-pill",
+      "--radius-sm",
+      "--shadow-lg",
+      "--shadow-md",
+      "--shadow-sm",
+      "--sp-1",
+      "--sp-10",
+      "--sp-2",
+      "--sp-3",
+      "--sp-4",
+      "--sp-5",
+      "--sp-6",
+      "--sp-7",
+      "--sp-8",
+      "--sp-9",
+      "--stroke",
+      "--stroke-thick",
+      "--tracking-display",
+      "--tracking-eyebrow",
+      "--tracking-wordmark",
+      "--white",
+      "--yellow",
+      "--yellow-deep",
+      "--yellow-tint"
+    ],
+    "tokenKinds": {
+      "--navy-900": "color",
+      "--navy-800": "color",
+      "--navy-700": "color",
+      "--navy-600": "color",
+      "--blue": "color",
+      "--blue-bright": "color",
+      "--blue-tint": "color",
+      "--yellow": "color",
+      "--yellow-deep": "color",
+      "--yellow-tint": "color",
+      "--white": "color",
+      "--paper": "color",
+      "--paper-2": "color",
+      "--ink": "color",
+      "--fg1": "color",
+      "--fg2": "color",
+      "--fg3": "color",
+      "--bg1": "color",
+      "--bg2": "color",
+      "--bg3": "color",
+      "--border-1": "color",
+      "--border-2": "color",
+      "--border-ink": "color",
+      "--d-fg1": "color",
+      "--d-fg2": "color",
+      "--d-fg3": "color",
+      "--d-border": "color",
+      "--d-border-subtle": "color",
+      "--link": "color",
+      "--focus": "color",
+      "--cta": "color",
+      "--cta-ink": "color",
+      "--font-display": "font",
+      "--font-sans": "font",
+      "--font-mono": "font",
+      "--tracking-display": "font",
+      "--tracking-eyebrow": "font",
+      "--tracking-wordmark": "font",
+      "--radius-0": "radius",
+      "--radius-sm": "radius",
+      "--radius-md": "radius",
+      "--radius-pill": "radius",
+      "--stroke": "color",
+      "--stroke-thick": "color",
+      "--sp-1": "spacing",
+      "--sp-2": "spacing",
+      "--sp-3": "spacing",
+      "--sp-4": "spacing",
+      "--sp-5": "spacing",
+      "--sp-6": "spacing",
+      "--sp-7": "spacing",
+      "--sp-8": "spacing",
+      "--sp-9": "spacing",
+      "--sp-10": "spacing",
+      "--shadow-sm": "shadow",
+      "--shadow-md": "shadow",
+      "--shadow-lg": "shadow",
+      "--ease": "other",
+      "--ease-out": "other",
+      "--dur-fast": "other",
+      "--dur": "other",
+      "--dur-slow": "other"
+    },
+    "fontFamilies": [
+      "IBM Plex Mono",
+      "Montserrat",
+      "PT Sans"
+    ]
+  }
+}

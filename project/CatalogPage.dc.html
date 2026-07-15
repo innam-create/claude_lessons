@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/snc-museum-design-system-42b720aa-6f4e-4adb-ad53-66fb6593e8fe/colors_and_type.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Handjet:wght@400;500;600;700&display=swap">
+<style>
+  @font-face { font-family:'Retroville'; src:url('fonts/Retroville_NC.ttf') format('truetype'); font-weight:400 700; font-display:swap; }
+  html,body{margin:0;padding:0;}
+  body{background:#000;color:#D7D7D7;font-family:'Golos Text',system-ui,sans-serif;}
+</style>
+</helmet>
+<div style="width:100%; background:#000; min-height:100%;">
+  <dc-import name="Header" variant="{{ variant }}" crt="false" active="Моделі" hint-size="100%,88px"></dc-import>
+
+  <div style="max-width:1180px; margin:0 auto; padding:0 28px; box-sizing:border-box;">
+    <!-- breadcrumbs -->
+    <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#A8A8A8; padding:20px 0 4px; letter-spacing:.04em;">
+      <a href="HomePage.dc.html" style="color:#A8A8A8; text-decoration:none;">Головна</a>
+      <span style="color:#444; margin:0 8px;">/</span>
+      <span style="color:#00FFFF;">Моделі</span>
+    </div>
+
+    <!-- title -->
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:16px; flex-wrap:wrap; padding:18px 0 8px; border-bottom:1px solid #1c1c1c;">
+      <h1 style="font-family:'Retroville','Handjet',monospace; font-weight:700; font-size:44px; color:#fff; text-transform:uppercase; margin:0; line-height:1;">Моделі</h1>
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:#A8A8A8;">{{ countLabel }}</div>
+    </div>
+  </div>
+
+  <div style="max-width:1180px; margin:0 auto; padding:26px 28px 60px; box-sizing:border-box; display:flex; gap:28px; align-items:flex-start; flex-wrap:wrap;">
+    <!-- FILTERS -->
+    <aside style="{{ asideStyle }}">
+      <div style="font-family:'Retroville','Handjet',monospace; font-size:16px; color:#fff; text-transform:uppercase; margin-bottom:18px; display:flex; align-items:center; gap:10px;">
+        <span style="display:inline-flex; gap:3px;"><span style="width:5px;height:14px;background:#FF0000;"></span><span style="width:5px;height:14px;background:#FFFF00;"></span><span style="width:5px;height:14px;background:#00FF00;"></span></span>
+        Фільтри
+      </div>
+      <sc-for list="{{ filterGroups }}" as="g" hint-placeholder-count="5">
+        <div style="margin-bottom:22px;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.14em; color:#A8A8A8; margin-bottom:11px;">{{ g.label }}</div>
+          <div style="display:flex; flex-wrap:wrap; gap:8px;">
+            <sc-for list="{{ g.chips }}" as="c" hint-placeholder-count="4">
+              <span style="{{ c.style }}" onClick="{{ c.onClick }}">{{ c.label }}</span>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+      <button style="width:100%; font-family:'IBM Plex Mono',monospace; font-size:12px; text-transform:uppercase; letter-spacing:.06em; background:transparent; color:#A8A8A8; border:1px solid #333; padding:10px; cursor:pointer; margin-top:4px;" onClick="{{ resetFilters }}">Скинути фільтри</button>
+    </aside>
+
+    <!-- RESULTS -->
+    <div style="flex:1 1 560px; min-width:280px;">
+      <sc-if value="{{ hasResults }}" hint-placeholder-val="{{ true }}">
+        <div style="{{ gridStyle }}">
+          <sc-for list="{{ models }}" as="m" hint-placeholder-count="8">
+            <dc-import name="ExhibitCard" title="{{ m.name }}" year="{{ m.year }}" country="{{ m.country }}" desc="{{ m.desc }}" credit="{{ m.credit }}" img="{{ m.img }}" slot-id="{{ m.slotId }}" href="{{ m.href }}" in-museum="{{ m.inMuseum }}" low-conf="{{ m.lowConf }}" has-image="{{ m.hasImage }}" hint-size="100%,380px"></dc-import>
+          </sc-for>
+        </div>
+      </sc-if>
+      <!-- EMPTY STATE -->
+      <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
+        <div style="border:2px dashed #2a2a2a; padding:56px 28px; text-align:center;">
+          <div style="display:inline-grid; grid-template-columns:repeat(4,12px); gap:4px; margin-bottom:22px;">
+            <span style="width:12px;height:12px;background:#FF0000;"></span><span style="width:12px;height:12px;background:#1c1c1c;"></span><span style="width:12px;height:12px;background:#FFFF00;"></span><span style="width:12px;height:12px;background:#1c1c1c;"></span>
+            <span style="width:12px;height:12px;background:#1c1c1c;"></span><span style="width:12px;height:12px;background:#00FF00;"></span><span style="width:12px;height:12px;background:#1c1c1c;"></span><span style="width:12px;height:12px;background:#00FFFF;"></span>
+          </div>
+          <div style="font-family:'Retroville','Handjet',monospace; font-size:24px; color:#fff; text-transform:uppercase; margin-bottom:10px;">Нічого не знайдено</div>
+          <div style="font-size:16px; color:#A8A8A8; line-height:1.6; max-width:420px; margin:0 auto 22px;">За обраними фільтрами немає моделей. Спробуй прибрати частину умов або скинути фільтри.</div>
+          <button style="font-family:'IBM Plex Mono',monospace; font-size:13px; text-transform:uppercase; letter-spacing:.06em; background:#FFFF00; color:#000; border:none; padding:12px 22px; cursor:pointer;" onClick="{{ resetFilters }}">Скинути фільтри</button>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+
+  <!-- COMPARATOR BAR -->
+  <sc-if value="{{ hasResults }}" hint-placeholder-val="{{ true }}">
+    <div style="position:sticky; bottom:0; background:#0a0a0a; border-top:2px solid #FF00FF; z-index:10;">
+      <div style="max-width:1180px; margin:0 auto; padding:14px 28px; box-sizing:border-box; display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
+        <span style="font-family:'Retroville','Handjet',monospace; font-size:15px; color:#FF00FF; text-transform:uppercase; flex:none;">Порівняти</span>
+        <div style="display:flex; gap:8px; flex:1 1 auto; flex-wrap:wrap;">
+          <sc-for list="{{ compareSlots }}" as="s" hint-placeholder-count="3">
+            <span style="{{ s.style }}">{{ s.label }}<sc-if value="{{ s.filled }}"><span style="color:#FF00FF; cursor:pointer; font-weight:700;"> ×</span></sc-if></span>
+          </sc-for>
+        </div>
+        <button style="{{ compareBtnStyle }}">Порівняти {{ compareCount }}</button>
+      </div>
+    </div>
+  </sc-if>
+
+  <dc-import name="Footer" hint-size="100%,260px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900},&quot;variant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;desktop&quot;,&quot;mobile&quot;],&quot;default&quot;:&quot;desktop&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;empty&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { f: { 'Рік': [], 'Виробник': [], 'Країна': [], 'Обсяг ОЗП': [], 'Наявність': [] } };
+  }
+
+  toggle(group, label) {
+    this.setState(s => {
+      const cur = s.f[group] || [];
+      const next = cur.includes(label) ? cur.filter(x => x !== label) : cur.concat(label);
+      return { f: { ...s.f, [group]: next } };
+    });
+  }
+
+  renderVals() {
+    const b = v => v === true || v === 'true';
+    const variant = this.props.variant || 'desktop';
+    const isMobile = variant === 'mobile';
+    const sel = this.state.f;
+
+    const chip = (group, label) => {
+      const on = (sel[group] || []).includes(label);
+      return {
+        label,
+        onClick: () => this.toggle(group, label),
+        style: {
+          fontFamily: "'IBM Plex Mono',monospace", fontSize: '12px', padding: '6px 11px',
+          textTransform: 'uppercase', letterSpacing: '.03em', cursor: 'pointer',
+          border: on ? '1px solid #00FFFF' : '1px solid #333',
+          color: on ? '#00FFFF' : '#A8A8A8',
+          background: on ? 'rgba(0,255,255,0.08)' : 'transparent',
+        },
+      };
+    };
+
+    const filterGroups = [
+      { label: 'Рік', chips: ['1982', '1984', '1985', '1986', '1987'].map(l => chip('Рік', l)) },
+      { label: 'Виробник', chips: ['Sinclair', 'Amstrad', 'Timex'].map(l => chip('Виробник', l)) },
+      { label: 'Країна', chips: ['Велика Британія', 'Португалія'].map(l => chip('Країна', l)) },
+      { label: 'Обсяг ОЗП', chips: ['16 KB', '48 KB', '128 KB'].map(l => chip('Обсяг ОЗП', l)) },
+      { label: 'Наявність', chips: ['★ Є в музеї'].map(l => chip('Наявність', l)) },
+    ];
+
+    const LOCALIMG={'ZXSpectrum48k.jpg':'assets/zx-48k.jpg','ZX_Spectrum+.jpg':'assets/zx-plus.jpg','ZX_Spectrum128K.jpg':'assets/zx-128.jpg','ZX_Spectrum_+3.jpg':'assets/zx-plus3.jpg','ZXspectrum_mb.jpg':'assets/zx-board.jpg'}; const fp = n => LOCALIMG[n] || '';
+    const href = k => 'Model-' + k + '.dc.html';
+    const all = [
+      { name: 'ZX Spectrum 16K', year: '1982', maker: 'Sinclair', ram: '16 KB', country: 'GB · Велика Британія', desc: 'Базова 16-КБ версія з гумовою клавіатурою.', credit: 'Bill Bertram · CC BY-SA 2.5 · Wikimedia', img: fp('ZXSpectrum48k.jpg'), slotId: 'cat-16k', href: href('16k'), inMuseum: true, lowConf: false, hasImage: true },
+      { name: 'ZX Spectrum 48K', year: '1982', maker: 'Sinclair', ram: '48 KB', country: 'GB · Велика Британія', desc: 'Класична 48-КБ модель — головна машина лінійки.', credit: 'Bill Bertram · CC BY-SA 2.5 · Wikimedia', img: fp('ZXSpectrum48k.jpg'), slotId: 'cat-48k', href: href('48k'), inMuseum: true, lowConf: false, hasImage: true },
+      { name: 'ZX Spectrum+', year: '1984', maker: 'Sinclair', ram: '48 KB', country: 'GB · Велика Британія', desc: 'Оновлений корпус із «справжньою» клавіатурою.', credit: 'CC BY-SA 2.5 · Wikimedia', img: fp('ZX_Spectrum+.jpg'), slotId: 'cat-plus', href: href('plus'), inMuseum: false, lowConf: false, hasImage: true },
+      { name: 'ZX Spectrum 128', year: '1985', maker: 'Sinclair', ram: '128 KB', country: 'GB · Велика Британія', desc: '128 КБ пам\u2019яті та звуковий чип AY-3-8912.', credit: 'CC BY-SA · Wikimedia', img: fp('ZX_Spectrum128K.jpg'), slotId: 'cat-128', href: href('128'), inMuseum: false, lowConf: false, hasImage: true },
+      { name: 'ZX Spectrum +2', year: '1986', maker: 'Amstrad', ram: '128 KB', country: 'GB · Велика Британія', desc: 'Amstrad-версія з вбудованим касетником.', credit: '', img: '', slotId: 'cat-plus2', href: href('plus2'), inMuseum: true, lowConf: false, hasImage: false },
+      { name: 'ZX Spectrum +3', year: '1987', maker: 'Amstrad', ram: '128 KB', country: 'GB · Велика Британія', desc: 'Модель із вбудованим 3\u2033 дисководом.', credit: 'CC BY-SA · Wikimedia', img: fp('ZX_Spectrum_+3.jpg'), slotId: 'cat-plus3', href: href('plus3'), inMuseum: false, lowConf: false, hasImage: true },
+      { name: 'Timex TC2048', year: '1984', maker: 'Timex', ram: '48 KB', country: 'PT · Португалія', desc: 'Ліцензійний варіант Timex для Європи.', credit: '', img: '', slotId: 'cat-timex', href: href('timex'), inMuseum: false, lowConf: false, hasImage: false },
+      { name: 'ZX Spectrum +2A', year: '1987', maker: 'Amstrad', ram: '128 KB', country: 'GB · Велика Британія', desc: 'Ревізія +2 з іншою материнською платою.', credit: '', img: '', slotId: 'cat-plus2a', href: href('plus2a'), inMuseum: false, lowConf: true, hasImage: false },
+    ];
+
+    const anySel = Object.values(sel).some(a => a.length);
+    const models = all.filter(m => {
+      if (sel['Рік'].length && !sel['Рік'].includes(m.year)) return false;
+      if (sel['Виробник'].length && !sel['Виробник'].includes(m.maker)) return false;
+      if (sel['Країна'].length && !sel['Країна'].some(c => m.country.includes(c))) return false;
+      if (sel['Обсяг ОЗП'].length && !sel['Обсяг ОЗП'].includes(m.ram)) return false;
+      if (sel['Наявність'].length && !m.inMuseum) return false;
+      return true;
+    });
+    const empty = models.length === 0 || b(this.props.empty);
+    const resetFilters = () => this.setState({ f: { 'Рік': [], 'Виробник': [], 'Країна': [], 'Обсяг ОЗП': [], 'Наявність': [] } });
+
+    const cols = isMobile ? 1 : 3;
+    const gridStyle = { display: 'grid', gridTemplateColumns: 'repeat(' + cols + ',1fr)', gap: '18px' };
+
+    const asideStyle = isMobile
+      ? { width: '100%', border: '2px solid #2a2a2a', padding: '20px', boxSizing: 'border-box' }
+      : { flex: '0 0 240px', width: '240px', border: '2px solid #2a2a2a', padding: '22px', boxSizing: 'border-box', position: 'sticky', top: '16px' };
+
+    const cslot = (label, filled) => ({
+      label, filled,
+      style: {
+        fontFamily: "'IBM Plex Mono',monospace", fontSize: '12px', padding: '6px 11px',
+        border: filled ? '1px solid #FF00FF' : '1px dashed #444',
+        color: filled ? '#fff' : '#666', textTransform: 'uppercase', letterSpacing: '.03em',
+        background: filled ? 'rgba(255,0,255,0.08)' : 'transparent',
+      },
+    });
+    const compareSlots = [cslot('ZX Spectrum 48K', true), cslot('ZX Spectrum 128', true), cslot('+ додати модель', false)];
+    const compareCount = '(2/3)';
+    const compareBtnStyle = {
+      fontFamily: "'Retroville','Handjet',monospace", fontSize: '14px', textTransform: 'uppercase',
+      background: '#FF00FF', color: '#000', border: 'none', padding: '11px 20px', cursor: 'pointer', flex: 'none',
+    };
+
+    return {
+      variant, models, filterGroups, gridStyle, asideStyle, resetFilters,
+      hasResults: !empty, isEmpty: empty,
+      countLabel: models.length + (anySel ? ' з ' + all.length : '') + ' моделей',
+      compareSlots, compareCount, compareBtnStyle,
+    };
+  }
+}
+</script>
+</body>
+</html>

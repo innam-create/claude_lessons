@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/snc-museum-design-system-42b720aa-6f4e-4adb-ad53-66fb6593e8fe/colors_and_type.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Handjet:wght@400;500;600;700&display=swap">
+<style>
+  @font-face { font-family:'Retroville'; src:url('fonts/Retroville_NC.ttf') format('truetype'); font-weight:400 700; font-display:swap; }
+  html,body{margin:0;padding:0;}
+  body{background:#000;color:#D7D7D7;font-family:'Golos Text',system-ui,sans-serif;}
+</style>
+</helmet>
+<div style="width:100%; background:#000;">
+  <dc-import name="Header" variant="{{ variant }}" crt="false" active="Моделі" hint-size="100%,88px"></dc-import>
+
+  <div style="max-width:1180px; margin:0 auto; padding:0 28px; box-sizing:border-box;">
+    <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#A8A8A8; padding:20px 0 0; letter-spacing:.04em;">
+      <a href="HomePage.dc.html" style="color:#A8A8A8; text-decoration:none;">Головна</a><span style="color:#444; margin:0 8px;">/</span>
+      <a href="CatalogPage.dc.html" style="color:#A8A8A8; text-decoration:none;">Моделі</a><span style="color:#444; margin:0 8px;">/</span>
+      <span style="color:#00FFFF;">{{ name }}</span>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div style="max-width:1180px; margin:0 auto; padding:26px 28px 8px; box-sizing:border-box;">
+    <div style="border:2px solid #2a2a2a; background:#060606; position:relative;">
+      <div style="display:flex; height:10px; width:100%;"><div style="flex:1;background:#FF0000;"></div><div style="flex:1;background:#FFFF00;"></div><div style="flex:1;background:#00FF00;"></div><div style="flex:1;background:#00FFFF;"></div></div>
+      <div style="{{ heroInnerStyle }}">
+        <div style="flex:1 1 320px; min-width:260px;">
+          <div style="display:flex; gap:8px; margin-bottom:16px; flex-wrap:wrap;">
+            <sc-if value="{{ inMuseum }}" hint-placeholder-val="{{ true }}"><span style="display:inline-flex; align-items:center; gap:6px; font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:12px; text-transform:uppercase; background:#FFD700; color:#152A52; padding:5px 11px;">★ В музеї</span></sc-if>
+            <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; text-transform:uppercase; color:#00FFFF; border:1px solid #00FFFF; padding:5px 11px;">{{ maker }}</span>
+          </div>
+          <h1 style="font-family:'Retroville','Handjet',monospace; font-weight:700; font-size:52px; color:#fff; text-transform:uppercase; margin:0; line-height:.95;">{{ name }}</h1>
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:15px; color:#00FFFF; margin-top:14px;">{{ meta }}</div>
+          <p style="font-size:18px; line-height:1.6; color:#D7D7D7; margin:20px 0 0; max-width:520px;">{{ summary }}</p>
+        </div>
+        <div style="flex:1 1 300px; min-width:240px;">
+          <div style="position:relative; width:100%; aspect-ratio:4/3; background:radial-gradient(ellipse at 50% 55%, rgba(0,255,255,.07), transparent 68%);">
+            <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="{{ slotId }}" shape="rect" fit="contain" src="{{ img }}" placeholder="Фото — {{ name }}" hint-size="100%,100%"></x-import>
+          </div>
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#555; margin-top:8px; padding:0 4px;">{{ credit }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BODY GRID -->
+  <div style="{{ bodyGridStyle }}">
+    <div style="min-width:0;">
+      <h2 style="font-family:'Retroville','Handjet',monospace; font-weight:700; font-size:28px; color:#fff; text-transform:uppercase; margin:8px 0 16px;">Характеристики</h2>
+      <div style="border:2px solid #2a2a2a; margin-bottom:44px;">
+        <sc-for list="{{ specRows }}" as="r" hint-placeholder-count="9">
+          <div style="{{ r.rowStyle }}">
+            <div style="flex:none; width:42%; font-family:'IBM Plex Mono',monospace; font-size:13px; text-transform:uppercase; letter-spacing:.05em; color:#A8A8A8;">{{ r.k }}</div>
+            <div style="{{ r.valStyle }}">{{ r.v }}</div>
+          </div>
+        </sc-for>
+      </div>
+
+      <h2 style="font-family:'Retroville','Handjet',monospace; font-weight:700; font-size:28px; color:#fff; text-transform:uppercase; margin:0 0 16px;">Галерея</h2>
+      <div style="{{ galleryStyle }}">
+        <sc-for list="{{ gallery }}" as="g" hint-placeholder-count="4">
+          <div style="border:2px solid #2a2a2a; background:#0a0a0a;">
+            <div style="aspect-ratio:4/3; position:relative; overflow:hidden; background:#0d0d0d;">
+              <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="{{ g.slotId }}" shape="rect" fit="cover" src="{{ g.img }}" placeholder="{{ g.label }}" hint-size="100%,100%"></x-import>
+            </div>
+            <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#666; padding:6px 10px; border-top:1px solid #1c1c1c; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{{ g.credit }}</div>
+          </div>
+        </sc-for>
+      </div>
+
+      <h2 style="font-family:'Retroville','Handjet',monospace; font-weight:700; font-size:28px; color:#fff; text-transform:uppercase; margin:44px 0 16px;">Джерела</h2>
+      <ol style="margin:0; padding-left:22px; color:#D7D7D7; font-size:16px; line-height:1.9;">
+        <sc-for list="{{ sources }}" as="s" hint-placeholder-count="3">
+          <li style="padding-left:6px;"><span>{{ s.text }}</span> — <a href="#" style="color:#FFFF00;">{{ s.link }}</a></li>
+        </sc-for>
+      </ol>
+    </div>
+
+    <aside style="min-width:0;">
+      <sc-if value="{{ inMuseum }}" hint-placeholder-val="{{ true }}">
+        <div style="border:2px solid #FFD700; background:#152A52; margin-bottom:24px;">
+          <div style="aspect-ratio:16/9; background:#0f1d3a; display:flex; align-items:center; justify-content:center; border-bottom:2px solid #FFD700;">
+            <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#5f6f9c;">фото музею</span>
+          </div>
+          <div style="padding:18px 18px 20px;">
+            <div style="font-family:'Retroville','Handjet',monospace; font-size:18px; color:#FFD700; text-transform:uppercase; margin-bottom:12px;">В експозиції музею</div>
+            <div style="font-size:15px; color:#eef2fb; line-height:1.6;">Цей експонат можна побачити наживо.</div>
+            <div style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:#a9b6d6; margin-top:14px; line-height:1.7;">вул. Григорія Сковороди, 79/1<br>Харків · вт–сб · 10:00–18:00</div>
+          </div>
+        </div>
+      </sc-if>
+      <div style="border:1px solid #333; padding:16px 18px;">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.1em; color:#A8A8A8; margin-bottom:10px;">Ліцензування</div>
+        <div style="font-size:14px; color:#A8A8A8; line-height:1.6;">Текст — CC BY-SA 4.0. Зображення — за ліцензіями, вказаними під кожним.</div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- PREV / NEXT -->
+  <div style="max-width:1180px; margin:0 auto; padding:16px 28px 60px; box-sizing:border-box;">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+      <a href="{{ prevHref }}" style="border:2px solid #2a2a2a; padding:18px 20px; text-decoration:none; display:block;" style-hover="border-color:#00FFFF;">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:#A8A8A8; text-transform:uppercase; letter-spacing:.08em;">← Попередня</div>
+        <div style="font-family:'Retroville','Handjet',monospace; font-size:19px; color:#fff; text-transform:uppercase; margin-top:8px;">{{ prevName }}</div>
+      </a>
+      <a href="{{ nextHref }}" style="border:2px solid #2a2a2a; padding:18px 20px; text-decoration:none; display:block; text-align:right;" style-hover="border-color:#00FFFF;">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:#A8A8A8; text-transform:uppercase; letter-spacing:.08em;">Наступна →</div>
+        <div style="font-family:'Retroville','Handjet',monospace; font-size:19px; color:#fff; text-transform:uppercase; margin-top:8px;">{{ nextName }}</div>
+      </a>
+    </div>
+  </div>
+
+  <dc-import name="Footer" hint-size="100%,260px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:1100},&quot;variant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;desktop&quot;,&quot;mobile&quot;],&quot;default&quot;:&quot;desktop&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;model&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;16k&quot;,&quot;48k&quot;,&quot;plus&quot;,&quot;128&quot;,&quot;plus2&quot;,&quot;plus3&quot;,&quot;timex&quot;,&quot;plus2a&quot;],&quot;default&quot;:&quot;48k&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const variant = this.props.variant || 'desktop';
+    const isMobile = variant === 'mobile';
+    const LOCALIMG={'ZXSpectrum48k.jpg':'assets/zx-48k.jpg','ZX_Spectrum+.jpg':'assets/zx-plus.jpg','ZX_Spectrum128K.jpg':'assets/zx-128.jpg','ZX_Spectrum_+3.jpg':'assets/zx-plus3.jpg','ZXspectrum_mb.jpg':'assets/zx-board.jpg'}; const fp = n => LOCALIMG[n] || '';
+    const wrap = k => 'Model-' + k + '.dc.html';
+
+    const order = ['16k', '48k', 'plus', '128', 'plus2', 'plus3', 'timex', 'plus2a'];
+    const M = {
+      '16k': { name: 'ZX Spectrum 16K', maker: 'Sinclair Research', meta: '1982 · Велика Британія · 16 KB', inMuseum: true,
+        img: fp('ZXSpectrum48k.jpg'), credit: 'Bill Bertram · CC BY-SA 2.5 · Wikimedia',
+        summary: 'Базова версія Spectrum із 16 кілобайтами пам\u2019яті. Зовні не відрізнялася від 48K, але дешевша й із меншим простором для програм.',
+        specs: [['Рік', '1982'], ['Виробник', 'Sinclair Research'], ['Країна', 'Велика Британія'], ['Процесор', 'Zilog Z80A · 3.5 МГц'], ['ОЗП', '16 KB'], ['Відео', '256×192 · 15 кольорів'], ['Звук', '1 канал (бузер)'], ['Носій', 'Касета'], ['Маса', null]] },
+      '48k': { name: 'ZX Spectrum 48K', maker: 'Sinclair Research', meta: '1982 · Велика Британія · 48 KB', inMuseum: true,
+        img: fp('ZXSpectrum48k.jpg'), credit: 'Bill Bertram · CC BY-SA 2.5 · Wikimedia',
+        summary: 'Найпопулярніша модель лінійки. Саме 48-кілобайтна версія зробила комп\u2019ютер масовим і сформувала культуру домашніх ігор та програмування у 1980-х.',
+        specs: [['Рік', '1982'], ['Виробник', 'Sinclair Research'], ['Країна', 'Велика Британія'], ['Процесор', 'Zilog Z80A · 3.5 МГц'], ['ОЗП', '48 KB'], ['ПЗП', '16 KB (Sinclair BASIC)'], ['Відео', '256×192 · 15 кольорів'], ['Звук', '1 канал (бузер)'], ['Носій', 'Касета'], ['Маса', null]] },
+      'plus': { name: 'ZX Spectrum+', maker: 'Sinclair Research', meta: '1984 · Велика Британія · 48 KB', inMuseum: false,
+        img: fp('ZX_Spectrum+.jpg'), credit: 'CC BY-SA 2.5 · Wikimedia',
+        summary: 'Оновлений корпус із «справжньою» клавіатурою замість гумової. Начинка лишилася від 48K — змінилась ергономіка.',
+        specs: [['Рік', '1984'], ['Виробник', 'Sinclair Research'], ['Країна', 'Велика Британія'], ['Процесор', 'Zilog Z80A · 3.5 МГц'], ['ОЗП', '48 KB'], ['Клавіатура', 'Механічна, 58 клавіш'], ['Відео', '256×192 · 15 кольорів'], ['Носій', 'Касета'], ['Маса', null]] },
+      '128': { name: 'ZX Spectrum 128', maker: 'Sinclair Research', meta: '1985 · Велика Британія · 128 KB', inMuseum: false,
+        img: fp('ZX_Spectrum128K.jpg'), credit: 'CC BY-SA · Wikimedia',
+        summary: '128 кілобайт пам\u2019яті та звуковий чип AY-3-8912 з трьома каналами. Great leap у можливостях звуку й обсягу програм.',
+        specs: [['Рік', '1985'], ['Виробник', 'Sinclair Research'], ['Країна', 'Велика Британія'], ['Процесор', 'Zilog Z80A · 3.5 МГц'], ['ОЗП', '128 KB'], ['Звук', 'AY-3-8912 · 3 канали'], ['Відео', '256×192 · 15 кольорів'], ['Носій', 'Касета'], ['Маса', null]] },
+      'plus2': { name: 'ZX Spectrum +2', maker: 'Amstrad', meta: '1986 · Велика Британія · 128 KB', inMuseum: true,
+        img: '', credit: 'Шукаємо фотографію з чистою ліцензією',
+        summary: 'Перша модель під керівництвом Amstrad: вбудований касетний магнітофон і сірий корпус. Фото з вільною ліцензією ще шукаємо.',
+        specs: [['Рік', '1986'], ['Виробник', 'Amstrad'], ['Країна', 'Велика Британія'], ['Процесор', 'Zilog Z80A · 3.5 МГц'], ['ОЗП', '128 KB'], ['Носій', 'Вбудований касетник'], ['Звук', 'AY-3-8912 · 3 канали'], ['Маса', null]] },
+      'plus3': { name: 'ZX Spectrum +3', maker: 'Amstrad', meta: '1987 · Велика Британія · 128 KB', inMuseum: false,
+        img: fp('ZX_Spectrum_+3.jpg'), credit: 'CC BY-SA · Wikimedia',
+        summary: 'Єдина модель лінійки з вбудованим 3\u2033 дисководом. Спроба перевести Spectrum на дискети замість касет.',
+        specs: [['Рік', '1987'], ['Виробник', 'Amstrad'], ['Країна', 'Велика Британія'], ['Процесор', 'Zilog Z80A · 3.5 МГц'], ['ОЗП', '128 KB'], ['Носій', 'Вбудований 3\u2033 дисковод'], ['Звук', 'AY-3-8912 · 3 канали'], ['Маса', null]] },
+      'timex': { name: 'Timex TC2048', maker: 'Timex', meta: '1984 · Португалія · 48 KB', inMuseum: false,
+        img: '', credit: 'Шукаємо фотографію з чистою ліцензією',
+        summary: 'Ліцензійний варіант Spectrum, вироблений Timex для європейського ринку. Мав розширений відеорежим і додаткові порти.',
+        specs: [['Рік', '1984'], ['Виробник', 'Timex Portugal'], ['Країна', 'Португалія'], ['Процесор', 'Zilog Z80A · 3.5 МГц'], ['ОЗП', '48 KB'], ['Відео', 'Розширені режими'], ['Носій', 'Касета'], ['Маса', null]] },
+      'plus2a': { name: 'ZX Spectrum +2A', maker: 'Amstrad', meta: '1987 · Велика Британія · 128 KB', inMuseum: false,
+        img: '', credit: 'Шукаємо фотографію з чистою ліцензією',
+        summary: 'Ревізія +2 з іншою материнською платою, спорідненою з +3, але без дисковода. Чорний корпус.',
+        specs: [['Рік', '1987'], ['Виробник', 'Amstrad'], ['Країна', 'Велика Британія'], ['Процесор', 'Zilog Z80A · 3.5 МГц'], ['ОЗП', '128 KB'], ['Носій', 'Вбудований касетник'], ['Звук', 'AY-3-8912 · 3 канали'], ['Маса', null]] },
+    };
+
+    let key = this.props.model || '48k';
+    if (!M[key]) key = '48k';
+    const d = M[key];
+
+    const heroInnerStyle = { display: 'flex', gap: isMobile ? '24px' : '40px', padding: isMobile ? '24px' : '36px', flexWrap: 'wrap', alignItems: 'center', flexDirection: isMobile ? 'column-reverse' : 'row' };
+    const bodyGridStyle = { maxWidth: '1180px', margin: '0 auto', padding: isMobile ? '32px 28px 8px' : '40px 28px 8px', boxSizing: 'border-box', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'minmax(0,1fr) 320px', gap: isMobile ? '32px' : '40px' };
+
+    const specRows = d.specs.map((r, i) => ({
+      k: r[0], v: r[1] === null ? 'невідомо' : r[1],
+      rowStyle: { display: 'flex', gap: '16px', padding: '13px 18px', background: i % 2 ? '#0c0c0c' : '#080808', alignItems: 'baseline' },
+      valStyle: { fontFamily: r[1] === null ? "'Golos Text',sans-serif" : "'IBM Plex Mono',monospace", fontSize: '15px', color: r[1] === null ? '#666' : '#D7D7D7', fontStyle: r[1] === null ? 'italic' : 'normal' },
+    }));
+
+    const gallery = [
+      { label: 'загальний вигляд', img: d.img, credit: d.credit, slotId: key + '-g1' },
+      { label: 'клавіатура', img: '', credit: 'SnC Museum · CC BY-SA 4.0', slotId: key + '-g2' },
+      { label: 'порти', img: '', credit: 'SnC Museum · CC BY-SA 4.0', slotId: key + '-g3' },
+      { label: 'плата', img: fp('ZXspectrum_mb.jpg'), credit: 'Bill Bertram · CC BY-SA 2.5', slotId: key + '-g4' },
+    ];
+    const galleryStyle = { display: 'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : 'repeat(4,1fr)', gap: '14px' };
+
+    const sources = [
+      { text: 'Sinclair / Amstrad — офіційна документація', link: 'sinclair-docs' },
+      { text: 'World of Spectrum — технічні дані', link: 'worldofspectrum.org' },
+      { text: 'Wikipedia — ' + d.name, link: 'uk.wikipedia.org' },
+    ];
+
+    const idx = order.indexOf(key);
+    const prevK = order[(idx - 1 + order.length) % order.length];
+    const nextK = order[(idx + 1) % order.length];
+
+    return {
+      variant, heroInnerStyle, bodyGridStyle, specRows, gallery, galleryStyle, sources,
+      name: d.name, maker: d.maker, meta: d.meta, summary: d.summary, img: d.img, credit: d.credit,
+      inMuseum: d.inMuseum, slotId: key + '-hero',
+      prevName: M[prevK].name, prevHref: wrap(prevK), nextName: M[nextK].name, nextHref: wrap(nextK),
+    };
+  }
+}
+</script>
+</body>
+</html>

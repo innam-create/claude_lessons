@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/snc-museum-design-system-42b720aa-6f4e-4adb-ad53-66fb6593e8fe/colors_and_type.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&family=Handjet:wght@400;500;600;700&family=Golos+Text:wght@400;500;600;700;800&family=VT323&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  @font-face {
+    font-family: 'Retroville';
+    src: url('fonts/Retroville_NC.ttf') format('truetype');
+    font-weight: 400 700;
+    font-display: swap;
+  }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: #000000;
+    color: #D7D7D7;
+    font-family: 'Golos Text', system-ui, sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: #FFFF00; text-decoration: none; }
+  a:hover { color: #00FFFF; text-decoration: underline; }
+  ::selection { background: #FF00FF; color: #000; }
+  @keyframes zxflicker { 0%,100% { opacity: .96; } 50% { opacity: 1; } }
+</style>
+</helmet>
+<div style="max-width: 1200px; margin: 0 auto; padding: 0 24px 120px;">
+
+  <!-- ===== BRAND BAR ===== -->
+  <header style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap; padding:48px 0 20px;">
+    <div>
+      <div style="font-family:'IBM Plex Mono',monospace; text-transform:uppercase; letter-spacing:.28em; font-size:12px; color:#A8A8A8; margin-bottom:16px;">Software &amp; Computer Museum · тематичний розділ</div>
+      <h1 style="font-family:'Retroville','Pixelify Sans','Handjet',monospace; font-weight:700; font-size:64px; line-height:.9; margin:0; color:#FFFFFF; text-transform:uppercase; letter-spacing:.02em;">ZX&nbsp;SPECTRUM</h1>
+      <div style="font-family:'Retroville','Handjet',monospace; font-weight:600; font-size:22px; color:#FFFF00; margin-top:10px; text-transform:uppercase;">Дизайн-система</div>
+    </div>
+    <div style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:#A8A8A8; text-align:right; line-height:1.7; max-width:320px;">
+      Референс для розробника.<br>Екран 1 з 13 — токени та компоненти.
+    </div>
+  </header>
+
+  <!-- ===== SIGNATURE RAINBOW ===== -->
+  <div style="display:flex; height:14px; width:100%;">
+    <div style="flex:1; background:#FF0000;"></div>
+    <div style="flex:1; background:#FFFF00;"></div>
+    <div style="flex:1; background:#00FF00;"></div>
+    <div style="flex:1; background:#00FFFF;"></div>
+  </div>
+  <p style="max-width:720px; color:#D7D7D7; margin:20px 0 0;">Фірмова <strong style="color:#fff;">райдужна смуга Sinclair</strong> (Red → Yellow → Green → Cyan) — головний підпис бренду. Використовується під шапкою, як тонкий роздільник секцій, підкреслення активного меню та декоративний кут картки. Не як шпалери.</p>
+
+  <!-- ===== 1. COLOR ===== -->
+  <section style="margin-top:80px;">
+    <div style="font-family:'IBM Plex Mono',monospace; text-transform:uppercase; letter-spacing:.28em; font-size:12px; color:#00FFFF; margin-bottom:10px;">01 — Колір</div>
+    <h2 style="font-family:'Retroville','Handjet',monospace; font-weight:700; font-size:34px; margin:0 0 8px; color:#fff; text-transform:uppercase;">Палітра</h2>
+
+    <h3 style="font-family:'IBM Plex Mono',monospace; font-weight:500; text-transform:uppercase; letter-spacing:.16em; font-size:13px; color:#A8A8A8; margin:36px 0 16px;">Базові</h3>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px;">
+      <sc-for list="{{ baseColors }}" as="c" hint-placeholder-count="3">
+        <div style="border:2px solid #2a2a2a; background:#0a0a0a;">
+          <div style="{{ c.swatchStyle }}"></div>
+          <div style="padding:12px 14px 14px;">
+            <div style="font-family:'Retroville','Handjet',monospace; font-weight:600; font-size:16px; color:#fff;">{{ c.token }}</div>
+            <div style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:#A8A8A8; margin-top:2px;">{{ c.hex }}</div>
+            <div style="font-size:14px; color:#A8A8A8; margin-top:8px; line-height:1.4;">{{ c.role }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+
+    <h3 style="font-family:'IBM Plex Mono',monospace; font-weight:500; text-transform:uppercase; letter-spacing:.16em; font-size:13px; color:#A8A8A8; margin:40px 0 16px;">Акценти ZX Spectrum (BRIGHT)</h3>
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px;">
+      <sc-for list="{{ zxColors }}" as="c" hint-placeholder-count="8">
+        <div style="border:2px solid #2a2a2a; background:#0a0a0a;">
+          <div style="{{ c.swatchStyle }}"></div>
+          <div style="padding:12px 14px 14px;">
+            <div style="font-family:'Retroville','Handjet',monospace; font-weight:600; font-size:16px; color:#fff;">{{ c.token }}</div>
+            <div style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:#A8A8A8; margin-top:2px;">{{ c.hex }}</div>
+            <div style="{{ c.tagStyle }}">{{ c.tag }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+
+    <h3 style="font-family:'IBM Plex Mono',monospace; font-weight:500; text-transform:uppercase; letter-spacing:.16em; font-size:13px; color:#A8A8A8; margin:40px 0 16px;">Службові (кольори музею)</h3>
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px;">
+      <sc-for list="{{ museumColors }}" as="c" hint-placeholder-count="2">
+        <div style="border:2px solid #2a2a2a; background:#0a0a0a;">
+          <div style="{{ c.swatchStyle }}"></div>
+          <div style="padding:12px 14px 14px;">
+            <div style="font-family:'Retroville','Handjet',monospace; font-weight:600; font-size:16px; color:#fff;">{{ c.token }}</div>
+            <div style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:#A8A8A8; margin-top:2px;">{{ c.hex }}</div>
+            <div style="font-size:14px; color:#A8A8A8; margin-top:8px; line-height:1.4;">{{ c.role }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+
+    <!-- accessibility rules -->
+    <div style="border-left:4px solid #FF0000; background:#0d0d0d; padding:20px 24px; margin-top:36px;">
+      <div style="font-family:'Retroville','Handjet',monospace; font-weight:600; font-size:18px; color:#FF0000; text-transform:uppercase; margin-bottom:12px;">Правила доступності — тверді</div>
+      <ul style="margin:0; padding-left:20px; color:#D7D7D7; font-size:16px; line-height:1.7;">
+        <li>Контраст «текст / тло» — не нижче <strong style="color:#fff;">4.5:1</strong>.</li>
+        <li><span style="font-family:'IBM Plex Mono',monospace; color:#fff;">#0000FF</span> (blue) та <span style="font-family:'IBM Plex Mono',monospace; color:#fff;">#00FF00</span> (green) <strong style="color:#fff;">не використовувати як текст</strong> на чорному — лише заливка, рамка, іконка, плашка.</li>
+        <li>Текст-акцент на чорному: <span style="color:#FFFF00;">yellow</span>, <span style="color:#00FFFF;">cyan</span>, <span style="color:#fff;">white</span>, <span style="color:#FF0000;">red</span>.</li>
+        <li>Колір ніколи не єдиний носій сенсу — стан дублюється формою, іконкою або підписом.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== 2. TYPOGRAPHY ===== -->
+  <section style="margin-top:80px;">
+    <div style="font-family:'IBM Plex Mono',monospace; text-transform:uppercase; letter-spacing:.28em; font-size:12px; color:#00FFFF; margin-bottom:10px;">02 — Типографіка</div>
+    <h2 style="font-family:'Retroville','Handjet',monospace; font-weight:700; font-size:34px; margin:0 0 28px; color:#fff; text-transform:uppercase;">Шрифти</h2>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; align-items:start;">
+      <!-- pixel display -->
+      <div style="border:2px solid #2a2a2a; padding:24px;">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:#A8A8A8; margin-bottom:16px;">Заголовки / UI-акценти · Pixelify Sans</div>
+        <div style="font-family:'Retroville','Handjet',monospace; font-weight:700; font-size:44px; color:#fff; line-height:.95; text-transform:uppercase;">Історія</div>
+        <div style="font-family:'Retroville','Handjet',monospace; font-weight:600; font-size:28px; color:#FFFF00; line-height:1; text-transform:uppercase; margin-top:14px;">Моделі · Клони</div>
+        <div style="font-size:15px; color:#A8A8A8; margin-top:18px; line-height:1.5;">Тільки великі кеглі та короткі рядки, UPPERCASE. Заборонено в абзацах, підписах &lt;16px і полях форм.</div>
+      </div>
+      <!-- body -->
+      <div style="border:2px solid #2a2a2a; padding:24px;">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:#A8A8A8; margin-bottom:16px;">Основний текст · Golos Text</div>
+        <p style="margin:0; font-size:18px; line-height:1.65; color:#D7D7D7;">ZX Spectrum — 8-бітний домашній комп'ютер компанії Sinclair Research, представлений 1982 року. Він приніс програмування й ігри в тисячі домівок. Кегль основного тексту ≥ 18px, міжрядковий ≥ 1.6.</p>
+        <div style="display:flex; gap:20px; flex-wrap:wrap; margin-top:18px; font-family:'IBM Plex Mono',monospace; font-size:13px; color:#A8A8A8;">
+          <span>18px&nbsp;·&nbsp;body</span><span>22px&nbsp;·&nbsp;lead</span><span>15px&nbsp;·&nbsp;small</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- type scale -->
+    <div style="border:2px solid #2a2a2a; padding:8px 24px; margin-top:16px;">
+      <sc-for list="{{ typeScale }}" as="t" hint-placeholder-count="5">
+        <div style="display:flex; align-items:baseline; gap:24px; padding:16px 0; border-bottom:1px solid #1c1c1c;">
+          <div style="width:120px; flex:none; font-family:'IBM Plex Mono',monospace; font-size:12px; color:#A8A8A8; text-transform:uppercase; letter-spacing:.08em;">{{ t.label }}</div>
+          <div style="{{ t.sampleStyle }}">{{ t.sample }}</div>
+        </div>
+      </sc-for>
+    </div>
+
+    <!-- BASIC code block -->
+    <div style="margin-top:28px;">
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:#A8A8A8; margin-bottom:12px;">Код / лістинг BASIC · ретро-термінал</div>
+      <div style="border:1px solid #00FF00; background:#020402; padding:20px 22px; font-family:'VT323','IBM Plex Mono',monospace; font-size:22px; line-height:1.35; color:#00FFFF;">
+        <div><span style="color:#FFFF00;">10</span> PRINT "SOFTWARE &amp; COMPUTER MUSEUM"</div>
+        <div><span style="color:#FFFF00;">20</span> FOR n=1980 TO 1992</div>
+        <div><span style="color:#FFFF00;">30</span> PRINT "ZX SPECTRUM"; n</div>
+        <div><span style="color:#FFFF00;">40</span> NEXT n</div>
+        <div><span style="color:#FFFF00;">50</span> GO TO 10</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 3. FORM / GRID / MOTION ===== -->
+  <section style="margin-top:80px;">
+    <div style="font-family:'IBM Plex Mono',monospace; text-transform:uppercase; letter-spacing:.28em; font-size:12px; color:#00FFFF; margin-bottom:10px;">03 — Форма</div>
+    <h2 style="font-family:'Retroville','Handjet',monospace; font-weight:700; font-size:34px; margin:0 0 28px; color:#fff; text-transform:uppercase;">Кути · сітка · рух</h2>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px;">
+      <div style="border:2px solid #2a2a2a; padding:22px;">
+        <div style="font-family:'Retroville','Handjet',monospace; font-weight:600; font-size:18px; color:#fff; text-transform:uppercase; margin-bottom:14px;">Кути</div>
+        <div style="display:flex; gap:14px; align-items:center;">
+          <div style="width:56px; height:56px; border:2px solid #FFFF00;"></div>
+          <div style="width:56px; height:56px; border:2px solid #00FFFF; clip-path:polygon(0 0, 100% 0, 100% 72%, 72% 100%, 0 100%);"></div>
+        </div>
+        <div style="font-size:14px; color:#A8A8A8; margin-top:14px; line-height:1.5;">Скруглення 0. Допускається один фірмовий «зрізаний кут» на картці.</div>
+      </div>
+      <div style="border:2px solid #2a2a2a; padding:22px;">
+        <div style="font-family:'Retroville','Handjet',monospace; font-weight:600; font-size:18px; color:#fff; text-transform:uppercase; margin-bottom:14px;">Сітка</div>
+        <div style="display:grid; grid-template-columns:repeat(6,1fr); gap:4px;">
+          <div style="height:14px; background:#141414;"></div><div style="height:14px; background:#141414;"></div><div style="height:14px; background:#141414;"></div><div style="height:14px; background:#141414;"></div><div style="height:14px; background:#141414;"></div><div style="height:14px; background:#141414;"></div>
+        </div>
+        <div style="font-size:14px; color:#A8A8A8; margin-top:14px; line-height:1.5;">12 колонок, макс. ширина ~1200px, лонгріди ~720px.</div>
+      </div>
+      <div style="border:2px solid #2a2a2a; padding:22px;">
+        <div style="font-family:'Retroville','Handjet',monospace; font-weight:600; font-size:18px; color:#fff; text-transform:uppercase; margin-bottom:14px;">Рух</div>
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:14px; color:#00FFFF; line-height:1.9;">160–240ms · ease-out<br>без bounce, без parallax</div>
+        <div style="font-size:14px; color:#A8A8A8; margin-top:14px; line-height:1.5;">Сигнатура: сітка «заповнюється» плитками. Поважає prefers-reduced-motion.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 4. COMPONENTS ===== -->
+  <section style="margin-top:80px;">
+    <div style="font-family:'IBM Plex Mono',monospace; text-transform:uppercase; letter-spacing:.28em; font-size:12px; color:#00FFFF; margin-bottom:10px;">04 — Компоненти</div>
+    <h2 style="font-family:'Retroville','Handjet',monospace; font-weight:700; font-size:34px; margin:0 0 28px; color:#fff; text-transform:uppercase;">Бібліотека</h2>
+
+    <!-- buttons -->
+    <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:#A8A8A8; margin-bottom:16px;">Кнопки</div>
+    <div style="display:flex; gap:16px; flex-wrap:wrap; align-items:center;">
+      <button style="font-family:'Retroville','Handjet',monospace; font-weight:600; font-size:16px; text-transform:uppercase; background:#FFFF00; color:#000; border:none; padding:14px 26px; cursor:pointer;" style-hover="background:#FFD700;">Прийди в музей</button>
+      <button style="font-family:'Retroville','Handjet',monospace; font-weight:600; font-size:16px; text-transform:uppercase; background:transparent; color:#00FFFF; border:2px solid #00FFFF; padding:12px 24px; cursor:pointer;" style-hover="border-color:#FFFF00; color:#FFFF00;">Детальніше</button>
+      <button style="font-family:'IBM Plex Mono',monospace; font-weight:500; font-size:14px; background:#152A52; color:#FFD700; border:2px solid #FFD700; padding:11px 20px; cursor:pointer;" style-hover="background:#1d3872;">← до музею</button>
+    </div>
+
+    <!-- badges -->
+    <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:#A8A8A8; margin:36px 0 16px;">Бейджі</div>
+    <div style="display:flex; gap:16px; flex-wrap:wrap; align-items:center;">
+      <span style="display:inline-flex; align-items:center; gap:8px; font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:13px; text-transform:uppercase; letter-spacing:.06em; background:#FFD700; color:#152A52; padding:7px 14px;">★ В музеї</span>
+      <span style="display:inline-flex; align-items:center; gap:8px; font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:13px; text-transform:uppercase; letter-spacing:.06em; background:transparent; color:#FFFF00; border:2px dashed #FFFF00; padding:6px 12px;">⚠ потребує уточнення</span>
+    </div>
+
+    <!-- exhibit card + license plate -->
+    <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:#A8A8A8; margin:36px 0 16px;">Картка експоната + плашка ліцензії</div>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px;">
+      <!-- card 1 -->
+      <div style="border:2px solid #2a2a2a; background:#0a0a0a;" style-hover="border-color:#00FFFF;">
+        <div style="aspect-ratio:4/3; background-color:#0d0d0d; background-image:linear-gradient(#151515 1px,transparent 1px),linear-gradient(90deg,#151515 1px,transparent 1px); background-size:18px 18px; display:flex; align-items:center; justify-content:center; position:relative;">
+          <span style="font-family:'Retroville','Handjet',monospace; font-size:15px; color:#3a3a3a; text-transform:uppercase;">зображення 4:3</span>
+          <span style="position:absolute; top:0; right:0; display:flex; height:8px; width:64px;"><span style="flex:1;background:#FF0000;"></span><span style="flex:1;background:#FFFF00;"></span><span style="flex:1;background:#00FF00;"></span><span style="flex:1;background:#00FFFF;"></span></span>
+        </div>
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:#666; padding:6px 12px; border-bottom:1px solid #1c1c1c;">Sinclair Research · CC BY-SA 4.0 · Wikimedia</div>
+        <div style="padding:14px 16px 18px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; gap:8px;">
+            <span style="display:inline-flex; align-items:center; gap:8px; font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:12px; text-transform:uppercase; background:#FFD700; color:#152A52; padding:4px 9px;">★ В музеї</span>
+            <span style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:#00FFFF;">1982</span>
+          </div>
+          <div style="font-family:'Retroville','Handjet',monospace; font-weight:600; font-size:20px; color:#fff; text-transform:uppercase; margin:12px 0 6px; line-height:1.1;">ZX Spectrum 48K</div>
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:#A8A8A8; margin-bottom:10px;">GB · Велика Британія</div>
+          <div style="font-size:15px; color:#A8A8A8; line-height:1.5;">Класична 48-кілобайтна модель з гумовою клавіатурою.</div>
+        </div>
+      </div>
+      <!-- card 2: low confidence -->
+      <div style="border:2px solid #2a2a2a; background:#0a0a0a;" style-hover="border-color:#00FFFF;">
+        <div style="aspect-ratio:4/3; background-color:#0d0d0d; background-image:linear-gradient(#151515 1px,transparent 1px),linear-gradient(90deg,#151515 1px,transparent 1px); background-size:18px 18px; display:flex; align-items:center; justify-content:center;">
+          <span style="font-family:'Retroville','Handjet',monospace; font-size:15px; color:#3a3a3a; text-transform:uppercase;">зображення 4:3</span>
+        </div>
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:#666; padding:6px 12px; border-bottom:1px solid #1c1c1c;">невідомо · потребує уточнення</div>
+        <div style="padding:14px 16px 18px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; gap:8px;">
+            <span style="display:inline-flex; align-items:center; gap:6px; font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:11px; text-transform:uppercase; color:#FFFF00; border:2px dashed #FFFF00; padding:2px 7px;">⚠ уточнення</span>
+            <span style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:#00FFFF;">1984</span>
+          </div>
+          <div style="font-family:'Retroville','Handjet',monospace; font-weight:600; font-size:20px; color:#fff; text-transform:uppercase; margin:12px 0 6px; line-height:1.1;">ZX Spectrum+</div>
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:#A8A8A8; margin-bottom:10px;">GB · Велика Британія</div>
+          <div style="font-size:15px; color:#A8A8A8; line-height:1.5;">Оновлений корпус із «справжньою» клавіатурою.</div>
+        </div>
+      </div>
+      <!-- card 3: no image (clone) -->
+      <div style="border:2px solid #2a2a2a; background:#0a0a0a;" style-hover="border-color:#00FFFF;">
+        <div style="aspect-ratio:4/3; background:#0d0d0d; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; padding:16px; text-align:center; border-bottom:1px solid #1c1c1c;">
+          <div style="font-family:'Retroville','Handjet',monospace; font-size:32px; color:#FF00FF;">?</div>
+          <div style="font-size:14px; color:#A8A8A8; line-height:1.4;">Шукаємо фотографію<br>цієї машини</div>
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#00FFFF;">info@sncmuseum.org</div>
+        </div>
+        <div style="padding:14px 16px 18px;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:#00FFFF;">1986</div>
+          <div style="font-family:'Retroville','Handjet',monospace; font-weight:600; font-size:20px; color:#fff; text-transform:uppercase; margin:10px 0 6px; line-height:1.1;">Дельта-С</div>
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:#A8A8A8; margin-bottom:10px;">UA · клон</div>
+          <div style="font-size:15px; color:#A8A8A8; line-height:1.5;">Радянський клон Spectrum. Гідна картка без зображення.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- spec table + timeline -->
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:44px; align-items:start;">
+      <div>
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:#A8A8A8; margin-bottom:16px;">Таблиця характеристик</div>
+        <div style="border:2px solid #2a2a2a;">
+          <sc-for list="{{ specRows }}" as="r" hint-placeholder-count="6">
+            <div style="{{ r.rowStyle }}">
+              <div style="flex:none; width:44%; font-family:'IBM Plex Mono',monospace; font-size:13px; text-transform:uppercase; letter-spacing:.06em; color:#A8A8A8;">{{ r.k }}</div>
+              <div style="{{ r.valStyle }}">{{ r.v }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="font-size:13px; color:#666; margin-top:8px; font-family:'IBM Plex Mono',monospace;">null → «невідомо», не порожньо.</div>
+      </div>
+      <div>
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:#A8A8A8; margin-bottom:16px;">Таймлайн (вузол-рік)</div>
+        <div style="border:2px solid #2a2a2a; padding:28px 22px;">
+          <div style="position:relative; height:3px; background:#1c1c1c; margin:30px 0;">
+            <div style="position:absolute; inset:0; background:linear-gradient(90deg,#FF0000,#FFFF00,#00FF00,#00FFFF);"></div>
+            <sc-for list="{{ timelineYears }}" as="y" hint-placeholder-count="4">
+              <div style="{{ y.nodeWrapStyle }}">
+                <div style="width:14px; height:14px; background:#000; border:3px solid #fff;"></div>
+                <div style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:#00FFFF; margin-top:10px;">{{ y.year }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CRT preview -->
+    <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:#A8A8A8; margin:44px 0 16px;">CRT-режим (перемикач у шапці · за замовчуванням вимкнено)</div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+      <div style="border:2px solid #2a2a2a;">
+        <div style="padding:8px 14px; font-family:'IBM Plex Mono',monospace; font-size:12px; color:#A8A8A8; border-bottom:1px solid #1c1c1c;">OFF</div>
+        <div style="padding:28px 22px; background:#000;">
+          <div style="font-family:'Retroville','Handjet',monospace; font-size:26px; color:#FFFF00; text-transform:uppercase;">ZX SPECTRUM</div>
+          <div style="font-size:15px; color:#D7D7D7; margin-top:8px;">Чистий, максимально читабельний.</div>
+        </div>
+      </div>
+      <div style="border:2px solid #2a2a2a;">
+        <div style="padding:8px 14px; font-family:'IBM Plex Mono',monospace; font-size:12px; color:#00FFFF; border-bottom:1px solid #1c1c1c;">ON</div>
+        <div style="padding:28px 22px; position:relative; background:#000; overflow:hidden; animation:zxflicker 4s infinite;">
+          <div style="font-family:'Retroville','Handjet',monospace; font-size:26px; color:#FFFF00; text-transform:uppercase; text-shadow:0 0 8px rgba(255,255,0,.55);">ZX SPECTRUM</div>
+          <div style="font-size:15px; color:#D7D7D7; margin-top:8px;">Scanlines + легкий glow поверх усього.</div>
+          <div style="position:absolute; inset:0; pointer-events:none; background:repeating-linear-gradient(0deg,rgba(0,0,0,0) 0px,rgba(0,0,0,0) 2px,rgba(0,0,0,.28) 3px,rgba(0,0,0,.28) 4px);"></div>
+          <div style="position:absolute; inset:0; pointer-events:none; box-shadow:inset 0 0 80px rgba(0,255,120,.10);"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER (museum brand) ===== -->
+  <footer style="margin-top:90px; border-top:3px solid #FFD700; background:#152A52; padding:36px 32px; display:flex; justify-content:space-between; gap:24px; flex-wrap:wrap;">
+    <div>
+      <div style="font-family:'Retroville','Handjet',monospace; font-weight:700; font-size:22px; color:#fff; text-transform:uppercase;">SnC Museum</div>
+      <div style="font-size:15px; color:#c9d3e8; margin-top:10px; line-height:1.6;">вул. Григорія Сковороди, 79/1<br>вт–сб, 10:00–18:00 · Харків</div>
+    </div>
+    <div style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:#c9d3e8; text-align:right; line-height:1.8;">
+      <a href="https://sncmuseum.org" style="color:#FFD700;">sncmuseum.org</a> · Instagram<br>
+      <span style="color:#8fa0c4;">Текст — CC BY-SA 4.0 · зображення — за ліцензіями під кожним</span>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const box = (bg, extra) => Object.assign({ height: '84px', background: bg, borderBottom: '2px solid #2a2a2a' }, extra || {});
+    const tag = (safe) => ({
+      display: 'inline-block',
+      marginTop: '8px',
+      fontFamily: "'IBM Plex Mono',monospace",
+      fontSize: '12px',
+      padding: '3px 8px',
+      textTransform: 'uppercase',
+      letterSpacing: '.04em',
+      color: safe ? '#000' : '#FFFF00',
+      background: safe ? '#00FFFF' : 'transparent',
+      border: safe ? 'none' : '1px solid #FFFF00'
+    });
+
+    const baseColors = [
+      { token: '--bg', hex: '#000000', role: 'Тло сайту — чисто чорне', bg: '#000000', outline: true },
+      { token: '--text', hex: '#D7D7D7', role: 'Основний текст (не білий)', bg: '#D7D7D7' },
+      { token: '--text-dim', hex: '#A8A8A8', role: 'Підписи, метадані', bg: '#A8A8A8' },
+    ].map(c => ({ ...c, swatchStyle: box(c.bg, c.outline ? { boxShadow: 'inset 0 0 0 1px #222' } : null) }));
+
+    const zx = [
+      { token: 'blue', hex: '#0000FF', safe: false },
+      { token: 'red', hex: '#FF0000', safe: true },
+      { token: 'magenta', hex: '#FF00FF', safe: true },
+      { token: 'green', hex: '#00FF00', safe: false },
+      { token: 'cyan', hex: '#00FFFF', safe: true },
+      { token: 'yellow', hex: '#FFFF00', safe: true },
+      { token: 'white', hex: '#FFFFFF', safe: true },
+      { token: 'black', hex: '#000000', safe: false, isBg: true },
+    ];
+    const zxColors = zx.map(c => ({
+      token: '--zx-' + c.token,
+      hex: c.hex,
+      swatchStyle: box(c.hex, c.isBg ? { boxShadow: 'inset 0 0 0 1px #222' } : null),
+      tag: c.isBg ? 'тло' : (c.safe ? 'текст ✓' : 'лише заливка/рамка'),
+      tagStyle: tag(c.safe && !c.isBg),
+    }));
+
+    const museumColors = [
+      { token: '--museum-navy', hex: '#152A52', role: 'Футер, службові блоки', bg: '#152A52' },
+      { token: '--museum-gold', hex: '#FFD700', role: 'Бейдж «В музеї», акцент музею', bg: '#FFD700' },
+    ].map(c => ({ ...c, swatchStyle: box(c.bg) }));
+
+    const typeScale = [
+      { label: 'Display 64', sample: 'ZX SPECTRUM', sampleStyle: { fontFamily: "'Retroville','Handjet',monospace", fontWeight: 700, fontSize: '48px', color: '#fff', textTransform: 'uppercase', lineHeight: 1 } },
+      { label: 'H2 34 pixel', sample: 'МОДЕЛІ', sampleStyle: { fontFamily: "'Retroville','Handjet',monospace", fontWeight: 700, fontSize: '32px', color: '#FFFF00', textTransform: 'uppercase' } },
+      { label: 'Lead 22', sample: 'Домашній комп\u2019ютер, що змінив покоління.', sampleStyle: { fontFamily: "'Golos Text',sans-serif", fontSize: '22px', color: '#D7D7D7', lineHeight: 1.4 } },
+      { label: 'Body 18', sample: 'Кегль основного тексту не менше 18px, міжрядковий 1.6.', sampleStyle: { fontFamily: "'Golos Text',sans-serif", fontSize: '18px', color: '#D7D7D7', lineHeight: 1.6 } },
+      { label: 'Mono 14', sample: '1982 · 48 KB · GB', sampleStyle: { fontFamily: "'IBM Plex Mono',monospace", fontSize: '14px', color: '#00FFFF', letterSpacing: '.04em' } },
+    ];
+
+    const rows = [
+      { k: 'Рік', v: '1982' },
+      { k: 'Виробник', v: 'Sinclair Research' },
+      { k: 'ОЗП', v: '48 KB' },
+      { k: 'Процесор', v: 'Zilog Z80 · 3.5 МГц' },
+      { k: 'Кольори', v: '15 (8 × 2 яскравості)' },
+      { k: 'Маса', v: null },
+    ];
+    const specRows = rows.map((r, i) => ({
+      k: r.k,
+      v: r.v === null ? 'невідомо' : r.v,
+      rowStyle: { display: 'flex', gap: '16px', padding: '13px 16px', background: i % 2 ? '#0c0c0c' : '#080808', alignItems: 'baseline' },
+      valStyle: {
+        fontFamily: r.v === null ? "'Golos Text',sans-serif" : "'IBM Plex Mono',monospace",
+        fontSize: '15px',
+        color: r.v === null ? '#666' : '#D7D7D7',
+        fontStyle: r.v === null ? 'italic' : 'normal',
+      },
+    }));
+
+    const years = ['1980', '1982', '1985', '1992'];
+    const timelineYears = years.map((year, i) => ({
+      year,
+      nodeWrapStyle: {
+        position: 'absolute',
+        top: '50%',
+        left: (i / (years.length - 1) * 100) + '%',
+        transform: 'translate(-50%,-50%)',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+      },
+    }));
+
+    return { baseColors, zxColors, museumColors, typeScale, specRows, timelineYears };
+  }
+}
+</script>
+</body>
+</html>

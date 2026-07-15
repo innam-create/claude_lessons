@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/snc-museum-design-system-42b720aa-6f4e-4adb-ad53-66fb6593e8fe/colors_and_type.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&family=VT323&family=IBM+Plex+Mono:wght@400;500;600&family=Handjet:wght@400;500;600;700&display=swap">
+<style>
+  @font-face { font-family:'Retroville'; src:url('fonts/Retroville_NC.ttf') format('truetype'); font-weight:400 700; font-display:swap; }
+  html,body{margin:0;padding:0;}
+  body{background:#000;color:#D7D7D7;font-family:'Golos Text',system-ui,sans-serif;}
+</style>
+</helmet>
+<div style="width:100%; background:#000;">
+  <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+    <div style="display:flex; align-items:center; gap:26px; padding:16px 32px;">
+      <a href="HomePage.dc.html" style="font-family:'Retroville','Handjet',monospace; font-size:26px; color:#fff; text-transform:uppercase; letter-spacing:.02em; text-decoration:none; flex:none;">ZX&nbsp;SPECTRUM</a>
+      <nav style="display:flex; gap:22px; margin-left:6px;">
+        <sc-for list="{{ menu }}" as="m" hint-placeholder-count="6">
+          <a href="{{ m.href }}" style="position:relative; font-family:'IBM Plex Mono',monospace; font-size:13px; text-transform:uppercase; letter-spacing:.09em; color:{{ m.color }}; text-decoration:none; padding-bottom:7px; white-space:nowrap;">
+            {{ m.label }}
+            <sc-if value="{{ m.on }}"><span style="position:absolute; left:0; right:0; bottom:0; height:3px; background:linear-gradient(90deg,#FF0000,#FFFF00,#00FF00,#00FFFF);"></span></sc-if>
+          </a>
+        </sc-for>
+      </nav>
+      <div style="margin-left:auto; display:flex; align-items:center; gap:16px; flex:none;">
+        <div style="display:flex; border:1px solid #333; font-family:'IBM Plex Mono',monospace; font-size:12px;">
+          <span style="padding:5px 9px; background:#FFFF00; color:#000;">UA</span>
+          <span style="padding:5px 9px; color:#A8A8A8;">EN</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:8px; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.06em; color:{{ crtColor }};">
+          <span style="position:relative; width:30px; height:16px; border:1px solid #333; display:inline-block; background:#0a0a0a;">
+            <span style="{{ crtDotStyle }}"></span>
+          </span>{{ crtLabel }}
+        </div>
+        <a href="https://sncmuseum.org" style="font-family:'IBM Plex Mono',monospace; font-size:12px; background:#152A52; color:#FFD700; border:2px solid #FFD700; padding:7px 12px; text-decoration:none; white-space:nowrap;">← до музею</a>
+      </div>
+    </div>
+  </sc-if>
+  <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex; align-items:center; justify-content:space-between; padding:14px 18px;">
+      <a href="HomePage.dc.html" style="font-family:'Retroville','Handjet',monospace; font-size:19px; color:#fff; text-transform:uppercase; text-decoration:none;">ZX&nbsp;SPECTRUM</a>
+      <div style="display:flex; align-items:center; gap:14px;">
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:{{ crtColor }};">{{ crtLabel }}</span>
+        <div style="display:flex; flex-direction:column; gap:4px; width:26px;">
+          <span style="height:3px; background:#FF0000;"></span><span style="height:3px; background:#FFFF00;"></span><span style="height:3px; background:#00FF00;"></span>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+  <div style="display:flex; height:6px; width:100%;"><div style="flex:1;background:#FF0000;"></div><div style="flex:1;background:#FFFF00;"></div><div style="flex:1;background:#00FF00;"></div><div style="flex:1;background:#00FFFF;"></div></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1200,&quot;height&quot;:90},&quot;active&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;&quot;,&quot;Історія&quot;,&quot;Моделі&quot;,&quot;Клони&quot;,&quot;Експонати&quot;,&quot;Софт&quot;,&quot;Периферія&quot;,&quot;Контакти&quot;],&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;variant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;desktop&quot;,&quot;mobile&quot;],&quot;default&quot;:&quot;desktop&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;crt&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const b = v => v === true || v === 'true';
+    const active = this.props.active || '';
+    const crt = b(this.props.crt);
+    const variant = this.props.variant || 'desktop';
+    const items = [
+      { label: 'Історія', href: 'HistoryHubPage.dc.html' }, { label: 'Моделі', href: 'CatalogPage.dc.html' }, { label: 'Клони', href: 'ClonesPage.dc.html' },
+      { label: 'Експонати', href: 'ExhibitsPage.dc.html' }, { label: 'Софт', href: 'SoftwarePage.dc.html' }, { label: 'Периферія', href: 'PeripheralsPage.dc.html' },
+      { label: 'Контакти', href: 'ContactsPage.dc.html' },
+    ];
+    const menu = items.map(i => ({ label: i.label, href: i.href, on: i.label === active, color: i.label === active ? '#FFFFFF' : '#A8A8A8' }));
+    return {
+      menu,
+      isMobile: variant === 'mobile',
+      isDesktop: variant !== 'mobile',
+      crtLabel: crt ? 'CRT ON' : 'CRT OFF',
+      crtColor: crt ? '#00FFFF' : '#666',
+      crtDotStyle: { position: 'absolute', top: '2px', width: '10px', height: '10px', background: crt ? '#00FF00' : '#555', left: crt ? '16px' : '2px' },
+    };
+  }
+}
+</script>
+</body>
+</html>

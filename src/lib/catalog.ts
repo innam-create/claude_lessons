@@ -1,18 +1,57 @@
 import type { CollectionEntry } from 'astro:content';
-import type { License } from '../content.config';
+import type { ModelImageData } from '../content.config';
 import type { Lang, UIKey } from '../i18n/ui';
 import { ui, useTranslations, localizePath } from '../i18n/ui';
-
-// ТЗ §14: commercial_use не пишеться руками — виводиться зі значення license.
-export function deriveCommercialUse(license: License): boolean {
-  return !license.includes('-NC-') && !license.endsWith('-NC');
-}
+import {
+  deriveCommercialUse,
+  licenseLabel,
+  licenseUrl,
+  sourceLabel,
+  type License,
+} from './licenses';
 
 const COUNTRY_ORDER = ['GB', 'PT', 'US', 'PL'] as const;
 
 export function countryName(code: string, lang: Lang): string {
   const key = `country.${code}` as UIKey;
   return ui[lang][key] ?? code;
+}
+
+// Зображення з уже застосованою мовою і виведеними ліцензійними полями.
+export type ModelImage = {
+  src: string;
+  alt: string;
+  license: License;
+  licenseLabel: string;
+  licenseUrl: string | null;
+  author: string;
+  sourceUrl: string;
+  sourceLabel: string;
+  accessed: string;
+  // ТЗ §14: виведено з license, не з даних.
+  commercialUse: boolean;
+  // ТЗ §7.3: готовий рядок «автор · ліцензія · джерело» для місць, де посилання
+  // поставити не можна (картка каталогу — сама собою <a>, вкладені <a> невалідні).
+  // Там, де можна (галерея на картці моделі), збирати з полів вище зі ссилками.
+  credit: string;
+};
+
+function normalizeImage(img: ModelImageData, lang: Lang): ModelImage {
+  const label = licenseLabel(img.license, lang);
+  const source = sourceLabel(img.source_url);
+  return {
+    src: img.src,
+    alt: img.alt[lang],
+    license: img.license,
+    licenseLabel: label,
+    licenseUrl: licenseUrl(img.license),
+    author: img.author,
+    sourceUrl: img.source_url,
+    sourceLabel: source,
+    accessed: img.accessed,
+    commercialUse: deriveCommercialUse(img.license),
+    credit: `${img.author} · ${label} · ${source}`,
+  };
 }
 
 // Нормалізована модель для рендеру каталогу (мова вже застосована).
@@ -26,9 +65,9 @@ export type Model = {
   year: string;
   ram: string;
   ramKb: number | null;
-  image: string | null;
-  imageAlt: string | null;
-  credit: string | null;
+  images: ModelImage[];
+  // Перше зображення — обкладинка картки. null → «Шукаємо фотографію» (ТЗ §15).
+  cover: ModelImage | null;
   inMuseum: boolean;
   lowConf: boolean;
   href: string;
@@ -40,6 +79,7 @@ export function normalizeModels(
 ): Model[] {
   return entries.map((e) => {
     const d = e.data;
+    const images = d.images.map((img) => normalizeImage(img, lang));
     return {
       slug: e.id,
       title: d.title[lang],
@@ -50,9 +90,8 @@ export function normalizeModels(
       year: d.year,
       ram: d.ram,
       ramKb: d.ramKb,
-      image: d.image,
-      imageAlt: d.imageAlt ? d.imageAlt[lang] : null,
-      credit: d.credit,
+      images,
+      cover: images[0] ?? null,
       inMuseum: d.inMuseum,
       lowConf: d.confidence === 'low',
       href: localizePath(`/models/${e.id}/`, lang),

@@ -12,8 +12,9 @@ interface Props {
 const { model, lang } = Astro.props;
 const t = useTranslations(lang);
 
-const img = getModelImage(model.image);
-const hasImage = !!img;
+const cover = model.cover;
+const img = getModelImage(cover?.src ?? null);
+const hasImage = !!img && !!cover;
 ---
 
 <a
@@ -32,7 +33,7 @@ const hasImage = !!img;
         <div class="media">
           <Image
             src={img!}
-            alt={model.imageAlt ?? model.title}
+            alt={cover!.alt}
             widths={[340, 680]}
             sizes="(max-width: 768px) 100vw, 380px"
             class="photo"
@@ -42,7 +43,13 @@ const hasImage = !!img;
             <span style="background:#00ff00" /><span style="background:#00ffff" />
           </span>
         </div>
-        <div class="credit" title={model.credit ?? ''}>{model.credit}</div>
+        {/*
+          ТЗ §7.3 вимагає в рядку атрибуції посилання на текст ліцензії. Тут його
+          немає навмисно: картка — це <a>, а вкладені <a> невалідні (Astro 7 на
+          цьому впаде, ТЗ §3/R6). Рядок лишається повним і читабельним, а клікабельні
+          «ліцензія» й «джерело» живуть у галереї на /models/{slug}/, де обгортки-<a> немає.
+        */}
+        <div class="credit" title={cover!.credit}>{cover!.credit}</div>
       </>
     ) : (
       <div class="noimg">

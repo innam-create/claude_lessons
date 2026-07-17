@@ -238,10 +238,17 @@ const preselect = ['zx-spectrum-48k', 'zx-spectrum-128']
   .reset:hover { color: var(--zx-white); border-color: var(--text-dim); }
 
   /* --- результати --- */
+  /* min-width тримає дві колонки на десктопі, але на 320px (нижня межа ТЗ §10)
+     доступно лише ~264px — тому нижче він знімається в медіазапиті 768px. */
   .results { flex: 1 1 560px; min-width: 280px; }
+  /* minmax(0,1fr), а не 1fr: «1fr» = «minmax(auto,1fr)», а auto-мінімум дорівнює
+     min-content колонки. Рядок ліцензії в картці має white-space:nowrap, тож його
+     min-content — це вся довжина тексту (~338px). Через це колонка розпирала
+     контейнер зсередини й давала горизонтальний скрол на 320px (ТЗ §10).
+     З мінімумом 0 колонка стискається, а рядок обрізається трикрапкою, як і задумано. */
   .grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 18px;
   }
 
@@ -354,7 +361,7 @@ const preselect = ['zx-spectrum-48k', 'zx-spectrum-128']
 
   /* --- адаптивність (ТЗ: каталог 1/2/3/4 колонки) --- */
   @media (max-width: 1024px) {
-    .grid { grid-template-columns: repeat(2, 1fr); }
+    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
   @media (max-width: 768px) {
     .filters {
@@ -363,11 +370,16 @@ const preselect = ['zx-spectrum-48k', 'zx-spectrum-128']
       position: static;
       padding: 20px;
     }
-    .grid { grid-template-columns: 1fr; }
+    .results { min-width: 0; }
+    .grid { grid-template-columns: minmax(0, 1fr); }
     h1 { font-size: 34px; }
   }
+  @media (max-width: 400px) {
+    .wrap { padding: 0 16px; }
+    h1 { font-size: 28px; }
+  }
   @media (min-width: 1440px) {
-    .grid { grid-template-columns: repeat(4, 1fr); }
+    .grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   }
 </style>
 

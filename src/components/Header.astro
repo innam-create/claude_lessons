@@ -90,6 +90,16 @@ const enHref = localizePath(path, 'en');
   <nav class="mobile-nav" id="mobile-nav" hidden>
     {items.map((i) => <a href={i.url} class:list={['m-link', { on: i.on }]}>{i.label}</a>)}
     <a class="m-link to-museum-m" href="https://sncmuseum.org">{t('nav.toMuseum')}</a>
+
+    {/*
+      ТЗ §5.1 вимагає UA/EN у шапці. На ≤768px .lang-switch у рядку шапки
+      ховається (немає місця), тож без цієї копії з телефона мову перемкнути
+      було б неможливо взагалі. Показується лише там, де верхній сховано.
+    */}
+    <div class="lang-switch m-lang" role="group" aria-label="UA / EN">
+      <a href={uaHref} class:list={['lang', { on: lang === 'uk' }]}>UA</a>
+      <a href={enHref} class:list={['lang', { on: lang === 'en' }]}>EN</a>
+    </div>
   </nav>
 
   <RainbowBar height={6} />
@@ -258,16 +268,49 @@ const enHref = localizePath(path, 'en');
     border-bottom: none;
     margin-top: 6px;
   }
+  /* Вмикається лише в медіазапиті 768px, де верхній .lang-switch сховано. */
+  .m-lang {
+    display: none;
+    align-self: flex-start;
+    margin-top: 12px;
+  }
+  .m-lang .lang { padding: 8px 14px; }
 
-  /* --- мобільний брейкпоінт (ТЗ: 768px) --- */
+  /* --- Бургер замість горизонтального меню (< 1280px) ---
+     Дизайн визначає рівно два варіанти шапки: desktop 1280 і mobile 390 —
+     проміжного немає. Виміряно, що повне меню з 7 пунктів + інструменти
+     потребує ~1216px контенту (EN довша за UA: «Peripherals»/«Specifications»),
+     тобто мінімум 1280px вікна. Нижче — воно не влазило й давало горизонтальний
+     скрол у всьому діапазоні планшетів (ТЗ §10 вимагає 320–1920).
+     Тому межа тут 1279, а не 768: 768 було вгадано, 1280 — виміряно. */
+  @media (max-width: 1279px) {
+    .hd-nav { display: none; }
+    .menu-toggle { display: flex; }
+    .mobile-nav.open { display: flex; }
+  }
+
+  /* --- Компактна шапка (ТЗ: 768px) --- */
   @media (max-width: 768px) {
     .hd-inner { padding: 14px 18px; gap: 14px; }
     .wordmark { font-size: 19px; }
-    .hd-nav { display: none; }
+    /* Перемикач мов і «до музею» переїжджають у випадне меню (нижче) —
+       у рядку шапки на телефоні для них немає місця. */
     .lang-switch,
     .to-museum { display: none; }
-    .menu-toggle { display: flex; }
-    .mobile-nav.open { display: flex; }
+    /* Дизайн мобільної шапки (Header.dc.html, variant=mobile): напис · підпис
+       CRT · бургер. Тумблер там не малюється — ховаємо й ми, це ще й ~38px,
+       яких бракує на 320px. Підпис лишається: він і кнопка, і її accname. */
+    .crt-knob { display: none; }
+    .m-lang { display: flex; }
+  }
+
+  /* --- нижня межа ТЗ §10 (320px) --- */
+  @media (max-width: 400px) {
+    .hd-inner { padding: 14px 14px; gap: 10px; }
+    /* Піксельний шрифт не переноситься всередині слова, а .wordmark має
+       flex:none — на 320px він виштовхував шапку в горизонтальний скрол. */
+    .wordmark { font-size: 16px; }
+    .hd-tools { gap: 12px; }
   }
 </style>
 

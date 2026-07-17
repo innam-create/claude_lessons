@@ -478,7 +478,7 @@ const meta = [model.year, model.countryLabel.split(' · ')[1], model.ram]
   .nav-wrap { padding-top: 16px; padding-bottom: 60px; }
   .prevnext {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: 16px;
   }
   .pn {
@@ -523,16 +523,19 @@ const meta = [model.year, model.countryLabel.split(' · ')[1], model.ram]
       width: 100%;
     }
     h1 { font-size: 38px; }
-    .gallery { grid-template-columns: 1fr 1fr; }
+    .gallery { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
   }
   @media (max-width: 400px) {
-    /* Заголовок піксельним шрифтом не переноситься всередині слова —
-       на вузьких екранах зменшуємо, інакше «ZX SPECTRUM» розпирає сторінку. */
+    /* Піксельний шрифт не переноситься всередині слова, а суцільні заголовки на
+       кшталт «ХАРАКТЕРИСТИКИ» (347px при 28px) не влазять у 288px контенту.
+       Текст при цьому малюється поза боксом, не розширюючи його, — тому вада
+       не видно через getBoundingClientRect, лише через scrollWidth. */
     h1 { font-size: 30px; }
+    h2 { font-size: 22px; }
     .wrap { padding: 0 16px; }
   }
   @media (max-width: 560px) {
-    .prevnext { grid-template-columns: 1fr; }
+    .prevnext { grid-template-columns: minmax(0, 1fr); }
     .pn.right { text-align: left; }
   }
 </style>

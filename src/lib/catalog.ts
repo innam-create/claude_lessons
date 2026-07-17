@@ -54,11 +54,18 @@ function normalizeImage(img: ModelImageData, lang: Lang): ModelImage {
   };
 }
 
+// Рядок таблиці характеристик. value: null → «невідомо» курсивом (ТЗ §6):
+// порожнє поле чесніше за здогад, тому невідоме показуємо явно, а не ховаємо.
+export type SpecRow = { key: string; label: string; value: string | null };
+
+export type ModelSource = { title: string; url: string; accessed: string };
+
 // Нормалізована модель для рендеру каталогу (мова вже застосована).
 export type Model = {
   slug: string;
   title: string;
   desc: string;
+  summary: string;
   maker: string;
   countryCode: string;
   countryLabel: string;
@@ -68,10 +75,43 @@ export type Model = {
   images: ModelImage[];
   // Перше зображення — обкладинка картки. null → «Шукаємо фотографію» (ТЗ §15).
   cover: ModelImage | null;
+  specs: SpecRow[];
+  sources: ModelSource[];
   inMuseum: boolean;
   lowConf: boolean;
   href: string;
 };
+
+// Таблиця характеристик (ТЗ §6, дизайн ModelDetailPage). Набір рядків однаковий
+// для всіх моделей — так їх можна чесно порівнювати між собою, і саме цього
+// потребуватиме компаратор (ТЗ §5.2). Чого не знаємо — показуємо «невідомо».
+function buildSpecs(d: CollectionEntry<'models'>['data'], lang: Lang): SpecRow[] {
+  const t = useTranslations(lang);
+  const row = (key: string, value: string | null): SpecRow => ({
+    key,
+    label: t(`spec.${key}` as UIKey),
+    value,
+  });
+
+  const cpu =
+    d.cpu && d.cpuClockMhz
+      ? `${d.cpu} · ${d.cpuClockMhz} ${t('unit.mhz')}`
+      : (d.cpu ?? null);
+
+  return [
+    row('year', d.year),
+    row('maker', d.manufacturerFull ?? d.manufacturer),
+    row('country', countryName(d.country, lang)),
+    row('cpu', cpu),
+    row('ram', d.ramKb === null ? null : `${d.ramKb} KB`),
+    row('rom', d.romKb === null ? null : `${d.romKb} KB`),
+    row('video', d.video?.[lang] ?? null),
+    row('sound', d.sound?.[lang] ?? null),
+    row('storage', d.storage?.[lang] ?? null),
+    row('keyboard', d.keyboard?.[lang] ?? null),
+    row('mass', d.massG === null ? null : `${d.massG} ${t('unit.g')}`),
+  ];
+}
 
 export function normalizeModels(
   entries: CollectionEntry<'models'>[],
@@ -84,6 +124,7 @@ export function normalizeModels(
       slug: e.id,
       title: d.title[lang],
       desc: d.desc[lang],
+      summary: d.summary[lang],
       maker: d.manufacturer,
       countryCode: d.country,
       countryLabel: `${d.country} · ${countryName(d.country, lang)}`,
@@ -92,6 +133,12 @@ export function normalizeModels(
       ramKb: d.ramKb,
       images,
       cover: images[0] ?? null,
+      specs: buildSpecs(d, lang),
+      sources: d.sources.map((s) => ({
+        title: s.title[lang],
+        url: s.url,
+        accessed: s.accessed,
+      })),
       inMuseum: d.inMuseum,
       lowConf: d.confidence === 'low',
       href: localizePath(`/models/${e.id}/`, lang),

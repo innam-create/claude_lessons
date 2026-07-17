@@ -1,0 +1,69 @@
+---
+import type { ModelImage } from '../lib/catalog';
+import type { Lang } from '../i18n/ui';
+import { useTranslations } from '../i18n/ui';
+
+// ТЗ §7.3: під кожним зображенням — автор · ліцензія (посилання на текст
+// ліцензії) · джерело. Використовувати лише там, де компонент НЕ всередині <a>:
+// вкладені <a> невалідні. У картці каталогу через це — простий текстовий рядок.
+interface Props {
+  image: ModelImage;
+  lang: Lang;
+}
+const { image, lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<div class="credit">
+  <span class="author">{image.author}</span>
+  <span class="sep" aria-hidden="true">·</span>
+  {
+    image.licenseUrl ? (
+      <a href={image.licenseUrl} rel="license noopener" target="_blank">
+        {image.licenseLabel}
+      </a>
+    ) : (
+      <span>{image.licenseLabel}</span>
+    )
+  }
+  <span class="sep" aria-hidden="true">·</span>
+  <a href={image.sourceUrl} rel="noopener" target="_blank">{image.sourceLabel}</a>
+  {/* Дата звірки ліцензії — прихована від ока, але лишається в розмітці для
+      машинного зчитування й для /sources/ (ТЗ §7.3). */}
+  <span class="visually-hidden">{` · ${t('detail.source')}: ${image.accessed}`}</span>
+</div>
+
+<style>
+  .credit {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    line-height: 1.5;
+    color: var(--dim-6);
+    padding: 6px 4px 0;
+  }
+  .credit a {
+    /* ТЗ §4.2: жовтий читабельний на чорному (на відміну від blue/green). */
+    color: var(--zx-yellow);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+  .credit a:hover,
+  .credit a:focus-visible {
+    border-bottom-color: var(--zx-yellow);
+  }
+  .sep {
+    margin: 0 5px;
+    color: var(--dim-4);
+  }
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+  }
+</style>

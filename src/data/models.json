@@ -3,6 +3,7 @@
     "id": "zx-spectrum-16k",
     "title": { "uk": "ZX Spectrum 16K", "en": "ZX Spectrum 16K" },
     "manufacturer": "Sinclair",
+    "manufacturerFull": "Sinclair Research",
     "country": "GB",
     "year": "1982",
     "ram": "16 KB",
@@ -11,6 +12,19 @@
       "uk": "Базова 16-КБ версія з гумовою клавіатурою.",
       "en": "Entry-level 16 KB version with a rubber keyboard."
     },
+    "summary": {
+      "uk": "Базова версія Spectrum із 16 кілобайтами пам’яті. Зовні не відрізнялася від 48K, але дешевша й із меншим простором для програм.",
+      "en": "The entry-level Spectrum with 16 kilobytes of memory. Outwardly identical to the 48K, but cheaper and with less room for programs."
+    },
+    "cpu": "Zilog Z80A",
+    "cpuClockMhz": 3.5,
+    "romKb": null,
+    "video": { "uk": "256×192 · 15 кольорів", "en": "256×192 · 15 colours" },
+    "sound": { "uk": "1 канал (бузер)", "en": "1 channel (beeper)" },
+    "storage": { "uk": "Касета", "en": "Cassette" },
+    "keyboard": null,
+    "massG": null,
+    "sources": [],
     "images": [
       {
         "src": "zx-48k.jpg",
@@ -31,6 +45,7 @@
     "id": "zx-spectrum-48k",
     "title": { "uk": "ZX Spectrum 48K", "en": "ZX Spectrum 48K" },
     "manufacturer": "Sinclair",
+    "manufacturerFull": "Sinclair Research",
     "country": "GB",
     "year": "1982",
     "ram": "48 KB",
@@ -39,6 +54,19 @@
       "uk": "Класична 48-КБ модель — головна машина лінійки.",
       "en": "The classic 48 KB model — the flagship of the line."
     },
+    "summary": {
+      "uk": "Найпопулярніша модель лінійки. Саме 48-кілобайтна версія зробила комп’ютер масовим і сформувала культуру домашніх ігор та програмування у 1980-х.",
+      "en": "The best-selling model of the line. It was the 48 KB version that made the machine a mass-market product and shaped the home gaming and programming culture of the 1980s."
+    },
+    "cpu": "Zilog Z80A",
+    "cpuClockMhz": 3.5,
+    "romKb": 16,
+    "video": { "uk": "256×192 · 15 кольорів", "en": "256×192 · 15 colours" },
+    "sound": { "uk": "1 канал (бузер)", "en": "1 channel (beeper)" },
+    "storage": { "uk": "Касета", "en": "Cassette" },
+    "keyboard": null,
+    "massG": null,
+    "sources": [],
     "images": [
       {
         "src": "zx-48k.jpg",
@@ -59,6 +87,7 @@
     "id": "zx-spectrum-plus",
     "title": { "uk": "ZX Spectrum+", "en": "ZX Spectrum+" },
     "manufacturer": "Sinclair",
+    "manufacturerFull": "Sinclair Research",
     "country": "GB",
     "year": "1984",
     "ram": "48 KB",
@@ -67,6 +96,19 @@
       "uk": "Оновлений корпус із «справжньою» клавіатурою.",
       "en": "Redesigned case with a \"proper\" keyboard."
     },
+    "summary": {
+      "uk": "Оновлений корпус із «справжньою» клавіатурою замість гумової. Начинка лишилася від 48K — змінилась ергономіка.",
+      "en": "A redesigned case with a \"proper\" keyboard in place of the rubber one. The internals stayed the same as the 48K — what changed was the ergonomics."
+    },
+    "cpu": "Zilog Z80A",
+    "cpuClockMhz": 3.5,
+    "romKb": null,
+    "video": { "uk": "256×192 · 15 кольорів", "en": "256×192 · 15 colours" },
+    "sound": null,
+    "storage": { "uk": "Касета", "en": "Cassette" },
+    "keyboard": { "uk": "Механічна, 58 клавіш", "en": "Mechanical, 58 keys" },
+    "massG": null,
+    "sources": [],
     "images": [
       {
         "src": "zx-plus.jpg",
@@ -87,6 +129,7 @@
     "id": "zx-spectrum-128",
     "title": { "uk": "ZX Spectrum 128", "en": "ZX Spectrum 128" },
     "manufacturer": "Sinclair",
+    "manufacturerFull": "Sinclair Research",
     "country": "GB",
     "year": "1985",
     "ram": "128 KB",
@@ -95,6 +138,19 @@
       "uk": "128 КБ пам’яті та звуковий чип AY-3-8912.",
       "en": "128 KB of memory and the AY-3-8912 sound chip."
     },
+    "summary": {
+      "uk": "128 кілобайт пам’яті та звуковий чип AY-3-8912 з трьома каналами — помітний стрибок у можливостях звуку й обсягу програм.",
+      "en": "128 kilobytes of memory and the three-channel AY-3-8912 sound chip — a marked leap in audio capability and program size."
+    },
+    "cpu": "Zilog Z80A",
+    "cpuClockMhz": 3.5,
+    "romKb": null,
+    "video": { "uk": "256×192 · 15 кольорів", "en": "256×192 · 15 colours" },
+    "sound": { "uk": "AY-3-8912 · 3 канали", "en": "AY-3-8912 · 3 channels" },
+    "storage": { "uk": "Касета", "en": "Cassette" },
+    "keyboard": null,
+    "massG": null,
+    "sources": [],
     "images": [
       {
         "src": "zx-128.jpg",
@@ -115,6 +171,7 @@
     "id": "zx-spectrum-plus2",
     "title": { "uk": "ZX Spectrum +2", "en": "ZX Spectrum +2" },
     "manufacturer": "Amstrad",
+    "manufacturerFull": "Amstrad",
     "country": "GB",
     "year": "1986",
     "ram": "128 KB",
@@ -123,6 +180,19 @@
       "uk": "Amstrad-версія з вбудованим касетником.",
       "en": "Amstrad version with a built-in cassette deck."
     },
+    "summary": {
+      "uk": "Перша модель під керівництвом Amstrad: вбудований касетний магнітофон і сірий корпус. Фото з вільною ліцензією ще шукаємо.",
+      "en": "The first model produced under Amstrad: a built-in cassette deck and a grey case. We are still looking for a freely licensed photo."
+    },
+    "cpu": "Zilog Z80A",
+    "cpuClockMhz": 3.5,
+    "romKb": null,
+    "video": null,
+    "sound": { "uk": "AY-3-8912 · 3 канали", "en": "AY-3-8912 · 3 channels" },
+    "storage": { "uk": "Вбудований касетник", "en": "Built-in cassette deck" },
+    "keyboard": null,
+    "massG": null,
+    "sources": [],
     "images": [],
     "inMuseum": true,
     "confidence": "high"
@@ -131,6 +201,7 @@
     "id": "zx-spectrum-plus3",
     "title": { "uk": "ZX Spectrum +3", "en": "ZX Spectrum +3" },
     "manufacturer": "Amstrad",
+    "manufacturerFull": "Amstrad",
     "country": "GB",
     "year": "1987",
     "ram": "128 KB",
@@ -139,6 +210,19 @@
       "uk": "Модель із вбудованим 3″ дисководом.",
       "en": "Model with a built-in 3″ floppy drive."
     },
+    "summary": {
+      "uk": "Єдина модель лінійки з вбудованим 3″ дисководом. Спроба перевести Spectrum на дискети замість касет.",
+      "en": "The only model of the line with a built-in 3″ floppy drive — an attempt to move the Spectrum from cassettes to disks."
+    },
+    "cpu": "Zilog Z80A",
+    "cpuClockMhz": 3.5,
+    "romKb": null,
+    "video": null,
+    "sound": { "uk": "AY-3-8912 · 3 канали", "en": "AY-3-8912 · 3 channels" },
+    "storage": { "uk": "Вбудований 3″ дисковод", "en": "Built-in 3″ floppy drive" },
+    "keyboard": null,
+    "massG": null,
+    "sources": [],
     "images": [
       {
         "src": "zx-plus3.jpg",
@@ -159,6 +243,7 @@
     "id": "timex-tc2048",
     "title": { "uk": "Timex TC2048", "en": "Timex TC2048" },
     "manufacturer": "Timex",
+    "manufacturerFull": "Timex Portugal",
     "country": "PT",
     "year": "1984",
     "ram": "48 KB",
@@ -167,6 +252,19 @@
       "uk": "Ліцензійний варіант Timex для Європи.",
       "en": "Licensed Timex variant for Europe."
     },
+    "summary": {
+      "uk": "Ліцензійний варіант Spectrum, вироблений Timex для європейського ринку. Мав розширений відеорежим і додаткові порти.",
+      "en": "A licensed Spectrum variant built by Timex for the European market. It had an extended video mode and additional ports."
+    },
+    "cpu": "Zilog Z80A",
+    "cpuClockMhz": 3.5,
+    "romKb": null,
+    "video": { "uk": "Розширені режими", "en": "Extended modes" },
+    "sound": null,
+    "storage": { "uk": "Касета", "en": "Cassette" },
+    "keyboard": null,
+    "massG": null,
+    "sources": [],
     "images": [],
     "inMuseum": false,
     "confidence": "high"
@@ -175,6 +273,7 @@
     "id": "zx-spectrum-plus2a",
     "title": { "uk": "ZX Spectrum +2A", "en": "ZX Spectrum +2A" },
     "manufacturer": "Amstrad",
+    "manufacturerFull": "Amstrad",
     "country": "GB",
     "year": "1987",
     "ram": "128 KB",
@@ -183,6 +282,19 @@
       "uk": "Ревізія +2 з іншою материнською платою.",
       "en": "A +2 revision with a different motherboard."
     },
+    "summary": {
+      "uk": "Ревізія +2 з іншою материнською платою, спорідненою з +3, але без дисковода. Чорний корпус.",
+      "en": "A +2 revision with a different motherboard, related to the +3 but without the disk drive. Black case."
+    },
+    "cpu": "Zilog Z80A",
+    "cpuClockMhz": 3.5,
+    "romKb": null,
+    "video": null,
+    "sound": { "uk": "AY-3-8912 · 3 канали", "en": "AY-3-8912 · 3 channels" },
+    "storage": { "uk": "Вбудований касетник", "en": "Built-in cassette deck" },
+    "keyboard": null,
+    "massG": null,
+    "sources": [],
     "images": [],
     "inMuseum": false,
     "confidence": "low"

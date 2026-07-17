@@ -4,6 +4,7 @@ import type { Lang } from '../i18n/ui';
 import { useTranslations, localizePath } from '../i18n/ui';
 import { normalizeModels, buildFilterGroups } from '../lib/catalog';
 import ModelCard from './ModelCard.astro';
+import Breadcrumbs from './Breadcrumbs.astro';
 
 interface Props {
   lang: Lang;
@@ -28,12 +29,9 @@ const preselect = ['zx-spectrum-48k', 'zx-spectrum-128']
 
 <main>
   <div class="wrap">
-    <!-- хлібні крихти -->
-    <nav class="crumbs" aria-label="breadcrumbs">
-      <a href={homeHref}>{t('nav.home')}</a>
-      <span class="sep">/</span>
-      <span class="here">{t('catalog.title')}</span>
-    </nav>
+    <Breadcrumbs
+      items={[{ label: t('nav.home'), href: homeHref }, { label: t('catalog.title') }]}
+    />
 
     <div class="title-row">
       <h1>{t('catalog.title')}</h1>
@@ -136,18 +134,6 @@ const preselect = ['zx-spectrum-48k', 'zx-spectrum-128']
     margin: 0 auto;
     padding: 0 28px;
   }
-
-  .crumbs {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--text-dim);
-    padding: 20px 0 4px;
-    letter-spacing: 0.04em;
-  }
-  .crumbs a { color: var(--text-dim); text-decoration: none; }
-  .crumbs a:hover { color: var(--zx-cyan); }
-  .crumbs .sep { color: var(--dim-4); margin: 0 8px; }
-  .crumbs .here { color: var(--zx-cyan); }
 
   .title-row {
     display: flex;

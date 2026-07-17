@@ -1,0 +1,57 @@
+---
+// ТЗ §5.1: хлібні крихти на всіх внутрішніх сторінках.
+// Останній елемент — поточна сторінка, без посилання.
+interface Crumb {
+  label: string;
+  href?: string;
+}
+interface Props {
+  items: Crumb[];
+}
+const { items } = Astro.props;
+---
+
+<nav class="crumbs" aria-label="breadcrumbs">
+  {
+    items.map((item, i) => (
+      <>
+        {i > 0 && (
+          <span class="sep" aria-hidden="true">
+            /
+          </span>
+        )}
+        {item.href ? (
+          <a href={item.href}>{item.label}</a>
+        ) : (
+          <span class="here" aria-current="page">
+            {item.label}
+          </span>
+        )}
+      </>
+    ))
+  }
+</nav>
+
+<style>
+  .crumbs {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-dim);
+    padding: 20px 0 4px;
+    letter-spacing: 0.04em;
+  }
+  .crumbs a {
+    color: var(--text-dim);
+    text-decoration: none;
+  }
+  .crumbs a:hover {
+    color: var(--zx-cyan);
+  }
+  .crumbs .sep {
+    color: var(--dim-4);
+    margin: 0 8px;
+  }
+  .crumbs .here {
+    color: var(--zx-cyan);
+  }
+</style>

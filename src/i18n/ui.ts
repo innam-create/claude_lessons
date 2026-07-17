@@ -50,6 +50,41 @@ export const ui = {
     'card.unverified': '⚠ уточнення',
     'card.seeking': 'Шукаємо фотографію<br>цієї машини',
 
+    // картка моделі /models/{slug}/
+    'detail.specs': 'Характеристики',
+    'detail.gallery': 'Галерея',
+    'detail.sources': 'Джерела',
+    'detail.sources.empty': 'Джерела ще не додано',
+    'detail.sources.emptyBody':
+      'Кожен факт на цій сторінці має отримати посилання на джерело — це вимога редакційної політики музею. Поки їх немає, дані тут вважай попередніми.',
+    'detail.gallery.empty':
+      'Інших фотографій цієї машини ми поки не маємо. Якщо у вас є фото з вільною ліцензією — напишіть нам.',
+    'detail.unknown': 'невідомо',
+    'detail.inExpo': 'В експозиції музею',
+    'detail.inExpo.body': 'Цей експонат можна побачити наживо.',
+    'detail.museumPhoto': 'фото музею',
+    'detail.licensing': 'Ліцензування',
+    'detail.licensing.body':
+      'Текст — CC BY-SA 4.0. Зображення — за ліцензіями, вказаними під кожним.',
+    'detail.prev': '← Попередня',
+    'detail.next': 'Наступна →',
+    'detail.source': 'джерело',
+
+    // рядки таблиці характеристик
+    'spec.year': 'Рік',
+    'spec.maker': 'Виробник',
+    'spec.country': 'Країна',
+    'spec.cpu': 'Процесор',
+    'spec.ram': 'ОЗП',
+    'spec.rom': 'ПЗП',
+    'spec.video': 'Відео',
+    'spec.sound': 'Звук',
+    'spec.storage': 'Носій',
+    'spec.keyboard': 'Клавіатура',
+    'spec.mass': 'Маса',
+    'unit.mhz': 'МГц',
+    'unit.g': 'г',
+
     // країни
     'country.GB': 'Велика Британія',
     'country.PT': 'Португалія',
@@ -102,6 +137,39 @@ export const ui = {
     'card.inMuseum': '★ In museum',
     'card.unverified': '⚠ unverified',
     'card.seeking': 'We’re looking for a photo<br>of this machine',
+
+    'detail.specs': 'Specifications',
+    'detail.gallery': 'Gallery',
+    'detail.sources': 'Sources',
+    'detail.sources.empty': 'Sources not added yet',
+    'detail.sources.emptyBody':
+      'Every fact on this page must carry a link to its source — that is the museum’s editorial policy. Until they are here, treat the data as provisional.',
+    'detail.gallery.empty':
+      'We don’t have any further photos of this machine yet. If you have a freely licensed one, please get in touch.',
+    'detail.unknown': 'unknown',
+    'detail.inExpo': 'On display at the museum',
+    'detail.inExpo.body': 'You can see this exhibit in person.',
+    'detail.museumPhoto': 'museum photo',
+    'detail.licensing': 'Licensing',
+    'detail.licensing.body':
+      'Text — CC BY-SA 4.0. Images — under the licenses shown beneath each of them.',
+    'detail.prev': '← Previous',
+    'detail.next': 'Next →',
+    'detail.source': 'source',
+
+    'spec.year': 'Year',
+    'spec.maker': 'Manufacturer',
+    'spec.country': 'Country',
+    'spec.cpu': 'CPU',
+    'spec.ram': 'RAM',
+    'spec.rom': 'ROM',
+    'spec.video': 'Video',
+    'spec.sound': 'Sound',
+    'spec.storage': 'Storage',
+    'spec.keyboard': 'Keyboard',
+    'spec.mass': 'Mass',
+    'unit.mhz': 'MHz',
+    'unit.g': 'g',
 
     'country.GB': 'United Kingdom',
     'country.PT': 'Portugal',

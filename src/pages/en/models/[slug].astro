@@ -1,0 +1,38 @@
+---
+import { getCollection } from 'astro:content';
+import type { Lang } from '../../../i18n/ui';
+import { normalizeModels } from '../../../lib/catalog';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import ModelDetail from '../../../components/ModelDetail.astro';
+
+const lang: Lang = 'en';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('models');
+  const models = normalizeModels(entries, 'en');
+  return models.map((model, i) => ({
+    params: { slug: model.slug },
+    props: {
+      model,
+      prev: models[(i - 1 + models.length) % models.length]!,
+      next: models[(i + 1) % models.length]!,
+    },
+  }));
+}
+
+const { model, prev, next } = Astro.props;
+const path = `/models/${model.slug}/`;
+---
+
+<BaseLayout
+  lang={lang}
+  path={path}
+  title={`${model.title} · Models · ZX Spectrum — SnC Museum`}
+  description={model.summary}
+>
+  <Header lang={lang} active="models" path={path} />
+  <ModelDetail model={model} prev={prev} next={next} lang={lang} />
+  <Footer lang={lang} />
+</BaseLayout>

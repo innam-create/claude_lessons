@@ -1,0 +1,538 @@
+---
+import { Image } from 'astro:assets';
+import type { Model } from '../lib/catalog';
+import type { Lang } from '../i18n/ui';
+import { useTranslations, localizePath } from '../i18n/ui';
+import { getModelImage } from '../lib/images';
+import Breadcrumbs from './Breadcrumbs.astro';
+import ImageCredit from './ImageCredit.astro';
+import RainbowBar from './RainbowBar.astro';
+
+// Картка моделі (ТЗ §5, дизайн project/ModelDetailPage.dc.html).
+interface Props {
+  model: Model;
+  prev: Model;
+  next: Model;
+  lang: Lang;
+}
+const { model, prev, next, lang } = Astro.props;
+const t = useTranslations(lang);
+
+const cover = model.cover;
+const coverImg = getModelImage(cover?.src ?? null);
+
+// «1982 · Велика Британія · 48 KB» — мета-рядок під заголовком.
+const meta = [model.year, model.countryLabel.split(' · ')[1], model.ram]
+  .filter(Boolean)
+  .join(' · ');
+---
+
+<main>
+  <div class="wrap">
+    <Breadcrumbs
+      items={[
+        { label: t('nav.home'), href: localizePath('/', lang) },
+        { label: t('catalog.title'), href: localizePath('/models/', lang) },
+        { label: model.title },
+      ]}
+    />
+  </div>
+
+  <!-- HERO -->
+  <div class="wrap hero-wrap">
+    <div class="hero">
+      <RainbowBar height={10} />
+      <div class="hero-inner">
+        <div class="hero-text">
+          <div class="badges">
+            {model.inMuseum && <span class="badge museum">{t('card.inMuseum')}</span>}
+            <span class="badge maker">{model.maker}</span>
+            {/*
+              ТЗ §2: матеріал зі статусом confidence:low виходить ЛИШЕ з видимою
+              позначкою «потребує уточнення». У дизайні hero її немає — додано
+              свідомо, бо вимога ТЗ тут сильніша за макет.
+            */}
+            {model.lowConf && <span class="badge low">{t('card.unverified')}</span>}
+          </div>
+          <h1>{model.title}</h1>
+          <div class="meta">{meta}</div>
+          <p class="summary">{model.summary}</p>
+        </div>
+
+        <div class="hero-media">
+          {
+            coverImg && cover ? (
+              <>
+                <div class="shot">
+                  <Image
+                    src={coverImg}
+                    alt={cover.alt}
+                    widths={[320, 640]}
+                    sizes="(max-width: 900px) 100vw, 460px"
+                    class="photo"
+                  />
+                </div>
+                <ImageCredit image={cover} lang={lang} />
+              </>
+            ) : (
+              <div class="shot noimg">
+                <div class="q" aria-hidden="true">
+                  ?
+                </div>
+                <div class="seek" set:html={t('card.seeking')} />
+              </div>
+            )
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ТІЛО -->
+  <div class="wrap body">
+    <div class="col-main">
+      <h2>{t('detail.specs')}</h2>
+      <div class="specs">
+        {
+          model.specs.map((row, i) => (
+            <div class="spec-row" class:list={[{ odd: i % 2 === 1 }]}>
+              <div class="spec-k">{row.label}</div>
+              {row.value === null ? (
+                <div class="spec-v unknown">{t('detail.unknown')}</div>
+              ) : (
+                <div class="spec-v">{row.value}</div>
+              )}
+            </div>
+          ))
+        }
+      </div>
+
+      <h2>{t('detail.gallery')}</h2>
+      {
+        /*
+          Дизайн малювався під 4 фото на модель (загальний вигляд · клавіатура ·
+          порти · плата). Реально маємо максимум одне — і воно вже показане в hero,
+          тож галерея з нього одного дублювала б hero й тиснула картку в чверть
+          ширини. Тому сітка вмикається лише коли фото більше за одне.
+        */
+        model.images.length > 1 ? (
+          <div class="gallery">
+            {model.images.map((img) => {
+              const g = getModelImage(img.src);
+              return (
+                <figure class="g-item">
+                  <div class="g-shot">
+                    {g && (
+                      <Image
+                        src={g}
+                        alt={img.alt}
+                        widths={[280, 560]}
+                        sizes="(max-width: 900px) 45vw, 260px"
+                        class="photo cover"
+                      />
+                    )}
+                  </div>
+                  <figcaption>
+                    <ImageCredit image={img} lang={lang} />
+                  </figcaption>
+                </figure>
+              );
+            })}
+          </div>
+        ) : (
+          <p class="empty-note">{t('detail.gallery.empty')}</p>
+        )
+      }
+
+      <h2>{t('detail.sources')}</h2>
+      {
+        model.sources.length ? (
+          <ol class="sources">
+            {model.sources.map((s) => (
+              <li>
+                <span>{s.title}</span> —{' '}
+                <a href={s.url} rel="noopener" target="_blank">
+                  {new URL(s.url).hostname.replace(/^www\./, '')}
+                </a>
+              </li>
+            ))}
+          </ol>
+        ) : (
+          /*
+            ТЗ §12 (етап 4) вимагає ≥ 2 джерела на картку, і поки їх немає —
+            сторінка каже це прямо, тією ж логікою, що й «Шукаємо фотографію».
+            Мовчазно порожній блок виглядав би як недогляд, а не як стан.
+          */
+          <div class="empty-block">
+            <div class="empty-title">{t('detail.sources.empty')}</div>
+            <p class="empty-body">{t('detail.sources.emptyBody')}</p>
+          </div>
+        )
+      }
+    </div>
+
+    <aside class="col-side">
+      {
+        model.inMuseum && (
+          <div class="museum">
+            <div class="museum-photo">
+              <span>{t('detail.museumPhoto')}</span>
+            </div>
+            <div class="museum-body">
+              <div class="museum-title">{t('detail.inExpo')}</div>
+              <div class="museum-text">{t('detail.inExpo.body')}</div>
+              <div class="museum-addr">
+                {t('footer.address')}
+                <br />
+                {t('footer.hours')}
+              </div>
+            </div>
+          </div>
+        )
+      }
+      <div class="licensing">
+        <div class="licensing-title">{t('detail.licensing')}</div>
+        <p class="licensing-body">{t('detail.licensing.body')}</p>
+      </div>
+    </aside>
+  </div>
+
+  <!-- ПОПЕРЕДНЯ / НАСТУПНА -->
+  <div class="wrap nav-wrap">
+    <nav class="prevnext" aria-label={t('catalog.title')}>
+      <a class="pn" href={prev.href}>
+        <div class="pn-label">{t('detail.prev')}</div>
+        <div class="pn-name">{prev.title}</div>
+      </a>
+      <a class="pn right" href={next.href}>
+        <div class="pn-label">{t('detail.next')}</div>
+        <div class="pn-name">{next.title}</div>
+      </a>
+    </nav>
+  </div>
+</main>
+
+<style>
+  .wrap {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 28px;
+    box-sizing: border-box;
+  }
+
+  /* --- HERO --- */
+  .hero-wrap { padding-top: 26px; padding-bottom: 8px; }
+  .hero {
+    border: 2px solid var(--border);
+    background: #060606;
+  }
+  .hero-inner {
+    display: flex;
+    gap: 40px;
+    padding: 36px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .hero-text { flex: 1 1 320px; min-width: 260px; }
+  .hero-media { flex: 1 1 300px; min-width: 240px; }
+
+  .badges {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    padding: 5px 11px;
+  }
+  .badge.museum { background: var(--museum-gold); color: var(--museum-navy); }
+  .badge.maker { color: var(--zx-cyan); border: 1px solid var(--zx-cyan); font-weight: 400; }
+  .badge.low { color: var(--zx-yellow); border: 1px dashed var(--zx-yellow); }
+
+  h1 {
+    font-family: var(--font-pixel);
+    font-weight: 700;
+    font-size: 52px;
+    color: var(--zx-white);
+    text-transform: uppercase;
+    margin: 0;
+    line-height: 0.95;
+  }
+  .meta {
+    font-family: var(--font-mono);
+    font-size: 15px;
+    color: var(--zx-cyan);
+    margin-top: 14px;
+  }
+  .summary {
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--text);
+    margin: 20px 0 0;
+    max-width: 520px;
+  }
+
+  .shot {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background: radial-gradient(ellipse at 50% 55%, rgba(0, 255, 255, 0.07), transparent 68%);
+  }
+  .shot .photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .noimg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-align: center;
+    border: 1px dashed var(--border-2);
+  }
+  .noimg .q {
+    font-family: var(--font-pixel);
+    font-size: 34px;
+    color: var(--zx-magenta);
+  }
+  .noimg .seek {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.4;
+  }
+
+  /* --- ТІЛО --- */
+  .body {
+    padding-top: 40px;
+    padding-bottom: 8px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 320px;
+    gap: 40px;
+  }
+  .col-main, .col-side { min-width: 0; }
+
+  h2 {
+    font-family: var(--font-pixel);
+    font-weight: 700;
+    font-size: 28px;
+    color: var(--zx-white);
+    text-transform: uppercase;
+    margin: 0 0 16px;
+  }
+  h2:not(:first-child) { margin-top: 44px; }
+
+  .specs { border: 2px solid var(--border); }
+  .spec-row {
+    display: flex;
+    gap: 16px;
+    padding: 13px 18px;
+    background: #080808;
+    align-items: baseline;
+  }
+  .spec-row.odd { background: #0c0c0c; }
+  .spec-k {
+    flex: none;
+    width: 42%;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-dim);
+  }
+  .spec-v {
+    font-family: var(--font-mono);
+    font-size: 15px;
+    color: var(--text);
+  }
+  /* ТЗ §6: невідоме показуємо явно — курсив і приглушений колір,
+     щоб не сплутати зі справжнім значенням. */
+  .spec-v.unknown {
+    font-family: var(--font-body);
+    font-style: italic;
+    color: var(--dim-6);
+  }
+
+  /* Дизайн: 4 колонки. auto-fit+minmax дає ті самі 4 при чотирьох фото, але не
+     лишає діру, коли їх 2–3 — а саме так буде, поки музей не відзняв решту. */
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 14px;
+  }
+  .g-item {
+    border: 2px solid var(--border);
+    background: var(--surface);
+    margin: 0;
+  }
+  .g-shot {
+    aspect-ratio: 4 / 3;
+    position: relative;
+    overflow: hidden;
+    background: var(--surface-2);
+  }
+  .g-shot .photo.cover {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .g-item figcaption { border-top: 1px solid var(--hair); padding: 0 6px 6px; }
+
+  .sources {
+    margin: 0;
+    padding-left: 22px;
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.9;
+  }
+  .sources li { padding-left: 6px; }
+  .sources a { color: var(--zx-yellow); }
+
+  .empty-note {
+    font-size: 15px;
+    color: var(--text-dim);
+    margin: 0;
+  }
+  .empty-block {
+    border: 1px dashed var(--border-2);
+    padding: 18px 20px;
+  }
+  .empty-title {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--zx-yellow);
+    margin-bottom: 8px;
+  }
+  .empty-body {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text-dim);
+    margin: 0;
+  }
+
+  /* --- Бічна колонка --- */
+  .museum {
+    border: 2px solid var(--museum-gold);
+    background: var(--museum-navy);
+    margin-bottom: 24px;
+  }
+  .museum-photo {
+    aspect-ratio: 16 / 9;
+    background: #0f1d3a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 2px solid var(--museum-gold);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: #5f6f9c;
+  }
+  .museum-body { padding: 18px 18px 20px; }
+  .museum-title {
+    font-family: var(--font-pixel);
+    font-size: 18px;
+    color: var(--museum-gold);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .museum-text { font-size: 15px; color: #eef2fb; line-height: 1.6; }
+  .museum-addr {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: #a9b6d6;
+    margin-top: 14px;
+    line-height: 1.7;
+  }
+
+  .licensing { border: 1px solid var(--border-2); padding: 16px 18px; }
+  .licensing-title {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+  }
+  .licensing-body {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* --- Попередня / наступна --- */
+  .nav-wrap { padding-top: 16px; padding-bottom: 60px; }
+  .prevnext {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .pn {
+    border: 2px solid var(--border);
+    padding: 18px 20px;
+    text-decoration: none;
+    display: block;
+    transition: border-color var(--dur) var(--ease-out);
+  }
+  .pn:hover { border-color: var(--zx-cyan); }
+  .pn.right { text-align: right; }
+  .pn-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .pn-name {
+    font-family: var(--font-pixel);
+    font-size: 19px;
+    color: var(--zx-white);
+    text-transform: uppercase;
+    margin-top: 8px;
+  }
+
+  /* --- Мобільний (дизайн: variant=mobile) --- */
+  @media (max-width: 900px) {
+    .body { grid-template-columns: 1fr; gap: 32px; padding-top: 32px; }
+    .hero-inner {
+      flex-direction: column-reverse;
+      gap: 24px;
+      padding: 24px;
+    }
+    /* Колонки hero стають одна над одною, тож їхні min-width із десктопної
+       розкладки треба зняти: на 320px (нижня межа ТЗ §10) вони ширші за
+       доступне місце й виштовхують сторінку в горизонтальний скрол. */
+    .hero-text,
+    .hero-media {
+      min-width: 0;
+      flex-basis: auto;
+      width: 100%;
+    }
+    h1 { font-size: 38px; }
+    .gallery { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 400px) {
+    /* Заголовок піксельним шрифтом не переноситься всередині слова —
+       на вузьких екранах зменшуємо, інакше «ZX SPECTRUM» розпирає сторінку. */
+    h1 { font-size: 30px; }
+    .wrap { padding: 0 16px; }
+  }
+  @media (max-width: 560px) {
+    .prevnext { grid-template-columns: 1fr; }
+    .pn.right { text-align: left; }
+  }
+</style>

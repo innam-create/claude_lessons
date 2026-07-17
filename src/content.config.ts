@@ -26,6 +26,15 @@ const modelImage = z.object({
 });
 export type ModelImageData = z.infer<typeof modelImage>;
 
+// ТЗ §6: джерело факту. Етап 4 (ТЗ §12) вимагає ≥ 2 джерела на картку;
+// поки перелік порожній — картка показує чесний стан «Джерела ще не додано».
+const source = z.object({
+  title: bilingual,
+  url: z.string().url(),
+  accessed: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'очікується формат YYYY-MM-DD'),
+});
+export type SourceData = z.infer<typeof source>;
+
 // ТЗ §6: схема каталогу моделей. У MVP дані живуть у одному
 // src/data/models.json (типізована колекція з валідацією на етапі збірки).
 // Пізніше кожна модель може стати окремим src/content/models/{slug}.mdx —
@@ -34,13 +43,33 @@ const models = defineCollection({
   loader: file('src/data/models.json'),
   schema: z.object({
     title: bilingual,
+    // Коротка назва — чипси фільтра в каталозі («Sinclair», «Amstrad»).
     manufacturer: z.string(),
+    // Повна юридична назва — рядок «Виробник» у таблиці характеристик
+    // («Sinclair Research», «Timex Portugal»). null → показуємо manufacturer.
+    manufacturerFull: z.string().nullable().default(null),
     country: z.enum(['GB', 'PT', 'US', 'PL']),
     year: z.string(),
     ram: z.string(),
     // null = невідомо (ТЗ §6). Використовується фільтром і таблицею характеристик.
     ramKb: z.number().nullable(),
+    // Короткий опис — картка в каталозі.
     desc: bilingual,
+    // Розгорнутий опис — hero на /models/{slug}/.
+    summary: bilingual,
+
+    // --- Характеристики (ТЗ §6). Скрізь null = невідомо → у таблиці «невідомо»
+    // курсивом. Не вигадувати значення: незаповнене поле чесніше за здогад.
+    cpu: z.string().nullable().default(null),
+    cpuClockMhz: z.number().nullable().default(null),
+    romKb: z.number().nullable().default(null),
+    video: bilingual.nullable().default(null),
+    sound: bilingual.nullable().default(null),
+    storage: bilingual.nullable().default(null),
+    keyboard: bilingual.nullable().default(null),
+    massG: z.number().nullable().default(null),
+
+    sources: z.array(source).default([]),
     // Порожній масив → картка «Шукаємо фотографію цієї машини» (ТЗ §15).
     // Перше зображення — обкладинка картки в каталозі.
     images: z.array(modelImage).default([]),

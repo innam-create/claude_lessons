@@ -1,5 +1,77 @@
 [
   {
+    "id": "zx80",
+    "title": { "uk": "ZX80", "en": "ZX80" },
+    "manufacturer": "Sinclair",
+    "manufacturerFull": "Sinclair Research",
+    "country": "GB",
+    "year": "1980",
+    "ram": "1 KB",
+    "ramKb": 1,
+    "desc": {
+      "uk": "Перший масовий комп’ютер Sinclair за £99.",
+      "en": "Sinclair’s first mass-market computer, at £99."
+    },
+    "summary": {
+      "uk": "Перша машина Sinclair для дому: білий пластиковий корпус, мембранна клавіатура й лише кілобайт пам’яті. З неї починається лінія, що привела до Spectrum.",
+      "en": "Sinclair’s first home machine: a white plastic case, a membrane keyboard and just one kilobyte of memory. It began the line that led to the Spectrum."
+    },
+    "cpu": "Zilog Z80",
+    "cpuClockMhz": 3.25,
+    "romKb": 4,
+    "video": { "uk": "64×48 · блокова графіка, монохром", "en": "64×48 · block graphics, monochrome" },
+    "sound": { "uk": "Немає", "en": "None" },
+    "storage": { "uk": "Касета", "en": "Cassette" },
+    "keyboard": { "uk": "Мембранна", "en": "Membrane" },
+    "massG": null,
+    "sources": [],
+    "images": [],
+    "inMuseum": false,
+    "confidence": "medium"
+  },
+  {
+    "id": "zx81",
+    "title": { "uk": "ZX81", "en": "ZX81" },
+    "manufacturer": "Sinclair",
+    "manufacturerFull": "Sinclair Research",
+    "country": "GB",
+    "year": "1981",
+    "ram": "1 KB",
+    "ramKb": 1,
+    "desc": {
+      "uk": "Наступник ZX80 — чорний клин із мембранною клавіатурою.",
+      "en": "The ZX80’s successor — a black wedge with a membrane keyboard."
+    },
+    "summary": {
+      "uk": "Наступник ZX80: той самий кілобайт пам’яті, але дешевша й простіша конструкція. Саме ZX81 зробив Sinclair масовим брендом і підготував ґрунт для Spectrum.",
+      "en": "The ZX80’s successor: the same kilobyte of memory, but cheaper and simpler to build. The ZX81 made Sinclair a mass-market brand and paved the way for the Spectrum."
+    },
+    "cpu": "Zilog Z80A",
+    "cpuClockMhz": 3.25,
+    "romKb": 8,
+    "video": { "uk": "64×48 · блокова графіка, монохром", "en": "64×48 · block graphics, monochrome" },
+    "sound": { "uk": "Немає", "en": "None" },
+    "storage": { "uk": "Касета", "en": "Cassette" },
+    "keyboard": { "uk": "Мембранна", "en": "Membrane" },
+    "massG": null,
+    "sources": [],
+    "images": [
+      {
+        "src": "zx81.jpg",
+        "alt": {
+          "uk": "Sinclair ZX81 — плаский чорний клиноподібний корпус із мембранною клавіатурою, червоний напис ZX81",
+          "en": "Sinclair ZX81 — a flat black wedge-shaped case with a membrane keyboard and a red ZX81 logo"
+        },
+        "license": "PD",
+        "author": "Journey234",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Sinclair_ZX81.jpg",
+        "accessed": "2026-07-17"
+      }
+    ],
+    "inMuseum": false,
+    "confidence": "medium"
+  },
+  {
     "id": "zx-spectrum-16k",
     "title": { "uk": "ZX Spectrum 16K", "en": "ZX Spectrum 16K" },
     "manufacturer": "Sinclair",

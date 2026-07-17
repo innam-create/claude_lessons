@@ -46,3 +46,4 @@ photos we verified. Never take licence data from it; check each file's Wikimedia
 Run with `npm install && npm run dev`, then open `http://localhost:4321/models/`.
 See **`GETTING-STARTED.md`** for commands and layout.
 # claude_lessons
+# claude_lessons

@@ -17,10 +17,17 @@ const img = getModelImage(cover?.src ?? null);
 const hasImage = !!img && !!cover;
 ---
 
-<a
+{/*
+  Картка — <div>, а не <a>, хоча клікабельна вся: всередині є кнопка «порівняти»,
+  а інтерактивні елементи не можна вкладати в <a> (невалідно, Astro 7 впаде — R6).
+  Замість обгортки використано «розтягнуте посилання»: .name-link::after накриває
+  картку. Побічно це краще для доступності — назвою посилання стає заголовок
+  моделі, а не весь текст картки, як було раніше.
+*/}
+<div
   class="card"
-  href={model.href}
   data-card
+  data-slug={model.slug}
   data-year={model.year}
   data-maker={model.maker}
   data-country={model.countryCode}
@@ -68,23 +75,38 @@ const hasImage = !!img && !!cover;
       </div>
       <span class="year">{model.year}</span>
     </div>
-    <div class="name">{model.title}</div>
+    <a class="name-link" href={model.href}><span class="name">{model.title}</span></a>
     <div class="country">{model.countryLabel}</div>
     <p class="desc">{model.desc}</p>
+
+    <button
+      type="button"
+      class="cmp-add"
+      data-cmp-add
+      aria-pressed="false"
+      data-pick={t('compare.pick')}
+      data-picked={t('compare.picked')}
+    >
+      {t('compare.pick')}
+    </button>
   </div>
-</a>
+</div>
 
 <style>
   .card {
-    display: block;
+    position: relative;
+    display: flex;
+    flex-direction: column;
     border: 2px solid var(--border);
     background: var(--surface);
-    text-decoration: none;
     height: 100%;
     box-sizing: border-box;
     transition: border-color var(--dur) var(--ease-out);
   }
   .card:hover { border-color: var(--zx-cyan); }
+  /* Картка в порівнянні — маджента, як панель компаратора. Колір не єдиний
+     носій сенсу (ТЗ §4.2): підпис кнопки теж змінюється на «✓ у порівнянні». */
+  .card.picked { border-color: var(--zx-magenta); }
 
   .media {
     aspect-ratio: 4 / 3;
@@ -149,7 +171,12 @@ const hasImage = !!img && !!cover;
     color: var(--zx-cyan);
   }
 
-  .body { padding: 14px 16px 18px; }
+  .body {
+    padding: 14px 16px 18px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
   .row {
     display: flex;
     justify-content: space-between;
@@ -183,14 +210,32 @@ const hasImage = !!img && !!cover;
     color: var(--zx-cyan);
     flex: none;
   }
+  /* Розтягнуте посилання: ::after накриває всю картку, тож клікабельна вона вся,
+     а назвою посилання лишається сам заголовок. Кнопка «порівняти» піднята над
+     цим шаром через z-index, інакше клік по ній вів би на сторінку моделі. */
+  .name-link {
+    text-decoration: none;
+    display: block;
+    margin: 12px 0 6px;
+  }
+  .name-link::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .name-link:focus-visible {
+    outline: 2px solid var(--zx-blue);
+    outline-offset: 2px;
+  }
   .name {
     font-family: var(--font-pixel);
     font-weight: 600;
     font-size: 20px;
     color: var(--zx-white);
     text-transform: uppercase;
-    margin: 12px 0 6px;
     line-height: 1.15;
+    display: block;
   }
   .country {
     font-family: var(--font-mono);
@@ -202,6 +247,36 @@ const hasImage = !!img && !!cover;
     font-size: 15px;
     color: var(--text-dim);
     line-height: 1.5;
-    margin: 0;
+    margin: 0 0 14px;
+  }
+
+  .cmp-add {
+    position: relative;
+    z-index: 1; /* над ::after розтягнутого посилання */
+    margin-top: auto; /* притискає кнопку до низу, вирівнюючи по сітці */
+    align-self: flex-start;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 7px 11px;
+    background: transparent;
+    color: var(--text-dim);
+    border: 1px solid var(--border-2);
+    cursor: pointer;
+    transition:
+      border-color var(--dur) var(--ease-out),
+      color var(--dur) var(--ease-out);
+  }
+  .cmp-add:hover { color: var(--zx-white); border-color: var(--text-dim); }
+  .cmp-add[aria-pressed='true'] {
+    color: var(--zx-magenta);
+    border-color: var(--zx-magenta);
+    background: rgba(255, 0, 255, 0.08);
+  }
+  /* Ліміт у 3 моделі (ТЗ §5.2): решта кнопок гасне, але лишається зрозумілою. */
+  .cmp-add:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
   }
 </style>

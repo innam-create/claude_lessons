@@ -19,12 +19,39 @@ const groups = buildFilterGroups(models, lang);
 
 const homeHref = localizePath('/', lang);
 
-// Компаратор (ТЗ §5.2): до 3 моделей. У дизайні панель стартує з двома
-// обраними моделями; чипси знімаються (×). Повна таблиця відмінностей —
-// наступний крок.
-const preselect = ['zx-spectrum-48k', 'zx-spectrum-128']
-  .map((slug) => models.find((m) => m.slug === slug))
-  .filter((m): m is NonNullable<typeof m> => !!m);
+// Компаратор (ТЗ §5.2): до 3 моделей, таблиця відмінностей.
+//
+// У дизайні панель намальована з двома вже обраними моделями — це була
+// демонстрація вигляду, а не стан. Справжній компаратор стартує порожнім
+// і панель ховається, поки нічого не обрано.
+//
+// ТЗ §10 дозволяє localStorage ЛИШЕ для CRT-перемикача й мови, тому вибір
+// живе тільки в пам'яті сторінки й скидається при перезавантаженні.
+const CMP_MAX = 3;
+
+// Дані для клієнтської таблиці. specs у всіх моделей — однаковий набір рядків
+// у однаковому порядку (buildSpecs), тож у таблиці їх можна зіставляти за індексом.
+const cmpData = models.map((m) => ({
+  slug: m.slug,
+  title: m.title,
+  href: m.href,
+  specs: m.specs.map((s) => ({ label: s.label, value: s.value })),
+}));
+
+const cmpI18n = {
+  pick: t('compare.pick'),
+  picked: t('compare.picked'),
+  remove: t('compare.remove'),
+  add: t('compare.add'),
+  cta: t('compare.cta'),
+  unknown: t('detail.unknown'),
+  diffMark: t('compare.diffMark'),
+  max: CMP_MAX,
+};
+
+// <: щоб рядок усередині JSON не міг закрити <script> (захист від того,
+// щоб дані колись не поламали розмітку).
+const toJson = (v: unknown) => JSON.stringify(v).replace(/</g, '\\u003c');
 ---
 
 <main>
@@ -105,27 +132,35 @@ const preselect = ['zx-spectrum-48k', 'zx-spectrum-128']
   </div>
 
   <!-- КОМПАРАТОР -->
-  <div class="comparator" id="comparator" data-cta={t('compare.cta')}>
+  <div class="comparator" id="comparator" hidden>
     <div class="wrap cmp-inner">
       <span class="cmp-title">{t('compare.title')}</span>
-      <div class="cmp-slots">
-        {
-          preselect.map((m) => (
-            <span class="cmp-chip filled">
-              {m.title}
-              <button type="button" class="cmp-remove" aria-label="×">
-                {' '}×
-              </button>
-            </span>
-          ))
-        }
-        <span class="cmp-chip empty">{t('compare.add')}</span>
-      </div>
-      <button type="button" class="cmp-cta" disabled={preselect.length < 2}>
-        {t('compare.cta')} ({preselect.length}/3)
+      <div class="cmp-slots" id="cmp-slots"></div>
+      <button type="button" class="cmp-clear" id="cmp-clear">{t('compare.clear')}</button>
+      <button type="button" class="cmp-cta" id="cmp-cta" disabled>
+        {t('compare.cta')} (0/{CMP_MAX})
       </button>
     </div>
   </div>
+
+  {/*
+    Таблиці відмінностей у дизайні немає — ТЗ §5.2 її вимагає, макет не малює.
+    Зроблено словником дизайн-системи: маджента компаратора, моно-шрифт, нульові
+    кути, рамки замість тіней. <dialog> — щоб не заводити окремий маршрут
+    (у структурі ТЗ §5 сторінки /compare/ немає) і отримати Esc та фокус нативно.
+  */}
+  <dialog class="cmp-dialog" id="cmp-dialog" aria-labelledby="cmp-dialog-title">
+    <div class="cmp-dialog-head">
+      <h2 id="cmp-dialog-title">{t('compare.dialogTitle')}</h2>
+      <button type="button" class="cmp-close" id="cmp-close" aria-label={t('compare.close')}>
+        ×
+      </button>
+    </div>
+    <div class="cmp-table-wrap" id="cmp-table-wrap"></div>
+  </dialog>
+
+  <script type="application/json" id="cmp-data" is:inline set:html={toJson(cmpData)} />
+  <script type="application/json" id="cmp-i18n" is:inline set:html={toJson(cmpI18n)} />
 </main>
 
 <style>
@@ -358,6 +393,136 @@ const preselect = ['zx-spectrum-48k', 'zx-spectrum-128']
     flex: none;
   }
   .cmp-cta:disabled { opacity: 0.5; cursor: not-allowed; }
+  .cmp-clear {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    background: transparent;
+    color: var(--text-dim);
+    border: 1px solid var(--border-2);
+    padding: 9px 12px;
+    cursor: pointer;
+    flex: none;
+  }
+  .cmp-clear:hover { color: var(--zx-white); border-color: var(--text-dim); }
+
+  /* --- таблиця відмінностей (у дизайні відсутня, ТЗ §5.2) --- */
+  .cmp-dialog {
+    border: 2px solid var(--zx-magenta);
+    background: var(--bg);
+    color: var(--text);
+    padding: 0;
+    max-width: min(920px, calc(100vw - 32px));
+    width: 100%;
+    max-height: calc(100vh - 64px);
+    box-sizing: border-box;
+  }
+  .cmp-dialog::backdrop { background: rgba(0, 0, 0, 0.75); }
+  .cmp-dialog-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--hair);
+  }
+  .cmp-dialog-head h2 {
+    font-family: var(--font-pixel);
+    font-size: 20px;
+    color: var(--zx-magenta);
+    text-transform: uppercase;
+    margin: 0;
+  }
+  .cmp-close {
+    background: none;
+    border: 1px solid var(--border-2);
+    color: var(--text-dim);
+    font-size: 20px;
+    line-height: 1;
+    padding: 4px 11px;
+    cursor: pointer;
+    flex: none;
+  }
+  .cmp-close:hover { color: var(--zx-white); border-color: var(--text-dim); }
+
+  /* Таблицю будує JS, тому scoped-CSS Astro до неї не доходить: скоуп працює
+     через data-атрибут, який ставиться лише елементам із шаблону. Звідси
+     :global() — селектори прив'язані до .cmp-table-wrap, тож глобально нічого
+     не тече. Без цього таблиця рендерилась зовсім без стилів, а .sr-only
+     показував службовий текст «(відрізняється)» просто на сторінці. */
+  .cmp-dialog[open] {
+    display: flex;
+    flex-direction: column;
+  }
+  /* Вузькі екрани: таблиця гортається всередині діалогу, а не розпирає сторінку. */
+  .cmp-table-wrap {
+    overflow: auto;
+    padding: 20px;
+  }
+  .cmp-table-wrap :global(.cmp-table) {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 380px;
+  }
+  .cmp-table-wrap :global(th),
+  .cmp-table-wrap :global(td) {
+    text-align: left;
+    padding: 11px 14px;
+    vertical-align: baseline;
+    border-bottom: 1px solid var(--hair);
+  }
+  .cmp-table-wrap :global(thead th) {
+    font-family: var(--font-pixel);
+    font-size: 15px;
+    color: var(--zx-white);
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--border);
+  }
+  .cmp-table-wrap :global(thead th a) { color: inherit; text-decoration: none; }
+  .cmp-table-wrap :global(thead th a:hover) { color: var(--zx-cyan); }
+  .cmp-table-wrap :global(tbody th) {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-dim);
+    font-weight: 400;
+    white-space: nowrap;
+  }
+  .cmp-table-wrap :global(td) {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--text);
+  }
+  .cmp-table-wrap :global(td.unknown) {
+    font-family: var(--font-body);
+    font-style: italic;
+    color: var(--dim-6);
+  }
+  /* Рядок із відмінністю. Колір — НЕ єдиний носій сенсу (ТЗ §4.2): поряд стоїть
+     знак «≠», а для зчитувачів екрана — текст у .sr-only. */
+  .cmp-table-wrap :global(tr.diff th) { color: var(--zx-magenta); }
+  .cmp-table-wrap :global(tr.diff) { background: rgba(255, 0, 255, 0.06); }
+  .cmp-table-wrap :global(.mark) {
+    margin-left: 6px;
+    font-weight: 700;
+    color: var(--zx-magenta);
+  }
+  /* .partial — рядок, де частина значень невідома: не «≠» і не «збігається».
+     Жодного акценту: стверджувати тут нічого не можна, клітинка сама каже
+     «невідомо». */
+  .cmp-table-wrap :global(.sr-only) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+  }
 
   /* --- адаптивність (ТЗ: каталог 1/2/3/4 колонки) --- */
   @media (max-width: 1024px) {
@@ -424,7 +589,9 @@ const preselect = ['zx-spectrum-48k', 'zx-spectrum-128']
       const isEmpty = visible === 0;
       emptyEl!.hidden = !isEmpty;
       grid!.hidden = isEmpty;
-      if (comparator) comparator.hidden = isEmpty;
+      // Видимість компаратора більше не залежить від фільтрів — нею керує
+      // наявність вибору (див. render() нижче). Обране не скидається, коли
+      // модель ховає фільтр: інакше фільтрування мовчки ламало б порівняння.
     }
 
     for (const chip of chips) {
@@ -458,23 +625,177 @@ const preselect = ['zx-spectrum-48k', 'zx-spectrum-128']
     }
   }
 
-  // Компаратор: зняття моделі (×) + оновлення лічильника/кнопки.
-  if (comparator) {
-    const cta = comparator.querySelector<HTMLButtonElement>('.cmp-cta');
-    const ctaLabel = comparator.dataset.cta ?? 'Compare';
-    function updateCmp() {
-      const n = comparator!.querySelectorAll('.cmp-chip.filled').length;
-      if (cta) {
-        cta.textContent = `${ctaLabel} (${n}/3)`;
-        cta.disabled = n < 2;
+  // --- Компаратор (ТЗ §5.2): до 3 моделей + таблиця відмінностей ---
+  //
+  // Вибір тримається в пам'яті: ТЗ §10 дозволяє localStorage лише для CRT і мови,
+  // тож зберігати його між перезавантаженнями свідомо не можна.
+  type CmpSpec = { label: string; value: string | null };
+  type CmpModel = { slug: string; title: string; href: string; specs: CmpSpec[] };
+
+  const dataEl = document.getElementById('cmp-data');
+  const i18nEl = document.getElementById('cmp-i18n');
+  const slotsEl = document.getElementById('cmp-slots');
+  const ctaEl = document.getElementById('cmp-cta') as HTMLButtonElement | null;
+  const clearEl = document.getElementById('cmp-clear');
+  const dialogEl = document.getElementById('cmp-dialog') as HTMLDialogElement | null;
+  const closeEl = document.getElementById('cmp-close');
+  const tableWrap = document.getElementById('cmp-table-wrap');
+
+  if (dataEl && i18nEl && comparator && slotsEl && ctaEl && dialogEl && tableWrap) {
+    const models: CmpModel[] = JSON.parse(dataEl.textContent || '[]');
+    const t = JSON.parse(i18nEl.textContent || '{}');
+    const MAX: number = t.max ?? 3;
+    const byId = new Map(models.map((m) => [m.slug, m]));
+
+    // Порядок = порядок додавання, щоб колонки не стрибали.
+    const picked: string[] = [];
+
+    const addBtns = Array.from(
+      document.querySelectorAll<HTMLButtonElement>('[data-cmp-add]'),
+    );
+
+    function render() {
+      // 1. Панель: чипси обраних + порожній слот-підказка, поки є місце.
+      slotsEl!.textContent = '';
+      for (const slug of picked) {
+        const m = byId.get(slug)!;
+        const chip = document.createElement('span');
+        chip.className = 'cmp-chip filled';
+        chip.append(m.title);
+        const x = document.createElement('button');
+        x.type = 'button';
+        x.className = 'cmp-remove';
+        x.setAttribute('aria-label', `${t.remove}: ${m.title}`);
+        x.textContent = '×';
+        x.addEventListener('click', () => toggle(slug));
+        chip.append(x);
+        slotsEl!.append(chip);
+      }
+      if (picked.length < MAX) {
+        const empty = document.createElement('span');
+        empty.className = 'cmp-chip empty';
+        empty.textContent = t.add;
+        slotsEl!.append(empty);
+      }
+
+      // 2. Панель ховається, поки нічого не обрано.
+      comparator!.hidden = picked.length === 0;
+
+      // 3. Кнопка: порівнювати можна від двох моделей.
+      ctaEl!.textContent = `${t.cta} (${picked.length}/${MAX})`;
+      ctaEl!.disabled = picked.length < 2;
+
+      // 4. Кнопки на картках: стан + блокування решти на ліміті.
+      const full = picked.length >= MAX;
+      for (const btn of addBtns) {
+        const card = btn.closest<HTMLElement>('[data-card]')!;
+        const on = picked.includes(card.dataset.slug!);
+        btn.setAttribute('aria-pressed', String(on));
+        btn.textContent = on ? btn.dataset.picked! : btn.dataset.pick!;
+        card.classList.toggle('picked', on);
+        btn.disabled = full && !on;
       }
     }
-    for (const x of Array.from(comparator.querySelectorAll('.cmp-remove'))) {
-      x.addEventListener('click', (e) => {
-        e.preventDefault();
-        x.closest('.cmp-chip')?.remove();
-        updateCmp();
+
+    function toggle(slug: string) {
+      const i = picked.indexOf(slug);
+      if (i >= 0) picked.splice(i, 1);
+      else if (picked.length < MAX) picked.push(slug);
+      render();
+    }
+
+    for (const btn of addBtns) {
+      btn.addEventListener('click', () => {
+        const card = btn.closest<HTMLElement>('[data-card]');
+        if (card?.dataset.slug) toggle(card.dataset.slug);
       });
     }
+
+    clearEl?.addEventListener('click', () => {
+      picked.length = 0;
+      render();
+    });
+
+    // --- Таблиця відмінностей ---
+    function buildTable() {
+      const chosen = picked.map((s) => byId.get(s)!);
+      const table = document.createElement('table');
+      table.className = 'cmp-table';
+
+      const thead = document.createElement('thead');
+      const hr = document.createElement('tr');
+      hr.append(document.createElement('td')); // порожній кут
+      for (const m of chosen) {
+        const th = document.createElement('th');
+        th.scope = 'col';
+        const a = document.createElement('a');
+        a.href = m.href;
+        a.textContent = m.title;
+        th.append(a);
+        hr.append(th);
+      }
+      thead.append(hr);
+      table.append(thead);
+
+      const tbody = document.createElement('tbody');
+      // Набір рядків у всіх моделей однаковий (buildSpecs) — зіставляємо за індексом.
+      chosen[0].specs.forEach((row, i) => {
+        const values = chosen.map((m) => m.specs[i].value);
+
+        // Відмінність рахується ЛИШЕ серед відомих значень. «Невідомо» — це не
+        // відмінність: якщо в однієї моделі поле порожнє, ми не знаємо, чи воно
+        // інше, і не маємо права це стверджувати. Тож «Мембранна · Мембранна ·
+        // невідомо» — не «≠», а неповний рядок. Якщо ж відомі значення вже
+        // різняться, невідоме цього не скасовує.
+        const known = values.filter((v): v is string => v !== null);
+        const differs = new Set(known).size > 1;
+        const incomplete = known.length !== values.length;
+
+        const tr = document.createElement('tr');
+        tr.className = differs ? 'diff' : incomplete ? 'partial' : 'same';
+
+        const th = document.createElement('th');
+        th.scope = 'row';
+        th.append(row.label);
+        if (differs) {
+          // ТЗ §4.2: колір не єдиний носій сенсу — поряд із маджентою є знак «≠»
+          // і текст для зчитувачів екрана.
+          const mark = document.createElement('span');
+          mark.className = 'mark';
+          mark.setAttribute('aria-hidden', 'true');
+          mark.textContent = '≠';
+          const sr = document.createElement('span');
+          sr.className = 'sr-only';
+          sr.textContent = ` (${t.diffMark})`;
+          th.append(mark, sr);
+        }
+        tr.append(th);
+
+        for (const v of values) {
+          const td = document.createElement('td');
+          if (v === null) {
+            td.className = 'unknown';
+            td.textContent = t.unknown;
+          } else {
+            td.textContent = v;
+          }
+          tr.append(td);
+        }
+        tbody.append(tr);
+      });
+      table.append(tbody);
+
+      tableWrap!.textContent = '';
+      tableWrap!.append(table);
+    }
+
+    ctaEl.addEventListener('click', () => {
+      if (picked.length < 2) return;
+      buildTable();
+      dialogEl.showModal();
+    });
+    closeEl?.addEventListener('click', () => dialogEl.close());
+
+    render();
   }
 </script>

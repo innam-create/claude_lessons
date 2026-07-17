@@ -28,7 +28,20 @@ The design medium is **HTML/CSS/JS** — these are prototypes, not production co
 
 ## Implementation status
 
-The **Catalog page** (`project/CatalogPage.dc.html`) has been implemented as an Astro
-site in this repo. See **`GETTING-STARTED.md`** for how to run it, and the source under
-`src/` / `public/`. Run with `npm install && npm run dev`, then open
-`http://localhost:4321/models/`.
+**This bundle is no longer a greenfield handoff — a working Astro site lives in this
+repo.** The **Models** section is complete: catalog with filters (`/models/`), model
+comparator with a difference table, and model detail pages (`/models/{slug}/`), in
+Ukrainian and English. Other sections do not exist yet.
+
+**Read `HANDOFF.md` before `project/`.** It records the current state, the decisions
+made, the traps found, and — importantly — where the spec (`TZ_spectrum_sncmuseum.md`)
+and the design prototypes **contradict each other**. Do not treat the prototypes as
+the sole source of truth: the spec wins, and several things the spec requires
+(comparison table, "add to compare" control, honest empty states) are **not drawn in
+any mockup** and had to be designed.
+
+`project/assets/IMAGE-CREDITS.md` is **unreliable** — it misattributed 3 of the 4
+photos we verified. Never take licence data from it; check each file's Wikimedia page.
+
+Run with `npm install && npm run dev`, then open `http://localhost:4321/models/`.
+See **`GETTING-STARTED.md`** for commands and layout.

@@ -1,0 +1,23 @@
+---
+import type { Lang } from '../../../i18n/ui';
+import { useTranslations } from '../../../i18n/ui';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import SoftwareView from '../../../components/SoftwareView.astro';
+
+const lang: Lang = 'en';
+const path = '/software/';
+const t = useTranslations(lang);
+---
+
+<BaseLayout
+  lang={lang}
+  path={path}
+  title={`${t('software.title')} · ZX Spectrum — SnC Museum`}
+  description="Software and games for the ZX Spectrum: a catalogue of notable programs and cassette games — Manic Miner, Jet Set Willy, Elite and more. An SnC Museum project."
+>
+  <Header lang={lang} active="software" path={path} />
+  <SoftwareView lang={lang} />
+  <Footer lang={lang} />
+</BaseLayout>

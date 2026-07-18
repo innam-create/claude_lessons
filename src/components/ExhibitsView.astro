@@ -1,0 +1,154 @@
+---
+import { getCollection } from 'astro:content';
+import type { Lang } from '../i18n/ui';
+import { useTranslations, localizePath } from '../i18n/ui';
+import { normalizeModels } from '../lib/catalog';
+import ExhibitCard from './ExhibitCard.astro';
+import Breadcrumbs from './Breadcrumbs.astro';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const homeHref = localizePath('/', lang);
+
+// Експонати = моделі, наявність яких у музеї підтверджена нашими даними
+// (inMuseum === true). Не вигадуємо інвентар: перелік конкретних експонатів
+// контролює музей (HANDOFF §7.1), тож показуємо лише те, що вже стоїть у даних.
+const models = normalizeModels(await getCollection('models'), lang);
+const exhibits = models.filter((m) => m.inMuseum);
+
+const contactsHref = localizePath('/contacts/', lang);
+const visitLine = `${t('contacts.addr.value')} · ${t('contacts.addr.sub')} · ${t('contacts.hours.value')}`;
+---
+
+<main data-pagefind-body>
+  <div class="wrap head">
+    <Breadcrumbs
+      items={[{ label: t('nav.home'), href: homeHref }, { label: t('exhibits.title') }]}
+    />
+    <h1>{t('exhibits.title')}</h1>
+    <p class="intro">{t('exhibits.intro')}</p>
+  </div>
+
+  <div class="wrap grid-wrap">
+    {
+      exhibits.length > 0 ? (
+        <div class="grid">
+          {exhibits.map((m) => <ExhibitCard model={m} lang={lang} />)}
+        </div>
+      ) : (
+        <div class="empty">{t('exhibits.empty')}</div>
+      )
+    }
+  </div>
+
+  <!-- Запрошення відвідати -->
+  <section class="visit">
+    <div class="wrap visit-inner">
+      <div>
+        <div class="visit-title">{t('exhibits.visit.title')}</div>
+        <div class="visit-line">{visitLine}</div>
+      </div>
+      <a class="visit-cta" href={contactsHref}>{t('exhibits.visit.cta')}</a>
+    </div>
+  </section>
+</main>
+
+<style>
+  .wrap {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: 0 28px;
+    box-sizing: border-box;
+  }
+  .head { padding-top: 8px; }
+  h1 {
+    font-family: var(--font-pixel);
+    font-weight: 700;
+    font-size: 44px;
+    color: var(--zx-white);
+    text-transform: uppercase;
+    margin: 20px 0 0;
+    line-height: 1;
+  }
+  .intro {
+    font-size: 19px;
+    line-height: 1.65;
+    color: var(--text);
+    max-width: 720px;
+    margin: 18px 0 22px;
+    border-bottom: 1px solid var(--hair);
+    padding-bottom: 22px;
+  }
+
+  .grid-wrap { padding-top: 26px; padding-bottom: 40px; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+  .empty {
+    border: 2px dashed var(--border);
+    padding: 40px 28px;
+    text-align: center;
+    font-size: 16px;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+
+  /* Смуга запрошення — музейні navy/gold (як футер). */
+  .visit {
+    background: var(--museum-navy);
+    border-top: 3px solid var(--museum-gold);
+  }
+  .visit-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+    padding-top: 36px;
+    padding-bottom: 36px;
+  }
+  .visit-title {
+    font-family: var(--font-pixel);
+    font-weight: 700;
+    font-size: 26px;
+    color: var(--zx-white);
+    text-transform: uppercase;
+    line-height: 1;
+  }
+  .visit-line {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: #c9d3e8;
+    margin-top: 14px;
+    line-height: 1.7;
+  }
+  .visit-cta {
+    font-family: var(--font-pixel);
+    font-size: 14px;
+    text-transform: uppercase;
+    background: var(--museum-gold);
+    color: var(--museum-navy);
+    padding: 14px 22px;
+    text-decoration: none;
+    flex: none;
+  }
+  .visit-cta:hover { background: #ffe14d; }
+
+  @media (max-width: 1024px) {
+    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 768px) {
+    .grid { grid-template-columns: minmax(0, 1fr); }
+    h1 { font-size: 34px; }
+  }
+  @media (max-width: 400px) {
+    .wrap { padding: 0 16px; }
+    h1 { font-size: 28px; }
+    .intro { font-size: 17px; }
+  }
+</style>

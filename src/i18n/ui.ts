@@ -131,6 +131,22 @@ export const ui = {
     'history.articles.empty':
       'Розгорнуті матеріали про ключові моменти історії Spectrum готуються. Кожен вийде з посиланнями на джерела — щойно їх звірить і затвердить музей.',
 
+    // експонати (ExhibitsPage.dc.html)
+    'exhibits.title': 'Експонати',
+    'exhibits.intro':
+      'Те, що можна побачити наживо. Ці машини є в колекції музею — до багатьох експонатів можна доторкнутися.',
+    'exhibits.empty':
+      'Перелік експонатів ще звіряється з інвентарем музею. Тут зʼявляться машини, наявність яких підтверджено.',
+    'exhibits.visit.title': 'Приходьте подивитися наживо',
+    'exhibits.visit.cta': 'Як дістатися →',
+
+    // софт (SoftwarePage.dc.html)
+    'software.title': 'Софт та ігри',
+    'software.intro':
+      'Програми та ігри, що виходили на касетах для Spectrum. Наведені відомості — попередні й потребують звірки з джерелами.',
+    'software.note':
+      'Обкладинки та скриншоти додамо, щойно знайдемо їх із вільною ліцензією. Поки що — текстовий каталог.',
+
     // контакти (ContactsPage.dc.html)
     'contacts.title': 'Контакти',
     'contacts.intro':
@@ -283,6 +299,20 @@ export const ui = {
     'history.articles': 'Articles',
     'history.articles.empty':
       'In-depth pieces on the key moments of the Spectrum’s history are in preparation. Each will ship with links to its sources — once the museum has checked and approved them.',
+
+    'exhibits.title': 'Exhibits',
+    'exhibits.intro':
+      'What you can see in person. These machines are in the museum’s collection — many exhibits are yours to touch.',
+    'exhibits.empty':
+      'The exhibit list is still being checked against the museum’s inventory. Machines confirmed to be here will appear below.',
+    'exhibits.visit.title': 'Come and see them in person',
+    'exhibits.visit.cta': 'How to get here →',
+
+    'software.title': 'Software & games',
+    'software.intro':
+      'Programs and games that shipped on cassette for the Spectrum. The details below are provisional and need checking against sources.',
+    'software.note':
+      'Covers and screenshots will be added once we find freely licensed ones. For now — a text catalogue.',
 
     'contacts.title': 'Contacts',
     'contacts.intro':

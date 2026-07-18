@@ -1,0 +1,223 @@
+---
+import type { Lang } from '../i18n/ui';
+import { useTranslations, localizePath } from '../i18n/ui';
+import Breadcrumbs from './Breadcrumbs.astro';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const homeHref = localizePath('/', lang);
+
+// Текстовий каталог відомого ПЗ для Spectrum. Показуємо ФАКТИ (назва, видавець,
+// рік, жанр) — не відтворюємо захищені авторським правом обкладинки/скриншоти
+// (у макеті вони під «fair use», що не є чистою ліцензією за §7.1, і зображень
+// ми не маємо). Дані провізорні до звірки з джерелами (§12).
+type Prog = {
+  name: string;
+  publisher: string;
+  year: string;
+  genre: Record<Lang, string>;
+  desc: Record<Lang, string>;
+};
+const programs: Prog[] = [
+  {
+    name: 'Manic Miner',
+    publisher: 'Bug-Byte',
+    year: '1983',
+    genre: { uk: 'Платформер', en: 'Platformer' },
+    desc: {
+      uk: 'Легендарний платформер Метью Сміта.',
+      en: 'Matthew Smith’s legendary platformer.',
+    },
+  },
+  {
+    name: 'Jet Set Willy',
+    publisher: 'Software Projects',
+    year: '1984',
+    genre: { uk: 'Платформер', en: 'Platformer' },
+    desc: {
+      uk: 'Продовження Manic Miner з велетенським особняком.',
+      en: 'The Manic Miner sequel, set in a vast mansion.',
+    },
+  },
+  {
+    name: 'Sinclair BASIC',
+    publisher: 'Sinclair Research',
+    year: '1982',
+    genre: { uk: 'Система', en: 'System' },
+    desc: {
+      uk: 'Вбудована мова програмування Spectrum.',
+      en: 'The Spectrum’s built-in programming language.',
+    },
+  },
+  {
+    name: 'Elite',
+    publisher: 'Firebird',
+    year: '1985',
+    genre: { uk: 'Космосим', en: 'Space sim' },
+    desc: {
+      uk: 'Відкритий космос і торгівля у 8 бітах.',
+      en: 'Open-ended space trading in 8 bits.',
+    },
+  },
+  {
+    name: 'Chuckie Egg',
+    publisher: 'A&F Software',
+    year: '1983',
+    genre: { uk: 'Аркада', en: 'Arcade' },
+    desc: {
+      uk: 'Класична аркада про збирання яєць.',
+      en: 'A classic egg-collecting arcade game.',
+    },
+  },
+  {
+    name: 'The Hobbit',
+    publisher: 'Melbourne House',
+    year: '1982',
+    genre: { uk: 'Текстовий квест', en: 'Text adventure' },
+    desc: {
+      uk: 'Ілюстрований текстовий квест за Толкіном.',
+      en: 'An illustrated text adventure after Tolkien.',
+    },
+  },
+];
+---
+
+<main data-pagefind-body>
+  <div class="wrap head">
+    <Breadcrumbs
+      items={[{ label: t('nav.home'), href: homeHref }, { label: t('software.title') }]}
+    />
+    <h1>{t('software.title')}</h1>
+    <p class="intro">{t('software.intro')}</p>
+  </div>
+
+  <div class="wrap">
+    <p class="note">{t('software.note')}</p>
+
+    <div class="grid">
+      {
+        programs.map((p) => (
+          <article class="card">
+            <div class="card-top">
+              <span class="genre">{p.genre[lang]}</span>
+              <span class="year">{p.year}</span>
+            </div>
+            <h2 class="name">{p.name}</h2>
+            <div class="publisher">{p.publisher}</div>
+            <p class="desc">{p.desc[lang]}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</main>
+
+<style>
+  .wrap {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: 0 28px;
+    box-sizing: border-box;
+  }
+  .head { padding-top: 8px; }
+  h1 {
+    font-family: var(--font-pixel);
+    font-weight: 700;
+    font-size: 44px;
+    color: var(--zx-white);
+    text-transform: uppercase;
+    margin: 20px 0 0;
+    line-height: 1;
+  }
+  .intro {
+    font-size: 19px;
+    line-height: 1.65;
+    color: var(--text);
+    max-width: 720px;
+    margin: 18px 0 22px;
+    border-bottom: 1px solid var(--hair);
+    padding-bottom: 22px;
+  }
+  .note {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.6;
+    margin: 26px 0 0;
+    padding-left: 12px;
+    border-left: 3px solid var(--zx-magenta);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+    padding: 22px 0 60px;
+  }
+  /* Магента — акцент розділу «Софт» (за дизайном). */
+  .card {
+    border: 2px solid var(--border);
+    background: var(--surface);
+    padding: 16px 16px 18px;
+    display: flex;
+    flex-direction: column;
+    transition: border-color var(--dur) var(--ease-out);
+  }
+  .card:hover { border-color: var(--zx-magenta); }
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px;
+  }
+  .genre {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    color: var(--zx-magenta);
+  }
+  .year {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--zx-cyan);
+    flex: none;
+  }
+  .name {
+    font-family: var(--font-pixel);
+    font-weight: 600;
+    font-size: 19px;
+    color: var(--zx-white);
+    text-transform: uppercase;
+    line-height: 1.15;
+    margin: 12px 0 4px;
+  }
+  .publisher {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+  }
+  .desc {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  @media (max-width: 1024px) {
+    .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+  @media (max-width: 768px) {
+    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    h1 { font-size: 34px; }
+  }
+  @media (max-width: 400px) {
+    .wrap { padding: 0 16px; }
+    .grid { grid-template-columns: minmax(0, 1fr); }
+    h1 { font-size: 28px; }
+    .intro { font-size: 17px; }
+  }
+</style>

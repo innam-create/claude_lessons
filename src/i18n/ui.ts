@@ -24,6 +24,25 @@ export const ui = {
     'crt.on': 'CRT ON',
     'crt.off': 'CRT OFF',
 
+    // головна (HomePage.dc.html)
+    'home.eyebrow': 'Software & Computer Museum',
+    'home.hero.lead':
+      '8-бітний комп’ютер, що приніс програмування й ігри у тисячі домівок. Історія, моделі, клони та софт — і те, що можна побачити наживо в музеї.',
+    'home.hero.cta': 'Дивитися моделі',
+    'home.about.label': 'Про проєкт',
+    'home.about.body':
+      'Освітній розділ музею про машину, з якої для багатьох почалося знайомство з комп’ютерами. Чернетки готує ШІ, а публікуємо лише після перевірки й затвердження музеєм.',
+    'home.sections': 'Розділи',
+    'home.more': 'Детальніше →',
+    'home.soon': 'незабаром',
+    'home.tile.history': '1980–1992: від задуму Sinclair до кінця епохи.',
+    'home.tile.models': 'Офіційні машини: 16K, 48K, +, 128K, +2, +3.',
+    'home.tile.clones': 'Радянські та українські клони Spectrum.',
+    'home.tile.exhibits': 'Що можна побачити й торкнутися в музеї.',
+    'home.tile.software': 'Програми, ігри та легендарні касети.',
+    'home.tile.peripherals': 'Друк, джойстики, накопичувачі та інтерфейси.',
+    'home.tile.contacts': 'Як дістатися, графік роботи та мапа музею.',
+
     // каталог
     'catalog.title': 'Моделі',
     'catalog.filters': 'Фільтри',
@@ -139,6 +158,24 @@ export const ui = {
     'nav.toMuseum': '← to museum',
     'crt.on': 'CRT ON',
     'crt.off': 'CRT OFF',
+
+    'home.eyebrow': 'Software & Computer Museum',
+    'home.hero.lead':
+      'The 8-bit computer that brought programming and games into thousands of homes. History, models, clones and software — and what you can see in person at the museum.',
+    'home.hero.cta': 'Browse models',
+    'home.about.label': 'About',
+    'home.about.body':
+      'The museum’s educational section on the machine that introduced computers to so many. Drafts are AI-prepared; we publish only after review and approval by the museum.',
+    'home.sections': 'Sections',
+    'home.more': 'Learn more →',
+    'home.soon': 'coming soon',
+    'home.tile.history': '1980–1992: from Sinclair’s idea to the end of an era.',
+    'home.tile.models': 'The official machines: 16K, 48K, +, 128K, +2, +3.',
+    'home.tile.clones': 'Soviet and Ukrainian Spectrum clones.',
+    'home.tile.exhibits': 'What you can see and touch at the museum.',
+    'home.tile.software': 'Programs, games and the legendary cassettes.',
+    'home.tile.peripherals': 'Printing, joysticks, storage and interfaces.',
+    'home.tile.contacts': 'How to get here, opening hours and a map.',
 
     'catalog.title': 'Models',
     'catalog.filters': 'Filters',

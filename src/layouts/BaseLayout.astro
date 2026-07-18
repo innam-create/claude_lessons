@@ -9,10 +9,18 @@ interface Props {
   lang: Lang;
   /** Шлях сторінки без мовного префікса, напр. "/models/". Для hreflang. */
   path: string;
+  /** Абсолютний URL OG-зображення (1200×630). null → превʼю без картинки. */
+  ogImage?: string | null;
 }
 
-const { title, description, lang, path } = Astro.props;
+const { title, description, lang, path, ogImage = null } = Astro.props;
 const site = Astro.site?.toString().replace(/\/$/, '') ?? '';
+
+// Canonical і og:url — абсолютний URL цієї сторінки саме цією мовою.
+const canonical = `${site}${localizePath(path, lang)}`;
+// ТЗ §9: OG-локаль у форматі ll_CC; alternate — інша мова сайту.
+const ogLocale = lang === 'uk' ? 'uk_UA' : 'en_GB';
+const ogAltLocale = lang === 'uk' ? 'en_GB' : 'uk_UA';
 ---
 
 <!doctype html>
@@ -23,6 +31,23 @@ const site = Astro.site?.toString().replace(/\/$/, '') ?? '';
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
+    <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph (ТЗ §9): превʼю в месенджерах і соцмережах -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Software & Computer Museum" />
+    <meta property="og:title" content={title} />
+    {description && <meta property="og:description" content={description} />}
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:locale:alternate" content={ogAltLocale} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
+    <meta name="twitter:title" content={title} />
+    {description && <meta name="twitter:description" content={description} />}
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
 
     <!-- hreflang для UA/EN (ТЗ §9) -->
     <link rel="alternate" hreflang="uk" href={`${site}${localizePath(path, 'uk')}`} />

@@ -46,6 +46,8 @@ export const ui = {
     'compare.diffOnly': 'Лише відмінності',
     'compare.diffMark': 'відрізняється',
     'compare.same': 'збігається',
+    'compare.noDiff':
+      'Серед відомих характеристик відмінностей немає. Рядки з невідомими значеннями приховано.',
 
     // групи фільтрів
     'filter.year': 'Рік',
@@ -94,6 +96,13 @@ export const ui = {
     'spec.mass': 'Маса',
     'unit.mhz': 'МГц',
     'unit.g': 'г',
+
+    // 404 (ТЗ §7.2 / NotFoundPage.dc.html)
+    'notFound.title': 'Сторінку не знайдено',
+    'notFound.body':
+      'Схоже, касета не завантажилась. Спробуй перемотати назад — або повернутися на головну.',
+    'notFound.home': 'На головну',
+    'notFound.models': 'До моделей',
 
     // країни
     'country.GB': 'Велика Британія',
@@ -146,6 +155,8 @@ export const ui = {
     'compare.diffOnly': 'Differences only',
     'compare.diffMark': 'differs',
     'compare.same': 'identical',
+    'compare.noDiff':
+      'No differences among the known specifications. Rows with unknown values are hidden.',
 
     'filter.year': 'Year',
     'filter.maker': 'Manufacturer',
@@ -190,6 +201,12 @@ export const ui = {
     'spec.mass': 'Mass',
     'unit.mhz': 'MHz',
     'unit.g': 'g',
+
+    'notFound.title': 'Page not found',
+    'notFound.body':
+      'Looks like the tape didn’t load. Try rewinding — or head back to the home page.',
+    'notFound.home': 'Back to home',
+    'notFound.models': 'Browse models',
 
     'country.GB': 'United Kingdom',
     'country.PT': 'Portugal',

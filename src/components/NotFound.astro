@@ -1,0 +1,143 @@
+---
+// Сторінка «не знайдено» (ТЗ §7.2, макет NotFoundPage.dc.html).
+// Спільний UA/EN блок: сторінки-обгортки лише передають перекладені рядки.
+// Стилі — на токенах дизайн-системи (theme.css), а не на інлайн-hex прототипу.
+interface Props {
+  homeHref: string;
+  modelsHref: string;
+  title: string;
+  body: string;
+  homeLabel: string;
+  modelsLabel: string;
+}
+const { homeHref, modelsHref, title, body, homeLabel, modelsLabel } = Astro.props;
+---
+
+<main class="nf">
+  {/*
+    «R Tape loading error» — реальний системний напис ZX Spectrum, тож він
+    англійською в обох мовах: це не UI-рядок, а цитата з машини.
+  */}
+  <div class="nf-frame">
+    <div class="nf-stripes" aria-hidden="true"></div>
+    <div class="nf-console">
+      <div class="nf-line">R Tape loading error, 0:1</div>
+      <div class="nf-line nf-line-dim">Program: SPECTRUM-MUSEUM</div>
+    </div>
+  </div>
+
+  <div class="nf-code">404</div>
+  <h1 class="nf-title">{title}</h1>
+  <p class="nf-body">{body}</p>
+
+  <div class="nf-actions">
+    <a class="nf-btn nf-btn-primary" href={homeHref}>{homeLabel}</a>
+    <a class="nf-btn nf-btn-ghost" href={modelsHref}>{modelsLabel}</a>
+  </div>
+</main>
+
+<style>
+  .nf {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 70px 28px 90px;
+    box-sizing: border-box;
+    text-align: center;
+  }
+
+  .nf-frame {
+    border: 2px solid var(--border);
+    overflow: hidden;
+  }
+  /* Смуги завантаження ZX: чисті BRIGHT-кольори як заливка (не текст) — ТЗ §4.2. */
+  .nf-stripes {
+    height: 120px;
+    background: repeating-linear-gradient(
+      90deg,
+      var(--zx-red) 0 26px,
+      var(--zx-cyan) 26px 52px,
+      var(--zx-yellow) 52px 78px,
+      var(--zx-blue) 78px 104px
+    );
+  }
+  .nf-console {
+    background: var(--bg);
+    padding: 26px 22px;
+  }
+  /* Зелений — лише як заливка/рамка/іконка, але тут це монітор-емуляція:
+     свідома цитата CRT-екрана. Розмір ≥ 22px і на чорному з великим кеглем —
+     контраст #00FF00 на #000 ≈ 15.3:1, значно вище 4.5:1 (ТЗ §4.2). */
+  .nf-line {
+    font-family: var(--font-mono);
+    font-size: 24px;
+    color: var(--zx-green);
+    line-height: 1.3;
+  }
+  .nf-line-dim {
+    font-size: 20px;
+    opacity: 0.8;
+    margin-top: 6px;
+  }
+
+  .nf-code {
+    font-family: var(--font-pixel);
+    font-weight: 700;
+    font-size: 64px;
+    color: var(--zx-white);
+    text-transform: uppercase;
+    margin: 34px 0 0;
+    line-height: 1;
+  }
+  .nf-title {
+    font-family: var(--font-pixel);
+    font-weight: 600;
+    font-size: 24px;
+    color: var(--zx-yellow);
+    text-transform: uppercase;
+    margin: 12px 0 0;
+  }
+  .nf-body {
+    font-size: 18px;
+    line-height: 1.65;
+    color: var(--text-dim);
+    max-width: 460px;
+    margin: 18px auto 30px;
+  }
+
+  .nf-actions {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .nf-btn {
+    font-family: var(--font-pixel);
+    font-weight: 600;
+    font-size: 15px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 14px 26px;
+  }
+  .nf-btn-primary {
+    background: var(--zx-yellow);
+    color: #000;
+  }
+  .nf-btn-primary:hover { background: var(--museum-gold); }
+  .nf-btn-ghost {
+    background: transparent;
+    color: var(--zx-cyan);
+    border: 2px solid var(--zx-cyan);
+    padding: 12px 24px;
+  }
+  .nf-btn-ghost:hover { background: rgba(0, 255, 255, 0.08); }
+
+  @media (max-width: 400px) {
+    .nf { padding: 48px 16px 64px; }
+    .nf-stripes { height: 88px; }
+    .nf-line { font-size: 20px; }
+    .nf-line-dim { font-size: 17px; }
+    .nf-code { font-size: 48px; }
+    .nf-title { font-size: 20px; }
+    .nf-body { font-size: 16px; }
+  }
+</style>

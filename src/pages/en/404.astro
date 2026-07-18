@@ -1,0 +1,32 @@
+---
+import type { Lang } from '../../i18n/ui';
+import { localizePath, useTranslations } from '../../i18n/ui';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import NotFound from '../../components/NotFound.astro';
+
+// EN-дзеркало 404. Гарантований фолбек хостингу — лише кореневий dist/404.html
+// (UA): Astro спецкейсить тільки верхній 404.astro. Через trailingSlash:'always'
+// ця сторінка збирається у dist/en/404/index.html, а не dist/en/404.html, тож
+// статичні хостинги НЕ віддаватимуть її автоматично на невідомий /en/-маршрут —
+// EN-користувач побачить кореневу UA-сторінку. Локалізований 404 (редирект чи
+// клієнтське визначення мови) — задача рівня хостингу (§7.3, п.9). Доти сторінка
+// лишається валідним, лінкабельним EN-маршрутом і тримає дзеркало /en/ повним.
+const lang: Lang = 'en';
+const path = '/404/';
+const t = useTranslations(lang);
+---
+
+<BaseLayout lang={lang} path={path} title={`404 · ${t('notFound.title')}`}>
+  <Header lang={lang} active="" path={path} />
+  <NotFound
+    homeHref={localizePath('/', lang)}
+    modelsHref={localizePath('/models/', lang)}
+    title={t('notFound.title')}
+    body={t('notFound.body')}
+    homeLabel={t('notFound.home')}
+    modelsLabel={t('notFound.models')}
+  />
+  <Footer lang={lang} />
+</BaseLayout>

@@ -1,0 +1,27 @@
+---
+import type { Lang } from '../i18n/ui';
+import { localizePath, useTranslations } from '../i18n/ui';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import NotFound from '../components/NotFound.astro';
+
+// Astro збирає src/pages/404.astro у dist/404.html — саме її віддають хостинги
+// (Cloudflare Pages / GitHub Pages) на будь-який неіснуючий маршрут (ТЗ §7.2).
+const lang: Lang = 'uk';
+const path = '/404/';
+const t = useTranslations(lang);
+---
+
+<BaseLayout lang={lang} path={path} title={`404 · ${t('notFound.title')}`}>
+  <Header lang={lang} active="" path={path} />
+  <NotFound
+    homeHref={localizePath('/', lang)}
+    modelsHref={localizePath('/models/', lang)}
+    title={t('notFound.title')}
+    body={t('notFound.body')}
+    homeLabel={t('notFound.home')}
+    modelsLabel={t('notFound.models')}
+  />
+  <Footer lang={lang} />
+</BaseLayout>

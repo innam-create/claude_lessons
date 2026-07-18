@@ -46,6 +46,8 @@ const cmpI18n = {
   cta: t('compare.cta'),
   unknown: t('detail.unknown'),
   diffMark: t('compare.diffMark'),
+  diffOnly: t('compare.diffOnly'),
+  noDiff: t('compare.noDiff'),
   max: CMP_MAX,
 };
 
@@ -152,9 +154,21 @@ const toJson = (v: unknown) => JSON.stringify(v).replace(/</g, '\\u003c');
   <dialog class="cmp-dialog" id="cmp-dialog" aria-labelledby="cmp-dialog-title">
     <div class="cmp-dialog-head">
       <h2 id="cmp-dialog-title">{t('compare.dialogTitle')}</h2>
-      <button type="button" class="cmp-close" id="cmp-close" aria-label={t('compare.close')}>
-        ×
-      </button>
+      <div class="cmp-head-tools">
+        {/*
+          «Лише відмінності» (ТЗ §5.2): ховає рядки, де відомі значення збігаються,
+          і неповні рядки (частина значень невідома — не стверджувана відмінність).
+          checkbox, а не кнопка: це двостанний фільтр, і aria-checked дає його стан
+          зчитувачам екрана без додаткового тексту.
+        */}
+        <label class="cmp-difftoggle">
+          <input type="checkbox" id="cmp-diffonly" />
+          <span>{t('compare.diffOnly')}</span>
+        </label>
+        <button type="button" class="cmp-close" id="cmp-close" aria-label={t('compare.close')}>
+          ×
+        </button>
+      </div>
     </div>
     <div class="cmp-table-wrap" id="cmp-table-wrap"></div>
   </dialog>
@@ -446,6 +460,61 @@ const toJson = (v: unknown) => JSON.stringify(v).replace(/</g, '\\u003c');
   }
   .cmp-close:hover { color: var(--zx-white); border-color: var(--text-dim); }
 
+  .cmp-head-tools {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex: none;
+  }
+  /* Тумблер «лише відмінності». Обведення — рамкою (елевація без тіней, §4).
+     Активний стан підсвічується маджентою — колір компаратора — але поряд
+     завжди є підпис-текст, тож колір не єдиний носій сенсу (ТЗ §4.2). */
+  .cmp-difftoggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-dim);
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+  }
+  .cmp-difftoggle input {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    margin: 0;
+    border: 1px solid var(--border-2);
+    background: transparent;
+    cursor: pointer;
+    flex: none;
+    position: relative;
+  }
+  .cmp-difftoggle input:checked {
+    border-color: var(--zx-magenta);
+    background: rgba(255, 0, 255, 0.12);
+  }
+  .cmp-difftoggle input:checked::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 5px;
+    width: 3px;
+    height: 7px;
+    border: solid var(--zx-magenta);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+  .cmp-difftoggle input:focus-visible {
+    outline: 2px solid var(--zx-cyan);
+    outline-offset: 2px;
+  }
+  .cmp-difftoggle:has(input:checked) { color: var(--zx-white); }
+
   /* Таблицю будує JS, тому scoped-CSS Astro до неї не доходить: скоуп працює
      через data-атрибут, який ставиться лише елементам із шаблону. Звідси
      :global() — селектори прив'язані до .cmp-table-wrap, тож глобально нічого
@@ -523,6 +592,25 @@ const toJson = (v: unknown) => JSON.stringify(v).replace(/</g, '\\u003c');
     white-space: nowrap;
     border: 0;
   }
+
+  /* «Лише відмінності»: ховаємо збіги й неповні рядки, лишаючи тільки tr.diff. */
+  .cmp-table-wrap.diff-only :global(tr.same),
+  .cmp-table-wrap.diff-only :global(tr.partial) {
+    display: none;
+  }
+  /* Чесний порожній стан, коли відмінностей немає (показується лише в diff-only). */
+  .cmp-table-wrap :global(.cmp-nodiff) {
+    display: none;
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text-dim);
+    padding: 18px 2px 0;
+    max-width: 520px;
+  }
+  .cmp-table-wrap.diff-only.no-diff :global(.cmp-nodiff) { display: block; }
+  /* Коли відмінностей немає, порожню таблицю (лише шапка) ховаємо. */
+  .cmp-table-wrap.diff-only.no-diff :global(.cmp-table) { display: none; }
 
   /* --- адаптивність (ТЗ: каталог 1/2/3/4 колонки) --- */
   @media (max-width: 1024px) {
@@ -640,6 +728,7 @@ const toJson = (v: unknown) => JSON.stringify(v).replace(/</g, '\\u003c');
   const dialogEl = document.getElementById('cmp-dialog') as HTMLDialogElement | null;
   const closeEl = document.getElementById('cmp-close');
   const tableWrap = document.getElementById('cmp-table-wrap');
+  const diffOnlyEl = document.getElementById('cmp-diffonly') as HTMLInputElement | null;
 
   if (dataEl && i18nEl && comparator && slotsEl && ctaEl && dialogEl && tableWrap) {
     const models: CmpModel[] = JSON.parse(dataEl.textContent || '[]');
@@ -716,6 +805,13 @@ const toJson = (v: unknown) => JSON.stringify(v).replace(/</g, '\\u003c');
       render();
     });
 
+    // Синхронізує режим «лише відмінності» з чекбоксом: клас на обгортці керує
+    // видимістю рядків (CSS). Викликається при зміні чекбокса й при кожній збірці.
+    function syncDiffOnly() {
+      tableWrap!.classList.toggle('diff-only', !!diffOnlyEl?.checked);
+    }
+    diffOnlyEl?.addEventListener('change', syncDiffOnly);
+
     // --- Таблиця відмінностей ---
     function buildTable() {
       const chosen = picked.map((s) => byId.get(s)!);
@@ -738,6 +834,7 @@ const toJson = (v: unknown) => JSON.stringify(v).replace(/</g, '\\u003c');
       table.append(thead);
 
       const tbody = document.createElement('tbody');
+      let diffRows = 0;
       // Набір рядків у всіх моделей однаковий (buildSpecs) — зіставляємо за індексом.
       chosen[0].specs.forEach((row, i) => {
         const values = chosen.map((m) => m.specs[i].value);
@@ -753,6 +850,7 @@ const toJson = (v: unknown) => JSON.stringify(v).replace(/</g, '\\u003c');
 
         const tr = document.createElement('tr');
         tr.className = differs ? 'diff' : incomplete ? 'partial' : 'same';
+        if (differs) diffRows++;
 
         const th = document.createElement('th');
         th.scope = 'row';
@@ -785,8 +883,16 @@ const toJson = (v: unknown) => JSON.stringify(v).replace(/</g, '\\u003c');
       });
       table.append(tbody);
 
+      // Чесний порожній стан для режиму «лише відмінності»: якщо жодного tr.diff,
+      // нема чого показувати — виводимо пояснення замість порожньої таблиці.
+      const note = document.createElement('p');
+      note.className = 'cmp-nodiff';
+      note.textContent = t.noDiff;
+
       tableWrap!.textContent = '';
-      tableWrap!.append(table);
+      tableWrap!.classList.toggle('no-diff', diffRows === 0);
+      tableWrap!.append(table, note);
+      syncDiffOnly();
     }
 
     ctaEl.addEventListener('click', () => {

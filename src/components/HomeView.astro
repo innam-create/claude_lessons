@@ -23,7 +23,7 @@ const heroImg = getModelImage(featured?.cover?.src ?? null);
 // (не текст, ТЗ §4.2). available: чи існує сторінка. Ще не збудовані НЕ ведуть
 // у 404 — показуємо чесний стан «незабаром» замість посилання (HANDOFF §7.2).
 const tiles: { key: string; href: string; color: string; available: boolean }[] = [
-  { key: 'history', href: '/history/', color: '#ff0000', available: false },
+  { key: 'history', href: '/history/', color: '#ff0000', available: true },
   { key: 'models', href: '/models/', color: '#ffff00', available: true },
   { key: 'clones', href: '/clones/', color: '#00ff00', available: false },
   { key: 'exhibits', href: '/exhibits/', color: '#00ffff', available: false },

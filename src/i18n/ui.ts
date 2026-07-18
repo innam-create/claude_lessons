@@ -122,6 +122,15 @@ export const ui = {
       'Пристрої, що розширювали можливості Spectrum: завантаження й друк, джойстики та накопичувачі.',
     'peripherals.count.suffix': 'пристроїв',
 
+    // історія (HistoryHubPage.dc.html)
+    'history.title': 'Історія',
+    'history.intro':
+      'Від задуму Клайва Сінклера до кінця епохи 8-бітних машин. Дванадцять років, що змінили те, як мільйони людей уперше зустріли комп’ютер.',
+    'history.range': '1980 — 1992',
+    'history.articles': 'Статті',
+    'history.articles.empty':
+      'Розгорнуті матеріали про ключові моменти історії Spectrum готуються. Кожен вийде з посиланнями на джерела — щойно їх звірить і затвердить музей.',
+
     // контакти (ContactsPage.dc.html)
     'contacts.title': 'Контакти',
     'contacts.intro':
@@ -266,6 +275,14 @@ export const ui = {
     'peripherals.intro':
       'Devices that extended the Spectrum: loading and printing, joysticks and storage.',
     'peripherals.count.suffix': 'devices',
+
+    'history.title': 'History',
+    'history.intro':
+      'From Clive Sinclair’s idea to the end of the 8-bit era. Twelve years that changed how millions of people first met a computer.',
+    'history.range': '1980 — 1992',
+    'history.articles': 'Articles',
+    'history.articles.empty':
+      'In-depth pieces on the key moments of the Spectrum’s history are in preparation. Each will ship with links to its sources — once the museum has checked and approved them.',
 
     'contacts.title': 'Contacts',
     'contacts.intro':

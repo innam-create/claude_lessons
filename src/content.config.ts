@@ -79,4 +79,26 @@ const models = defineCollection({
   }),
 });
 
-export const collections = { models };
+// ТЗ §6: периферія — окрема колекція (Interface 1, Microdrive, ZX Printer тощо).
+// Схема — підмножина моделей: у пристроїв немає CPU/ОЗП/ПЗП, тож характеристики
+// не тягнемо. Ті самі тверді правила: ліцензійні поля обов'язкові (Zod), порожні
+// images[]/sources[] → чесні стани «Шукаємо фотографію» / «Джерела ще не додано».
+const peripherals = defineCollection({
+  loader: file('src/data/peripherals.json'),
+  schema: z.object({
+    title: bilingual,
+    // Виробник — коротка й повна назва, як у моделей (Sinclair / Kempston).
+    manufacturer: z.string(),
+    manufacturerFull: z.string().nullable().default(null),
+    country: z.enum(['GB', 'PT', 'US', 'PL']),
+    year: z.string(),
+    // Короткий опис — картка в каталозі периферії.
+    desc: bilingual,
+    sources: z.array(source).default([]),
+    images: z.array(modelImage).default([]),
+    inMuseum: z.boolean(),
+    confidence: z.enum(['high', 'medium', 'low']),
+  }),
+});
+
+export const collections = { models, peripherals };

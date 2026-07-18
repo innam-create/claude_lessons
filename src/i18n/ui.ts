@@ -97,6 +97,12 @@ export const ui = {
     'unit.mhz': 'МГц',
     'unit.g': 'г',
 
+    // периферія (ТЗ §6 / PeripheralsPage.dc.html)
+    'peripherals.title': 'Периферія',
+    'peripherals.intro':
+      'Пристрої, що розширювали можливості Spectrum: завантаження й друк, джойстики та накопичувачі.',
+    'peripherals.count.suffix': 'пристроїв',
+
     // 404 (ТЗ §7.2 / NotFoundPage.dc.html)
     'notFound.title': 'Сторінку не знайдено',
     'notFound.body':
@@ -201,6 +207,11 @@ export const ui = {
     'spec.mass': 'Mass',
     'unit.mhz': 'MHz',
     'unit.g': 'g',
+
+    'peripherals.title': 'Peripherals',
+    'peripherals.intro':
+      'Devices that extended the Spectrum: loading and printing, joysticks and storage.',
+    'peripherals.count.suffix': 'devices',
 
     'notFound.title': 'Page not found',
     'notFound.body':

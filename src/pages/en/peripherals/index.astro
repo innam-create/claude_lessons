@@ -1,0 +1,21 @@
+---
+import type { Lang } from '../../../i18n/ui';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import PeripheralsView from '../../../components/PeripheralsView.astro';
+
+const lang: Lang = 'en';
+const path = '/peripherals/';
+---
+
+<BaseLayout
+  lang={lang}
+  path={path}
+  title="Peripherals · ZX Spectrum — SnC Museum"
+  description="ZX Spectrum peripherals: ZX Printer, Interface 1, Microdrive, Interface 2, the Kempston joystick interface. An educational project by the Software and Computer Museum."
+>
+  <Header lang={lang} active="peripherals" path={path} />
+  <PeripheralsView lang={lang} />
+  <Footer lang={lang} />
+</BaseLayout>

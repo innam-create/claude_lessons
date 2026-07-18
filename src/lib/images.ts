@@ -18,3 +18,22 @@ export function getModelImage(filename: string | null): ImageMetadata | null {
   if (!filename) return null;
   return modelImages[filename] ?? null;
 }
+
+// Периферія — окрема тека ассетів (ТЗ §6, окрема колекція). Поки фото немає
+// (усі картки показують «Шукаємо фотографію»), тож glob повертає порожньо —
+// це коректно: додасться файл у src/assets/peripherals/ і резолвер його підхопить.
+const peripheralFiles = import.meta.glob<{ default: ImageMetadata }>(
+  '../assets/peripherals/*.{jpg,jpeg,png,webp,avif}',
+  { eager: true },
+);
+
+export const peripheralImages: Record<string, ImageMetadata> = {};
+for (const path in peripheralFiles) {
+  const name = path.split('/').pop();
+  if (name) peripheralImages[name] = peripheralFiles[path].default;
+}
+
+export function getPeripheralImage(filename: string | null): ImageMetadata | null {
+  if (!filename) return null;
+  return peripheralImages[filename] ?? null;
+}

@@ -36,7 +36,7 @@ export type ModelImage = {
   credit: string;
 };
 
-function normalizeImage(img: ModelImageData, lang: Lang): ModelImage {
+export function normalizeImage(img: ModelImageData, lang: Lang): ModelImage {
   const label = licenseLabel(img.license, lang);
   const source = sourceLabel(img.source_url);
   return {

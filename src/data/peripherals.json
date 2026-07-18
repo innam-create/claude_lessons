@@ -1,0 +1,85 @@
+[
+  {
+    "id": "zx-printer",
+    "title": { "uk": "ZX Printer", "en": "ZX Printer" },
+    "manufacturer": "Sinclair",
+    "manufacturerFull": "Sinclair Research",
+    "country": "GB",
+    "year": "1981",
+    "desc": {
+      "uk": "Компактний термопринтер Sinclair: друк на металізованому папері по 32 символи в рядок.",
+      "en": "Sinclair’s compact thermal printer: prints on metallised paper, 32 characters per line."
+    },
+    "sources": [],
+    "images": [],
+    "inMuseum": false,
+    "confidence": "medium"
+  },
+  {
+    "id": "zx-interface-1",
+    "title": { "uk": "ZX Interface 1", "en": "ZX Interface 1" },
+    "manufacturer": "Sinclair",
+    "manufacturerFull": "Sinclair Research",
+    "country": "GB",
+    "year": "1983",
+    "desc": {
+      "uk": "Розширення знизу під корпус: контролер мікродрайвів, порт RS-232 і локальна мережа ZX Net.",
+      "en": "An add-on that clips under the case: microdrive controller, an RS-232 port and the ZX Net local network."
+    },
+    "sources": [],
+    "images": [],
+    "inMuseum": false,
+    "confidence": "medium"
+  },
+  {
+    "id": "zx-microdrive",
+    "title": { "uk": "ZX Microdrive", "en": "ZX Microdrive" },
+    "manufacturer": "Sinclair",
+    "manufacturerFull": "Sinclair Research",
+    "country": "GB",
+    "year": "1983",
+    "desc": {
+      "uk": "Стрічковий накопичувач на безкінечній петлі — швидший за касету, працює через Interface 1.",
+      "en": "A tape loop cartridge drive — faster than cassette, driven through the Interface 1."
+    },
+    "sources": [],
+    "images": [],
+    "inMuseum": false,
+    "confidence": "medium"
+  },
+  {
+    "id": "zx-interface-2",
+    "title": { "uk": "ZX Interface 2", "en": "ZX Interface 2" },
+    "manufacturer": "Sinclair",
+    "manufacturerFull": "Sinclair Research",
+    "country": "GB",
+    "year": "1983",
+    "desc": {
+      "uk": "Порт для ROM-картриджів із іграми та два порти для джойстиків.",
+      "en": "A slot for ROM game cartridges and two joystick ports."
+    },
+    "sources": [],
+    "images": [],
+    "inMuseum": false,
+    "confidence": "medium"
+  },
+  {
+    "id": "kempston-joystick-interface",
+    "title": {
+      "uk": "Kempston Joystick Interface",
+      "en": "Kempston Joystick Interface"
+    },
+    "manufacturer": "Kempston",
+    "manufacturerFull": "Kempston Micro Electronics",
+    "country": "GB",
+    "year": "1983",
+    "desc": {
+      "uk": "Інтерфейс для підключення джойстика; його схема адресації стала фактичним стандартом для ігор.",
+      "en": "A joystick interface whose addressing scheme became the de facto standard supported by games."
+    },
+    "sources": [],
+    "images": [],
+    "inMuseum": false,
+    "confidence": "low"
+  }
+]

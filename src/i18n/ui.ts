@@ -24,6 +24,16 @@ export const ui = {
     'crt.on': 'CRT ON',
     'crt.off': 'CRT OFF',
 
+    // пошук (Pagefind, ТЗ §5.2)
+    'search.title': 'Пошук',
+    'search.open': 'Пошук',
+    'search.placeholder': 'Пошук по сайту…',
+    'search.hint': 'Введіть запит — шукаємо серед моделей, периферії та матеріалів.',
+    'search.loading': 'Шукаю…',
+    'search.noResults': 'Нічого не знайдено',
+    'search.noResultsBody': 'Спробуй інші слова або перевір правопис.',
+    'search.unavailable': 'Пошук працює у зібраній версії сайту.',
+
     // головна (HomePage.dc.html)
     'home.eyebrow': 'Software & Computer Museum',
     'home.hero.lead':
@@ -158,6 +168,15 @@ export const ui = {
     'nav.toMuseum': '← to museum',
     'crt.on': 'CRT ON',
     'crt.off': 'CRT OFF',
+
+    'search.title': 'Search',
+    'search.open': 'Search',
+    'search.placeholder': 'Search the site…',
+    'search.hint': 'Type a query — we search across models, peripherals and materials.',
+    'search.loading': 'Searching…',
+    'search.noResults': 'Nothing found',
+    'search.noResultsBody': 'Try different words or check the spelling.',
+    'search.unavailable': 'Search runs on the built version of the site.',
 
     'home.eyebrow': 'Software & Computer Museum',
     'home.hero.lead':

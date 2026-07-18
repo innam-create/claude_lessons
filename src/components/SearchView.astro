@@ -1,0 +1,292 @@
+---
+import type { Lang } from '../i18n/ui';
+import { useTranslations, localizePath } from '../i18n/ui';
+import Breadcrumbs from './Breadcrumbs.astro';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const homeHref = localizePath('/', lang);
+
+// i18n для клієнтського скрипта — через data-атрибути (без inline JSON).
+const i18n = {
+  loading: t('search.loading'),
+  noResults: t('search.noResults'),
+  noResultsBody: t('search.noResultsBody'),
+  unavailable: t('search.unavailable'),
+};
+---
+
+{/*
+  Пошук — Pagefind (ТЗ §5.2). Індекс будується з зібраного HTML (postbuild),
+  тож у `astro dev` бандла /pagefind/ немає — сторінка чесно показує, що пошук
+  працює у зібраній версії. У `astro preview` та проді — працює.
+  data-pagefind-ignore: саму сторінку пошуку не індексуємо.
+*/}
+<main class="search" data-pagefind-ignore>
+  <div class="wrap">
+    <Breadcrumbs
+      items={[{ label: t('nav.home'), href: homeHref }, { label: t('search.title') }]}
+    />
+
+    <h1>{t('search.title')}</h1>
+
+    <form class="pf-form" role="search" id="pf-form">
+      <input
+        type="search"
+        id="pf-input"
+        class="pf-input"
+        placeholder={t('search.placeholder')}
+        aria-label={t('search.title')}
+        autocomplete="off"
+        enterkeyhint="search"
+      />
+    </form>
+
+    <p class="pf-hint" id="pf-status" data-hint={t('search.hint')}>{t('search.hint')}</p>
+
+    <div
+      class="pf-results"
+      id="pf-results"
+      data-loading={i18n.loading}
+      data-noresults={i18n.noResults}
+      data-noresults-body={i18n.noResultsBody}
+      data-unavailable={i18n.unavailable}
+    >
+    </div>
+  </div>
+</main>
+
+<style>
+  .wrap {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: 0 28px 60px;
+    box-sizing: border-box;
+  }
+  h1 {
+    font-family: var(--font-pixel);
+    font-weight: 700;
+    font-size: 44px;
+    color: var(--zx-white);
+    text-transform: uppercase;
+    margin: 8px 0 0;
+    line-height: 1;
+  }
+
+  .pf-form { margin: 22px 0 0; }
+  .pf-input {
+    width: 100%;
+    box-sizing: border-box;
+    font-family: var(--font-mono);
+    font-size: 17px;
+    color: var(--text);
+    background: var(--surface);
+    border: 2px solid var(--border);
+    padding: 14px 16px;
+  }
+  .pf-input::placeholder { color: var(--dim-6); }
+  .pf-input:focus {
+    outline: none;
+    border-color: var(--zx-cyan);
+  }
+
+  .pf-hint {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.6;
+    margin: 16px 0 0;
+  }
+  .pf-hint.empty-title {
+    font-family: var(--font-pixel);
+    font-size: 20px;
+    color: var(--zx-white);
+    text-transform: uppercase;
+  }
+
+  .pf-results {
+    margin: 24px 0 0;
+    display: grid;
+    gap: 12px;
+  }
+  /* Результат — рамка, не тінь (елевація §4). Наведення/фокус — циан. */
+  .pf-results :global(.pf-result) {
+    display: block;
+    border: 2px solid var(--border);
+    background: var(--surface);
+    padding: 16px 18px;
+    text-decoration: none;
+    transition: border-color var(--dur) var(--ease-out);
+  }
+  .pf-results :global(.pf-result:hover) { border-color: var(--zx-cyan); }
+  .pf-results :global(.pf-result:focus-visible) {
+    outline: 2px solid var(--zx-cyan);
+    outline-offset: 2px;
+  }
+  .pf-results :global(.pf-result-title) {
+    display: block;
+    font-family: var(--font-pixel);
+    font-size: 18px;
+    color: var(--zx-white);
+    text-transform: uppercase;
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+  .pf-results :global(.pf-result-url) {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--zx-cyan);
+    margin-bottom: 8px;
+    word-break: break-all;
+  }
+  .pf-results :global(.pf-result-excerpt) {
+    display: block;
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.55;
+  }
+  /* Підсвітка збігів у витягу (Pagefind обгортає у <mark>). Маджента як заливка
+     на чорному — це заливка, не текст-колір (ТЗ §4.2). */
+  .pf-results :global(mark) {
+    background: rgba(255, 0, 255, 0.28);
+    color: var(--zx-white);
+    padding: 0 2px;
+  }
+
+  @media (max-width: 400px) {
+    .wrap { padding: 0 16px 48px; }
+    h1 { font-size: 30px; }
+  }
+</style>
+
+<script>
+  // Pagefind — клієнтський пошук по зібраному індексу (ТЗ §5.2).
+  const form = document.getElementById('pf-form');
+  const input = document.getElementById('pf-input') as HTMLInputElement | null;
+  const status = document.getElementById('pf-status');
+  const results = document.getElementById('pf-results');
+
+  if (form && input && status && results) {
+    const hint = status.dataset.hint ?? '';
+    const T = {
+      loading: results.dataset.loading ?? '',
+      noResults: results.dataset.noresults ?? '',
+      noResultsBody: results.dataset.noresultsBody ?? '',
+      unavailable: results.dataset.unavailable ?? '',
+    };
+    const MAX = 20;
+
+    // Pagefind-бандл існує лише в зібраному сайті (/pagefind/pagefind.js).
+    // Vite не повинен резолвити цей шлях на збірці — тому @vite-ignore.
+    let pagefind: any = null;
+    let loadFailed = false;
+    async function ensurePagefind() {
+      if (pagefind || loadFailed) return pagefind;
+      try {
+        const path = '/pagefind/pagefind.js';
+        pagefind = await import(/* @vite-ignore */ path);
+        await pagefind.options({ excerptLength: 24 });
+      } catch {
+        loadFailed = true; // dev-режим або відсутній індекс
+      }
+      return pagefind;
+    }
+
+    function setStatus(text: string, asTitle = false) {
+      status!.textContent = text;
+      status!.hidden = false;
+      status!.classList.toggle('empty-title', asTitle);
+    }
+
+    function clearResults() {
+      results!.textContent = '';
+    }
+
+    async function run(query: string) {
+      const q = query.trim();
+      // Синхронізуємо ?q= для поширюваних посилань, без запису в історію.
+      const url = new URL(location.href);
+      if (q) url.searchParams.set('q', q);
+      else url.searchParams.delete('q');
+      history.replaceState(null, '', url);
+
+      clearResults();
+      if (!q) {
+        setStatus(hint);
+        return;
+      }
+
+      setStatus(T.loading);
+      const pf = await ensurePagefind();
+      if (!pf) {
+        setStatus(T.unavailable);
+        return;
+      }
+
+      const search = await pf.search(q);
+      // Гонка: поки чекали, користувач міг змінити запит.
+      if (input!.value.trim() !== q) return;
+
+      if (!search.results.length) {
+        setStatus(T.noResults, true);
+        const body = document.createElement('p');
+        body.className = 'pf-hint';
+        body.textContent = T.noResultsBody;
+        clearResults();
+        results!.append(body);
+        return;
+      }
+
+      status!.hidden = true;
+      const data = await Promise.all(
+        search.results.slice(0, MAX).map((r: any) => r.data()),
+      );
+      if (input!.value.trim() !== q) return;
+
+      clearResults();
+      for (const d of data) {
+        const a = document.createElement('a');
+        a.className = 'pf-result';
+        a.href = d.url;
+
+        const title = document.createElement('span');
+        title.className = 'pf-result-title';
+        title.textContent = d.meta?.title || d.url;
+
+        const urlEl = document.createElement('span');
+        urlEl.className = 'pf-result-url';
+        urlEl.textContent = d.url;
+
+        const ex = document.createElement('span');
+        ex.className = 'pf-result-excerpt';
+        // Витяг — HTML із <mark> від Pagefind (наш власний контент, довірений).
+        ex.innerHTML = d.excerpt;
+
+        a.append(title, urlEl, ex);
+        results!.append(a);
+      }
+    }
+
+    let timer: number | undefined;
+    input.addEventListener('input', () => {
+      clearTimeout(timer);
+      timer = window.setTimeout(() => run(input.value), 200);
+    });
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      clearTimeout(timer);
+      run(input.value);
+    });
+
+    // Підхопити ?q= з URL (поширюване посилання / перехід із шапки).
+    const initial = new URL(location.href).searchParams.get('q');
+    if (initial) {
+      input.value = initial;
+      run(initial);
+    }
+  }
+</script>

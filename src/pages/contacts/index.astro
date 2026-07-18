@@ -1,0 +1,23 @@
+---
+import type { Lang } from '../../i18n/ui';
+import { useTranslations } from '../../i18n/ui';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import ContactsView from '../../components/ContactsView.astro';
+
+const lang: Lang = 'uk';
+const path = '/contacts/';
+const t = useTranslations(lang);
+---
+
+<BaseLayout
+  lang={lang}
+  path={path}
+  title={`${t('contacts.title')} · ZX Spectrum — SnC Museum`}
+  description="Як відвідати Software and Computer Museum у Харкові: адреса, графік роботи, пошта та мапа. Розділ ZX Spectrum."
+>
+  <Header lang={lang} active="contacts" path={path} />
+  <ContactsView lang={lang} />
+  <Footer lang={lang} />
+</BaseLayout>

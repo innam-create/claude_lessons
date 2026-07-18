@@ -29,7 +29,7 @@ const tiles: { key: string; href: string; color: string; available: boolean }[] 
   { key: 'exhibits', href: '/exhibits/', color: '#00ffff', available: false },
   { key: 'software', href: '/software/', color: '#ff00ff', available: false },
   { key: 'peripherals', href: '/peripherals/', color: '#ffffff', available: true },
-  { key: 'contacts', href: '/contacts/', color: '#ffd700', available: false },
+  { key: 'contacts', href: '/contacts/', color: '#ffd700', available: true },
 ].map((x) => ({ ...x, href: localizePath(x.href, lang) }));
 
 const tileLabel = (key: string) => t(`nav.${key}` as UIKey);

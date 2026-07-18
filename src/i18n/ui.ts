@@ -122,6 +122,23 @@ export const ui = {
       'Пристрої, що розширювали можливості Spectrum: завантаження й друк, джойстики та накопичувачі.',
     'peripherals.count.suffix': 'пристроїв',
 
+    // контакти (ContactsPage.dc.html)
+    'contacts.title': 'Контакти',
+    'contacts.intro':
+      'Приходьте подивитися й доторкнутися до історії обчислювальної техніки. Завітайте у робочий час — і ми покажемо колекцію наживо.',
+    'contacts.addr.label': 'Адреса',
+    'contacts.addr.value': 'вул. Григорія Сковороди, 79/1',
+    'contacts.addr.sub': 'Харків',
+    'contacts.hours.label': 'Графік',
+    'contacts.hours.value': 'вт–сб · 10:00–18:00',
+    'contacts.hours.sub': 'неділя, понеділок — вихідні',
+    'contacts.email.label': 'Пошта',
+    'contacts.directions': 'Як дістатися',
+    'contacts.openMaps': 'Відкрити в Google Maps →',
+    'contacts.showMap': 'Показати мапу Google',
+    'contacts.mapNote':
+      'Мапа вантажиться з Google і надсилає туди дані про вас. Натисніть, щоб завантажити її.',
+
     // 404 (ТЗ §7.2 / NotFoundPage.dc.html)
     'notFound.title': 'Сторінку не знайдено',
     'notFound.body':
@@ -249,6 +266,22 @@ export const ui = {
     'peripherals.intro':
       'Devices that extended the Spectrum: loading and printing, joysticks and storage.',
     'peripherals.count.suffix': 'devices',
+
+    'contacts.title': 'Contacts',
+    'contacts.intro':
+      'Come and see — and touch — the history of computing. Drop by during opening hours and we’ll show you the collection in person.',
+    'contacts.addr.label': 'Address',
+    'contacts.addr.value': '79/1 Hryhoriia Skovorody St',
+    'contacts.addr.sub': 'Kharkiv',
+    'contacts.hours.label': 'Hours',
+    'contacts.hours.value': 'Tue–Sat · 10:00–18:00',
+    'contacts.hours.sub': 'Sunday, Monday — closed',
+    'contacts.email.label': 'Email',
+    'contacts.directions': 'How to get here',
+    'contacts.openMaps': 'Open in Google Maps →',
+    'contacts.showMap': 'Show Google map',
+    'contacts.mapNote':
+      'The map loads from Google and sends your data there. Click to load it.',
 
     'notFound.title': 'Page not found',
     'notFound.body':

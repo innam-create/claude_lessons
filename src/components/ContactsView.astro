@@ -1,0 +1,290 @@
+---
+import type { Lang } from '../i18n/ui';
+import { useTranslations, localizePath } from '../i18n/ui';
+import Breadcrumbs from './Breadcrumbs.astro';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const homeHref = localizePath('/', lang);
+
+// Реальні контакти — джерело істини те саме, що у футері (i18n footer.*).
+const rows = [
+  { label: t('contacts.addr.label'), value: t('contacts.addr.value'), sub: t('contacts.addr.sub') },
+  { label: t('contacts.hours.label'), value: t('contacts.hours.value'), sub: t('contacts.hours.sub') },
+];
+
+const email = 'contact@sncmuseum.org';
+const socials = [
+  { label: 'sncmuseum.org', href: 'https://sncmuseum.org' },
+  { label: 'Instagram', href: 'https://www.instagram.com/sncmuseum/' },
+  { label: 'Facebook', href: 'https://www.facebook.com/sncmuseum/' },
+];
+
+// Мапа музею. Ембед вантажиться лише за кліком (див. коментар нижче).
+const MAP_EMBED =
+  'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2564.276405319766!2d36.2496656!3d50.0061743!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4127a13661e2d187%3A0x2dd29ae821c5804d!2sSoftware%20and%20Computer%20Museum!5e0!3m2!1suk!2sua!4v1783690705885!5m2!1suk!2sua';
+const MAP_LINK = 'https://maps.app.goo.gl/fTdUZmm8ojqFqqG2A';
+---
+
+<main data-pagefind-body>
+  <div class="wrap head">
+    <Breadcrumbs
+      items={[{ label: t('nav.home'), href: homeHref }, { label: t('contacts.title') }]}
+    />
+    <h1>{t('contacts.title')}</h1>
+    <p class="intro">{t('contacts.intro')}</p>
+  </div>
+
+  <div class="wrap grid">
+    <!-- Деталі -->
+    <div class="details">
+      {
+        rows.map((r) => (
+          <div class="card">
+            <div class="card-label">{r.label}</div>
+            <div class="card-value">{r.value}</div>
+            {r.sub && <div class="card-sub">{r.sub}</div>}
+          </div>
+        ))
+      }
+      <div class="card">
+        <div class="card-label">{t('contacts.email.label')}</div>
+        <a class="card-value mail" href={`mailto:${email}`}>{email}</a>
+      </div>
+
+      <div class="socials">
+        {socials.map((s) => <a class="social" href={s.href}>{s.label}</a>)}
+      </div>
+    </div>
+
+    <!-- Мапа -->
+    <div class="map-col">
+      <div class="map-label">{t('contacts.directions')}</div>
+
+      {/*
+        Приватність: ембед Google Maps вантажить сторонній контент і трекери
+        Google одразу на завантаженні сторінки. Тому — «клік для завантаження»:
+        iframe зʼявляється лише коли користувач сам натисне, з чесним попередженням.
+        Посилання «Відкрити в Google Maps» працює без ембеда взагалі.
+      */}
+      <div
+        class="map-frame"
+        id="map-frame"
+        data-embed={MAP_EMBED}
+        data-title={`${t('contacts.directions')} — SnC Museum`}
+      >
+        <div class="map-placeholder" id="map-placeholder">
+          <p class="map-note">{t('contacts.mapNote')}</p>
+          <button type="button" class="map-load" id="map-load">
+            {t('contacts.showMap')}
+          </button>
+        </div>
+      </div>
+
+      <a class="map-open" href={MAP_LINK} target="_blank" rel="noopener">
+        {t('contacts.openMaps')}
+      </a>
+    </div>
+  </div>
+</main>
+
+<style>
+  .wrap {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: 0 28px;
+    box-sizing: border-box;
+  }
+  .head { padding-top: 8px; }
+  h1 {
+    font-family: var(--font-pixel);
+    font-weight: 700;
+    font-size: 44px;
+    color: var(--zx-white);
+    text-transform: uppercase;
+    margin: 20px 0 0;
+    line-height: 1;
+  }
+  .intro {
+    font-size: 19px;
+    line-height: 1.6;
+    color: var(--text);
+    max-width: 640px;
+    margin: 18px 0 0;
+  }
+
+  .grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    align-items: stretch;
+    padding-top: 36px;
+    padding-bottom: 64px;
+  }
+
+  /* --- деталі --- */
+  .details {
+    flex: 1 1 300px;
+    min-width: 270px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .card {
+    border: 2px solid var(--border);
+    background: var(--surface);
+    padding: 18px 20px;
+  }
+  .card-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--zx-cyan);
+    margin-bottom: 8px;
+  }
+  .card-value {
+    font-size: 17px;
+    color: var(--zx-white);
+    line-height: 1.5;
+    display: block;
+    text-decoration: none;
+  }
+  .card-value.mail {
+    font-family: var(--font-mono);
+    color: var(--zx-cyan);
+  }
+  .card-value.mail:hover { text-decoration: underline; }
+  .card-sub {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-top: 4px;
+  }
+
+  .socials {
+    display: flex;
+    gap: 12px;
+    margin-top: 14px;
+    flex-wrap: wrap;
+  }
+  .social {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--zx-cyan);
+    border: 2px solid var(--zx-cyan);
+    padding: 11px 18px;
+    text-decoration: none;
+    transition: background var(--dur) var(--ease-out);
+  }
+  .social:hover { background: rgba(0, 255, 255, 0.08); }
+
+  /* --- мапа --- */
+  .map-col {
+    flex: 1 1 400px;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+  }
+  .map-label {
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 12px;
+    color: var(--museum-gold);
+    margin-bottom: 12px;
+  }
+  .map-frame {
+    position: relative;
+    flex: 1;
+    width: 100%;
+    min-height: 320px;
+    overflow: hidden;
+    border: 2px solid var(--museum-gold);
+    background: var(--museum-navy);
+  }
+  .map-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 28px;
+    text-align: center;
+  }
+  .map-note {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    line-height: 1.6;
+    color: #c9d3e8;
+    max-width: 360px;
+    margin: 0;
+  }
+  .map-load {
+    font-family: var(--font-pixel);
+    font-size: 14px;
+    text-transform: uppercase;
+    background: var(--museum-gold);
+    color: var(--museum-navy);
+    border: none;
+    padding: 13px 22px;
+    cursor: pointer;
+  }
+  .map-load:hover { background: #ffe14d; }
+  /* iframe, вставлений JS, накриває всю рамку. */
+  .map-frame :global(iframe) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+  }
+
+  .map-open {
+    font-family: var(--font-pixel);
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    background: var(--museum-gold);
+    color: var(--museum-navy);
+    padding: 14px 22px;
+    text-decoration: none;
+    text-align: center;
+    margin-top: 14px;
+  }
+  .map-open:hover { background: #ffe14d; }
+
+  @media (max-width: 400px) {
+    .wrap { padding: 0 16px; }
+    h1 { font-size: 30px; }
+    .intro { font-size: 17px; }
+  }
+</style>
+
+<script>
+  // Клік-для-завантаження мапи: сторонній ембед Google зʼявляється лише за
+  // згодою користувача (приватність). Реальний запит до Google — тільки тут.
+  const frame = document.getElementById('map-frame');
+  const loadBtn = document.getElementById('map-load');
+  const placeholder = document.getElementById('map-placeholder');
+
+  loadBtn?.addEventListener('click', () => {
+    if (!frame) return;
+    const iframe = document.createElement('iframe');
+    iframe.src = frame.dataset.embed ?? '';
+    iframe.title = frame.dataset.title ?? 'Map';
+    iframe.loading = 'lazy';
+    iframe.allowFullscreen = true;
+    iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+    placeholder?.remove();
+    frame.append(iframe);
+  });
+</script>

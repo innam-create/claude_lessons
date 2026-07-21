@@ -82,6 +82,7 @@ npm run build            # 38 сторінок; postbuild сам індексу�
 | SEO | **`@astrojs/sitemap`** | sitemap із hreflang; `robots.txt` у `public/` |
 | OG-зображення | **`@resvg/resvg-js`** (dev-dep) | `scripts/make-og-image.mjs` → `public/og.png`; `npm run og` |
 | Тести | **`@playwright/test`** (dev-dep) | 41 E2E проти `preview`; `npm test`; job `e2e` у CI (§9) |
+| Шрифти | **`@fontsource`** (Golos Text · IBM Plex Mono · Handjet) | self-host, імпорти в `BaseLayout`; без Google CDN (§8) |
 
 ---
 
@@ -378,8 +379,12 @@ data-атрибут, який ставиться лише елементам і�
   На головній ще-не-збудовані розділи показуються як «незабаром» (не 404).
 - **Хотлінки на Wikimedia не повертати** — усі фото локальні в `src/assets/`.
 - **`project/` не збирається** Astro (поза `src/`), виключено в `tsconfig`.
-- **Шрифти Google** локально й у проді вантажаться нормально. За бажанням —
-  self-host Golos Text / IBM Plex Mono для швидкості й офлайну.
+- **Шрифти self-host** через `@fontsource` (Golos Text · IBM Plex Mono · Handjet) —
+  імпорти у `BaseLayout` frontmatter, `fonts.googleapis.com`/`gstatic` більше не
+  вантажаться (0 сторонніх запитів, перевірено в браузері). Родини незмінні, тож
+  `theme.css` не чіпали. Ваги — лише вживані 400/600/700 (Google-запит тягнув зайві
+  500/800). Handjet — по-підмножинно (latin/cyrillic + ext), без arabic/armenian/
+  greek/hebrew. Retroville лишається локальним TTF (`public/fonts/`).
 
 ---
 

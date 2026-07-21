@@ -9,13 +9,16 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "check:licenses": "node scripts/check-licenses.ts"
+    "check:licenses": "node scripts/check-licenses.ts",
+    "og": "node scripts/make-og-image.mjs"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.3",
     "astro": "^5.13.0"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.4",
+    "@resvg/resvg-js": "^2.6.2",
     "@types/node": "^26.1.1",
     "typescript": "^5.6.3"
   }

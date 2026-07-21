@@ -1,0 +1,5 @@
+# spectrum.sncmuseum.org — освітній розділ ZX Spectrum (ТЗ §9)
+User-agent: *
+Allow: /
+
+Sitemap: https://spectrum.sncmuseum.org/sitemap-index.xml

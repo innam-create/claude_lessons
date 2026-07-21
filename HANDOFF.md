@@ -6,7 +6,8 @@
 §7.1). Готово: головна, Історія (таймлайн), Моделі (каталог + компаратор із
 «лише відмінності» + картки), Експонати, Софт, Периферія, Контакти, 404, **пошук
 Pagefind** (`/search/`). Плюс **SEO/OG**: sitemap із hreflang, robots.txt, Open Graph +
-OG-зображення, canonical. UA+EN скрізь. **Усе злито в `main`** (remote є).
+OG-зображення, canonical, **structured data (JSON-LD: Museum · WebSite+SearchAction ·
+BreadcrumbList)**. UA+EN скрізь. **Усе злито в `main`** (remote є).
 **Оновлено:** 2026-07-21
 
 > Цей документ описує **поточний стан**, а не історію змін. Історія — у `git log`,
@@ -284,6 +285,12 @@ ZX BRIGHT: `--zx-red`, `--zx-magenta`, `--zx-cyan`, `--zx-yellow`, `--zx-white` 
 - **Pagefind** (ТЗ §5.2) — пошук по сайту, індекс у `postbuild`.
 - **SEO/OG** — sitemap-index із hreflang (26 URL, 404 виключено), `robots.txt`,
   canonical, Open Graph + `og.png`, Twitter card. `hreflang` у `<head>` теж є.
+- **Schema.org / JSON-LD** (`src/lib/schema.ts`) — `Museum` site-wide (видавець,
+  спільний `@id`), `WebSite`+`SearchAction` на головній (sitelinks searchbox →
+  `/search/?q=`), `BreadcrumbList` на всіх внутрішніх сторінках. **Схема нових
+  фактів не вносить** — усі значення виводяться з уже показаних верифікованих даних
+  (i18n/Footer/Contacts). `BreadcrumbList` емітують самі `Breadcrumbs.astro`, тож
+  кожна сторінка з крихтами покрита автоматично. UA+EN локалізовано.
 
 **Лишилось:**
 - **Захист `main`** — увімкнути в налаштуваннях GitHub (branch protection: PR +
@@ -294,7 +301,8 @@ ZX BRIGHT: `--zx-red`, `--zx-magenta`, `--zx-cyan`, `--zx-yellow`, `--zx-white` 
 - **Деплой** — Cloudflare Pages / GitHub Pages + Actions. Крок збірки — `npm run build`.
   DNS: CNAME `spectrum`. Редирект `/uk/* → /*` (301) на рівні хостингу.
 - **Аналітика** (Plausible) + **Lighthouse ≥ 95/95**.
-- **RSS / Schema.org** — ще нема (OG/sitemap уже є).
+- **RSS** — ще нема. Наразі беззмістовний: лонгрідів/статей немає, фід був би
+  порожній. Робити разом із першими лонгрідами. (**Schema.org — зроблено**, вище.)
 - **Банер «сторінка ще не перекладена»** (ТЗ R5) — поки не треба: усі наявні сторінки
   мають повне EN-дзеркало.
 

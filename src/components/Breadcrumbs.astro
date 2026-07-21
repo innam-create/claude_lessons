@@ -1,15 +1,20 @@
 ---
 // ТЗ §5.1: хлібні крихти на всіх внутрішніх сторінках.
 // Останній елемент — поточна сторінка, без посилання.
-interface Crumb {
-  label: string;
-  href?: string;
-}
+import { breadcrumbSchema, serializeJsonLd, type Crumb } from '../lib/schema';
+
 interface Props {
   items: Crumb[];
 }
 const { items } = Astro.props;
+
+// BreadcrumbList JSON-LD (ТЗ §9) з тих самих items — тож кожна сторінка з
+// крихтами отримує його автоматично, без окремого коду на сторінці.
+const site = Astro.site?.toString().replace(/\/$/, '') ?? '';
+const breadcrumbLd = serializeJsonLd(breadcrumbSchema(site, items, Astro.url.href));
 ---
+
+<script type="application/ld+json" set:html={breadcrumbLd} is:inline />
 
 <nav class="crumbs" aria-label="breadcrumbs">
   {

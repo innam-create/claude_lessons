@@ -2,6 +2,7 @@
 import '../styles/theme.css';
 import type { Lang } from '../i18n/ui';
 import { localizePath } from '../i18n/ui';
+import { museumSchema, webSiteSchema, serializeJsonLd } from '../lib/schema';
 
 interface Props {
   title: string;
@@ -11,10 +12,18 @@ interface Props {
   path: string;
   /** OG-зображення сторінки (абсолютний URL). Не задано → бренд-дефолт /og.png. */
   ogImage?: string;
+  /** true лише на головній кожної мови: додає WebSite + SearchAction (ТЗ §9). */
+  home?: boolean;
 }
 
-const { title, description, lang, path, ogImage } = Astro.props;
+const { title, description, lang, path, ogImage, home } = Astro.props;
 const site = Astro.site?.toString().replace(/\/$/, '') ?? '';
+
+// Structured data (ТЗ §9): Museum — site-wide (видавець), WebSite+SearchAction —
+// лише на головній. BreadcrumbList емітують самі Breadcrumbs.astro на кожній
+// внутрішній сторінці. Усі значення виводяться з уже показаних верифікованих даних.
+const jsonLd: unknown[] = [museumSchema({ site, lang })];
+if (home) jsonLd.push(webSiteSchema({ site, lang }));
 
 // Canonical і og:url — абсолютний URL цієї сторінки саме цією мовою.
 const canonical = `${site}${localizePath(path, lang)}`;
@@ -59,6 +68,11 @@ const ogAltLocale = lang === 'uk' ? 'en_GB' : 'uk_UA';
     <link rel="alternate" hreflang="uk" href={`${site}${localizePath(path, 'uk')}`} />
     <link rel="alternate" hreflang="en" href={`${site}${localizePath(path, 'en')}`} />
     <link rel="alternate" hreflang="x-default" href={`${site}${localizePath(path, 'uk')}`} />
+
+    <!-- Structured data / JSON-LD (ТЗ §9): Museum + (на головній) WebSite -->
+    {jsonLd.map((node) => (
+      <script type="application/ld+json" set:html={serializeJsonLd(node)} is:inline />
+    ))}
 
     <!-- Golos Text (body) · IBM Plex Mono (метадані/роки) · Handjet (фолбек піксельного) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

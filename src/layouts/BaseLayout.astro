@@ -1,5 +1,27 @@
 ---
 import '../styles/theme.css';
+// Self-host шрифтів (§8): раніше вантажилися з fonts.googleapis.com — зайвий
+// сторонній домен, трекінг і затримка на з'єднанні. Тепер локально через
+// @fontsource (Astro хешує й кладе woff2 у dist). Родини лишаються ті самі
+// ('Golos Text' / 'IBM Plex Mono' / 'Handjet'), тож theme.css не змінюється.
+// Ваги — лише реально вживані в коді (400/600/700); Google-запит тягнув зайві.
+// @fontsource ставить font-display:swap — поведінка як була з display=swap.
+import '@fontsource/golos-text/400.css'; // body
+import '@fontsource/golos-text/600.css';
+import '@fontsource/golos-text/700.css';
+import '@fontsource/ibm-plex-mono/400.css'; // метадані/роки
+import '@fontsource/ibm-plex-mono/600.css';
+import '@fontsource/ibm-plex-mono/700.css';
+// Handjet — фолбек піксельного Retroville. Тягнемо лише потрібні підмножини
+// (latin/cyrillic + ext), бо агрегат містить ще arabic/armenian/greek/hebrew.
+import '@fontsource/handjet/latin-400.css';
+import '@fontsource/handjet/latin-ext-400.css';
+import '@fontsource/handjet/cyrillic-400.css';
+import '@fontsource/handjet/cyrillic-ext-400.css';
+import '@fontsource/handjet/latin-700.css';
+import '@fontsource/handjet/latin-ext-700.css';
+import '@fontsource/handjet/cyrillic-700.css';
+import '@fontsource/handjet/cyrillic-ext-700.css';
 import type { Lang } from '../i18n/ui';
 import { localizePath } from '../i18n/ui';
 import { museumSchema, webSiteSchema, serializeJsonLd } from '../lib/schema';
@@ -74,13 +96,7 @@ const ogAltLocale = lang === 'uk' ? 'en_GB' : 'uk_UA';
       <script type="application/ld+json" set:html={serializeJsonLd(node)} is:inline />
     ))}
 
-    <!-- Golos Text (body) · IBM Plex Mono (метадані/роки) · Handjet (фолбек піксельного) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Handjet:wght@400;500;600;700&display=swap"
-    />
+    <!-- Шрифти self-host через @fontsource — імпорти у frontmatter (див. вгорі). -->
 
     <!-- CRT-режим: застосувати збережений стан ДО першого малювання (без спалаху). -->
     <script is:inline>

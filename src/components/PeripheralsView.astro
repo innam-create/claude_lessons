@@ -17,7 +17,7 @@ const items = normalizePeripherals(entries, lang);
 const homeHref = localizePath('/', lang);
 ---
 
-<main>
+<main data-pagefind-body>
   <div class="wrap">
     <Breadcrumbs
       items={[{ label: t('nav.home'), href: homeHref }, { label: t('peripherals.title') }]}

@@ -170,9 +170,6 @@ export const ui = {
     'contacts.email.label': 'Пошта',
     'contacts.directions': 'Як дістатися',
     'contacts.openMaps': 'Відкрити в Google Maps →',
-    'contacts.showMap': 'Показати мапу Google',
-    'contacts.mapNote':
-      'Мапа вантажиться з Google і надсилає туди дані про вас. Натисніть, щоб завантажити її.',
 
     // 404 (ТЗ §7.2 / NotFoundPage.dc.html)
     'notFound.title': 'Сторінку не знайдено',
@@ -345,9 +342,6 @@ export const ui = {
     'contacts.email.label': 'Email',
     'contacts.directions': 'How to get here',
     'contacts.openMaps': 'Open in Google Maps →',
-    'contacts.showMap': 'Show Google map',
-    'contacts.mapNote':
-      'The map loads from Google and sends your data there. Click to load it.',
 
     'notFound.title': 'Page not found',
     'notFound.body':

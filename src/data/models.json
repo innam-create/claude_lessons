@@ -57,7 +57,7 @@
       "uk": "Наступник ZX80: той самий кілобайт пам’яті, але дешевша й простіша конструкція. Саме ZX81 зробив Sinclair масовим брендом і підготував ґрунт для Spectrum.",
       "en": "The ZX80’s successor: the same kilobyte of memory, but cheaper and simpler to build. The ZX81 made Sinclair a mass-market brand and paved the way for the Spectrum."
     },
-    "cpu": "Zilog Z80",
+    "cpu": "Zilog Z80A",
     "cpuClockMhz": 3.25,
     "romKb": 8,
     "video": { "uk": "64×48 · блокова графіка, монохром", "en": "64×48 · block graphics, monochrome" },
@@ -110,7 +110,7 @@
       "uk": "Ліцензійна версія ZX81 для ринку США: та сама конструкція, але 2 КБ пам’яті замість кілобайта. Перший домашній комп’ютер спільного підприємства Timex і Sinclair, проданий за $99,95.",
       "en": "A licensed version of the ZX81 for the US market: the same design, but 2 KB of memory instead of one kilobyte. It was Timex-Sinclair’s first home computer, sold for $99.95."
     },
-    "cpu": "Zilog Z80",
+    "cpu": "Zilog Z80A",
     "cpuClockMhz": 3.25,
     "romKb": 8,
     "video": { "uk": "64×48 · блокова графіка, монохром", "en": "64×48 · block graphics, monochrome" },

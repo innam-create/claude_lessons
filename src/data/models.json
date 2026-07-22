@@ -38,7 +38,7 @@
     ],
     "images": [],
     "inMuseum": false,
-    "confidence": "medium"
+    "confidence": "high"
   },
   {
     "id": "zx81",
@@ -57,7 +57,7 @@
       "uk": "Наступник ZX80: той самий кілобайт пам’яті, але дешевша й простіша конструкція. Саме ZX81 зробив Sinclair масовим брендом і підготував ґрунт для Spectrum.",
       "en": "The ZX80’s successor: the same kilobyte of memory, but cheaper and simpler to build. The ZX81 made Sinclair a mass-market brand and paved the way for the Spectrum."
     },
-    "cpu": "Zilog Z80A",
+    "cpu": "Zilog Z80",
     "cpuClockMhz": 3.25,
     "romKb": 8,
     "video": { "uk": "64×48 · блокова графіка, монохром", "en": "64×48 · block graphics, monochrome" },
@@ -91,7 +91,7 @@
       }
     ],
     "inMuseum": false,
-    "confidence": "medium"
+    "confidence": "high"
   },
   {
     "id": "timex-sinclair-1000",
@@ -501,7 +501,7 @@
     "cpu": "Zilog Z80A",
     "cpuClockMhz": 3.5,
     "romKb": null,
-    "video": null,
+    "video": { "uk": "256×192 · 15 кольорів", "en": "256×192 · 15 colours" },
     "sound": { "uk": "AY-3-8912 · 3 канали", "en": "AY-3-8912 · 3 channels" },
     "storage": { "uk": "Вбудований касетник", "en": "Built-in cassette deck" },
     "keyboard": null,
@@ -520,6 +520,6 @@
     ],
     "images": [],
     "inMuseum": false,
-    "confidence": "low"
+    "confidence": "high"
   }
 ]

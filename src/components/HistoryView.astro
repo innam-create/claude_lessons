@@ -1,12 +1,15 @@
 ---
 import type { Lang } from '../i18n/ui';
 import { useTranslations, localizePath } from '../i18n/ui';
+import type { Longread } from '../lib/longreads';
 import Breadcrumbs from './Breadcrumbs.astro';
 
 interface Props {
   lang: Lang;
+  // Опубліковані лонгріди цією мовою. Порожньо → чесний порожній стан.
+  articles?: Longread[];
 }
-const { lang } = Astro.props;
+const { lang, articles = [] } = Astro.props;
 const t = useTranslations(lang);
 const homeHref = localizePath('/', lang);
 
@@ -94,16 +97,40 @@ const timeline: { year: string; event: Record<Lang, string> }[] = [
     </ol>
   </section>
 
-  <!-- СТАТТІ — чесний порожній стан (лонгрідів ще немає) -->
+  <!-- СТАТТІ — картки опублікованих лонгрідів або чесний порожній стан -->
   <section class="wrap art-sec">
     <h2>{t('history.articles')}</h2>
-    <div class="art-empty">
-      <span class="art-dots" aria-hidden="true">
-        <span style="background:#ff0000" /><span style="background:#ffff00" />
-        <span style="background:#00ff00" /><span style="background:#00ffff" />
-      </span>
-      <p>{t('history.articles.empty')}</p>
-    </div>
+    {
+      articles.length ? (
+        <ul class="art-list">
+          {articles.map((a) => (
+            <li>
+              <a class="art-card" href={a.href}>
+                <div class="art-tags">
+                  <span class="art-tag">{`${a.block} · ${a.cardId}`}</span>
+                  {a.inMuseum && <span class="art-tag museum">{t('card.inMuseum')}</span>}
+                  {a.lowConf && <span class="art-tag low">{t('longread.unverified')}</span>}
+                </div>
+                <div class="art-title">{a.title}</div>
+                <p class="art-lead">{a.lead}</p>
+                <div class="art-foot">
+                  <span class="art-min">{`${a.readingTime} ${t('longread.min')}`}</span>
+                  <span class="art-read">{t('longread.read')}</span>
+                </div>
+              </a>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <div class="art-empty">
+          <span class="art-dots" aria-hidden="true">
+            <span style="background:#ff0000" /><span style="background:#ffff00" />
+            <span style="background:#00ff00" /><span style="background:#00ffff" />
+          </span>
+          <p>{t('history.articles.empty')}</p>
+        </div>
+      )
+    }
   </section>
 </main>
 
@@ -222,6 +249,71 @@ const timeline: { year: string; event: Record<Lang, string> }[] = [
     text-transform: uppercase;
     margin: 0 0 20px;
   }
+  /* --- список статей --- */
+  .art-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 16px;
+  }
+  .art-card {
+    display: block;
+    border: 2px solid var(--border);
+    padding: 22px 24px;
+    text-decoration: none;
+    transition: border-color var(--dur) var(--ease-out);
+  }
+  .art-card:hover { border-color: var(--zx-cyan); }
+  .art-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+  }
+  .art-tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--zx-cyan);
+    border: 1px solid var(--zx-cyan);
+    padding: 3px 9px;
+  }
+  .art-tag.museum {
+    background: var(--museum-gold);
+    color: var(--museum-navy);
+    border-color: var(--museum-gold);
+  }
+  .art-tag.low { color: var(--zx-yellow); border: 1px dashed var(--zx-yellow); }
+  .art-title {
+    font-family: var(--font-pixel);
+    font-size: 26px;
+    color: var(--zx-white);
+    text-transform: uppercase;
+    line-height: 1.05;
+  }
+  .art-lead {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text-dim);
+    margin: 12px 0 0;
+    max-width: 640px;
+  }
+  .art-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 18px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .art-min { color: var(--text-dim); }
+  .art-read { color: var(--zx-yellow); }
+
   .art-empty {
     border: 2px dashed var(--border);
     padding: 32px 28px;

@@ -36,9 +36,15 @@ interface Props {
   ogImage?: string;
   /** true лише на головній кожної мови: додає WebSite + SearchAction (ТЗ §9). */
   home?: boolean;
+  /**
+   * Сторінка існує лише поточною мовою (переклад ще не затверджено). Тоді
+   * hreflang мусить бути реципрокним: не рекламуємо /en/-версію, якої немає,
+   * інакше пошуковик отримує alternate на 404. Знімається, коли зʼявиться переклад.
+   */
+  singleLang?: boolean;
 }
 
-const { title, description, lang, path, ogImage, home } = Astro.props;
+const { title, description, lang, path, ogImage, home, singleLang } = Astro.props;
 const site = Astro.site?.toString().replace(/\/$/, '') ?? '';
 
 // Structured data (ТЗ §9): Museum — site-wide (видавець), WebSite+SearchAction —
@@ -86,10 +92,18 @@ const ogAltLocale = lang === 'uk' ? 'en_GB' : 'uk_UA';
     {description && <meta name="twitter:description" content={description} />}
     <meta name="twitter:image" content={ogImageUrl} />
 
-    <!-- hreflang для UA/EN (ТЗ §9) -->
-    <link rel="alternate" hreflang="uk" href={`${site}${localizePath(path, 'uk')}`} />
-    <link rel="alternate" hreflang="en" href={`${site}${localizePath(path, 'en')}`} />
-    <link rel="alternate" hreflang="x-default" href={`${site}${localizePath(path, 'uk')}`} />
+    <!-- hreflang для UA/EN (ТЗ §9). singleLang → лише поточна мова + x-default,
+         щоб не давати alternate на ще неперекладену (неіснуючу) сторінку. -->
+    {singleLang ? (
+      <link rel="alternate" hreflang={lang} href={canonical} />
+      <link rel="alternate" hreflang="x-default" href={canonical} />
+    ) : (
+      <>
+        <link rel="alternate" hreflang="uk" href={`${site}${localizePath(path, 'uk')}`} />
+        <link rel="alternate" hreflang="en" href={`${site}${localizePath(path, 'en')}`} />
+        <link rel="alternate" hreflang="x-default" href={`${site}${localizePath(path, 'uk')}`} />
+      </>
+    )}
 
     <!-- Structured data / JSON-LD (ТЗ §9): Museum + (на головній) WebSite -->
     {jsonLd.map((node) => (

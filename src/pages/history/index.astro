@@ -1,6 +1,8 @@
 ---
+import { getCollection } from 'astro:content';
 import type { Lang } from '../../i18n/ui';
 import { useTranslations } from '../../i18n/ui';
+import { isPublished, normalizeLongread, sortLongreads } from '../../lib/longreads';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
@@ -9,6 +11,11 @@ import HistoryView from '../../components/HistoryView.astro';
 const lang: Lang = 'uk';
 const path = '/history/';
 const t = useTranslations(lang);
+
+const articles = (await getCollection('longreads'))
+  .filter(isPublished)
+  .map((e) => normalizeLongread(e, lang))
+  .sort(sortLongreads);
 ---
 
 <BaseLayout
@@ -18,6 +25,6 @@ const t = useTranslations(lang);
   description="Історія ZX Spectrum, 1980–1992: від задуму Клайва Сінклера до кінця епохи 8-бітних машин. Таймлайн ключових моделей і подій. Освітній проєкт SnC Museum."
 >
   <Header lang={lang} active="history" path={path} />
-  <HistoryView lang={lang} />
+  <HistoryView lang={lang} articles={articles} />
   <Footer lang={lang} />
 </BaseLayout>

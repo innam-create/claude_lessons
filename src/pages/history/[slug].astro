@@ -1,0 +1,41 @@
+---
+import { getCollection, render } from 'astro:content';
+import type { Lang } from '../../i18n/ui';
+import { isPublished, normalizeLongread } from '../../lib/longreads';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import LongreadDetail from '../../components/LongreadDetail.astro';
+
+const lang: Lang = 'uk';
+
+// Лонгрід (ТЗ §5 /history/{slug}/). На сайт виходять лише затверджені матеріали
+// з датою публікації (isPublished) — чернетки лишаються поза збіркою. EN-версія
+// зʼявиться окремим маршрутом, коли музей затвердить переклад (поки лід/теза en порожні).
+export async function getStaticPaths() {
+  const entries = await getCollection('longreads');
+  return entries.filter(isPublished).map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const article = normalizeLongread(entry, lang);
+const path = `/history/${article.slug}/`;
+---
+
+<BaseLayout
+  lang={lang}
+  path={path}
+  title={`${article.title} · Історія · ZX Spectrum — SnC Museum`}
+  description={article.descriptionUk}
+  singleLang
+>
+  <Header lang={lang} active="history" path={path} />
+  <LongreadDetail article={article} lang={lang}>
+    <Content />
+  </LongreadDetail>
+  <Footer lang={lang} />
+</BaseLayout>

@@ -1,5 +1,5 @@
 import { defineCollection, z } from 'astro:content';
-import { file } from 'astro/loaders';
+import { file, glob } from 'astro/loaders';
 import { LICENSES, type License } from './lib/licenses';
 
 // ТЗ §14: дозволений enum ліцензій. Перелік — у src/lib/licenses.ts (єдине
@@ -101,4 +101,60 @@ const peripherals = defineCollection({
   }),
 });
 
-export const collections = { models, peripherals };
+// ── Лонгріди (ТЗ §5: /history/{slug}/, §8.4) ───────────────────────
+// Тіло — Markdown; тому glob-loader, а не file(). Тверді правила ті самі, що
+// й для моделей: кожне зображення несе license/author/source_url/accessed
+// (Zod валить збірку без них), license — лише з дозволеного enum (ТЗ §14).
+// Джерела за єдиним шаблоном longread-template.md: тут ще й per-source confidence.
+const longreadSource = source.extend({
+  confidence: z.enum(['high', 'medium', 'low']).default('medium'),
+});
+
+const longreads = defineCollection({
+  loader: glob({ pattern: '*.md', base: 'src/content/longreads' }),
+  schema: z.object({
+    // Slug дублюється у frontmatter для звірки з іменем файлу (id = ім'я файлу).
+    slug: z.string().min(1),
+    // Блок серії (А/Б/В) і номер картки за контент-планом.
+    block: z.string(),
+    card_id: z.string(),
+    title: bilingual,
+    // Лід/теза можуть бути ще без EN (переклад — після затвердження UA).
+    lead: bilingual,
+    thesis: bilingual,
+    // ТЗ §2: confidence:low → на сторінці видима плашка «потребує уточнення».
+    confidence: z.enum(['high', 'medium', 'low']),
+    reading_time_min: z.number().int().positive(),
+    // approved → матеріал показується; draft/review лишаються поза сайтом.
+    status: z.enum(['draft', 'review', 'approved']),
+    authors: z.array(z.string().min(1)).min(1),
+    // Дата публікації; ставиться після затвердження музеєм. null → ще не видано.
+    published: z
+      .string()
+      .regex(/^\d{4}-\d{2}-\d{2}$/, 'очікується формат YYYY-MM-DD')
+      .nullable(),
+    seo: z.object({
+      keywords_uk: z.array(z.string()).default([]),
+      description_uk: z.string().default(''),
+      description_en: z.string().default(''),
+    }),
+    museum_exhibit: z.object({
+      in_museum: z.boolean(),
+      inventory_id: z.string().default(''),
+      note_uk: z.string().default(''),
+    }),
+    disambiguation: z.array(z.string()).default([]),
+    // ТЗ §12: ≥ 2 джерела на матеріал — інакше збірка падає ще на схемі.
+    sources: z.array(longreadSource).min(2, 'ТЗ §12: потрібно ≥ 2 джерела'),
+    // Зображення живуть у src/assets/longreads/. Порожній масив припустимий
+    // (ілюстрація може бути лише в тілі), але кожен запис — з повною атрибуцією.
+    images: z.array(modelImage).default([]),
+    cta: z.object({
+      type: z.enum(['excursion', 'support', 'newsletter', 'archive_call']),
+      label_uk: z.string(),
+      url: z.string(),
+    }),
+  }),
+});
+
+export const collections = { models, peripherals, longreads };

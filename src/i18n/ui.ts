@@ -141,6 +141,17 @@ export const ui = {
     'history.articles.empty':
       'Розгорнуті матеріали про ключові моменти історії Spectrum готуються. Кожен вийде з посиланнями на джерела — щойно їх звірить і затвердить музей.',
 
+    // лонгрід /history/{slug}/
+    'longread.min': 'хв читання',
+    'longread.published': 'Опубліковано',
+    'longread.thesis': 'Головна теза',
+    'longread.notConfuse': 'Не плутати',
+    'longread.unverified': '⚠ потребує уточнення',
+    'longread.read': 'Читати →',
+    'longread.sources': 'Джерела',
+    'longread.backToHistory': '← Усі матеріали',
+    'longread.cta.excursion': 'Записатися на екскурсію',
+
     // експонати (ExhibitsPage.dc.html)
     'exhibits.title': 'Експонати',
     'exhibits.intro':
@@ -315,6 +326,16 @@ export const ui = {
     'history.articles': 'Articles',
     'history.articles.empty':
       'In-depth pieces on the key moments of the Spectrum’s history are in preparation. Each will ship with links to its sources — once the museum has checked and approved them.',
+
+    'longread.min': 'min read',
+    'longread.published': 'Published',
+    'longread.thesis': 'Key point',
+    'longread.notConfuse': 'Don’t confuse',
+    'longread.unverified': '⚠ needs checking',
+    'longread.read': 'Read →',
+    'longread.sources': 'Sources',
+    'longread.backToHistory': '← All articles',
+    'longread.cta.excursion': 'Book a guided tour',
 
     'exhibits.title': 'Exhibits',
     'exhibits.intro':

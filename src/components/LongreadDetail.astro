@@ -1,0 +1,311 @@
+---
+import type { Longread } from '../lib/longreads';
+import type { Lang } from '../i18n/ui';
+import { useTranslations, localizePath } from '../i18n/ui';
+import Breadcrumbs from './Breadcrumbs.astro';
+import RainbowBar from './RainbowBar.astro';
+
+// Лонгрід (ТЗ §5 /history/{slug}/, §8.4). Тіло (Markdown) приходить у <slot />
+// уже відрендерене пайплайном Astro — тут лише обгортка з метаданими, тезою,
+// джерелами й CTA. Hero — фірмова графіка (RainbowBar), НЕ фото (ТЗ §8.2).
+interface Props {
+  article: Longread;
+  lang: Lang;
+}
+const { article, lang } = Astro.props;
+const t = useTranslations(lang);
+
+const meta = [
+  `${article.readingTime} ${t('longread.min')}`,
+  article.authors.join(', '),
+  article.published ? `${t('longread.published')} ${article.published}` : null,
+]
+  .filter(Boolean)
+  .join(' · ');
+---
+
+<main data-pagefind-body>
+  <div class="wrap">
+    <Breadcrumbs
+      items={[
+        { label: t('nav.home'), href: localizePath('/', lang) },
+        { label: t('history.title'), href: localizePath('/history/', lang) },
+        { label: article.title },
+      ]}
+    />
+  </div>
+
+  <article class="wrap article">
+    <RainbowBar height={10} />
+
+    <header class="head">
+      <div class="badges">
+        {article.inMuseum && <span class="badge museum">{t('card.inMuseum')}</span>}
+        <span class="badge tag">{`${article.block} · ${article.cardId}`}</span>
+        {/* ТЗ §2: confidence:low виходить лише з видимою позначкою. */}
+        {article.lowConf && <span class="badge low">{t('longread.unverified')}</span>}
+      </div>
+
+      <h1>{article.title}</h1>
+      <div class="meta">{meta}</div>
+      <p class="lead">{article.lead}</p>
+
+      <div class="thesis">
+        <div class="thesis-label">{t('longread.thesis')}</div>
+        <p>{article.thesis}</p>
+      </div>
+
+      {
+        article.disambiguation.map((d) => (
+          <div class="note">
+            <div class="note-label">{t('longread.notConfuse')}</div>
+            <p>{d}</p>
+          </div>
+        ))
+      }
+    </header>
+
+    <!-- ТІЛО (Markdown, оптимізовані зображення + рядок атрибуції під кожним) -->
+    <div class="prose">
+      <slot />
+    </div>
+
+    <!-- Заклик до дії (ТЗ §8.4 cta). Екскурсія веде на сайт музею (зовнішнє). -->
+    <div class="cta">
+      <a
+        class="cta-btn"
+        href={article.cta.url}
+        rel={article.cta.external ? 'noopener' : undefined}
+      >
+        {article.cta.label}
+      </a>
+    </div>
+
+    <!-- Джерела (ТЗ §12) -->
+    <section class="sources-sec" aria-label={t('longread.sources')}>
+      <h2>{t('longread.sources')}</h2>
+      <ol class="sources">
+        {
+          article.sources.map((s) => (
+            <li>
+              <span>{s.title}</span> —{' '}
+              <a href={s.url} rel="noopener" target="_blank">
+                {s.host}
+              </a>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+
+    <div class="back">
+      <a href={localizePath('/history/', lang)}>{t('longread.backToHistory')}</a>
+    </div>
+  </article>
+</main>
+
+<style>
+  .wrap {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 0 28px;
+    box-sizing: border-box;
+  }
+  .article { padding-bottom: 64px; }
+
+  .head { padding-top: 22px; }
+  .badges {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    padding: 5px 11px;
+  }
+  .badge.museum { background: var(--museum-gold); color: var(--museum-navy); }
+  .badge.tag { color: var(--zx-cyan); border: 1px solid var(--zx-cyan); font-weight: 400; }
+  .badge.low { color: var(--zx-yellow); border: 1px dashed var(--zx-yellow); }
+
+  h1 {
+    font-family: var(--font-pixel);
+    font-weight: 700;
+    font-size: 46px;
+    color: var(--zx-white);
+    text-transform: uppercase;
+    margin: 0;
+    line-height: 1.02;
+  }
+  .meta {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-top: 16px;
+    letter-spacing: 0.03em;
+  }
+  .lead {
+    font-size: 21px;
+    line-height: 1.55;
+    color: var(--zx-white);
+    margin: 22px 0 0;
+    font-weight: 600;
+  }
+
+  /* Головна теза — виділений блок одразу під лідом. */
+  .thesis {
+    border-left: 3px solid var(--zx-cyan);
+    background: #070707;
+    padding: 16px 20px;
+    margin: 26px 0 0;
+  }
+  .thesis-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--zx-cyan);
+    margin-bottom: 8px;
+  }
+  .thesis p {
+    margin: 0;
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--text);
+  }
+
+  /* «Не плутати» — розмежувальна примітка (disambiguation). */
+  .note {
+    border: 1px dashed var(--zx-yellow);
+    padding: 14px 18px;
+    margin: 18px 0 0;
+  }
+  .note-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--zx-yellow);
+    margin-bottom: 6px;
+  }
+  .note p { margin: 0; font-size: 15px; line-height: 1.6; color: var(--text-dim); }
+
+  /* --- ТІЛО статті --- */
+  .prose { margin-top: 34px; }
+  .prose :global(h2) {
+    font-family: var(--font-pixel);
+    font-weight: 700;
+    font-size: 30px;
+    color: var(--zx-white);
+    text-transform: uppercase;
+    margin: 44px 0 16px;
+    line-height: 1.05;
+  }
+  .prose :global(p) {
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--text);
+    margin: 0 0 20px;
+  }
+  .prose :global(a) { color: var(--zx-yellow); }
+  /* Зображення в тілі + рядок атрибуції (курсивний абзац одразу під ним, ТЗ §7.3). */
+  .prose :global(img) {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 30px 0 0;
+    border: 2px solid var(--border);
+  }
+  .prose :global(img + em),
+  .prose :global(p > em:only-child) {
+    display: block;
+    font-family: var(--font-mono);
+    font-style: normal;
+    font-size: 11px;
+    color: var(--dim-6);
+    line-height: 1.5;
+    margin: 6px 0 24px;
+  }
+  .prose :global(img + em a),
+  .prose :global(p > em:only-child a) { color: var(--zx-yellow); }
+  /* Врізки «Спадковість схеми» / «Що перевіряємо». */
+  .prose :global(blockquote) {
+    border-left: 3px solid var(--zx-magenta);
+    background: #080808;
+    margin: 26px 0;
+    padding: 16px 20px;
+  }
+  .prose :global(blockquote p) {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--text);
+    margin: 0;
+  }
+  .prose :global(blockquote strong) { color: var(--zx-white); }
+
+  /* --- CTA --- */
+  .cta {
+    margin: 40px 0 8px;
+    border-top: 1px solid var(--hair);
+    padding-top: 32px;
+  }
+  .cta-btn {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    background: var(--museum-navy);
+    color: var(--museum-gold);
+    border: 2px solid var(--museum-gold);
+    padding: 12px 22px;
+    text-decoration: none;
+    transition: background var(--dur) var(--ease-out);
+  }
+  .cta-btn:hover { background: #1d3872; }
+
+  /* --- Джерела --- */
+  .sources-sec { margin-top: 44px; }
+  h2 {
+    font-family: var(--font-pixel);
+    font-weight: 700;
+    font-size: 26px;
+    color: var(--zx-white);
+    text-transform: uppercase;
+    margin: 0 0 16px;
+  }
+  .sources {
+    margin: 0;
+    padding-left: 22px;
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.9;
+  }
+  .sources li { padding-left: 6px; }
+  .sources a { color: var(--zx-yellow); }
+
+  .back { margin-top: 40px; }
+  .back a {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+    text-decoration: none;
+  }
+  .back a:hover { color: var(--zx-cyan); }
+
+  @media (max-width: 560px) {
+    .wrap { padding: 0 16px; }
+    h1 { font-size: 32px; }
+    .lead { font-size: 18px; }
+    .prose :global(h2) { font-size: 24px; }
+    .prose :global(p) { font-size: 16px; }
+  }
+</style>

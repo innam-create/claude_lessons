@@ -150,6 +150,7 @@ export const ui = {
     'longread.read': 'Читати →',
     'longread.sources': 'Джерела',
     'longread.backToHistory': '← Усі матеріали',
+    'longread.cta.excursion': 'Записатися на екскурсію',
 
     // експонати (ExhibitsPage.dc.html)
     'exhibits.title': 'Експонати',
@@ -334,6 +335,7 @@ export const ui = {
     'longread.read': 'Read →',
     'longread.sources': 'Sources',
     'longread.backToHistory': '← All articles',
+    'longread.cta.excursion': 'Book a guided tour',
 
     'exhibits.title': 'Exhibits',
     'exhibits.intro':

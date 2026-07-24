@@ -111,7 +111,16 @@ const longreadSource = source.extend({
 });
 
 const longreads = defineCollection({
-  loader: glob({ pattern: '*.md', base: 'src/content/longreads' }),
+  // **/*.md: UA в корені, EN у підтеці en/ (`en/<slug>.md`). Мову виводимо з
+  // розташування файлу (src/lib/longreads.ts → entryLang), тіло лишається
+  // одномовним на файл. generateId зберігає підтеку в id (типовий slugify її
+  // відкидає → `en/foo.md` і `foo.md` колізують в один id) — тож id тут: шлях
+  // без розширення (`en/foo`, `foo`).
+  loader: glob({
+    pattern: '**/*.md',
+    base: 'src/content/longreads',
+    generateId: ({ entry }) => entry.replace(/\.md$/, ''),
+  }),
   schema: z.object({
     // Slug дублюється у frontmatter для звірки з іменем файлу (id = ім'я файлу).
     slug: z.string().min(1),

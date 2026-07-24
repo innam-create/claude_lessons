@@ -1,0 +1,45 @@
+---
+import { getCollection, render } from 'astro:content';
+import type { Lang } from '../../../i18n/ui';
+import { entryLang, entrySlug, isPublished, normalizeLongread } from '../../../lib/longreads';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import LongreadDetail from '../../../components/LongreadDetail.astro';
+
+const lang: Lang = 'en';
+
+// EN-дзеркало лонгріда (/en/history/{slug}/). Тіло — з файлу en/<slug>.md.
+// Маршрут існує лише для матеріалів, які реально мають EN-переклад.
+export async function getStaticPaths() {
+  const published = (await getCollection('longreads')).filter(isPublished);
+  const ukSlugs = new Set(
+    published.filter((e) => entryLang(e) === 'uk').map(entrySlug),
+  );
+  return published
+    .filter((e) => entryLang(e) === 'en')
+    .map((entry) => ({
+      params: { slug: entrySlug(entry) },
+      props: { entry, hasTranslation: ukSlugs.has(entrySlug(entry)) },
+    }));
+}
+
+const { entry, hasTranslation } = Astro.props;
+const { Content } = await render(entry);
+const article = normalizeLongread(entry);
+const path = `/history/${article.slug}/`;
+---
+
+<BaseLayout
+  lang={lang}
+  path={path}
+  title={`${article.title} · History · ZX Spectrum — SnC Museum`}
+  description={article.description}
+  singleLang={!hasTranslation}
+>
+  <Header lang={lang} active="history" path={path} />
+  <LongreadDetail article={article} lang={lang}>
+    <Content />
+  </LongreadDetail>
+  <Footer lang={lang} />
+</BaseLayout>

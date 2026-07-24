@@ -5,13 +5,13 @@ block: "А"
 card_id: "A1"
 title:
   uk: "Як Sinclair зробив комп'ютер за ціною телевізора"
-  en: ""
+  en: "How Sinclair built a computer for the price of a television"
 lead:
   uk: "У квітні 1982 року Sinclair показав машину, що коштувала £125 — удвічі дешевше за BBC Micro. Розбираємо, на чому саме заощадили, щоб домашній комп'ютер став доступним."
-  en: ""
+  en: "In April 1982 Sinclair unveiled a machine that cost £125 — half the price of the BBC Micro. We look at exactly where the savings came from that made a home computer affordable."
 thesis:
   uk: "ZX Spectrum став масовим не завдяки потужності, а завдяки радикальному здешевленню: один замовний чип ULA замінив десятки мікросхем, а вивід на домашній телевізор прибрав потребу в окремому моніторі."
-  en: ""
+  en: "The ZX Spectrum went mainstream not through power but through radical cost-cutting: a single custom ULA chip replaced dozens of ICs, and output to a home television removed the need for a separate monitor."
 confidence: "medium"
 reading_time_min: 8
 status: "approved"
@@ -22,7 +22,7 @@ published: "2026-07-24"
 seo:
   keywords_uk: ["історія ZX Spectrum", "Sinclair", "домашній комп'ютер 1982", "ціна ZX Spectrum", "ULA"]
   description_uk: "Чому ZX Spectrum 1982 року коштував £125 — дешевше за конкурентів. Роль чипа ULA, вивід на телевізор і економіка доступності."
-  description_en: ""
+  description_en: "Why the 1982 ZX Spectrum cost £125 — cheaper than its rivals. The role of the ULA chip, TV output and the economics of affordability."
 
 # ── Блок «Експонат музею» ─────────────────────────────────────────
 museum_exhibit:

@@ -2,7 +2,7 @@
 import { getCollection } from 'astro:content';
 import type { Lang } from '../../i18n/ui';
 import { useTranslations } from '../../i18n/ui';
-import { isPublished, normalizeLongread, sortLongreads } from '../../lib/longreads';
+import { entryLang, isPublished, normalizeLongread, sortLongreads } from '../../lib/longreads';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
@@ -14,7 +14,8 @@ const t = useTranslations(lang);
 
 const articles = (await getCollection('longreads'))
   .filter(isPublished)
-  .map((e) => normalizeLongread(e, lang))
+  .filter((e) => entryLang(e) === lang)
+  .map(normalizeLongread)
   .sort(sortLongreads);
 ---
 

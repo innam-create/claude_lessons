@@ -71,7 +71,7 @@ export function licenseLabel(license: License, lang: Lang): string {
 }
 
 // ТЗ §7.1: ієрархія дозволених джерел. Хост → людська назва для рядка
-// атрибуції. Ключі використовує і scripts/check-licenses.mjs, щоб не пускати
+// атрибуції. Ключі використовує і scripts/check-licenses.ts, щоб не пускати
 // в репозиторій зображення з джерела поза цим переліком.
 export const ALLOWED_SOURCES: Record<string, string> = {
   'commons.wikimedia.org': 'Wikimedia Commons',

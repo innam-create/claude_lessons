@@ -11,7 +11,7 @@ const bilingual = z.object({ uk: z.string(), en: z.string() });
 
 // ТЗ §7.2 (тверде правило): жодне зображення не потрапляє в репозиторій без
 // license, author, source_url, accessed. Zod валить збірку, якщо бракує поля;
-// scripts/check-licenses.mjs додатково ловить те, чого схема не бачить —
+// scripts/check-licenses.ts додатково ловить те, чого схема не бачить —
 // відсутній файл на диску, дату з майбутнього, джерело поза ієрархією §7.1.
 const modelImage = z.object({
   // Ім'я файлу в src/assets/models/. Існування перевіряє check-licenses.

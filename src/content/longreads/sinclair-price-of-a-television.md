@@ -70,7 +70,8 @@ images:
 cta:
   type: "excursion"
   label_uk: "Записатися на екскурсію"
-  url: "/contacts/"
+  # type: excursion завжди резолвиться у EXCURSION_URL (src/lib/longreads.ts).
+  url: "https://sncmuseum.org/rozklad-ekskursiy"
 ---
 
 <!-- ════════════ ТІЛО ЛОНГРІДА ════════════

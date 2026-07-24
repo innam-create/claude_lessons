@@ -2,6 +2,11 @@ import type { CollectionEntry } from 'astro:content';
 import type { Lang } from '../i18n/ui';
 import { localizePath } from '../i18n/ui';
 
+// Єдине джерело істини для кнопки «Записатися на екскурсію»: сторінка розкладу
+// екскурсій на головному сайті музею. CTA з type: "excursion" веде сюди на
+// всьому сайті — незалежно від того, що записано у frontmatter конкретної статті.
+export const EXCURSION_URL = 'https://sncmuseum.org/rozklad-ekskursiy';
+
 // Нормалізований лонгрід для рендеру (мова вже застосована). Тіло (Markdown)
 // рендериться окремо через render(entry) — тут лише метадані навколо нього.
 export type Longread = {
@@ -19,7 +24,7 @@ export type Longread = {
   museumNote: string;
   disambiguation: string[];
   sources: { title: string; url: string; host: string }[];
-  cta: { label: string; url: string };
+  cta: { label: string; url: string; external: boolean };
   descriptionUk: string;
   href: string;
 };
@@ -54,7 +59,7 @@ export function normalizeLongread(
       url: s.url,
       host: hostOf(s.url),
     })),
-    cta: { label: d.cta.label_uk, url: localizePath(d.cta.url, lang) },
+    cta: resolveCta(d.cta, lang),
     descriptionUk: d.seo.description_uk,
     href: localizePath(`/history/${e.id}/`, lang),
   };
@@ -66,6 +71,24 @@ export function sortLongreads(a: Longread, b: Longread): number {
     return a.published < b.published ? 1 : -1;
   }
   return a.cardId.localeCompare(b.cardId);
+}
+
+// Резолвер CTA. Екскурсійна кнопка веде на єдину сторінку розкладу екскурсій
+// (EXCURSION_URL) на всьому сайті — frontmatter.url для неї не використовуємо.
+// Інші типи: абсолютний URL — як є (зовнішній), внутрішній шлях — локалізуємо.
+function resolveCta(
+  cta: CollectionEntry<'longreads'>['data']['cta'],
+  lang: Lang,
+): Longread['cta'] {
+  if (cta.type === 'excursion') {
+    return { label: cta.label_uk, url: EXCURSION_URL, external: true };
+  }
+  const external = /^https?:\/\//.test(cta.url);
+  return {
+    label: cta.label_uk,
+    url: external ? cta.url : localizePath(cta.url, lang),
+    external,
+  };
 }
 
 function hostOf(url: string): string {

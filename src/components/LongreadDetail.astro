@@ -70,9 +70,15 @@ const meta = [
       <slot />
     </div>
 
-    <!-- Заклик до дії (ТЗ §8.4 cta) -->
+    <!-- Заклик до дії (ТЗ §8.4 cta). Екскурсія веде на сайт музею (зовнішнє). -->
     <div class="cta">
-      <a class="cta-btn" href={article.cta.url}>{article.cta.label}</a>
+      <a
+        class="cta-btn"
+        href={article.cta.url}
+        rel={article.cta.external ? 'noopener' : undefined}
+      >
+        {article.cta.label}
+      </a>
     </div>
 
     <!-- Джерела (ТЗ §12) -->

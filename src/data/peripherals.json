@@ -7,8 +7,8 @@
     "country": "GB",
     "year": "1981",
     "desc": {
-      "uk": "Компактний термопринтер Sinclair: друк на металізованому папері по 32 символи в рядок.",
-      "en": "Sinclair’s compact thermal printer: prints on metallised paper, 32 characters per line."
+      "uk": "Компактний іскровий принтер Sinclair: друк на алюмінізованому папері по 32 символи в рядок.",
+      "en": "Sinclair’s compact spark printer: prints on aluminium-coated paper, 32 characters per line."
     },
     "sources": [
       {
@@ -24,7 +24,7 @@
     ],
     "images": [],
     "inMuseum": false,
-    "confidence": "medium"
+    "confidence": "high"
   },
   {
     "id": "zx-interface-1",
@@ -51,7 +51,7 @@
     ],
     "images": [],
     "inMuseum": false,
-    "confidence": "medium"
+    "confidence": "high"
   },
   {
     "id": "zx-microdrive",
@@ -78,7 +78,7 @@
     ],
     "images": [],
     "inMuseum": false,
-    "confidence": "medium"
+    "confidence": "high"
   },
   {
     "id": "zx-interface-2",
@@ -105,7 +105,7 @@
     ],
     "images": [],
     "inMuseum": false,
-    "confidence": "medium"
+    "confidence": "high"
   },
   {
     "id": "kempston-joystick-interface",
@@ -135,6 +135,6 @@
     ],
     "images": [],
     "inMuseum": false,
-    "confidence": "low"
+    "confidence": "high"
   }
 ]

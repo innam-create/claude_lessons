@@ -272,6 +272,17 @@
         "accessed": "2026-07-17"
       }
     ],
+    "museumPhoto": {
+      "src": "zx-48k-museum.jpg",
+      "alt": {
+        "uk": "ZX Spectrum 48K у вітрині музею на підставці: чорний корпус із гумовою клавіатурою та райдужною смугою, поряд музейна табличка «1982»",
+        "en": "ZX Spectrum 48K on a stand in the museum display case: a black case with a rubber keyboard and a rainbow stripe, next to a museum label “1982”"
+      },
+      "license": "museum-own",
+      "author": "SnC Museum",
+      "source_url": "https://www.instagram.com/sncmuseum/",
+      "accessed": "2026-07-25"
+    },
     "inMuseum": true,
     "confidence": "high"
   },
@@ -325,6 +336,17 @@
         "accessed": "2026-07-17"
       }
     ],
+    "museumPhoto": {
+      "src": "zx-plus-museum.jpg",
+      "alt": {
+        "uk": "ZX Spectrum+ у вітрині музею: чорний корпус із повнорозмірною клавіатурою та райдужною смугою, поряд музейна табличка «1984» і рекламний плакат Sinclair",
+        "en": "ZX Spectrum+ in the museum display case: a black case with a full-size keyboard and a rainbow stripe, next to a museum label “1984” and a Sinclair advertising poster"
+      },
+      "license": "museum-own",
+      "author": "SnC Museum",
+      "source_url": "https://www.instagram.com/sncmuseum/",
+      "accessed": "2026-07-25"
+    },
     "inMuseum": true,
     "confidence": "high"
   },

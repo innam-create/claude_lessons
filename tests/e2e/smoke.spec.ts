@@ -10,7 +10,6 @@ const PAGES: { path: string; h1: RegExp }[] = [
   { path: '/history/', h1: /Історія/i },
   { path: '/models/', h1: /Моделі/i },
   { path: '/clones/', h1: /Клони/i },
-  { path: '/exhibits/', h1: /Експонати/i },
   { path: '/software/', h1: /Софт та ігри/i },
   { path: '/peripherals/', h1: /Периферія/i },
   { path: '/contacts/', h1: /Контакти/i },

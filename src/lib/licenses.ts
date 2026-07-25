@@ -9,11 +9,16 @@ import type { Lang } from '../i18n/ui';
 // 4.0 тоді ще не існувало. Принципів §14 це не порушує: обидві дозволяють і
 // кадрування (не ND), і комерційне використання (не NC).
 //
+// Версію 2.0 додано за рішенням від 2026-07-25 (ТЗ §14): фото Timex Computer 2048
+// на Wikimedia Commons (author Thomas Conté) — під CC BY-SA 2.0. Ті самі принципи:
+// кадрування (не ND) і комерція (не NC) дозволені.
+//
 // ND-ліцензії сюди не додавати: кадрування під 4:3 — похідний твір (ТЗ §7.4).
 export const LICENSES = [
   'PD',
   'CC0',
   'CC-BY-4.0',
+  'CC-BY-SA-2.0',
   'CC-BY-SA-2.5',
   'CC-BY-SA-3.0',
   'CC-BY-SA-4.0',
@@ -40,6 +45,7 @@ const LICENSE_URLS: Record<License, string | null> = {
   PD: null,
   CC0: 'https://creativecommons.org/publicdomain/zero/1.0/',
   'CC-BY-4.0': 'https://creativecommons.org/licenses/by/4.0/',
+  'CC-BY-SA-2.0': 'https://creativecommons.org/licenses/by-sa/2.0/',
   'CC-BY-SA-2.5': 'https://creativecommons.org/licenses/by-sa/2.5/',
   'CC-BY-SA-3.0': 'https://creativecommons.org/licenses/by-sa/3.0/',
   'CC-BY-SA-4.0': 'https://creativecommons.org/licenses/by-sa/4.0/',
@@ -53,6 +59,7 @@ const LICENSE_LABELS: Record<License, string> = {
   PD: 'Public domain',
   CC0: 'CC0 1.0',
   'CC-BY-4.0': 'CC BY 4.0',
+  'CC-BY-SA-2.0': 'CC BY-SA 2.0',
   'CC-BY-SA-2.5': 'CC BY-SA 2.5',
   'CC-BY-SA-3.0': 'CC BY-SA 3.0',
   'CC-BY-SA-4.0': 'CC BY-SA 4.0',

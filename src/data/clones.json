@@ -244,28 +244,101 @@
         "accessed": "2026-07-25"
       },
       {
-        "title": { "uk": "List of ZX Spectrum clones — Wikipedia", "en": "List of ZX Spectrum clones — Wikipedia" },
-        "url": "https://en.wikipedia.org/wiki/List_of_ZX_Spectrum_clones",
+        "title": { "uk": "АЛП Робік — Вікіпедія", "en": "ALP Robik — Wikipedia (Ukrainian)" },
+        "url": "https://uk.wikipedia.org/wiki/%D0%90%D0%9B%D0%9F_%D0%A0%D0%BE%D0%B1%D1%96%D0%BA",
         "accessed": "2026-07-25"
       }
     ],
-    "images": [],
+    "images": [
+      {
+        "src": "robik.jpg",
+        "alt": {
+          "uk": "Клон Robik: білий моноблок у формі клавіатури, логотип «робик» і вентиляційна решітка праворуч, окремі клавіші-стрілки, клавіші з латиницею й кирилицею.",
+          "en": "A Robik clone: a white keyboard-shaped monoblock with a “робик” logo and ventilation grille on the right, separate cursor keys, and keys carrying both Latin and Cyrillic letters."
+        },
+        "license": "museum-own",
+        "author": "SnC Museum",
+        "source_url": "https://www.instagram.com/sncmuseum/",
+        "accessed": "2026-07-25"
+      }
+    ],
     "inMuseum": false,
     "confidence": "medium"
   },
   {
-    "id": "delta-s",
-    "title": { "uk": "Дельта-С", "en": "Delta-S" },
-    "manufacturer": null,
+    "id": "ikar",
+    "title": { "uk": "Ікар-64", "en": "Ikar-64" },
+    "manufacturer": "«Хартрон» (НВО «Електроприлад»), Харків",
     "country": "UA",
-    "year": "1990",
+    "year": "1991",
     "desc": {
-      "uk": "Український Spectrum-сумісний клон, за наявними відомостями з Харкова. У стандартних довідниках не задокументований — атрибуцію й рік музей має звірити з фізичним примірником (ТЗ §8.3).",
-      "en": "A Ukrainian Spectrum-compatible clone, reportedly from Kharkiv. Not documented in standard references — the museum must verify its attribution and year against a physical unit (spec §8.3)."
+      "uk": "Український клон ZX Spectrum 48K: зібраний на розсипній логіці (~48 мікросхем), 50-клавішна мембрана, металевий корпус. Випущений 1991 року в Харкові на заводі «Хартрон» (НВО «Електроприлад»); на старті показував «**** IKAR-64 ****».",
+      "en": "A Ukrainian ZX Spectrum 48K clone: built from discrete logic (~48 ICs), a 50-key membrane keyboard and a metal case. Released in 1991 in Kharkiv at the Khartron plant (NPO Elektroprylad); it displayed “**** IKAR-64 ****” on power-up."
     },
-    "sources": [],
-    "images": [],
+    "sources": [
+      {
+        "title": { "uk": "Икар-64 — SpeccyWiki", "en": "Ikar-64 — SpeccyWiki" },
+        "url": "https://speccy.info/%D0%98%D0%BA%D0%B0%D1%80-64",
+        "accessed": "2026-07-25"
+      },
+      {
+        "title": { "uk": "Ікар — Instagram @sncmuseum", "en": "Ikar — Instagram @sncmuseum" },
+        "url": "https://www.instagram.com/p/BVMvgUdnWKW/",
+        "accessed": "2026-07-25"
+      }
+    ],
+    "images": [
+      {
+        "src": "ikar.jpg",
+        "alt": {
+          "uk": "Клон Ікар-64: чорний клиноподібний корпус із вентиляційними прорізами, плоска мембранна клавіатура зі світло-блакитними клавішами, кольоровими написами BASIC і логотипом «IKAR» праворуч.",
+          "en": "An Ikar-64 clone: a black wedge-shaped case with ventilation slots, a flat membrane keyboard with pale-blue keys, coloured BASIC legends and an “IKAR” logo on the right."
+        },
+        "license": "museum-own",
+        "author": "SnC Museum",
+        "source_url": "https://www.instagram.com/p/BVMvgUdnWKW/",
+        "accessed": "2026-07-25"
+      }
+    ],
     "inMuseum": false,
-    "confidence": "low"
+    "confidence": "medium"
+  },
+  {
+    "id": "orel-bk-08",
+    "title": { "uk": "Орель БК-08", "en": "Orel BK-08" },
+    "manufacturer": "Дніпровський машинобудівний завод, Дніпро",
+    "country": "UA",
+    "year": "1989",
+    "desc": {
+      "uk": "Український клон ZX Spectrum на TTL-логіці: процесор Z80A (або UA880A) на 3,5 МГц, 64 КБ ОЗП із «тіньовим» ПЗП, розширена 67-клавішна клавіатура з кількома розкладками. Випущений 1989 року на Дніпровському машинобудівному заводі; вироблявся до середини 1990-х.",
+      "en": "A Ukrainian ZX Spectrum clone built on TTL logic: a Z80A (or UA880A) at 3.5 MHz, 64 KB RAM with “shadow” ROM and an extended 67-key keyboard with several layouts. Released in 1989 at the Dnipro machine-building plant; produced into the mid-1990s."
+    },
+    "sources": [
+      {
+        "title": { "uk": "OREL BK-08 — Centre for Computing History", "en": "OREL BK-08 — Centre for Computing History" },
+        "url": "https://www.computinghistory.org.uk/det/29848/OREL-BK-08-Ukraine-Spectrum-Clone/",
+        "accessed": "2026-07-25"
+      },
+      {
+        "title": { "uk": "Orel BK-08 — oldcomputer.info", "en": "Orel BK-08 — oldcomputer.info" },
+        "url": "http://oldcomputer.info/8bit/orel/index.htm",
+        "accessed": "2026-07-25"
+      }
+    ],
+    "images": [
+      {
+        "src": "orel-bk-08.jpg",
+        "alt": {
+          "uk": "Клон Орель БК-08: двоблочний сірий комп’ютер — системний блок із вентиляційними прорізами, червоними кнопками NMI й RESET та логотипом «орель БК-08», і окрема клавіатура з латинсько-кириличними клавішами. Позаду — телевізор, на дерев’яному столі.",
+          "en": "An Orel BK-08 clone: a two-part grey computer — a system unit with ventilation slots, red NMI and RESET buttons and an “орель БК-08” logo, and a separate keyboard with Latin-Cyrillic keys. A TV set sits behind it on a wooden table."
+        },
+        "license": "museum-own",
+        "author": "SnC Museum",
+        "source_url": "https://www.instagram.com/sncmuseum/",
+        "accessed": "2026-07-25"
+      }
+    ],
+    "inMuseum": false,
+    "confidence": "medium"
   }
 ]

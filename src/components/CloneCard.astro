@@ -28,7 +28,12 @@ const meta = c.maker ? `${c.maker} · ${c.countryName}` : c.countryName;
   тим, що виробник може бути null. Коли з'явиться /clones/{slug}/ — перетворити
   на розтягнуте посилання, як у ModelCard (вкладених <a> уникати — Astro 7, R6).
 */}
-<article class="card">
+<article
+  class="card"
+  data-card
+  data-year={c.year}
+  data-country={c.countryCode}
+>
   {
     hasImage ? (
       <>

@@ -44,8 +44,8 @@
     "country": "CS",
     "year": "1990",
     "desc": {
-      "uk": "Пізніший чехословацький клон Spectrum на Zilog Z80; вироблявся в Скалиці, поширений у школах.",
-      "en": "A later Czechoslovak Spectrum clone based on the Zilog Z80; made in Skalica and common in schools."
+      "uk": "Пізніший чехословацький клон Spectrum: процесор Zilog Z80, 48 КБ ОЗП. Вироблявся в Скалиці, поширений у школах.",
+      "en": "A later Czechoslovak Spectrum clone: a Zilog Z80 and 48 KB RAM. Made in Skalica and common in schools."
     },
     "sources": [
       {
@@ -120,8 +120,8 @@
     "country": "ES",
     "year": "1986",
     "desc": {
-      "uk": "Іспанський клон ZX Spectrum+ на переробленій платі: 64 КБ ОЗП (48 КБ для користувача) і вбудований інтерфейс джойстика Kempston. Виробник — Investrónica.",
-      "en": "A Spanish ZX Spectrum+ clone with a redesigned board: 64 KB RAM (48 KB for the user) and a built-in Kempston joystick interface. Made by Investrónica."
+      "uk": "Іспанський клон ZX Spectrum+ на переробленій платі: процесор Z80, 64 КБ ОЗП (48 КБ для користувача) і вбудований інтерфейс джойстика Kempston. Виробник — Investrónica.",
+      "en": "A Spanish ZX Spectrum+ clone with a redesigned board: a Z80 processor, 64 KB RAM (48 KB for the user) and a built-in Kempston joystick interface. Made by Investrónica."
     },
     "sources": [
       {
@@ -158,8 +158,8 @@
     "country": "RO",
     "year": "1988",
     "desc": {
-      "uk": "Румунський клон на Z80 (назва — від «COmputer BRAșov»): міг працювати як ZX Spectrum або під CP/M. Розроблений 1986 в ITCI, Брашов; студенти масово збирали власні копії.",
-      "en": "A Romanian Z80 clone (its name from “COmputer BRAșov”): it could run as a ZX Spectrum or under CP/M. Designed in 1986 at ITCI in Brașov; students widely built their own copies."
+      "uk": "Румунський клон на Z80, 48 КБ ОЗП (розширювані до 80 КБ); назва — від «COmputer BRAșov». Міг працювати як ZX Spectrum або під CP/M. Розроблений 1986 в ITCI, Брашов; студенти масово збирали власні копії.",
+      "en": "A Romanian Z80 clone with 48 KB RAM (expandable to 80 KB); its name comes from “COmputer BRAșov”. It could run as a ZX Spectrum or under CP/M. Designed in 1986 at ITCI in Brașov; students widely built their own copies."
     },
     "sources": [
       {
@@ -340,5 +340,92 @@
     ],
     "inMuseum": false,
     "confidence": "medium"
+  },
+  {
+    "id": "timex-sinclair-1000",
+    "title": { "uk": "Timex Sinclair 1000", "en": "Timex Sinclair 1000" },
+    "manufacturer": "Timex Corporation",
+    "country": "US",
+    "year": "1982",
+    "desc": {
+      "uk": "Американська ліцензійна версія ZX81 (Timex-Sinclair): процесор Zilog Z80A, 2 КБ ОЗП, монохромна блокова графіка, без звуку. Перший домашній комп’ютер СП Timex і Sinclair, ціна $99,95.",
+      "en": "The American licensed version of the ZX81 (Timex-Sinclair): a Zilog Z80A, 2 KB RAM, monochrome block graphics and no sound. Timex-Sinclair’s first home computer, priced at $99.95."
+    },
+    "sources": [
+      {
+        "title": { "uk": "Timex Sinclair 1000 — Wikipedia (англ.)", "en": "Timex Sinclair 1000 — Wikipedia" },
+        "url": "https://en.wikipedia.org/wiki/Timex_Sinclair_1000",
+        "accessed": "2026-07-22"
+      },
+      {
+        "title": { "uk": "Timex/Sinclair 1000 — TimexSinclair.com", "en": "Timex/Sinclair 1000 — TimexSinclair.com" },
+        "url": "https://www.timexsinclair.com/computers/timex-sinclair-1000/",
+        "accessed": "2026-07-22"
+      }
+    ],
+    "images": [
+      {
+        "src": "timex-sinclair-1000.jpg",
+        "alt": {
+          "uk": "Timex Sinclair 1000 — невеликий чорний клиноподібний корпус із плоскою мембранною клавіатурою, вигляд спереду-справа",
+          "en": "Timex Sinclair 1000 — a small black wedge-shaped case with a flat membrane keyboard, front-right view"
+        },
+        "license": "PD",
+        "author": "Marco Tangerino",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Timex_Sinclair_1000_FR.jpg",
+        "accessed": "2026-07-22"
+      },
+      {
+        "src": "timex-sinclair-1000-museum.jpg",
+        "alt": {
+          "uk": "Timex Sinclair 1000 у вітрині музею на прозорій підставці: чорний клиноподібний корпус, напис «TIMEX sinclair 1000» угорі та мембранна клавіатура з чорними клавішами",
+          "en": "Timex Sinclair 1000 on a clear stand in the museum display case: a black wedge-shaped case with the “TIMEX sinclair 1000” badge on top and a black membrane keyboard"
+        },
+        "license": "museum-own",
+        "author": "SnC Museum",
+        "source_url": "https://www.instagram.com/sncmuseum/",
+        "accessed": "2026-07-25"
+      }
+    ],
+    "inMuseum": true,
+    "confidence": "high"
+  },
+  {
+    "id": "timex-tc2048",
+    "title": { "uk": "Timex TC2048", "en": "Timex TC2048" },
+    "manufacturer": "Timex Portugal",
+    "country": "PT",
+    "year": "1984",
+    "desc": {
+      "uk": "Ліцензійний варіант Spectrum, вироблений Timex Portugal для Європи: процесор Zilog Z80A на 3,5 МГц, 48 КБ ОЗП, розширені відеорежими й додаткові порти.",
+      "en": "A licensed Spectrum variant built by Timex Portugal for Europe: a Zilog Z80A at 3.5 MHz, 48 KB RAM, extended video modes and additional ports."
+    },
+    "sources": [
+      {
+        "title": { "uk": "Timex Computer 2048 — Wikipedia (англ.)", "en": "Timex Computer 2048 — Wikipedia" },
+        "url": "https://en.wikipedia.org/wiki/Timex_Computer_2048",
+        "accessed": "2026-07-22"
+      },
+      {
+        "title": { "uk": "Timex Computer TC2048 — Spectrum Computing", "en": "Timex Computer TC2048 — Spectrum Computing" },
+        "url": "https://spectrumcomputing.co.uk/entry/1000508/Hardware/Timex_Computer_TC2048",
+        "accessed": "2026-07-22"
+      }
+    ],
+    "images": [
+      {
+        "src": "timex-tc2048.jpg",
+        "alt": {
+          "uk": "Timex Computer 2048 — чорний корпус із вентиляційною решіткою, напис «TIMEX COMPUTER 2048» і клавіатура з кольоровими позначками команд, вигляд під кутом",
+          "en": "Timex Computer 2048 — a black case with a ventilation grille, the “TIMEX COMPUTER 2048” label and a keyboard with colour-coded command legends, angled view"
+        },
+        "license": "museum-own",
+        "author": "SnC Museum",
+        "source_url": "https://www.instagram.com/sncmuseum/",
+        "accessed": "2026-07-25"
+      }
+    ],
+    "inMuseum": false,
+    "confidence": "high"
   }
 ]

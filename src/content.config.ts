@@ -122,7 +122,8 @@ const clones = defineCollection({
   schema: z.object({
     title: bilingual,
     manufacturer: z.string().nullable().default(null),
-    country: z.enum(['CS', 'UA', 'PL', 'ES', 'RO']),
+    // ТЗ §8.3 відносить машини Timex (US/PT) до «клонів і ліцензійних варіантів».
+    country: z.enum(['CS', 'UA', 'PL', 'ES', 'RO', 'US', 'PT']),
     year: z.string(),
     desc: bilingual,
     sources: z.array(source).default([]),

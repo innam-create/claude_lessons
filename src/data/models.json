@@ -528,56 +528,15 @@
       {
         "src": "timex-tc2048.jpg",
         "alt": {
-          "uk": "Timex Computer 2048 — чорний корпус із вентиляційною решіткою, напис «TIMEX COMPUTER 2048» і клавіатура з кольоровими позначками команд, вигляд згори",
-          "en": "Timex Computer 2048 — a black case with a ventilation grille, the “TIMEX COMPUTER 2048” label and a keyboard with colour-coded command legends, top view"
+          "uk": "Timex Computer 2048 — чорний корпус із вентиляційною решіткою, напис «TIMEX COMPUTER 2048» і клавіатура з кольоровими позначками команд, вигляд під кутом",
+          "en": "Timex Computer 2048 — a black case with a ventilation grille, the “TIMEX COMPUTER 2048” label and a keyboard with colour-coded command legends, angled view"
         },
-        "license": "CC-BY-SA-2.0",
-        "author": "Thomas Conté",
-        "source_url": "https://commons.wikimedia.org/wiki/File:Timex_Computer_2048_(Thomas_Cont%C3%A9)_(white_bg_and_retouch).jpg",
+        "license": "museum-own",
+        "author": "SnC Museum",
+        "source_url": "https://www.instagram.com/sncmuseum/",
         "accessed": "2026-07-25"
       }
     ],
-    "inMuseum": false,
-    "confidence": "high"
-  },
-  {
-    "id": "zx-spectrum-plus2a",
-    "title": { "uk": "ZX Spectrum +2A", "en": "ZX Spectrum +2A" },
-    "manufacturer": "Amstrad",
-    "manufacturerFull": "Amstrad",
-    "country": "GB",
-    "year": "1987",
-    "ram": "128 KB",
-    "ramKb": 128,
-    "desc": {
-      "uk": "Ревізія +2 з іншою материнською платою.",
-      "en": "A +2 revision with a different motherboard."
-    },
-    "summary": {
-      "uk": "Ревізія +2 з іншою материнською платою, спорідненою з +3, але без дисковода. Чорний корпус.",
-      "en": "A +2 revision with a different motherboard, related to the +3 but without the disk drive. Black case."
-    },
-    "cpu": "Zilog Z80A",
-    "cpuClockMhz": 3.5,
-    "romKb": null,
-    "video": { "uk": "256×192 · 15 кольорів", "en": "256×192 · 15 colours" },
-    "sound": { "uk": "AY-3-8912 · 3 канали", "en": "AY-3-8912 · 3 channels" },
-    "storage": { "uk": "Вбудований касетник", "en": "Built-in cassette deck" },
-    "keyboard": null,
-    "massG": null,
-    "sources": [
-      {
-        "title": { "uk": "Sinclair ZX Spectrum +2A — Centre for Computing History", "en": "Sinclair ZX Spectrum +2A — Centre for Computing History" },
-        "url": "https://www.computinghistory.org.uk/det/32520/Sinclair-ZX-Spectrum-2A/",
-        "accessed": "2026-07-22"
-      },
-      {
-        "title": { "uk": "ZX Spectrum — Wikipedia (англ.)", "en": "ZX Spectrum — Wikipedia" },
-        "url": "https://en.wikipedia.org/wiki/ZX_Spectrum",
-        "accessed": "2026-07-22"
-      }
-    ],
-    "images": [],
     "inMuseum": false,
     "confidence": "high"
   }

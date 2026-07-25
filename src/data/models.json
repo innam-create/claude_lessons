@@ -36,7 +36,19 @@
         "accessed": "2026-07-22"
       }
     ],
-    "images": [],
+    "images": [
+      {
+        "src": "zx80.jpg",
+        "alt": {
+          "uk": "Sinclair ZX80 — білий клиноподібний корпус із похилою верхньою панеллю, логотип «sinclair ZX80» і синя мембранна клавіатура",
+          "en": "Sinclair ZX80 — a white wedge-shaped case with a sloped top, the “sinclair ZX80” logo and a blue membrane keyboard"
+        },
+        "license": "museum-own",
+        "author": "SnC Museum",
+        "source_url": "https://www.instagram.com/sncmuseum/",
+        "accessed": "2026-07-25"
+      }
+    ],
     "inMuseum": false,
     "confidence": "high"
   },
@@ -406,7 +418,19 @@
         "accessed": "2026-07-22"
       }
     ],
-    "images": [],
+    "images": [
+      {
+        "src": "zx-plus2.jpg",
+        "alt": {
+          "uk": "ZX Spectrum +2 — темно-сірий корпус із вбудованим касетником Datacorder, англійська клавіатура та написи «sinclair», «128K», «ZX Spectrum +2»",
+          "en": "ZX Spectrum +2 — a dark-grey case with a built-in Datacorder cassette deck, a UK keyboard and “sinclair · 128K · ZX Spectrum +2” markings"
+        },
+        "license": "museum-own",
+        "author": "SnC Museum",
+        "source_url": "https://www.instagram.com/sncmuseum/",
+        "accessed": "2026-07-25"
+      }
+    ],
     "inMuseum": false,
     "confidence": "high"
   },
@@ -454,10 +478,10 @@
           "uk": "ZX Spectrum +3 з вбудованим 3-дюймовим дисководом",
           "en": "ZX Spectrum +3 with a built-in 3-inch floppy drive"
         },
-        "license": "CC-BY-SA-4.0",
-        "author": "Sintegrity",
-        "source_url": "https://commons.wikimedia.org/wiki/File:ZX_Spectrum_%2B3.jpg",
-        "accessed": "2026-07-17"
+        "license": "museum-own",
+        "author": "SnC Museum",
+        "source_url": "https://www.instagram.com/sncmuseum/",
+        "accessed": "2026-07-25"
       }
     ],
     "inMuseum": false,
@@ -500,7 +524,19 @@
         "accessed": "2026-07-22"
       }
     ],
-    "images": [],
+    "images": [
+      {
+        "src": "timex-tc2048.jpg",
+        "alt": {
+          "uk": "Timex Computer 2048 — чорний корпус із вентиляційною решіткою, напис «TIMEX COMPUTER 2048» і клавіатура з кольоровими позначками команд, вигляд згори",
+          "en": "Timex Computer 2048 — a black case with a ventilation grille, the “TIMEX COMPUTER 2048” label and a keyboard with colour-coded command legends, top view"
+        },
+        "license": "CC-BY-SA-2.0",
+        "author": "Thomas Conté",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Timex_Computer_2048_(Thomas_Cont%C3%A9)_(white_bg_and_retouch).jpg",
+        "accessed": "2026-07-25"
+      }
+    ],
     "inMuseum": false,
     "confidence": "high"
   },

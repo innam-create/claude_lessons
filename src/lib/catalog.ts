@@ -75,6 +75,8 @@ export type Model = {
   images: ModelImage[];
   // Перше зображення — обкладинка картки. null → «Шукаємо фотографію» (ТЗ §15).
   cover: ModelImage | null;
+  // Власне фото експоната (museum-own) для блоку «В експозиції». null → плейсхолдер.
+  museumPhoto: ModelImage | null;
   specs: SpecRow[];
   sources: ModelSource[];
   inMuseum: boolean;
@@ -133,6 +135,7 @@ export function normalizeModels(
       ramKb: d.ramKb,
       images,
       cover: images[0] ?? null,
+      museumPhoto: d.museumPhoto ? normalizeImage(d.museumPhoto, lang) : null,
       specs: buildSpecs(d, lang),
       sources: d.sources.map((s) => ({
         title: s.title[lang],

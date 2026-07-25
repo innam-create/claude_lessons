@@ -21,6 +21,9 @@ const t = useTranslations(lang);
 const cover = model.cover;
 const coverImg = getModelImage(cover?.src ?? null);
 
+// Власне фото експоната для блоку «В експозиції» (museum-own). Порожнє → плейсхолдер.
+const museumImg = getModelImage(model.museumPhoto?.src ?? null);
+
 // «1982 · Велика Британія · 48 KB» — мета-рядок під заголовком.
 const meta = [model.year, model.countryLabel.split(' · ')[1], model.ram]
   .filter(Boolean)
@@ -175,9 +178,24 @@ const meta = [model.year, model.countryLabel.split(' · ')[1], model.ram]
       {
         model.inMuseum && (
           <div class="museum">
-            <div class="museum-photo">
-              <span>{t('detail.museumPhoto')}</span>
+            <div class:list={['museum-photo', { 'has-photo': museumImg }]}>
+              {museumImg && model.museumPhoto ? (
+                <Image
+                  src={museumImg}
+                  alt={model.museumPhoto.alt}
+                  widths={[320, 640]}
+                  sizes="(max-width: 900px) 100vw, 320px"
+                  class="mphoto"
+                />
+              ) : (
+                <span>{t('detail.museumPhoto')}</span>
+              )}
             </div>
+            {model.museumPhoto && (
+              <div class="museum-credit">
+                <ImageCredit image={model.museumPhoto} lang={lang} />
+              </div>
+            )}
             <div class="museum-body">
               <div class="museum-title">{t('detail.inExpo')}</div>
               <div class="museum-text">{t('detail.inExpo.body')}</div>
@@ -440,6 +458,21 @@ const meta = [model.year, model.countryLabel.split(' · ')[1], model.ram]
     font-family: var(--font-mono);
     font-size: 12px;
     color: #5f6f9c;
+  }
+  /* Коли є справжнє фото — віддаємо йому природну висоту (часто портретне,
+     16:9 його обрізало б). Плейсхолдер лишається у фіксованому 16:9. */
+  .museum-photo.has-photo {
+    aspect-ratio: auto;
+    display: block;
+  }
+  .museum-photo .mphoto {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .museum-credit {
+    padding: 4px 12px 2px;
+    border-bottom: 2px solid var(--museum-gold);
   }
   .museum-body { padding: 18px 18px 20px; }
   .museum-title {

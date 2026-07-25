@@ -73,6 +73,11 @@ const models = defineCollection({
     // Порожній масив → картка «Шукаємо фотографію цієї машини» (ТЗ §15).
     // Перше зображення — обкладинка картки в каталозі.
     images: z.array(modelImage).default([]),
+    // Власне фото експоната в музеї (ТЗ §7.1: museum-own). Окреме від images[]:
+    // images[] — довідкові фото (часто з Wikimedia) для hero/галереї, а це —
+    // знімок реальної машини у вітрині, показується в блоці «В експозиції».
+    // null → слот показує чесний плейсхолдер «фото музею».
+    museumPhoto: modelImage.nullable().default(null),
     inMuseum: z.boolean(),
     // ТЗ §6: обов'язкове. 'low' → видима позначка «потребує уточнення».
     confidence: z.enum(['high', 'medium', 'low']),

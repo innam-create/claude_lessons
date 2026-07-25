@@ -15,7 +15,6 @@ export const ui = {
     'nav.history': 'Історія',
     'nav.models': 'Моделі',
     'nav.clones': 'Клони',
-    'nav.exhibits': 'Експонати',
     'nav.software': 'Софт',
     'nav.peripherals': 'Периферія',
     'nav.contacts': 'Контакти',
@@ -48,7 +47,6 @@ export const ui = {
     'home.tile.history': '1980–1992: від задуму Sinclair до кінця епохи.',
     'home.tile.models': 'Офіційні машини: 16K, 48K, +, 128K, +2, +3.',
     'home.tile.clones': 'Європейські та українські клони Spectrum.',
-    'home.tile.exhibits': 'Що можна побачити й торкнутися в музеї.',
     'home.tile.software': 'Програми, ігри та легендарні касети.',
     'home.tile.peripherals': 'Друк, джойстики, накопичувачі та інтерфейси.',
     'home.tile.contacts': 'Як дістатися, графік роботи та мапа музею.',
@@ -160,15 +158,6 @@ export const ui = {
     'longread.backToHistory': '← Усі матеріали',
     'longread.cta.excursion': 'Записатися на екскурсію',
 
-    // експонати (ExhibitsPage.dc.html)
-    'exhibits.title': 'Експонати',
-    'exhibits.intro':
-      'Те, що можна побачити наживо. Ці машини є в колекції музею — до багатьох експонатів можна доторкнутися.',
-    'exhibits.empty':
-      'Перелік експонатів ще звіряється з інвентарем музею. Тут зʼявляться машини, наявність яких підтверджено.',
-    'exhibits.visit.title': 'Приходьте подивитися наживо',
-    'exhibits.visit.cta': 'Як дістатися →',
-
     // софт (SoftwarePage.dc.html)
     'software.title': 'Софт та ігри',
     'software.intro':
@@ -222,7 +211,6 @@ export const ui = {
     'nav.history': 'History',
     'nav.models': 'Models',
     'nav.clones': 'Clones',
-    'nav.exhibits': 'Exhibits',
     'nav.software': 'Software',
     'nav.peripherals': 'Peripherals',
     'nav.contacts': 'Contacts',
@@ -253,7 +241,6 @@ export const ui = {
     'home.tile.history': '1980–1992: from Sinclair’s idea to the end of an era.',
     'home.tile.models': 'The official machines: 16K, 48K, +, 128K, +2, +3.',
     'home.tile.clones': 'European and Ukrainian Spectrum clones.',
-    'home.tile.exhibits': 'What you can see and touch at the museum.',
     'home.tile.software': 'Programs, games and the legendary cassettes.',
     'home.tile.peripherals': 'Printing, joysticks, storage and interfaces.',
     'home.tile.contacts': 'How to get here, opening hours and a map.',
@@ -355,14 +342,6 @@ export const ui = {
     'longread.sources': 'Sources',
     'longread.backToHistory': '← All articles',
     'longread.cta.excursion': 'Book a guided tour',
-
-    'exhibits.title': 'Exhibits',
-    'exhibits.intro':
-      'What you can see in person. These machines are in the museum’s collection — many exhibits are yours to touch.',
-    'exhibits.empty':
-      'The exhibit list is still being checked against the museum’s inventory. Machines confirmed to be here will appear below.',
-    'exhibits.visit.title': 'Come and see them in person',
-    'exhibits.visit.cta': 'How to get here →',
 
     'software.title': 'Software & games',
     'software.intro':

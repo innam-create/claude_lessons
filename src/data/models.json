@@ -130,7 +130,19 @@
         "accessed": "2026-07-22"
       }
     ],
-    "images": [],
+    "images": [
+      {
+        "src": "timex-sinclair-1000.jpg",
+        "alt": {
+          "uk": "Timex Sinclair 1000 — невеликий чорний корпус із плоскою мембранною клавіатурою, вигляд спереду-справа",
+          "en": "Timex Sinclair 1000 — a small black case with a flat membrane keyboard, front-right view"
+        },
+        "license": "PD",
+        "author": "Marco Tangerino",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Timex_Sinclair_1000_FR.jpg",
+        "accessed": "2026-07-22"
+      }
+    ],
     "inMuseum": true,
     "confidence": "high"
   },

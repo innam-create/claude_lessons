@@ -37,3 +37,23 @@ export function getPeripheralImage(filename: string | null): ImageMetadata | nul
   if (!filename) return null;
   return peripheralImages[filename] ?? null;
 }
+
+// Клони — знову окрема тека ассетів (ТЗ §8.3, окрема колекція). Наразі фото
+// немає (усі картки «Шукаємо фотографію»); ТЗ §8.5 передбачає, що більшість
+// фото клонів дасть сам музей (museum-own) — тоді файли ляжуть у
+// src/assets/clones/ і резолвер їх підхопить.
+const cloneFiles = import.meta.glob<{ default: ImageMetadata }>(
+  '../assets/clones/*.{jpg,jpeg,png,webp,avif}',
+  { eager: true },
+);
+
+export const cloneImages: Record<string, ImageMetadata> = {};
+for (const path in cloneFiles) {
+  const name = path.split('/').pop();
+  if (name) cloneImages[name] = cloneFiles[path].default;
+}
+
+export function getCloneImage(filename: string | null): ImageMetadata | null {
+  if (!filename) return null;
+  return cloneImages[filename] ?? null;
+}

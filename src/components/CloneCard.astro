@@ -1,0 +1,208 @@
+---
+import { Image } from 'astro:assets';
+import type { Clone } from '../lib/clones';
+import type { Lang } from '../i18n/ui';
+import { useTranslations } from '../i18n/ui';
+import { getCloneImage } from '../lib/images';
+
+interface Props {
+  clone: Clone;
+  lang: Lang;
+}
+const { clone: c, lang } = Astro.props;
+const t = useTranslations(lang);
+
+const cover = c.cover;
+const img = getCloneImage(cover?.src ?? null);
+const hasImage = !!img && !!cover;
+
+// Виробник клона часто невідомий (ТЗ §8.3) — тоді в мета-рядку лишається лише
+// країна, без вигаданого виробника. null ≠ порожній рядок: різницю тримаємо.
+const meta = c.maker ? `${c.maker} · ${c.countryName}` : c.countryName;
+---
+
+{/*
+  Картка клона — <article>, а не <a>: сторінки-картки клона немає (макет
+  ClonesPage.dc.html малює лише сітку, без деталей), тож нема куди вести.
+  Дзеркало PeripheralCard; відрізняється резолвером фото (getCloneImage) і
+  тим, що виробник може бути null. Коли з'явиться /clones/{slug}/ — перетворити
+  на розтягнуте посилання, як у ModelCard (вкладених <a> уникати — Astro 7, R6).
+*/}
+<article class="card">
+  {
+    hasImage ? (
+      <>
+        <div class="media">
+          <Image
+            src={img!}
+            alt={cover!.alt}
+            widths={[340, 680]}
+            sizes="(max-width: 768px) 100vw, 380px"
+            class="photo"
+          />
+          <span class="corner" aria-hidden="true">
+            <span style="background:#ff0000" /><span style="background:#ffff00" />
+            <span style="background:#00ff00" /><span style="background:#00ffff" />
+          </span>
+        </div>
+        <div class="credit" title={cover!.credit}>{cover!.credit}</div>
+      </>
+    ) : (
+      <div class="noimg">
+        <div class="q">?</div>
+        <div class="seek" set:html={t('card.seeking')} />
+        <div class="mail">contact@sncmuseum.org</div>
+      </div>
+    )
+  }
+
+  <div class="body">
+    <div class="row">
+      <div class="badges">
+        {c.inMuseum && <span class="badge museum">{t('card.inMuseum')}</span>}
+        {c.lowConf && <span class="badge low">{t('card.unverified')}</span>}
+      </div>
+      <span class="year">{c.year}</span>
+    </div>
+    <h2 class="name">{c.title}</h2>
+    <div class="meta">{meta}</div>
+    <p class="desc">{c.desc}</p>
+  </div>
+</article>
+
+<style>
+  .card {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid var(--border);
+    background: var(--surface);
+    height: 100%;
+    box-sizing: border-box;
+    transition: border-color var(--dur) var(--ease-out);
+  }
+  .card:hover { border-color: var(--zx-cyan); }
+
+  .media {
+    aspect-ratio: 4 / 3;
+    position: relative;
+    overflow: hidden;
+    background: var(--surface-2);
+  }
+  .photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .corner {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    height: 8px;
+    width: 64px;
+    z-index: 2;
+  }
+  .corner > span { flex: 1; }
+
+  .credit {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--dim-6);
+    padding: 6px 12px;
+    border-bottom: 1px solid var(--hair);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .noimg {
+    aspect-ratio: 4 / 3;
+    background: var(--surface-2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px;
+    text-align: center;
+    border-bottom: 1px solid var(--hair);
+  }
+  .noimg .q {
+    font-family: var(--font-pixel);
+    font-size: 30px;
+    color: var(--zx-magenta);
+  }
+  .noimg .seek {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.4;
+  }
+  .noimg .mail {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--zx-cyan);
+  }
+
+  .body {
+    padding: 14px 16px 18px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    min-height: 24px;
+  }
+  .badges { display: flex; gap: 6px; }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+  }
+  .badge.museum {
+    background: var(--museum-gold);
+    color: var(--museum-navy);
+    padding: 4px 9px;
+  }
+  .badge.low {
+    color: var(--zx-yellow);
+    border: 1px dashed var(--zx-yellow);
+    padding: 3px 7px;
+  }
+  .year {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--zx-cyan);
+    flex: none;
+  }
+  .name {
+    font-family: var(--font-pixel);
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--zx-white);
+    text-transform: uppercase;
+    line-height: 1.15;
+    margin: 12px 0 6px;
+  }
+  .meta {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+  }
+  .desc {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.5;
+    margin: 0;
+  }
+</style>

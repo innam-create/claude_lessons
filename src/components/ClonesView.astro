@@ -1,0 +1,117 @@
+---
+import { getCollection } from 'astro:content';
+import type { Lang } from '../i18n/ui';
+import { useTranslations, localizePath } from '../i18n/ui';
+import { normalizeClones } from '../lib/clones';
+import CloneCard from './CloneCard.astro';
+import Breadcrumbs from './Breadcrumbs.astro';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const entries = await getCollection('clones');
+const items = normalizeClones(entries, lang);
+const homeHref = localizePath('/', lang);
+---
+
+<main data-pagefind-body>
+  <div class="wrap">
+    <Breadcrumbs
+      items={[{ label: t('nav.home'), href: homeHref }, { label: t('clones.title') }]}
+    />
+
+    <div class="head">
+      <div class="title-row">
+        <h1>{t('clones.title')}</h1>
+        <div class="count">{items.length} {t('clones.count.suffix')}</div>
+      </div>
+      <p class="intro">{t('clones.intro')}</p>
+      {/* ТЗ §2/§8.3: перелік і атрибуція клонів — чернетка, яку музей звіряє
+          з інвентарем перед публікацією. Кажемо це чесно, а не тихо. */}
+      <p class="note">{t('clones.draftNote')}</p>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="grid">
+      {items.map((c) => <CloneCard clone={c} lang={lang} />)}
+    </div>
+  </div>
+</main>
+
+<style>
+  .wrap {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  .head {
+    padding: 18px 0 8px;
+    border-bottom: 1px solid var(--hair);
+  }
+  .title-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  h1 {
+    font-family: var(--font-pixel);
+    font-weight: 700;
+    font-size: 44px;
+    color: var(--zx-white);
+    text-transform: uppercase;
+    margin: 0;
+    line-height: 1;
+  }
+  .count {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+  .intro {
+    font-size: 19px;
+    line-height: 1.65;
+    color: var(--text);
+    margin: 18px 0 0;
+    max-width: 720px;
+  }
+  /* Плашка «чернетка»: рамка, не колір як єдиний носій сенсу (ТЗ §4.2). */
+  .note {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--zx-yellow);
+    border-left: 3px solid var(--zx-yellow);
+    padding: 8px 0 8px 12px;
+    margin: 16px 0 0;
+    max-width: 720px;
+  }
+
+  /* minmax(0,1fr), а не 1fr — див. коментар у CatalogView: інакше рядок кредиту
+     з white-space:nowrap розпирає колонку зсередини (горизонтальний скрол, §10). */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    padding: 26px 0 56px;
+  }
+
+  @media (max-width: 1024px) {
+    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 768px) {
+    .grid { grid-template-columns: minmax(0, 1fr); }
+    h1 { font-size: 34px; }
+    .intro { font-size: 17px; }
+  }
+  @media (max-width: 400px) {
+    .wrap { padding: 0 16px; }
+    h1 { font-size: 28px; }
+  }
+</style>

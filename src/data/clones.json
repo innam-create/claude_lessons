@@ -1,0 +1,47 @@
+[
+  {
+    "id": "didaktik-gama",
+    "title": { "uk": "Didaktik Gama", "en": "Didaktik Gama" },
+    "manufacturer": "Didaktik Skalica",
+    "country": "CS",
+    "year": "1987",
+    "desc": {
+      "uk": "Ранній чехословацький клон Spectrum із власними розширеннями пам’яті та інтерфейсів. Чернетка — потребує звірки з інвентарем.",
+      "en": "An early Czechoslovak Spectrum clone with its own memory and interface extensions. Draft — needs checking against the inventory."
+    },
+    "sources": [],
+    "images": [],
+    "inMuseum": false,
+    "confidence": "low"
+  },
+  {
+    "id": "didaktik-m",
+    "title": { "uk": "Didaktik M", "en": "Didaktik M" },
+    "manufacturer": "Didaktik Skalica",
+    "country": "CS",
+    "year": "1990",
+    "desc": {
+      "uk": "Шкільний клон Spectrum, що вироблявся у Скалиці; поширений у чехословацьких класах. Чернетка — потребує звірки з інвентарем.",
+      "en": "A Spectrum clone for schools, made in Skalica; common in Czechoslovak classrooms. Draft — needs checking against the inventory."
+    },
+    "sources": [],
+    "images": [],
+    "inMuseum": false,
+    "confidence": "low"
+  },
+  {
+    "id": "delta-s",
+    "title": { "uk": "Дельта-С", "en": "Delta-S" },
+    "manufacturer": null,
+    "country": "UA",
+    "year": "1990",
+    "desc": {
+      "uk": "Український Spectrum-сумісний клон, що, за наявними відомостями, вироблявся у Харкові. Атрибуцію й рік потрібно звірити фізично (ТЗ §8.3).",
+      "en": "A Ukrainian Spectrum-compatible clone reportedly made in Kharkiv. Attribution and year need physical verification (spec §8.3)."
+    },
+    "sources": [],
+    "images": [],
+    "inMuseum": false,
+    "confidence": "low"
+  }
+]

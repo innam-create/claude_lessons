@@ -47,7 +47,7 @@ export const ui = {
     'home.soon': 'незабаром',
     'home.tile.history': '1980–1992: від задуму Sinclair до кінця епохи.',
     'home.tile.models': 'Офіційні машини: 16K, 48K, +, 128K, +2, +3.',
-    'home.tile.clones': 'Радянські та українські клони Spectrum.',
+    'home.tile.clones': 'Європейські та українські клони Spectrum.',
     'home.tile.exhibits': 'Що можна побачити й торкнутися в музеї.',
     'home.tile.software': 'Програми, ігри та легендарні касети.',
     'home.tile.peripherals': 'Друк, джойстики, накопичувачі та інтерфейси.',
@@ -132,6 +132,14 @@ export const ui = {
       'Пристрої, що розширювали можливості Spectrum: завантаження й друк, джойстики та накопичувачі.',
     'peripherals.count.suffix': 'пристроїв',
 
+    // клони (ТЗ §8.3 / ClonesPage.dc.html)
+    'clones.title': 'Клони',
+    'clones.intro':
+      'Європейські та українські машини, зібрані «за мотивами» Spectrum. Фотографій із чистою ліцензією обмаль — деякі машини ще шукають своє фото.',
+    'clones.count.suffix': 'машин',
+    'clones.draftNote':
+      'Чернетка: перелік і атрибуцію клонів музей звіряє з інвентарем перед публікацією. Роки й походження можуть уточнюватися.',
+
     // історія (HistoryHubPage.dc.html)
     'history.title': 'Історія',
     'history.intro':
@@ -194,6 +202,8 @@ export const ui = {
     'country.PT': 'Португалія',
     'country.US': 'США',
     'country.PL': 'Польща',
+    'country.CS': 'Чехословаччина',
+    'country.UA': 'Україна',
 
     // футер
     'footer.tagline':
@@ -240,7 +250,7 @@ export const ui = {
     'home.soon': 'coming soon',
     'home.tile.history': '1980–1992: from Sinclair’s idea to the end of an era.',
     'home.tile.models': 'The official machines: 16K, 48K, +, 128K, +2, +3.',
-    'home.tile.clones': 'Soviet and Ukrainian Spectrum clones.',
+    'home.tile.clones': 'European and Ukrainian Spectrum clones.',
     'home.tile.exhibits': 'What you can see and touch at the museum.',
     'home.tile.software': 'Programs, games and the legendary cassettes.',
     'home.tile.peripherals': 'Printing, joysticks, storage and interfaces.',
@@ -319,6 +329,13 @@ export const ui = {
       'Devices that extended the Spectrum: loading and printing, joysticks and storage.',
     'peripherals.count.suffix': 'devices',
 
+    'clones.title': 'Clones',
+    'clones.intro':
+      'European and Ukrainian machines built “after” the Spectrum. Cleanly-licensed photos are scarce — some machines are still looking for their photo.',
+    'clones.count.suffix': 'machines',
+    'clones.draftNote':
+      'Draft: the museum verifies the list and attribution of clones against its inventory before publishing. Years and origins may be refined.',
+
     'history.title': 'History',
     'history.intro':
       'From Clive Sinclair’s idea to the end of the 8-bit era. Twelve years that changed how millions of people first met a computer.',
@@ -374,6 +391,8 @@ export const ui = {
     'country.PT': 'Portugal',
     'country.US': 'USA',
     'country.PL': 'Poland',
+    'country.CS': 'Czechoslovakia',
+    'country.UA': 'Ukraine',
 
     'footer.tagline':
       'Software & Computer Museum — the first permanent museum of software and computers in Ukraine.',

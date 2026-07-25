@@ -7,13 +7,24 @@
     "country": "GB",
     "year": "1981",
     "desc": {
-      "uk": "Компактний термопринтер Sinclair: друк на металізованому папері по 32 символи в рядок.",
-      "en": "Sinclair’s compact thermal printer: prints on metallised paper, 32 characters per line."
+      "uk": "Компактний іскровий принтер Sinclair: друк на алюмінізованому папері по 32 символи в рядок.",
+      "en": "Sinclair’s compact spark printer: prints on aluminium-coated paper, 32 characters per line."
     },
-    "sources": [],
+    "sources": [
+      {
+        "title": { "uk": "Sinclair ZX Printer — Centre for Computing History", "en": "Sinclair ZX Printer — Centre for Computing History" },
+        "url": "https://www.computinghistory.org.uk/det/35322/Sinclair-ZX-Printer/",
+        "accessed": "2026-07-22"
+      },
+      {
+        "title": { "uk": "ZX Printer — Wikipedia (англ.)", "en": "ZX Printer — Wikipedia" },
+        "url": "https://en.wikipedia.org/wiki/ZX_Printer",
+        "accessed": "2026-07-22"
+      }
+    ],
     "images": [],
     "inMuseum": false,
-    "confidence": "medium"
+    "confidence": "high"
   },
   {
     "id": "zx-interface-1",
@@ -26,10 +37,21 @@
       "uk": "Розширення знизу під корпус: контролер мікродрайвів, порт RS-232 і локальна мережа ZX Net.",
       "en": "An add-on that clips under the case: microdrive controller, an RS-232 port and the ZX Net local network."
     },
-    "sources": [],
+    "sources": [
+      {
+        "title": { "uk": "ZX Interface 1 — Centre for Computing History", "en": "ZX Interface 1 — Centre for Computing History" },
+        "url": "https://www.computinghistory.org.uk/det/22108/ZX-Interface-1-for-Sinclair-Spectrum/",
+        "accessed": "2026-07-22"
+      },
+      {
+        "title": { "uk": "ZX Interface 1 — Wikipedia (англ.)", "en": "ZX Interface 1 — Wikipedia" },
+        "url": "https://en.wikipedia.org/wiki/ZX_Interface_1",
+        "accessed": "2026-07-22"
+      }
+    ],
     "images": [],
     "inMuseum": false,
-    "confidence": "medium"
+    "confidence": "high"
   },
   {
     "id": "zx-microdrive",
@@ -42,10 +64,21 @@
       "uk": "Стрічковий накопичувач на безкінечній петлі — швидший за касету, працює через Interface 1.",
       "en": "A tape loop cartridge drive — faster than cassette, driven through the Interface 1."
     },
-    "sources": [],
+    "sources": [
+      {
+        "title": { "uk": "ZX Microdrive — Centre for Computing History", "en": "ZX Microdrive — Centre for Computing History" },
+        "url": "https://www.computinghistory.org.uk/det/646/ZX-Microdrive/",
+        "accessed": "2026-07-22"
+      },
+      {
+        "title": { "uk": "ZX Microdrive — Wikipedia (англ.)", "en": "ZX Microdrive — Wikipedia" },
+        "url": "https://en.wikipedia.org/wiki/ZX_Microdrive",
+        "accessed": "2026-07-22"
+      }
+    ],
     "images": [],
     "inMuseum": false,
-    "confidence": "medium"
+    "confidence": "high"
   },
   {
     "id": "zx-interface-2",
@@ -58,10 +91,21 @@
       "uk": "Порт для ROM-картриджів із іграми та два порти для джойстиків.",
       "en": "A slot for ROM game cartridges and two joystick ports."
     },
-    "sources": [],
+    "sources": [
+      {
+        "title": { "uk": "Sinclair ZX Interface 2 — Centre for Computing History", "en": "Sinclair ZX Interface 2 — Centre for Computing History" },
+        "url": "https://www.computinghistory.org.uk/det/42140/Sinclair-ZX-Interface-2/",
+        "accessed": "2026-07-22"
+      },
+      {
+        "title": { "uk": "ZX Interface 2 — Wikipedia (англ.)", "en": "ZX Interface 2 — Wikipedia" },
+        "url": "https://en.wikipedia.org/wiki/ZX_Interface_2",
+        "accessed": "2026-07-22"
+      }
+    ],
     "images": [],
     "inMuseum": false,
-    "confidence": "medium"
+    "confidence": "high"
   },
   {
     "id": "kempston-joystick-interface",
@@ -77,9 +121,20 @@
       "uk": "Інтерфейс для підключення джойстика; його схема адресації стала фактичним стандартом для ігор.",
       "en": "A joystick interface whose addressing scheme became the de facto standard supported by games."
     },
-    "sources": [],
+    "sources": [
+      {
+        "title": { "uk": "Kempston Micro Electronics — Wikipedia (англ.)", "en": "Kempston Micro Electronics — Wikipedia" },
+        "url": "https://en.wikipedia.org/wiki/Kempston_Micro_Electronics",
+        "accessed": "2026-07-22"
+      },
+      {
+        "title": { "uk": "Kempston Joystick Interface — Spectrum Computing", "en": "Kempston Joystick Interface — Spectrum Computing" },
+        "url": "https://spectrumcomputing.co.uk/entry/1000220/Hardware/Kempston_Joystick_Interface",
+        "accessed": "2026-07-22"
+      }
+    ],
     "images": [],
     "inMuseum": false,
-    "confidence": "low"
+    "confidence": "high"
   }
 ]

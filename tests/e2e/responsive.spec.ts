@@ -4,7 +4,7 @@ import { test, expect } from '@playwright/test';
 // десктопі 1280px. Критерій — documentElement.scrollWidth <= clientWidth.
 // Це той самий діагноз, яким у §8 ловили піксельні заголовки, що малюються поза
 // боксом (getBoundingClientRect їх не бачить, а scrollWidth — бачить).
-const PATHS = ['/', '/history/', '/models/', '/exhibits/', '/software/', '/peripherals/', '/contacts/', '/search/'];
+const PATHS = ['/', '/history/', '/models/', '/clones/', '/exhibits/', '/software/', '/peripherals/', '/contacts/', '/search/'];
 const WIDTHS = [320, 1280];
 
 for (const width of WIDTHS) {

@@ -106,70 +106,6 @@
     "confidence": "high"
   },
   {
-    "id": "timex-sinclair-1000",
-    "title": { "uk": "Timex Sinclair 1000", "en": "Timex Sinclair 1000" },
-    "manufacturer": "Timex",
-    "manufacturerFull": "Timex Corporation",
-    "country": "US",
-    "year": "1982",
-    "ram": "2 KB",
-    "ramKb": 2,
-    "desc": {
-      "uk": "Американська версія ZX81 від Timex-Sinclair.",
-      "en": "The American version of the ZX81, from Timex-Sinclair."
-    },
-    "summary": {
-      "uk": "Ліцензійна версія ZX81 для ринку США: та сама конструкція, але 2 КБ пам’яті замість кілобайта. Перший домашній комп’ютер спільного підприємства Timex і Sinclair, проданий за $99,95.",
-      "en": "A licensed version of the ZX81 for the US market: the same design, but 2 KB of memory instead of one kilobyte. It was Timex-Sinclair’s first home computer, sold for $99.95."
-    },
-    "cpu": "Zilog Z80A",
-    "cpuClockMhz": 3.25,
-    "romKb": 8,
-    "video": { "uk": "64×48 · блокова графіка, монохром", "en": "64×48 · block graphics, monochrome" },
-    "sound": { "uk": "Немає", "en": "None" },
-    "storage": { "uk": "Касета", "en": "Cassette" },
-    "keyboard": { "uk": "Мембранна", "en": "Membrane" },
-    "massG": null,
-    "sources": [
-      {
-        "title": { "uk": "Timex Sinclair 1000 — Wikipedia (англ.)", "en": "Timex Sinclair 1000 — Wikipedia" },
-        "url": "https://en.wikipedia.org/wiki/Timex_Sinclair_1000",
-        "accessed": "2026-07-22"
-      },
-      {
-        "title": { "uk": "Timex/Sinclair 1000 — TimexSinclair.com", "en": "Timex/Sinclair 1000 — TimexSinclair.com" },
-        "url": "https://www.timexsinclair.com/computers/timex-sinclair-1000/",
-        "accessed": "2026-07-22"
-      }
-    ],
-    "images": [
-      {
-        "src": "timex-sinclair-1000.jpg",
-        "alt": {
-          "uk": "Timex Sinclair 1000 — невеликий чорний клиноподібний корпус із плоскою мембранною клавіатурою, вигляд спереду-справа",
-          "en": "Timex Sinclair 1000 — a small black wedge-shaped case with a flat membrane keyboard, front-right view"
-        },
-        "license": "PD",
-        "author": "Marco Tangerino",
-        "source_url": "https://commons.wikimedia.org/wiki/File:Timex_Sinclair_1000_FR.jpg",
-        "accessed": "2026-07-22"
-      }
-    ],
-    "museumPhoto": {
-      "src": "timex-sinclair-1000-museum.jpg",
-      "alt": {
-        "uk": "Timex Sinclair 1000 у вітрині музею на прозорій підставці: чорний клиноподібний корпус, напис «TIMEX sinclair 1000» угорі та мембранна клавіатура з чорними клавішами",
-        "en": "Timex Sinclair 1000 on a clear stand in the museum display case: a black wedge-shaped case with the “TIMEX sinclair 1000” badge on top and a black membrane keyboard"
-      },
-      "license": "museum-own",
-      "author": "SnC Museum",
-      "source_url": "https://www.instagram.com/sncmuseum/",
-      "accessed": "2026-07-25"
-    },
-    "inMuseum": true,
-    "confidence": "high"
-  },
-  {
     "id": "zx-spectrum-16k",
     "title": { "uk": "ZX Spectrum 16K", "en": "ZX Spectrum 16K" },
     "manufacturer": "Sinclair",
@@ -188,11 +124,11 @@
     },
     "cpu": "Zilog Z80A",
     "cpuClockMhz": 3.5,
-    "romKb": null,
+    "romKb": 16,
     "video": { "uk": "256×192 · 15 кольорів", "en": "256×192 · 15 colours" },
     "sound": { "uk": "1 канал (бузер)", "en": "1 channel (beeper)" },
     "storage": { "uk": "Касета", "en": "Cassette" },
-    "keyboard": null,
+    "keyboard": { "uk": "Гумова", "en": "Rubber" },
     "massG": null,
     "sources": [
       {
@@ -245,7 +181,7 @@
     "video": { "uk": "256×192 · 15 кольорів", "en": "256×192 · 15 colours" },
     "sound": { "uk": "1 канал (бузер)", "en": "1 channel (beeper)" },
     "storage": { "uk": "Касета", "en": "Cassette" },
-    "keyboard": null,
+    "keyboard": { "uk": "Гумова", "en": "Rubber" },
     "massG": null,
     "sources": [
       {
@@ -305,9 +241,9 @@
     },
     "cpu": "Zilog Z80A",
     "cpuClockMhz": 3.5,
-    "romKb": null,
+    "romKb": 16,
     "video": { "uk": "256×192 · 15 кольорів", "en": "256×192 · 15 colours" },
-    "sound": null,
+    "sound": { "uk": "1 канал (бузер)", "en": "1 channel (beeper)" },
     "storage": { "uk": "Касета", "en": "Cassette" },
     "keyboard": { "uk": "Механічна, 58 клавіш", "en": "Mechanical, 58 keys" },
     "massG": null,
@@ -369,11 +305,11 @@
     },
     "cpu": "Zilog Z80A",
     "cpuClockMhz": 3.5,
-    "romKb": null,
+    "romKb": 32,
     "video": { "uk": "256×192 · 15 кольорів", "en": "256×192 · 15 colours" },
     "sound": { "uk": "AY-3-8912 · 3 канали", "en": "AY-3-8912 · 3 channels" },
     "storage": { "uk": "Касета", "en": "Cassette" },
-    "keyboard": null,
+    "keyboard": { "uk": "Механічна, 58 клавіш", "en": "Mechanical, 58 keys" },
     "massG": null,
     "sources": [
       {
@@ -422,11 +358,11 @@
     },
     "cpu": "Zilog Z80A",
     "cpuClockMhz": 3.5,
-    "romKb": null,
-    "video": null,
+    "romKb": 32,
+    "video": { "uk": "256×192 · 15 кольорів", "en": "256×192 · 15 colours" },
     "sound": { "uk": "AY-3-8912 · 3 канали", "en": "AY-3-8912 · 3 channels" },
     "storage": { "uk": "Вбудований касетник", "en": "Built-in cassette deck" },
-    "keyboard": null,
+    "keyboard": { "uk": "Друкарської машинки", "en": "Typewriter-style" },
     "massG": null,
     "sources": [
       {
@@ -475,11 +411,11 @@
     },
     "cpu": "Zilog Z80A",
     "cpuClockMhz": 3.5,
-    "romKb": null,
-    "video": null,
+    "romKb": 64,
+    "video": { "uk": "256×192 · 15 кольорів", "en": "256×192 · 15 colours" },
     "sound": { "uk": "AY-3-8912 · 3 канали", "en": "AY-3-8912 · 3 channels" },
     "storage": { "uk": "Вбудований 3″ дисковод", "en": "Built-in 3″ floppy drive" },
-    "keyboard": null,
+    "keyboard": { "uk": "Друкарської машинки", "en": "Typewriter-style" },
     "massG": null,
     "sources": [
       {
@@ -499,59 +435,6 @@
         "alt": {
           "uk": "ZX Spectrum +3 з вбудованим 3-дюймовим дисководом",
           "en": "ZX Spectrum +3 with a built-in 3-inch floppy drive"
-        },
-        "license": "museum-own",
-        "author": "SnC Museum",
-        "source_url": "https://www.instagram.com/sncmuseum/",
-        "accessed": "2026-07-25"
-      }
-    ],
-    "inMuseum": false,
-    "confidence": "high"
-  },
-  {
-    "id": "timex-tc2048",
-    "title": { "uk": "Timex TC2048", "en": "Timex TC2048" },
-    "manufacturer": "Timex",
-    "manufacturerFull": "Timex Portugal",
-    "country": "PT",
-    "year": "1984",
-    "ram": "48 KB",
-    "ramKb": 48,
-    "desc": {
-      "uk": "Ліцензійний варіант Timex для Європи.",
-      "en": "Licensed Timex variant for Europe."
-    },
-    "summary": {
-      "uk": "Ліцензійний варіант Spectrum, вироблений Timex для європейського ринку. Мав розширений відеорежим і додаткові порти.",
-      "en": "A licensed Spectrum variant built by Timex for the European market. It had an extended video mode and additional ports."
-    },
-    "cpu": "Zilog Z80A",
-    "cpuClockMhz": 3.5,
-    "romKb": null,
-    "video": { "uk": "Розширені режими", "en": "Extended modes" },
-    "sound": null,
-    "storage": { "uk": "Касета", "en": "Cassette" },
-    "keyboard": null,
-    "massG": null,
-    "sources": [
-      {
-        "title": { "uk": "Timex Computer 2048 — Wikipedia (англ.)", "en": "Timex Computer 2048 — Wikipedia" },
-        "url": "https://en.wikipedia.org/wiki/Timex_Computer_2048",
-        "accessed": "2026-07-22"
-      },
-      {
-        "title": { "uk": "Timex Computer TC2048 — Spectrum Computing", "en": "Timex Computer TC2048 — Spectrum Computing" },
-        "url": "https://spectrumcomputing.co.uk/entry/1000508/Hardware/Timex_Computer_TC2048",
-        "accessed": "2026-07-22"
-      }
-    ],
-    "images": [
-      {
-        "src": "timex-tc2048.jpg",
-        "alt": {
-          "uk": "Timex Computer 2048 — чорний корпус із вентиляційною решіткою, напис «TIMEX COMPUTER 2048» і клавіатура з кольоровими позначками команд, вигляд під кутом",
-          "en": "Timex Computer 2048 — a black case with a ventilation grille, the “TIMEX COMPUTER 2048” label and a keyboard with colour-coded command legends, angled view"
         },
         "license": "museum-own",
         "author": "SnC Museum",

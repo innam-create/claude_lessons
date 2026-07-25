@@ -106,6 +106,35 @@ const peripherals = defineCollection({
   }),
 });
 
+// ТЗ §8.3: клони — окрема колекція (Didaktik, українські машини тощо). Схема —
+// та сама підмножина, що й периферія (без CPU/ОЗП/таблиці характеристик:
+// макет ClonesPage.dc.html малює лише сітку карток). Відмінності від периферії:
+//   • country — власний enum (CS/UA…, не GB/PT/US/PL): клони з інших країн;
+//     розширювати список при появі нових машин. countryName() бере підпис із
+//     i18n (country.CS/country.UA), тож нова країна = ще один рядок у ui.ts.
+//   • manufacturer — nullable: багато клонів аматорські / без відомого виробника
+//     (ТЗ §8.3: назви й місця часто приписані постфактум). null → у картці
+//     показуємо лише країну, без вигаданого виробника.
+// Тверді правила ті самі: ліцензійні поля обов'язкові (Zod), порожні images[]/
+// sources[] → чесні стани «Шукаємо фотографію» / «Джерела ще не додано».
+const clones = defineCollection({
+  loader: file('src/data/clones.json'),
+  schema: z.object({
+    title: bilingual,
+    manufacturer: z.string().nullable().default(null),
+    // ТЗ §8.3 відносить машини Timex (US/PT) до «клонів і ліцензійних варіантів».
+    country: z.enum(['CS', 'UA', 'PL', 'ES', 'RO', 'US', 'PT']),
+    year: z.string(),
+    desc: bilingual,
+    sources: z.array(source).default([]),
+    images: z.array(modelImage).default([]),
+    inMuseum: z.boolean(),
+    // ТЗ §8.3: атрибуцію клонів слід звірити фізично → чернетки виходять
+    // з 'low' і видимою позначкою «потребує уточнення» (ТЗ §2).
+    confidence: z.enum(['high', 'medium', 'low']),
+  }),
+});
+
 // ── Лонгріди (ТЗ §5: /history/{slug}/, §8.4) ───────────────────────
 // Тіло — Markdown; тому glob-loader, а не file(). Тверді правила ті самі, що
 // й для моделей: кожне зображення несе license/author/source_url/accessed
@@ -171,4 +200,4 @@ const longreads = defineCollection({
   }),
 });
 
-export const collections = { models, peripherals, longreads };
+export const collections = { models, peripherals, clones, longreads };

@@ -10,8 +10,6 @@ import {
   type License,
 } from './licenses';
 
-const COUNTRY_ORDER = ['GB', 'PT', 'US', 'PL'] as const;
-
 export function countryName(code: string, lang: Lang): string {
   const key = `country.${code}` as UIKey;
   return ui[lang][key] ?? code;
@@ -146,14 +144,19 @@ export function normalizeModels(
       lowConf: d.confidence === 'low',
       href: localizePath(`/models/${e.id}/`, lang),
     };
-  });
+  })
+    // ТЗ §5: каталог — за роком випуску (найдавніші спершу). Сортування стабільне,
+    // тож машини одного року зберігають порядок models.json (напр. 16K/48K — 1982).
+    // Впливає й на циклічні prev/next картки моделі — навігація теж хронологічна.
+    .sort((a, b) => Number(a.year) - Number(b.year));
 }
 
 export type FilterChip = { value: string; label: string };
 export type FilterGroup = { key: string; label: string; chips: FilterChip[] };
 
 // Групи фільтрів виводяться з наявних моделей (ТЗ §5.2:
-// рік · виробник · країна · обсяг ОЗП · наявність у музеї).
+// рік · виробник · обсяг ОЗП · наявність у музеї). Фільтр країни прибрано:
+// після переносу Timex у клони всі моделі — GB, тож фільтр був однозначним.
 export function buildFilterGroups(models: Model[], lang: Lang): FilterGroup[] {
   const t = useTranslations(lang);
   const uniq = <T>(arr: T[]): T[] => [...new Set(arr)];
@@ -163,10 +166,6 @@ export function buildFilterGroups(models: Model[], lang: Lang): FilterGroup[] {
   const makers = models
     .map((m) => m.maker)
     .filter((v, i, a) => a.indexOf(v) === i);
-
-  const countries = COUNTRY_ORDER.filter((c) =>
-    models.some((m) => m.countryCode === c),
-  );
 
   const rams = uniq(models.map((m) => m.ram)).sort((a, b) => {
     const na = parseInt(a, 10);
@@ -184,11 +183,6 @@ export function buildFilterGroups(models: Model[], lang: Lang): FilterGroup[] {
       key: 'maker',
       label: t('filter.maker'),
       chips: makers.map((m) => ({ value: m, label: m })),
-    },
-    {
-      key: 'country',
-      label: t('filter.country'),
-      chips: countries.map((c) => ({ value: c, label: countryName(c, lang) })),
     },
     {
       key: 'ram',

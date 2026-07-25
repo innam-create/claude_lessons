@@ -1,0 +1,21 @@
+---
+import type { Lang } from '../../../i18n/ui';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import ClonesView from '../../../components/ClonesView.astro';
+
+const lang: Lang = 'en';
+const path = '/clones/';
+---
+
+<BaseLayout
+  lang={lang}
+  path={path}
+  title="Clones · ZX Spectrum — SnC Museum"
+  description="European and Ukrainian ZX Spectrum clones: Didaktik and machines built after the Spectrum. An educational project by the Software and Computer Museum."
+>
+  <Header lang={lang} active="clones" path={path} />
+  <ClonesView lang={lang} />
+  <Footer lang={lang} />
+</BaseLayout>

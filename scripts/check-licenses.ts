@@ -15,27 +15,37 @@
 //
 // Запуск: npm run check:licenses
 
-import { readFileSync, readdirSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { LICENSES, ALLOWED_SOURCES } from '../src/lib/licenses.ts';
 
-const DATA = 'src/data/models.json';
-const ASSETS = 'src/assets/models';
+// Усі колекції з зображеннями звіряються тими самими правилами (ТЗ §7.2). Кожна
+// має власну теку ассетів, тож перевірка «файл на диску» і «файл-сирота» —
+// поколекційна. peripherals поки без фото (тека може не існувати — тоді пусто).
+const COLLECTIONS = [
+  { data: 'src/data/models.json', assets: 'src/assets/models', label: 'моделях' },
+  { data: 'src/data/peripherals.json', assets: 'src/assets/peripherals', label: 'периферії' },
+  { data: 'src/data/clones.json', assets: 'src/assets/clones', label: 'клонах' },
+];
 const REQUIRED = ['src', 'alt', 'license', 'author', 'source_url', 'accessed'];
 
 const problems: string[] = [];
-const used = new Set<string>();
+const today = new Date().toISOString().slice(0, 10);
 
 function fail(where: string, msg: string) {
   problems.push(`  ${where}\n    → ${msg}`);
 }
 
-const models = JSON.parse(readFileSync(DATA, 'utf8'));
-const onDisk = new Set(readdirSync(ASSETS));
-const today = new Date().toISOString().slice(0, 10);
-
 // Перевірка одного зображення. Однакові правила для images[] і museumPhoto —
 // обидва потрапляють у репозиторій, тож обидва мусять мати повну ліцензію.
-function checkImage(where: string, img: Record<string, unknown>) {
+// assets/used передаються ззовні: у кожної колекції — своя тека й свій набір
+// «використаних» файлів (для виявлення сиріт).
+function checkImage(
+  where: string,
+  img: Record<string, unknown>,
+  assets: string,
+  onDisk: Set<string>,
+  used: Set<string>,
+) {
   // 1. Обов'язкові поля (ТЗ §7.2). Порожній рядок = відсутнє поле.
   for (const field of REQUIRED) {
     const v = img[field];
@@ -64,7 +74,7 @@ function checkImage(where: string, img: Record<string, unknown>) {
   // 4. Файл існує (інакше картка мовчки з'їде в стан «без фото»).
   if (typeof img.src === 'string' && img.src) {
     used.add(img.src);
-    if (!onDisk.has(img.src)) fail(where, `файлу ${ASSETS}/${img.src} немає на диску`);
+    if (!onDisk.has(img.src)) fail(where, `файлу ${assets}/${img.src} немає на диску`);
   }
 
   // 5. Джерело з ієрархії ТЗ §7.1.
@@ -98,36 +108,52 @@ function checkImage(where: string, img: Record<string, unknown>) {
   }
 }
 
-for (const model of models) {
-  const images = model.images ?? [];
+const summary: string[] = [];
 
-  if (!Array.isArray(images)) {
-    fail(model.id, 'images має бути масивом (порожній = «Шукаємо фотографію»)');
-    continue;
+for (const { data, assets, label } of COLLECTIONS) {
+  const entries: Record<string, unknown>[] = JSON.parse(readFileSync(data, 'utf8'));
+  // Тека ассетів може ще не існувати (periferals без фото) — тоді порожньо.
+  const onDisk = new Set(existsSync(assets) ? readdirSync(assets) : []);
+  const used = new Set<string>();
+
+  for (const entry of entries) {
+    const id = (entry.id as string) ?? '?';
+    const images = entry.images ?? [];
+
+    if (!Array.isArray(images)) {
+      fail(`${id} (${data})`, 'images має бути масивом (порожній = «Шукаємо фотографію»)');
+      continue;
+    }
+
+    images.forEach((img: Record<string, unknown>, i: number) =>
+      checkImage(`${id} › images[${i}]`, img, assets, onDisk, used),
+    );
+
+    // museumPhoto — окреме поле (лише в моделях), ті самі правила ліцензій.
+    if (entry.museumPhoto)
+      checkImage(`${id} › museumPhoto`, entry.museumPhoto as Record<string, unknown>, assets, onDisk, used);
   }
 
-  images.forEach((img: Record<string, unknown>, i: number) =>
-    checkImage(`${model.id} › images[${i}]`, img),
+  // 7. Файли-сироти: лежать у репозиторії, але не згадані в даних — отже, їхня
+  // ліцензія ніде не задокументована. Для ТЗ §7.2 це те саме порушення.
+  for (const file of onDisk) {
+    if (file.startsWith('.')) continue;
+    if (!used.has(file)) {
+      fail(`${assets}/${file}`, `файл не згадується в ${data} — ліцензія не задокументована`);
+    }
+  }
+
+  const imageCount = entries.reduce(
+    (n: number, e) =>
+      n + ((e.images as unknown[])?.length ?? 0) + (e.museumPhoto ? 1 : 0),
+    0,
   );
-
-  // museumPhoto — окреме поле (не в images[]), ті самі правила ліцензій.
-  if (model.museumPhoto) checkImage(`${model.id} › museumPhoto`, model.museumPhoto);
+  const withoutPhoto = entries.filter((e) => !(e.images as unknown[])?.length).length;
+  summary.push(
+    `  ${imageCount} зображень у ${entries.length} ${label}` +
+      (withoutPhoto ? ` (${withoutPhoto} без фото — «Шукаємо фотографію», ТЗ §15)` : ''),
+  );
 }
-
-// 7. Файли-сироти: лежать у репозиторії, але не згадані в даних — отже, їхня
-// ліцензія ніде не задокументована. Для ТЗ §7.2 це те саме порушення.
-for (const file of onDisk) {
-  if (file.startsWith('.')) continue;
-  if (!used.has(file)) {
-    fail(`${ASSETS}/${file}`, 'файл не згадується в models.json — ліцензія не задокументована');
-  }
-}
-
-const imageCount = models.reduce(
-  (n: number, m: { images?: unknown[]; museumPhoto?: unknown }) =>
-    n + (m.images?.length ?? 0) + (m.museumPhoto ? 1 : 0),
-  0,
-);
 
 if (problems.length) {
   console.error(`\n✗ Перевірка ліцензій не пройдена (${problems.length}):\n`);
@@ -137,10 +163,5 @@ if (problems.length) {
   process.exit(1);
 }
 
-const withoutPhoto = models.filter((m: { images?: unknown[] }) => !m.images?.length).length;
-console.log(
-  `✓ Ліцензії: ${imageCount} зображень у ${models.length} моделях — усі поля заповнені.`,
-);
-if (withoutPhoto) {
-  console.log(`  ${withoutPhoto} моделей без фото — стан «Шукаємо фотографію» (ТЗ §15).`);
-}
+console.log('✓ Ліцензії — усі поля заповнені:');
+console.log(summary.join('\n'));

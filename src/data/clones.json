@@ -1,0 +1,431 @@
+[
+  {
+    "id": "didaktik-gama",
+    "title": { "uk": "Didaktik Gama", "en": "Didaktik Gama" },
+    "manufacturer": "Didaktik, Скалиця",
+    "country": "CS",
+    "year": "1987",
+    "desc": {
+      "uk": "Чехословацький клон ZX Spectrum: процесор Zilog Z80, 80 КБ ОЗП двома банками по 32 КБ. Вироблявся в Скалиці.",
+      "en": "A Czechoslovak ZX Spectrum clone: a Zilog Z80 processor and 80 KB of RAM in two 32 KB banks. Made in Skalica."
+    },
+    "sources": [
+      {
+        "title": { "uk": "Didaktik — Wikipedia (англ.)", "en": "Didaktik — Wikipedia" },
+        "url": "https://en.wikipedia.org/wiki/Didaktik",
+        "accessed": "2026-07-25"
+      },
+      {
+        "title": { "uk": "List of ZX Spectrum clones — Wikipedia", "en": "List of ZX Spectrum clones — Wikipedia" },
+        "url": "https://en.wikipedia.org/wiki/List_of_ZX_Spectrum_clones",
+        "accessed": "2026-07-25"
+      }
+    ],
+    "images": [
+      {
+        "src": "didaktik-gama.jpg",
+        "alt": {
+          "uk": "Клавіатура клона Didaktik Gama: чорний клиноподібний корпус, чорні клавіші з червоно-білими написами, підписи «didaktik gama» та «80 KB» на панелі.",
+          "en": "The keyboard of a Didaktik Gama clone: a black wedge-shaped case with black keys, red-and-white legends, and “didaktik gama” and “80 KB” markings on the panel."
+        },
+        "license": "PD",
+        "author": "Oldsoft",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Didaktik_Gama.jpg",
+        "accessed": "2026-07-25"
+      }
+    ],
+    "inMuseum": false,
+    "confidence": "medium"
+  },
+  {
+    "id": "didaktik-m",
+    "title": { "uk": "Didaktik M", "en": "Didaktik M" },
+    "manufacturer": "Didaktik, Скалиця",
+    "country": "CS",
+    "year": "1990",
+    "desc": {
+      "uk": "Пізніший чехословацький клон Spectrum: процесор Zilog Z80, 48 КБ ОЗП. Вироблявся в Скалиці, поширений у школах.",
+      "en": "A later Czechoslovak Spectrum clone: a Zilog Z80 and 48 KB RAM. Made in Skalica and common in schools."
+    },
+    "sources": [
+      {
+        "title": { "uk": "Didaktik — Wikipedia (англ.)", "en": "Didaktik — Wikipedia" },
+        "url": "https://en.wikipedia.org/wiki/Didaktik",
+        "accessed": "2026-07-25"
+      },
+      {
+        "title": { "uk": "List of ZX Spectrum clones — Wikipedia", "en": "List of ZX Spectrum clones — Wikipedia" },
+        "url": "https://en.wikipedia.org/wiki/List_of_ZX_Spectrum_clones",
+        "accessed": "2026-07-25"
+      }
+    ],
+    "images": [
+      {
+        "src": "didaktik-m.jpg",
+        "alt": {
+          "uk": "Клон Didaktik M: світло-сірий корпус із вентиляційними прорізами ззаду, білі клавіші з чорно-червоними написами, логотип «DIDAKTIK M», окремі клавіші-стрілки та кнопки POWER і RESET праворуч.",
+          "en": "A Didaktik M clone: a light-grey case with ventilation slots at the back, white keys with black-and-red legends, a “DIDAKTIK M” logo, separate cursor keys and POWER and RESET buttons on the right."
+        },
+        "license": "PD",
+        "author": "Oldsoft",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Didaktik_M.jpg",
+        "accessed": "2026-07-25"
+      }
+    ],
+    "inMuseum": false,
+    "confidence": "medium"
+  },
+  {
+    "id": "elwro-800-junior",
+    "title": { "uk": "Elwro 800 Junior", "en": "Elwro 800 Junior" },
+    "manufacturer": "Mera-Elwro, Вроцлав",
+    "country": "PL",
+    "year": "1986",
+    "desc": {
+      "uk": "Польський Spectrum-сумісний комп’ютер для шкіл: процесор Z80 (U880) на 3,5 МГц, 64 КБ ОЗП, підтримка шкільної мережі. Виробник — Mera-Elwro, Вроцлав.",
+      "en": "A Polish Spectrum-compatible computer for schools: a Z80 (U880) at 3.5 MHz, 64 KB RAM and classroom-network support. Made by Mera-Elwro, Wrocław."
+    },
+    "sources": [
+      {
+        "title": { "uk": "Elwro 800 Junior — Wikipedia (пол.)", "en": "Elwro 800 Junior — Wikipedia (Polish)" },
+        "url": "https://pl.wikipedia.org/wiki/Elwro_800_Junior",
+        "accessed": "2026-07-25"
+      },
+      {
+        "title": { "uk": "List of ZX Spectrum clones — Wikipedia", "en": "List of ZX Spectrum clones — Wikipedia" },
+        "url": "https://en.wikipedia.org/wiki/List_of_ZX_Spectrum_clones",
+        "accessed": "2026-07-25"
+      }
+    ],
+    "images": [
+      {
+        "src": "elwro-800-junior.jpg",
+        "alt": {
+          "uk": "Клон Elwro 800-2 Junior: коричневий корпус із ребристою кришкою, білою панеллю клавіатури, темними клавішами, підписами «elwro 800-2» та «JUNIOR» і окремими клавішами-стрілками праворуч.",
+          "en": "An Elwro 800-2 Junior clone: a brown case with a ridged lid, a white keyboard panel, dark keys, “elwro 800-2” and “JUNIOR” labels and separate cursor keys on the right."
+        },
+        "license": "CC-BY-3.0",
+        "author": "Marcin Robert Kaźmierczak",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Elwro_800-2_Junior.jpg",
+        "accessed": "2026-07-25"
+      }
+    ],
+    "inMuseum": false,
+    "confidence": "medium"
+  },
+  {
+    "id": "inves-spectrum-plus",
+    "title": { "uk": "Inves Spectrum +", "en": "Inves Spectrum +" },
+    "manufacturer": "Investrónica",
+    "country": "ES",
+    "year": "1986",
+    "desc": {
+      "uk": "Іспанський клон ZX Spectrum+ на переробленій платі: процесор Z80, 64 КБ ОЗП (48 КБ для користувача) і вбудований інтерфейс джойстика Kempston. Виробник — Investrónica.",
+      "en": "A Spanish ZX Spectrum+ clone with a redesigned board: a Z80 processor, 64 KB RAM (48 KB for the user) and a built-in Kempston joystick interface. Made by Investrónica."
+    },
+    "sources": [
+      {
+        "title": { "uk": "Investrónica Inves Spectrum + — Wikipedia (ісп.)", "en": "Investrónica Inves Spectrum + — Wikipedia (Spanish)" },
+        "url": "https://es.wikipedia.org/wiki/Investr%C3%B3nica_Inves_Spectrum_+",
+        "accessed": "2026-07-25"
+      },
+      {
+        "title": { "uk": "List of ZX Spectrum clones — Wikipedia", "en": "List of ZX Spectrum clones — Wikipedia" },
+        "url": "https://en.wikipedia.org/wiki/List_of_ZX_Spectrum_clones",
+        "accessed": "2026-07-25"
+      }
+    ],
+    "images": [
+      {
+        "src": "inves-spectrum-plus.jpg",
+        "alt": {
+          "uk": "Клон Inves Spectrum + у вітрині: чорний корпус у стилі ZX Spectrum+, червоний напис «Spectrum+» та іспанські підписи клавіш (BORRAR, EDITAR, VIDEO, CAMBIO). Стоїть на скляній полиці.",
+          "en": "An Inves Spectrum + clone in a display case: a black ZX Spectrum+-style case, a red “Spectrum+” logo and Spanish key legends (BORRAR, EDITAR, VIDEO, CAMBIO), resting on a glass shelf."
+        },
+        "license": "PD",
+        "author": "Fernando Sáenz Perez",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Inves_Spectrum%2B_(RetroMadrid_2018).jpg",
+        "accessed": "2026-07-25"
+      }
+    ],
+    "inMuseum": false,
+    "confidence": "medium"
+  },
+  {
+    "id": "cobra",
+    "title": { "uk": "CoBra", "en": "CoBra" },
+    "manufacturer": "ITCI, Брашов",
+    "country": "RO",
+    "year": "1988",
+    "desc": {
+      "uk": "Румунський клон на Z80, 48 КБ ОЗП (розширювані до 80 КБ); назва — від «COmputer BRAșov». Міг працювати як ZX Spectrum або під CP/M. Розроблений 1986 в ITCI, Брашов; студенти масово збирали власні копії.",
+      "en": "A Romanian Z80 clone with 48 KB RAM (expandable to 80 KB); its name comes from “COmputer BRAșov”. It could run as a ZX Spectrum or under CP/M. Designed in 1986 at ITCI in Brașov; students widely built their own copies."
+    },
+    "sources": [
+      {
+        "title": { "uk": "List of ZX Spectrum clones — Wikipedia", "en": "List of ZX Spectrum clones — Wikipedia" },
+        "url": "https://en.wikipedia.org/wiki/List_of_ZX_Spectrum_clones",
+        "accessed": "2026-07-25"
+      },
+      {
+        "title": { "uk": "Romanian DIY Computer Cobra — DataArt Museum", "en": "Romanian DIY Computer Cobra — DataArt Museum" },
+        "url": "https://museum.dataart.com/short-stories/romanian-diy-computer-cobra",
+        "accessed": "2026-07-25"
+      }
+    ],
+    "images": [
+      {
+        "src": "cobra.jpg",
+        "alt": {
+          "uk": "Клон CoBra: кремовий корпус із вентиляційними ребрами на правій половині кришки, механічна клавіатура з білими та сірими клавішами і невеликою червоно-білою наліпкою.",
+          "en": "A CoBra clone: a cream case with ventilation ridges on the right half of the lid, a mechanical keyboard with white and grey keys and a small red-and-white sticker."
+        },
+        "license": "CC-BY-SA-4.0",
+        "author": "Alex:D",
+        "source_url": "https://commons.wikimedia.org/wiki/File:CalculatorulCobra.jpg",
+        "accessed": "2026-07-25"
+      }
+    ],
+    "inMuseum": false,
+    "confidence": "medium"
+  },
+  {
+    "id": "hc-85",
+    "title": { "uk": "HC-85", "en": "HC-85" },
+    "manufacturer": "ICE Felix, Бухарест",
+    "country": "RO",
+    "year": "1985",
+    "desc": {
+      "uk": "Румунський домашній клон Spectrum: процесор Z80A на 3,5 МГц (або місцевий MMN80CPU), 64 КБ ОЗП. Виробник — ICE Felix, Бухарест; використовувався для навчання й аматорами.",
+      "en": "A Romanian home Spectrum clone: a Z80A at 3.5 MHz (or the local MMN80CPU) and 64 KB RAM. Made by ICE Felix, Bucharest; used in education and by hobbyists."
+    },
+    "sources": [
+      {
+        "title": { "uk": "HC (computer) — Wikipedia (англ.)", "en": "HC (computer) — Wikipedia" },
+        "url": "https://en.wikipedia.org/wiki/HC_(computer)",
+        "accessed": "2026-07-25"
+      },
+      {
+        "title": { "uk": "List of ZX Spectrum clones — Wikipedia", "en": "List of ZX Spectrum clones — Wikipedia" },
+        "url": "https://en.wikipedia.org/wiki/List_of_ZX_Spectrum_clones",
+        "accessed": "2026-07-25"
+      }
+    ],
+    "images": [
+      {
+        "src": "hc-85.jpg",
+        "alt": {
+          "uk": "Клон HC-85: темно-сірий корпус із вентиляційними ребрами на верхній половині, тисненим логотипом «ICE Felix», кремовими клавішами з чорно-червоними написами BASIC. На дерев’яному столі.",
+          "en": "An HC-85 clone: a dark-grey case with ventilation ridges on the upper half, an embossed “ICE Felix” logo, cream keys with black-and-red BASIC legends. On a wooden table."
+        },
+        "license": "CC-BY-SA-3.0",
+        "author": "Dragoș Tolescu",
+        "source_url": "https://commons.wikimedia.org/wiki/File:HC85_extended.jpg",
+        "accessed": "2026-07-25"
+      }
+    ],
+    "inMuseum": false,
+    "confidence": "medium"
+  },
+  {
+    "id": "robik",
+    "title": { "uk": "Robik", "en": "Robik" },
+    "manufacturer": "НВО «Ротор», Черкаси",
+    "country": "UA",
+    "year": "1989",
+    "desc": {
+      "uk": "Український клон Spectrum: процесор Z80A, 48 КБ ОЗП, клавіатура з перемиканням латиниці й кирилиці. Вироблявся НВО «Ротор» у Черкасах у 1989–1998 роках (понад 73 тис. штук).",
+      "en": "A Ukrainian Spectrum clone: a Z80A, 48 KB RAM and a keyboard that switches between Latin and Cyrillic. Made by NPO “Rotor” in Cherkasy in 1989–1998 (over 73,000 units)."
+    },
+    "sources": [
+      {
+        "title": { "uk": "Robik — Wikipedia (англ.)", "en": "Robik — Wikipedia" },
+        "url": "https://en.wikipedia.org/wiki/Robik",
+        "accessed": "2026-07-25"
+      },
+      {
+        "title": { "uk": "АЛП Робік — Вікіпедія", "en": "ALP Robik — Wikipedia (Ukrainian)" },
+        "url": "https://uk.wikipedia.org/wiki/%D0%90%D0%9B%D0%9F_%D0%A0%D0%BE%D0%B1%D1%96%D0%BA",
+        "accessed": "2026-07-25"
+      }
+    ],
+    "images": [
+      {
+        "src": "robik.jpg",
+        "alt": {
+          "uk": "Клон Robik: білий моноблок у формі клавіатури, логотип «робик» і вентиляційна решітка праворуч, окремі клавіші-стрілки, клавіші з латиницею й кирилицею.",
+          "en": "A Robik clone: a white keyboard-shaped monoblock with a “робик” logo and ventilation grille on the right, separate cursor keys, and keys carrying both Latin and Cyrillic letters."
+        },
+        "license": "museum-own",
+        "author": "SnC Museum",
+        "source_url": "https://www.instagram.com/sncmuseum/",
+        "accessed": "2026-07-25"
+      }
+    ],
+    "inMuseum": false,
+    "confidence": "medium"
+  },
+  {
+    "id": "ikar",
+    "title": { "uk": "Ікар-64", "en": "Ikar-64" },
+    "manufacturer": "«Хартрон» (НВО «Електроприлад»), Харків",
+    "country": "UA",
+    "year": "1991",
+    "desc": {
+      "uk": "Український клон ZX Spectrum 48K: зібраний на розсипній логіці (~48 мікросхем), 50-клавішна мембрана, металевий корпус. Випущений 1991 року в Харкові на заводі «Хартрон» (НВО «Електроприлад»); на старті показував «**** IKAR-64 ****».",
+      "en": "A Ukrainian ZX Spectrum 48K clone: built from discrete logic (~48 ICs), a 50-key membrane keyboard and a metal case. Released in 1991 in Kharkiv at the Khartron plant (NPO Elektroprylad); it displayed “**** IKAR-64 ****” on power-up."
+    },
+    "sources": [
+      {
+        "title": { "uk": "Икар-64 — SpeccyWiki", "en": "Ikar-64 — SpeccyWiki" },
+        "url": "https://speccy.info/%D0%98%D0%BA%D0%B0%D1%80-64",
+        "accessed": "2026-07-25"
+      },
+      {
+        "title": { "uk": "Ікар — Instagram @sncmuseum", "en": "Ikar — Instagram @sncmuseum" },
+        "url": "https://www.instagram.com/p/BVMvgUdnWKW/",
+        "accessed": "2026-07-25"
+      }
+    ],
+    "images": [
+      {
+        "src": "ikar.jpg",
+        "alt": {
+          "uk": "Клон Ікар-64: чорний клиноподібний корпус із вентиляційними прорізами, плоска мембранна клавіатура зі світло-блакитними клавішами, кольоровими написами BASIC і логотипом «IKAR» праворуч.",
+          "en": "An Ikar-64 clone: a black wedge-shaped case with ventilation slots, a flat membrane keyboard with pale-blue keys, coloured BASIC legends and an “IKAR” logo on the right."
+        },
+        "license": "museum-own",
+        "author": "SnC Museum",
+        "source_url": "https://www.instagram.com/p/BVMvgUdnWKW/",
+        "accessed": "2026-07-25"
+      }
+    ],
+    "inMuseum": false,
+    "confidence": "medium"
+  },
+  {
+    "id": "orel-bk-08",
+    "title": { "uk": "Орель БК-08", "en": "Orel BK-08" },
+    "manufacturer": "Дніпровський машинобудівний завод, Дніпро",
+    "country": "UA",
+    "year": "1989",
+    "desc": {
+      "uk": "Український клон ZX Spectrum на TTL-логіці: процесор Z80A (або UA880A) на 3,5 МГц, 64 КБ ОЗП із «тіньовим» ПЗП, розширена 67-клавішна клавіатура з кількома розкладками. Випущений 1989 року на Дніпровському машинобудівному заводі; вироблявся до середини 1990-х.",
+      "en": "A Ukrainian ZX Spectrum clone built on TTL logic: a Z80A (or UA880A) at 3.5 MHz, 64 KB RAM with “shadow” ROM and an extended 67-key keyboard with several layouts. Released in 1989 at the Dnipro machine-building plant; produced into the mid-1990s."
+    },
+    "sources": [
+      {
+        "title": { "uk": "OREL BK-08 — Centre for Computing History", "en": "OREL BK-08 — Centre for Computing History" },
+        "url": "https://www.computinghistory.org.uk/det/29848/OREL-BK-08-Ukraine-Spectrum-Clone/",
+        "accessed": "2026-07-25"
+      },
+      {
+        "title": { "uk": "Orel BK-08 — oldcomputer.info", "en": "Orel BK-08 — oldcomputer.info" },
+        "url": "http://oldcomputer.info/8bit/orel/index.htm",
+        "accessed": "2026-07-25"
+      }
+    ],
+    "images": [
+      {
+        "src": "orel-bk-08.jpg",
+        "alt": {
+          "uk": "Клон Орель БК-08: двоблочний сірий комп’ютер — системний блок із вентиляційними прорізами, червоними кнопками NMI й RESET та логотипом «орель БК-08», і окрема клавіатура з латинсько-кириличними клавішами. Позаду — телевізор, на дерев’яному столі.",
+          "en": "An Orel BK-08 clone: a two-part grey computer — a system unit with ventilation slots, red NMI and RESET buttons and an “орель БК-08” logo, and a separate keyboard with Latin-Cyrillic keys. A TV set sits behind it on a wooden table."
+        },
+        "license": "museum-own",
+        "author": "SnC Museum",
+        "source_url": "https://www.instagram.com/sncmuseum/",
+        "accessed": "2026-07-25"
+      }
+    ],
+    "inMuseum": false,
+    "confidence": "medium"
+  },
+  {
+    "id": "timex-sinclair-1000",
+    "title": { "uk": "Timex Sinclair 1000", "en": "Timex Sinclair 1000" },
+    "manufacturer": "Timex Corporation",
+    "country": "US",
+    "year": "1982",
+    "desc": {
+      "uk": "Американська ліцензійна версія ZX81 (Timex-Sinclair): процесор Zilog Z80A, 2 КБ ОЗП, монохромна блокова графіка, без звуку. Перший домашній комп’ютер СП Timex і Sinclair, ціна $99,95.",
+      "en": "The American licensed version of the ZX81 (Timex-Sinclair): a Zilog Z80A, 2 KB RAM, monochrome block graphics and no sound. Timex-Sinclair’s first home computer, priced at $99.95."
+    },
+    "sources": [
+      {
+        "title": { "uk": "Timex Sinclair 1000 — Wikipedia (англ.)", "en": "Timex Sinclair 1000 — Wikipedia" },
+        "url": "https://en.wikipedia.org/wiki/Timex_Sinclair_1000",
+        "accessed": "2026-07-22"
+      },
+      {
+        "title": { "uk": "Timex/Sinclair 1000 — TimexSinclair.com", "en": "Timex/Sinclair 1000 — TimexSinclair.com" },
+        "url": "https://www.timexsinclair.com/computers/timex-sinclair-1000/",
+        "accessed": "2026-07-22"
+      }
+    ],
+    "images": [
+      {
+        "src": "timex-sinclair-1000.jpg",
+        "alt": {
+          "uk": "Timex Sinclair 1000 — невеликий чорний клиноподібний корпус із плоскою мембранною клавіатурою, вигляд спереду-справа",
+          "en": "Timex Sinclair 1000 — a small black wedge-shaped case with a flat membrane keyboard, front-right view"
+        },
+        "license": "PD",
+        "author": "Marco Tangerino",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Timex_Sinclair_1000_FR.jpg",
+        "accessed": "2026-07-22"
+      },
+      {
+        "src": "timex-sinclair-1000-museum.jpg",
+        "alt": {
+          "uk": "Timex Sinclair 1000 у вітрині музею на прозорій підставці: чорний клиноподібний корпус, напис «TIMEX sinclair 1000» угорі та мембранна клавіатура з чорними клавішами",
+          "en": "Timex Sinclair 1000 on a clear stand in the museum display case: a black wedge-shaped case with the “TIMEX sinclair 1000” badge on top and a black membrane keyboard"
+        },
+        "license": "museum-own",
+        "author": "SnC Museum",
+        "source_url": "https://www.instagram.com/sncmuseum/",
+        "accessed": "2026-07-25"
+      }
+    ],
+    "inMuseum": true,
+    "confidence": "high"
+  },
+  {
+    "id": "timex-tc2048",
+    "title": { "uk": "Timex TC2048", "en": "Timex TC2048" },
+    "manufacturer": "Timex Portugal",
+    "country": "PT",
+    "year": "1984",
+    "desc": {
+      "uk": "Ліцензійний варіант Spectrum, вироблений Timex Portugal для Європи: процесор Zilog Z80A на 3,5 МГц, 48 КБ ОЗП, розширені відеорежими й додаткові порти.",
+      "en": "A licensed Spectrum variant built by Timex Portugal for Europe: a Zilog Z80A at 3.5 MHz, 48 KB RAM, extended video modes and additional ports."
+    },
+    "sources": [
+      {
+        "title": { "uk": "Timex Computer 2048 — Wikipedia (англ.)", "en": "Timex Computer 2048 — Wikipedia" },
+        "url": "https://en.wikipedia.org/wiki/Timex_Computer_2048",
+        "accessed": "2026-07-22"
+      },
+      {
+        "title": { "uk": "Timex Computer TC2048 — Spectrum Computing", "en": "Timex Computer TC2048 — Spectrum Computing" },
+        "url": "https://spectrumcomputing.co.uk/entry/1000508/Hardware/Timex_Computer_TC2048",
+        "accessed": "2026-07-22"
+      }
+    ],
+    "images": [
+      {
+        "src": "timex-tc2048.jpg",
+        "alt": {
+          "uk": "Timex Computer 2048 — чорний корпус із вентиляційною решіткою, напис «TIMEX COMPUTER 2048» і клавіатура з кольоровими позначками команд, вигляд під кутом",
+          "en": "Timex Computer 2048 — a black case with a ventilation grille, the “TIMEX COMPUTER 2048” label and a keyboard with colour-coded command legends, angled view"
+        },
+        "license": "museum-own",
+        "author": "SnC Museum",
+        "source_url": "https://www.instagram.com/sncmuseum/",
+        "accessed": "2026-07-25"
+      }
+    ],
+    "inMuseum": false,
+    "confidence": "high"
+  }
+]

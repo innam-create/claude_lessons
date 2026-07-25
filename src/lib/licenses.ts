@@ -13,10 +13,15 @@ import type { Lang } from '../i18n/ui';
 // на Wikimedia Commons (author Thomas Conté) — під CC BY-SA 2.0. Ті самі принципи:
 // кадрування (не ND) і комерція (не NC) дозволені.
 //
+// CC-BY-3.0 додано за рішенням від 2026-07-25 (ТЗ §14): фото клона Elwro 800 Junior
+// на Wikimedia Commons (author Marcin R. Kaźmierczak) — під CC BY 3.0. Не ND і не NC
+// (навіть вільніша за вже дозволену CC-BY-NC-SA-4.0), тож принципів §14 не порушує.
+//
 // ND-ліцензії сюди не додавати: кадрування під 4:3 — похідний твір (ТЗ §7.4).
 export const LICENSES = [
   'PD',
   'CC0',
+  'CC-BY-3.0',
   'CC-BY-4.0',
   'CC-BY-SA-2.0',
   'CC-BY-SA-2.5',
@@ -44,6 +49,7 @@ export function deriveCommercialUse(license: License): boolean {
 const LICENSE_URLS: Record<License, string | null> = {
   PD: null,
   CC0: 'https://creativecommons.org/publicdomain/zero/1.0/',
+  'CC-BY-3.0': 'https://creativecommons.org/licenses/by/3.0/',
   'CC-BY-4.0': 'https://creativecommons.org/licenses/by/4.0/',
   'CC-BY-SA-2.0': 'https://creativecommons.org/licenses/by-sa/2.0/',
   'CC-BY-SA-2.5': 'https://creativecommons.org/licenses/by-sa/2.5/',
@@ -58,6 +64,7 @@ const LICENSE_URLS: Record<License, string | null> = {
 const LICENSE_LABELS: Record<License, string> = {
   PD: 'Public domain',
   CC0: 'CC0 1.0',
+  'CC-BY-3.0': 'CC BY 3.0',
   'CC-BY-4.0': 'CC BY 4.0',
   'CC-BY-SA-2.0': 'CC BY-SA 2.0',
   'CC-BY-SA-2.5': 'CC BY-SA 2.5',

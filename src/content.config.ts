@@ -122,7 +122,7 @@ const clones = defineCollection({
   schema: z.object({
     title: bilingual,
     manufacturer: z.string().nullable().default(null),
-    country: z.enum(['CS', 'UA']),
+    country: z.enum(['CS', 'UA', 'PL', 'ES', 'RO']),
     year: z.string(),
     desc: bilingual,
     sources: z.array(source).default([]),

@@ -204,6 +204,8 @@ export const ui = {
     'country.PL': 'Польща',
     'country.CS': 'Чехословаччина',
     'country.UA': 'Україна',
+    'country.ES': 'Іспанія',
+    'country.RO': 'Румунія',
 
     // футер
     'footer.tagline':
@@ -393,6 +395,8 @@ export const ui = {
     'country.PL': 'Poland',
     'country.CS': 'Czechoslovakia',
     'country.UA': 'Ukraine',
+    'country.ES': 'Spain',
+    'country.RO': 'Romania',
 
     'footer.tagline':
       'Software & Computer Museum — the first permanent museum of software and computers in Ukraine.',

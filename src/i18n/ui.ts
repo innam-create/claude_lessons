@@ -161,9 +161,10 @@ export const ui = {
     // софт (SoftwarePage.dc.html)
     'software.title': 'Софт та ігри',
     'software.intro':
-      'Програми та ігри, що виходили на касетах для Spectrum. Наведені відомості — попередні й потребують звірки з джерелами.',
+      'Програми та ігри, що виходили на касетах для Spectrum. Кожну позицію звірено з джерелами.',
     'software.note':
       'Обкладинки та скриншоти додамо, щойно знайдемо їх із вільною ліцензією. Поки що — текстовий каталог.',
+    'software.sources': 'Джерела',
 
     // контакти (ContactsPage.dc.html)
     'contacts.title': 'Контакти',
@@ -345,9 +346,10 @@ export const ui = {
 
     'software.title': 'Software & games',
     'software.intro':
-      'Programs and games that shipped on cassette for the Spectrum. The details below are provisional and need checking against sources.',
+      'Programs and games that shipped on cassette for the Spectrum. Every entry is checked against its sources.',
     'software.note':
       'Covers and screenshots will be added once we find freely licensed ones. For now — a text catalogue.',
+    'software.sources': 'Sources',
 
     'contacts.title': 'Contacts',
     'contacts.intro':

@@ -13,14 +13,18 @@ const homeHref = localizePath('/', lang);
 // Текстовий каталог відомого ПЗ для Spectrum. Показуємо ФАКТИ (назва, видавець,
 // рік, жанр) — не відтворюємо захищені авторським правом обкладинки/скриншоти
 // (у макеті вони під «fair use», що не є чистою ліцензією за §7.1, і зображень
-// ми не маємо). Дані провізорні до звірки з джерелами (§12).
+// ми не маємо). Кожну позицію звірено з ≥2 джерелами (ТЗ §12): Wikipedia +
+// Spectrum Computing (наступник World of Spectrum, стабільні числові entry-ID).
+type Source = { title: string; url: string; accessed: string };
 type Prog = {
   name: string;
   publisher: string;
   year: string;
   genre: Record<Lang, string>;
   desc: Record<Lang, string>;
+  sources: Source[];
 };
+const ACCESSED = '2026-07-28';
 const programs: Prog[] = [
   {
     name: 'Manic Miner',
@@ -31,6 +35,10 @@ const programs: Prog[] = [
       uk: 'Легендарний платформер Метью Сміта.',
       en: 'Matthew Smith’s legendary platformer.',
     },
+    sources: [
+      { title: 'Manic Miner — Wikipedia', url: 'https://en.wikipedia.org/wiki/Manic_Miner', accessed: ACCESSED },
+      { title: 'Manic Miner — Spectrum Computing', url: 'https://spectrumcomputing.co.uk/entry/3012/ZX-Spectrum/Manic_Miner', accessed: ACCESSED },
+    ],
   },
   {
     name: 'Jet Set Willy',
@@ -41,6 +49,10 @@ const programs: Prog[] = [
       uk: 'Продовження Manic Miner з велетенським особняком.',
       en: 'The Manic Miner sequel, set in a vast mansion.',
     },
+    sources: [
+      { title: 'Jet Set Willy — Wikipedia', url: 'https://en.wikipedia.org/wiki/Jet_Set_Willy', accessed: ACCESSED },
+      { title: 'Jet Set Willy — Spectrum Computing', url: 'https://spectrumcomputing.co.uk/entry/2589/ZX-Spectrum/Jet_Set_Willy', accessed: ACCESSED },
+    ],
   },
   {
     name: 'Sinclair BASIC',
@@ -51,6 +63,10 @@ const programs: Prog[] = [
       uk: 'Вбудована мова програмування Spectrum.',
       en: 'The Spectrum’s built-in programming language.',
     },
+    sources: [
+      { title: 'Sinclair BASIC — Wikipedia', url: 'https://en.wikipedia.org/wiki/Sinclair_BASIC', accessed: ACCESSED },
+      { title: 'ZX Spectrum — Wikipedia', url: 'https://en.wikipedia.org/wiki/ZX_Spectrum', accessed: ACCESSED },
+    ],
   },
   {
     name: 'Elite',
@@ -61,6 +77,10 @@ const programs: Prog[] = [
       uk: 'Відкритий космос і торгівля у 8 бітах.',
       en: 'Open-ended space trading in 8 bits.',
     },
+    sources: [
+      { title: 'Elite — Wikipedia', url: 'https://en.wikipedia.org/wiki/Elite_(video_game)', accessed: ACCESSED },
+      { title: 'Elite — Spectrum Computing', url: 'https://spectrumcomputing.co.uk/entry/1601/ZX-Spectrum/Elite', accessed: ACCESSED },
+    ],
   },
   {
     name: 'Chuckie Egg',
@@ -71,6 +91,10 @@ const programs: Prog[] = [
       uk: 'Класична аркада про збирання яєць.',
       en: 'A classic egg-collecting arcade game.',
     },
+    sources: [
+      { title: 'Chuckie Egg — Wikipedia', url: 'https://en.wikipedia.org/wiki/Chuckie_Egg', accessed: ACCESSED },
+      { title: 'Chuckie Egg — Spectrum Computing', url: 'https://spectrumcomputing.co.uk/entry/958/ZX-Spectrum/Chuckie_Egg', accessed: ACCESSED },
+    ],
   },
   {
     name: 'The Hobbit',
@@ -81,8 +105,14 @@ const programs: Prog[] = [
       uk: 'Ілюстрований текстовий квест за Толкіном.',
       en: 'An illustrated text adventure after Tolkien.',
     },
+    sources: [
+      { title: 'The Hobbit (1982 video game) — Wikipedia', url: 'https://en.wikipedia.org/wiki/The_Hobbit_(1982_video_game)', accessed: ACCESSED },
+      { title: 'The Hobbit — Spectrum Computing', url: 'https://spectrumcomputing.co.uk/entry/6440/ZX-Spectrum/The_Hobbit', accessed: ACCESSED },
+    ],
   },
 ];
+
+const hostOf = (url: string) => new URL(url).hostname.replace(/^www\./, '');
 ---
 
 <main data-pagefind-body>
@@ -108,6 +138,18 @@ const programs: Prog[] = [
             <h2 class="name">{p.name}</h2>
             <div class="publisher">{p.publisher}</div>
             <p class="desc">{p.desc[lang]}</p>
+            <div class="sources">
+              <span class="src-label">{t('software.sources')}</span>
+              <ul>
+                {p.sources.map((s) => (
+                  <li>
+                    <a href={s.url} rel="noopener" target="_blank" title={s.title}>
+                      {hostOf(s.url)}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </article>
         ))
       }
@@ -206,6 +248,34 @@ const programs: Prog[] = [
     line-height: 1.5;
     margin: 0;
   }
+  /* Джерела (ТЗ §12): пригашений блок під описом, притиснутий донизу картки. */
+  .sources {
+    margin-top: auto;
+    padding-top: 12px;
+  }
+  .src-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-dim);
+  }
+  .sources ul {
+    list-style: none;
+    margin: 6px 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 12px;
+  }
+  .sources a {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--zx-yellow);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+  .sources a:hover { border-bottom-color: currentColor; }
 
   @media (max-width: 1024px) {
     .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }

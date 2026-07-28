@@ -15,7 +15,8 @@ const homeHref = localizePath('/', lang);
 // (у макеті вони під «fair use», що не є чистою ліцензією за §7.1, і зображень
 // ми не маємо). Кожну позицію звірено з ≥2 джерелами (ТЗ §12): Wikipedia +
 // Spectrum Computing (наступник World of Spectrum, стабільні числові entry-ID).
-type Source = { title: string; url: string; accessed: string };
+// label — короткий підпис посилання (назва джерела); title — повний опис у тултипі.
+type Source = { label: string; title: string; url: string; accessed: string };
 type Prog = {
   name: string;
   publisher: string;
@@ -36,8 +37,8 @@ const programs: Prog[] = [
       en: 'Matthew Smith’s legendary platformer.',
     },
     sources: [
-      { title: 'Manic Miner — Wikipedia', url: 'https://en.wikipedia.org/wiki/Manic_Miner', accessed: ACCESSED },
-      { title: 'Manic Miner — Spectrum Computing', url: 'https://spectrumcomputing.co.uk/entry/3012/ZX-Spectrum/Manic_Miner', accessed: ACCESSED },
+      { label: 'Wikipedia', title: 'Manic Miner — Wikipedia', url: 'https://en.wikipedia.org/wiki/Manic_Miner', accessed: ACCESSED },
+      { label: 'Spectrum Computing', title: 'Manic Miner — Spectrum Computing', url: 'https://spectrumcomputing.co.uk/entry/3012/ZX-Spectrum/Manic_Miner', accessed: ACCESSED },
     ],
   },
   {
@@ -50,8 +51,8 @@ const programs: Prog[] = [
       en: 'The Manic Miner sequel, set in a vast mansion.',
     },
     sources: [
-      { title: 'Jet Set Willy — Wikipedia', url: 'https://en.wikipedia.org/wiki/Jet_Set_Willy', accessed: ACCESSED },
-      { title: 'Jet Set Willy — Spectrum Computing', url: 'https://spectrumcomputing.co.uk/entry/2589/ZX-Spectrum/Jet_Set_Willy', accessed: ACCESSED },
+      { label: 'Wikipedia', title: 'Jet Set Willy — Wikipedia', url: 'https://en.wikipedia.org/wiki/Jet_Set_Willy', accessed: ACCESSED },
+      { label: 'Spectrum Computing', title: 'Jet Set Willy — Spectrum Computing', url: 'https://spectrumcomputing.co.uk/entry/2589/ZX-Spectrum/Jet_Set_Willy', accessed: ACCESSED },
     ],
   },
   {
@@ -64,8 +65,8 @@ const programs: Prog[] = [
       en: 'The Spectrum’s built-in programming language.',
     },
     sources: [
-      { title: 'Sinclair BASIC — Wikipedia', url: 'https://en.wikipedia.org/wiki/Sinclair_BASIC', accessed: ACCESSED },
-      { title: 'ZX Spectrum — Wikipedia', url: 'https://en.wikipedia.org/wiki/ZX_Spectrum', accessed: ACCESSED },
+      { label: 'Wikipedia: Sinclair BASIC', title: 'Sinclair BASIC — Wikipedia', url: 'https://en.wikipedia.org/wiki/Sinclair_BASIC', accessed: ACCESSED },
+      { label: 'Wikipedia: ZX Spectrum', title: 'ZX Spectrum — Wikipedia', url: 'https://en.wikipedia.org/wiki/ZX_Spectrum', accessed: ACCESSED },
     ],
   },
   {
@@ -78,8 +79,8 @@ const programs: Prog[] = [
       en: 'Open-ended space trading in 8 bits.',
     },
     sources: [
-      { title: 'Elite — Wikipedia', url: 'https://en.wikipedia.org/wiki/Elite_(video_game)', accessed: ACCESSED },
-      { title: 'Elite — Spectrum Computing', url: 'https://spectrumcomputing.co.uk/entry/1601/ZX-Spectrum/Elite', accessed: ACCESSED },
+      { label: 'Wikipedia', title: 'Elite — Wikipedia', url: 'https://en.wikipedia.org/wiki/Elite_(video_game)', accessed: ACCESSED },
+      { label: 'Spectrum Computing', title: 'Elite — Spectrum Computing', url: 'https://spectrumcomputing.co.uk/entry/1601/ZX-Spectrum/Elite', accessed: ACCESSED },
     ],
   },
   {
@@ -92,8 +93,8 @@ const programs: Prog[] = [
       en: 'A classic egg-collecting arcade game.',
     },
     sources: [
-      { title: 'Chuckie Egg — Wikipedia', url: 'https://en.wikipedia.org/wiki/Chuckie_Egg', accessed: ACCESSED },
-      { title: 'Chuckie Egg — Spectrum Computing', url: 'https://spectrumcomputing.co.uk/entry/958/ZX-Spectrum/Chuckie_Egg', accessed: ACCESSED },
+      { label: 'Wikipedia', title: 'Chuckie Egg — Wikipedia', url: 'https://en.wikipedia.org/wiki/Chuckie_Egg', accessed: ACCESSED },
+      { label: 'Spectrum Computing', title: 'Chuckie Egg — Spectrum Computing', url: 'https://spectrumcomputing.co.uk/entry/958/ZX-Spectrum/Chuckie_Egg', accessed: ACCESSED },
     ],
   },
   {
@@ -106,13 +107,11 @@ const programs: Prog[] = [
       en: 'An illustrated text adventure after Tolkien.',
     },
     sources: [
-      { title: 'The Hobbit (1982 video game) — Wikipedia', url: 'https://en.wikipedia.org/wiki/The_Hobbit_(1982_video_game)', accessed: ACCESSED },
-      { title: 'The Hobbit — Spectrum Computing', url: 'https://spectrumcomputing.co.uk/entry/6440/ZX-Spectrum/The_Hobbit', accessed: ACCESSED },
+      { label: 'Wikipedia', title: 'The Hobbit (1982 video game) — Wikipedia', url: 'https://en.wikipedia.org/wiki/The_Hobbit_(1982_video_game)', accessed: ACCESSED },
+      { label: 'Spectrum Computing', title: 'The Hobbit — Spectrum Computing', url: 'https://spectrumcomputing.co.uk/entry/6440/ZX-Spectrum/The_Hobbit', accessed: ACCESSED },
     ],
   },
 ];
-
-const hostOf = (url: string) => new URL(url).hostname.replace(/^www\./, '');
 ---
 
 <main data-pagefind-body>
@@ -144,7 +143,7 @@ const hostOf = (url: string) => new URL(url).hostname.replace(/^www\./, '');
                 {p.sources.map((s) => (
                   <li>
                     <a href={s.url} rel="noopener" target="_blank" title={s.title}>
-                      {hostOf(s.url)}
+                      {s.label}
                     </a>
                   </li>
                 ))}

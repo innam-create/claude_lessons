@@ -95,19 +95,19 @@ The hardest part for any cloner was not the processor but the custom ULA chip. R
 
 So the clones took a detour: they reproduced the ULA’s functions with a set of ordinary logic chips. This is the same design logic in reverse — where Sinclair folded dozens of chips into one, the cloners unfolded that one chip back into dozens. The price was different timing and small incompatibilities, because of which some games sensitive to exact timing behaved on clones not quite as on the original.
 
-> **Design inheritance.** Here you can see clearly how Sinclair’s engineering decision shaped the fate of the platform thousands of kilometres away. The custom ULA, devised to cut costs on a British production line, became the main technical challenge for a Ukrainian or Russian amateur — and at the same time a spur to their own engineering creativity out of a handful of logic chips.
+> **Design inheritance.** Here you can see clearly how Sinclair’s engineering decision shaped the fate of the platform thousands of kilometres away. The custom ULA, devised to cut costs on a British production line, became the main technical challenge for a Ukrainian amateur — and at the same time a spur to their own engineering creativity out of a handful of logic chips.
 
-## The processor: imported first, then homegrown
+## The processor: imports and analogues
 
-The second key component was the Z80 processor itself. At first it had to be imported (often semi-legally), and it was precisely the shortage of processors that held back scale. That changed at the turn of the decade: by the late 1980s and early 1990s, when Spectrum clones were already spreading across the Union, a domestic Z80 was needed.
+The second key component was the Z80 processor itself. At first it had to be imported (often semi-legally), and it was precisely the shortage of processors that held back scale. Analogues also helped: for instance the East German Z80 clone, the U880, which turns up in some Ukrainian builds too (the Orel BK-08 could be fitted with the UA880A version).
 
-The answer was a Soviet analogue — the T34VM1 (also known as the KR1858VM1). Its development began in 1990 at the Angstrem plant in Zelenograd together with a specialist institute, and production samples appear from 1991 — made directly “for” Spectrum-compatible machines. The arrival of a domestic processor removed the main bottleneck: it is the early 1990s that saw the real “Spectrum boom.”
+At the turn of the decade, in the late 1980s and early 1990s, Z80-compatible chips became more available, and this removed the main bottleneck. It is the early 1990s that saw the most active wave of self-assembly.
 
-## The landscape of clones: from “Leningrad” to Ukrainian builds
+## The landscape of clones: the Ukrainian machines
 
-Against this background dozens of different clones appeared. Among the best known are the “Leningrad” (the first version in 1988, the second in 1991), the “Pentagon,” whose board was copied all over the former USSR roughly between 1991 and 1996, and the “Scorpion” series from St. Petersburg. In all, researchers count over fifty different versions.
+Against this background, dozens of different clones appeared across the whole post-Soviet space — researchers count over fifty versions. But what interests us above all is the Ukrainian part of this landscape: the machines that were designed and built in Ukraine.
 
-Among them were Ukrainian machines too. Our museum’s catalogue describes, in particular, the Robik, the Ikar-64 and the Orel BK-08 — each with photographs and sources. We deliberately do not give their exact dates and details here: in public sources the years of individual Ukrainian builds differ, so it is more honest to treat each machine separately, in the [clones catalogue](/en/clones/), where the attribution comes with notes on the level of certainty.
+Our museum’s catalogue describes, in particular, the Robik (Cherkasy), the Ikar-64 (Kharkiv) and the Orel BK-08 (Dnipro) — each with photographs and sources. We deliberately do not give their exact dates and details here: in public sources the years of individual Ukrainian builds differ, so it is more honest to treat each machine separately, in the [clones catalogue](/en/clones/), where the attribution comes with notes on the level of certainty.
 
 > **What we are checking.** The most delicate part of this topic is the local specifics: who soldered a given machine, where and when, from which schematics, and where they got the parts. Forums and recollections are not a sufficient source here. If you have documents, photographs of boards or schematics from the magazines of those years — send them to the museum: it is from such evidence that a verified history of the Ukrainian Spectrum is built.
 
@@ -115,4 +115,4 @@ Among them were Ukrainian machines too. Our museum’s catalogue describes, in p
 
 The post-Soviet clones are not a side branch but a distinct, very Ukrainian page in the Spectrum’s history — and it is the core of our collection. The Ukrainian machines — the Robik, the Ikar-64, the Orel BK-08 — are kept in the museum and documented in the [clones catalogue](/en/clones/); they are not currently on physical display in the permanent exhibition, but it is around them that our story of how a global platform became a local one is built.
 
-Later in this block, in more detail: a typology of the clones, the radio market as the infrastructure of the parts-and-cassettes trade, and the culture of self-assembly, when a computer was, quite literally, soldered together on a kitchen table.
+Later in this block, in more detail: the individual Ukrainian machines, such as the Kharkiv-made Ikar-64; the radio market as the infrastructure of the parts-and-cassettes trade; and the culture of self-assembly, when a computer was, quite literally, soldered together on a kitchen table.

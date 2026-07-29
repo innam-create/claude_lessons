@@ -142,6 +142,9 @@ const meta = [
     text-transform: uppercase;
     margin: 0;
     line-height: 1.02;
+    /* Довгий нерозривний токен у заголовку (напр. «ЛЕНІНГРАД» піксельним
+       шрифтом) інакше дає горизонтальний скрол на вузьких екранах. */
+    overflow-wrap: anywhere;
   }
   .meta {
     font-family: var(--font-mono);

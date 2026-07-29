@@ -292,6 +292,11 @@ const timeline: { year: string; event: Record<Lang, string> }[] = [
     color: var(--zx-white);
     text-transform: uppercase;
     line-height: 1.05;
+    /* Довгі нерозривні токени в заголовку (напр. «ЛЕНІНГРАД» піксельним
+       шрифтом) інакше розсувають grid-колонку й дають горизонтальний скрол
+       на вузьких екранах (ТЗ §responsive, тест 320px). anywhere дозволяє
+       перенос усередині слова лише коли воно не вміщується. */
+    overflow-wrap: anywhere;
   }
   .art-lead {
     font-size: 16px;

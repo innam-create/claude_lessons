@@ -1,7 +1,10 @@
 ---
+import { Image } from 'astro:assets';
 import type { Lang } from '../i18n/ui';
 import { useTranslations, localizePath } from '../i18n/ui';
+import { licenseLabel, licenseUrl, sourceLabel, type License } from '../lib/licenses';
 import Breadcrumbs from './Breadcrumbs.astro';
+import cassettesPhoto from '../assets/software/spectrum-cassettes.jpg';
 
 interface Props {
   lang: Lang;
@@ -11,11 +14,26 @@ const t = useTranslations(lang);
 const homeHref = localizePath('/', lang);
 
 // Текстовий каталог відомого ПЗ для Spectrum. Показуємо ФАКТИ (назва, видавець,
-// рік, жанр) — не відтворюємо захищені авторським правом обкладинки/скриншоти
-// (у макеті вони під «fair use», що не є чистою ліцензією за §7.1, і зображень
-// ми не маємо). Кожну позицію звірено з ≥2 джерелами (ТЗ §12): Wikipedia +
+// рік, жанр, короткий нарис) — але НЕ відтворюємо захищені авторським правом
+// обкладинки/скриншоти самих ігор (§7.1: fair use — не чиста ліцензія). Єдине
+// зображення розділу — вільноліцензійна контекстна світлина «софт на касетах»
+// (нижче). Кожну позицію звірено з ≥2 джерелами (ТЗ §12): Wikipedia +
 // Spectrum Computing (наступник World of Spectrum, стабільні числові entry-ID).
 // label — короткий підпис посилання (назва джерела); title — повний опис у тултипі.
+
+// Головна світлина розділу — вільноліцензійна (§7.1/§7.3): ZX Spectrum із
+// набором касет і книжок. Museum Rotterdam, CC BY-SA 3.0, Wikimedia Commons.
+const hero = {
+  alt: {
+    uk: 'ZX Spectrum 48K із гумовою клавіатурою й блоком живлення; поряд — стос програмних і ігрових касет та кілька книжок про Spectrum.',
+    en: 'A ZX Spectrum 48K with a rubber keyboard and power supply; beside it a stack of software and game cassettes and several ZX Spectrum books.',
+  } as Record<Lang, string>,
+  author: 'Museum Rotterdam',
+  license: 'CC-BY-SA-3.0' as License,
+  sourceUrl:
+    'https://commons.wikimedia.org/wiki/File:Sinclair_computer_(ZX_Spectrum),_met_adaptor,_vier_boeken_en_zeven_cassettes_met_spelletjes,_objectnr_77523-1-14.JPG',
+};
+
 type Source = { label: string; title: string; url: string; accessed: string };
 type Prog = {
   name: string;
@@ -25,7 +43,7 @@ type Prog = {
   desc: Record<Lang, string>;
   sources: Source[];
 };
-const ACCESSED = '2026-07-28';
+const ACCESSED = '2026-07-29';
 const programs: Prog[] = [
   {
     name: 'Manic Miner',
@@ -33,8 +51,8 @@ const programs: Prog[] = [
     year: '1983',
     genre: { uk: 'Платформер', en: 'Platformer' },
     desc: {
-      uk: 'Легендарний платформер Метью Сміта.',
-      en: 'Matthew Smith’s legendary platformer.',
+      uk: 'Один із найвпливовіших платформерів Spectrum, робота молодого Метью Сміта. Гравець проводить шахтаря Віллі крізь двадцять печер, повних пасток і рухомих монстрів. Запам’ятався тривалою фоновою музикою — рідкістю для ігор 1983 року.',
+      en: 'One of the Spectrum’s most influential platformers, the work of a young Matthew Smith. The player guides the miner Willy through twenty caverns full of traps and moving monsters. It is remembered for its continuous in-game music — a rarity for games in 1983.',
     },
     sources: [
       { label: 'Wikipedia', title: 'Manic Miner — Wikipedia', url: 'https://en.wikipedia.org/wiki/Manic_Miner', accessed: ACCESSED },
@@ -47,8 +65,8 @@ const programs: Prog[] = [
     year: '1984',
     genre: { uk: 'Платформер', en: 'Platformer' },
     desc: {
-      uk: 'Продовження Manic Miner з велетенським особняком.',
-      en: 'The Manic Miner sequel, set in a vast mansion.',
+      uk: 'Продовження Manic Miner: розбагатілий Віллі мусить прибрати величезний особняк, перш ніж лягти спати. Гру сумнозвісно випустили з фатальною помилкою, яку виправляли POKE-кодами з журналів. Десятки взаємопов’язаних кімнат зробили її раннім прикладом відкритого дослідження.',
+      en: 'The sequel to Manic Miner: a now-wealthy Willy must tidy his enormous mansion before going to bed. It was infamously released with a game-breaking bug, fixed by POKE codes printed in magazines. Dozens of interconnected rooms made it an early example of open-ended exploration.',
     },
     sources: [
       { label: 'Wikipedia', title: 'Jet Set Willy — Wikipedia', url: 'https://en.wikipedia.org/wiki/Jet_Set_Willy', accessed: ACCESSED },
@@ -61,8 +79,8 @@ const programs: Prog[] = [
     year: '1982',
     genre: { uk: 'Система', en: 'System' },
     desc: {
-      uk: 'Вбудована мова програмування Spectrum.',
-      en: 'The Spectrum’s built-in programming language.',
+      uk: 'Вбудована мова Spectrum, зашита у 16 КБ ПЗП. Ключові слова вводили одним натисканням клавіші — кожна клавіша друкувала цілий токен, а не літери. Саме з неї ціле покоління вперше дізналося, що таке програмування.',
+      en: 'The Spectrum’s built-in language, baked into 16 KB of ROM. Keywords were entered with a single keypress — each key typed a whole token rather than letters. It was here that a whole generation first learned what programming was.',
     },
     sources: [
       { label: 'Wikipedia: Sinclair BASIC', title: 'Sinclair BASIC — Wikipedia', url: 'https://en.wikipedia.org/wiki/Sinclair_BASIC', accessed: ACCESSED },
@@ -75,8 +93,8 @@ const programs: Prog[] = [
     year: '1985',
     genre: { uk: 'Космосим', en: 'Space sim' },
     desc: {
-      uk: 'Відкритий космос і торгівля у 8 бітах.',
-      en: 'Open-ended space trading in 8 bits.',
+      uk: 'Тривимірна космічна торгівля й бої на дротяній графіці. Порт на Spectrum вийшов 1985 року від Firebird (оригінал — BBC Micro, 1984). Гра не мала фіксованої мети: гравець сам обирав шлях торговця, пірата чи дослідника галактик.',
+      en: 'Three-dimensional space trading and combat in wireframe graphics. The Spectrum port was released in 1985 by Firebird (the original was on the BBC Micro, 1984). The game had no fixed goal: the player chose their own path as trader, pirate or explorer of galaxies.',
     },
     sources: [
       { label: 'Wikipedia', title: 'Elite — Wikipedia', url: 'https://en.wikipedia.org/wiki/Elite_(video_game)', accessed: ACCESSED },
@@ -89,8 +107,8 @@ const programs: Prog[] = [
     year: '1983',
     genre: { uk: 'Аркада', en: 'Arcade' },
     desc: {
-      uk: 'Класична аркада про збирання яєць.',
-      en: 'A classic egg-collecting arcade game.',
+      uk: 'Класична платформна аркада Найджела Олдертона: гравець збирає дюжину яєць на кожному рівні, оминаючи курей і бігаючи драбинами. Одна з найбільш портованих британських ігор свого часу.',
+      en: 'Nigel Alderton’s classic platform arcade game: the player collects a dozen eggs on each level while dodging hens and running up ladders. One of the most widely ported British games of its time.',
     },
     sources: [
       { label: 'Wikipedia', title: 'Chuckie Egg — Wikipedia', url: 'https://en.wikipedia.org/wiki/Chuckie_Egg', accessed: ACCESSED },
@@ -103,15 +121,48 @@ const programs: Prog[] = [
     year: '1982',
     genre: { uk: 'Текстовий квест', en: 'Text adventure' },
     desc: {
-      uk: 'Ілюстрований текстовий квест за Толкіном.',
-      en: 'An illustrated text adventure after Tolkien.',
+      uk: 'Ілюстрований текстовий квест Melbourne House за романом Толкіна. Його парсер «Inglish» розумів цілі речення, а персонажі діяли самостійно — знаменита фраза «Торін сідає і починає співати про золото». У комплекті йшла й сама книжка.',
+      en: 'Melbourne House’s illustrated text adventure based on Tolkien’s novel. Its “Inglish” parser understood full sentences, and characters acted on their own — the famous line “Thorin sits down and starts singing about gold”. A copy of the book itself came in the box.',
     },
     sources: [
       { label: 'Wikipedia', title: 'The Hobbit (1982 video game) — Wikipedia', url: 'https://en.wikipedia.org/wiki/The_Hobbit_(1982_video_game)', accessed: ACCESSED },
       { label: 'Spectrum Computing', title: 'The Hobbit — Spectrum Computing', url: 'https://spectrumcomputing.co.uk/entry/6440/ZX-Spectrum/The_Hobbit', accessed: ACCESSED },
     ],
   },
+  {
+    name: 'Knight Lore',
+    publisher: 'Ultimate Play the Game',
+    year: '1984',
+    genre: { uk: 'Аркадна пригода', en: 'Arcade adventure' },
+    desc: {
+      uk: 'Аркадна пригода Ultimate Play the Game, що популяризувала ізометричну графіку. Герой Сейбермен ночами перетворюється на вовкулаку й шукає ліки в замку чаклуна. Дію малювали монохромно — свідомий спосіб уникнути «злипання» кольору (attribute clash).',
+      en: 'An arcade adventure by Ultimate Play the Game that popularised isometric graphics. The hero Sabreman turns into a werewolf at night and seeks a cure in a wizard’s castle. The action was drawn in monochrome — a deliberate way to avoid colour clash (attribute clash).',
+    },
+    sources: [
+      { label: 'Wikipedia', title: 'Knight Lore — Wikipedia', url: 'https://en.wikipedia.org/wiki/Knight_Lore', accessed: ACCESSED },
+      { label: 'Spectrum Computing', title: 'Knight Lore — Spectrum Computing', url: 'https://spectrumcomputing.co.uk/entry/9366/ZX-Spectrum/Knight_Lore', accessed: ACCESSED },
+    ],
+  },
+  {
+    name: 'The Lords of Midnight',
+    publisher: 'Beyond Software',
+    year: '1984',
+    genre: { uk: 'Стратегія', en: 'Strategy' },
+    desc: {
+      uk: 'Епічна фентезі-стратегія Майка Сінглтона: гравець веде десятки персонажів проти темного володаря Дуумдарка. Технологія «landscaping» показувала тисячі різних краєвидів світу. Поєднання стратегії й пригоди зробило її одним із найамбітніших тайтлів 1984 року.',
+      en: 'Mike Singleton’s epic fantasy strategy: the player leads dozens of characters against the dark lord Doomdark. Its “landscaping” technique rendered thousands of different views of the game world. The blend of strategy and adventure made it one of the most ambitious titles of 1984.',
+    },
+    sources: [
+      { label: 'Wikipedia', title: 'The Lords of Midnight — Wikipedia', url: 'https://en.wikipedia.org/wiki/The_Lords_of_Midnight', accessed: ACCESSED },
+      { label: 'Spectrum Computing', title: 'The Lords of Midnight — Spectrum Computing', url: 'https://spectrumcomputing.co.uk/entry/6604/ZX-Spectrum/The_Lords_of_Midnight', accessed: ACCESSED },
+    ],
+  },
 ];
+
+// Рядок атрибуції головної світлини (ТЗ §7.3: автор · ліцензія · джерело).
+const heroLicenseLabel = licenseLabel(hero.license, lang);
+const heroLicenseUrl = licenseUrl(hero.license);
+const heroSourceLabel = sourceLabel(hero.sourceUrl);
 ---
 
 <main data-pagefind-body>
@@ -124,6 +175,25 @@ const programs: Prog[] = [
   </div>
 
   <div class="wrap">
+    <figure class="hero">
+      <Image
+        src={cassettesPhoto}
+        alt={hero.alt[lang]}
+        widths={[480, 800, 1200]}
+        sizes="(max-width: 900px) 100vw, 860px"
+        loading="eager"
+      />
+      <figcaption class="hero-credit">
+        {hero.author} ·{' '}
+        {heroLicenseUrl ? (
+          <a href={heroLicenseUrl} rel="noopener" target="_blank">{heroLicenseLabel}</a>
+        ) : (
+          heroLicenseLabel
+        )} ·{' '}
+        <a href={hero.sourceUrl} rel="noopener" target="_blank">{heroSourceLabel}</a>
+      </figcaption>
+    </figure>
+
     <p class="note">{t('software.note')}</p>
 
     <div class="grid">
@@ -182,6 +252,27 @@ const programs: Prog[] = [
     border-bottom: 1px solid var(--hair);
     padding-bottom: 22px;
   }
+
+  /* Головна світлина розділу (вільна ліцензія, §7.3 — атрибуція під нею). */
+  .hero {
+    margin: 26px auto 0;
+    max-width: 860px;
+  }
+  .hero :global(img) {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 2px solid var(--border);
+  }
+  .hero-credit {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    line-height: 1.5;
+    margin-top: 6px;
+  }
+  .hero-credit a { color: var(--zx-yellow); }
+
   .note {
     font-family: var(--font-mono);
     font-size: 13px;
@@ -234,6 +325,7 @@ const programs: Prog[] = [
     text-transform: uppercase;
     line-height: 1.15;
     margin: 12px 0 4px;
+    overflow-wrap: anywhere;
   }
   .publisher {
     font-family: var(--font-mono);
@@ -244,8 +336,8 @@ const programs: Prog[] = [
   .desc {
     font-size: 14px;
     color: var(--text-dim);
-    line-height: 1.5;
-    margin: 0;
+    line-height: 1.55;
+    margin: 0 0 4px;
   }
   /* Джерела (ТЗ §12): пригашений блок під описом, притиснутий донизу картки. */
   .sources {

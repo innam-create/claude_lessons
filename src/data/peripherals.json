@@ -136,5 +136,194 @@
     "images": [],
     "inMuseum": false,
     "confidence": "high"
+  },
+  {
+    "id": "rotronics-wafadrive",
+    "title": { "uk": "Rotronics Wafadrive", "en": "Rotronics Wafadrive" },
+    "manufacturer": "Rotronics",
+    "manufacturerFull": "Rotronics Ltd",
+    "country": "GB",
+    "year": "1984",
+    "desc": {
+      "uk": "Здвоєний накопичувач на стрічкових картриджах-«вейферах» із вбудованими портами Centronics і RS-232 — конкурент Microdrive, хоч і повільніший.",
+      "en": "A dual stringy-floppy “wafer” drive with built-in Centronics and RS-232 ports — a Microdrive rival, though slower."
+    },
+    "sources": [
+      {
+        "title": { "uk": "Rotronics Wafadrive — Wikipedia (англ.)", "en": "Rotronics Wafadrive — Wikipedia" },
+        "url": "https://en.wikipedia.org/wiki/Rotronics_Wafadrive",
+        "accessed": "2026-07-29"
+      },
+      {
+        "title": { "uk": "Rotronics Wafadrive — Spectrum Computing", "en": "Rotronics Wafadrive — Spectrum Computing" },
+        "url": "https://spectrumcomputing.co.uk/entry/1000350/Hardware/Rotronics_Wafadrive",
+        "accessed": "2026-07-29"
+      }
+    ],
+    "images": [],
+    "inMuseum": false,
+    "confidence": "high"
+  },
+  {
+    "id": "mgt-disciple",
+    "title": { "uk": "MGT DISCiPLE", "en": "MGT DISCiPLE" },
+    "manufacturer": "MGT",
+    "manufacturerFull": "Miles Gordon Technology",
+    "country": "GB",
+    "year": "1986",
+    "desc": {
+      "uk": "Клиноподібний інтерфейс під корпус: контролер дискових приводів, паралельний порт принтера, два порти джойстиків і мережа ZX Net.",
+      "en": "A wedge-shaped under-case interface: a floppy-disk controller, a parallel printer port, two joystick ports and the ZX Net network."
+    },
+    "sources": [
+      {
+        "title": { "uk": "DISCiPLE — Wikipedia (англ.)", "en": "DISCiPLE — Wikipedia" },
+        "url": "https://en.wikipedia.org/wiki/DISCiPLE",
+        "accessed": "2026-07-29"
+      },
+      {
+        "title": { "uk": "DISCiPLE — Sinclair Wiki", "en": "DISCiPLE — Sinclair Wiki" },
+        "url": "https://sinclair.wiki.zxnet.co.uk/wiki/DISCiPLE",
+        "accessed": "2026-07-29"
+      }
+    ],
+    "images": [],
+    "inMuseum": false,
+    "confidence": "high"
+  },
+  {
+    "id": "multiface-one",
+    "title": { "uk": "Multiface One", "en": "Multiface One" },
+    "manufacturer": "Romantic Robot",
+    "manufacturerFull": "Romantic Robot UK Ltd",
+    "country": "GB",
+    "year": "1986",
+    "desc": {
+      "uk": "Утиліта з «чарівною кнопкою»: за натиском робить знімок памʼяті й зберігає його на касету, Microdrive чи диск — так гравці зберігали позиції в іграх.",
+      "en": "A “magic button” utility: one press snapshots the machine’s memory to cassette, Microdrive or disk — how players saved their place in games."
+    },
+    "sources": [
+      {
+        "title": { "uk": "Multiface — Wikipedia (англ.)", "en": "Multiface — Wikipedia" },
+        "url": "https://en.wikipedia.org/wiki/Multiface",
+        "accessed": "2026-07-29"
+      },
+      {
+        "title": { "uk": "Multiface 1 — Spectrum Computing", "en": "Multiface 1 — Spectrum Computing" },
+        "url": "https://spectrumcomputing.co.uk/entry/1000275/Hardware/Multiface_1",
+        "accessed": "2026-07-29"
+      }
+    ],
+    "images": [],
+    "inMuseum": false,
+    "confidence": "high"
+  },
+  {
+    "id": "currah-microspeech",
+    "title": { "uk": "Currah MicroSpeech", "en": "Currah MicroSpeech" },
+    "manufacturer": "Currah",
+    "manufacturerFull": "Currah Computer Components Ltd",
+    "country": "GB",
+    "year": "1983",
+    "desc": {
+      "uk": "Синтезатор мовлення на чипі General Instrument SP0256: озвучував натиснуті клавіші й задані рядки тексту, виводячи звук у ТБ-сигнал.",
+      "en": "A speech synthesiser built on the General Instrument SP0256 chip: it spoke key-presses and set strings of text out through the TV signal."
+    },
+    "sources": [
+      {
+        "title": { "uk": "Currah — Wikipedia (англ.)", "en": "Currah — Wikipedia" },
+        "url": "https://en.wikipedia.org/wiki/Currah",
+        "accessed": "2026-07-29"
+      },
+      {
+        "title": { "uk": "Currah MicroSpeech — Spectrum Computing", "en": "Currah MicroSpeech — Spectrum Computing" },
+        "url": "https://spectrumcomputing.co.uk/entry/1000081/Hardware/Currah_MicroSpeech",
+        "accessed": "2026-07-29"
+      }
+    ],
+    "images": [],
+    "inMuseum": false,
+    "confidence": "high"
+  },
+  {
+    "id": "dktronics-sound-synthesiser",
+    "title": { "uk": "DK'tronics Sound Synthesiser", "en": "DK'tronics Sound Synthesiser" },
+    "manufacturer": "DK'tronics",
+    "manufacturerFull": "DK'Tronics Ltd",
+    "country": "GB",
+    "year": "1984",
+    "desc": {
+      "uk": "Триканальний звуковий інтерфейс на чипі AY-3-8912 із динаміком у комплекті — повноцінний звук для Spectrum за роки до вбудованого AY у моделі 128.",
+      "en": "A three-channel sound interface on the AY-3-8912 chip, bundled with a speaker — real sound for the Spectrum years before the 128 built the AY in."
+    },
+    "sources": [
+      {
+        "title": { "uk": "DK'Tronics 3 Channel Sound Synthesiser — Spectrum Computing", "en": "DK'Tronics 3 Channel Sound Synthesiser — Spectrum Computing" },
+        "url": "https://spectrumcomputing.co.uk/entry/1000118/Hardware/DKTronics_3_Channel_Sound_Synthesiser",
+        "accessed": "2026-07-29"
+      },
+      {
+        "title": { "uk": "Speccy Hardware A–Z (DK'Tronics) — World of Spectrum", "en": "Speccy Hardware A–Z (DK'Tronics) — World of Spectrum" },
+        "url": "https://worldofspectrum.org/hardware/zd.html",
+        "accessed": "2026-07-29"
+      }
+    ],
+    "images": [],
+    "inMuseum": false,
+    "confidence": "high"
+  },
+  {
+    "id": "cheetah-specdrum",
+    "title": { "uk": "Cheetah SpecDrum", "en": "Cheetah SpecDrum" },
+    "manufacturer": "Cheetah",
+    "manufacturerFull": "Cheetah Marketing Ltd",
+    "country": "GB",
+    "year": "1985",
+    "desc": {
+      "uk": "Цифрова драм-машина на 8 голосів за 29,95 фунта — програвала семпли ударних, які софт зшивав у ритми й пісні; один із найпопулярніших доповнень до Spectrum.",
+      "en": "An eight-voice digital drum machine for £29.95 — it played percussion samples that the software chained into rhythms and songs; one of the Spectrum’s best-selling add-ons."
+    },
+    "sources": [
+      {
+        "title": { "uk": "SpecDrum — Wikipedia (англ.)", "en": "SpecDrum — Wikipedia" },
+        "url": "https://en.wikipedia.org/wiki/SpecDrum",
+        "accessed": "2026-07-29"
+      },
+      {
+        "title": { "uk": "Cheetah SpecDrum — Spectrum Computing", "en": "Cheetah SpecDrum — Spectrum Computing" },
+        "url": "https://spectrumcomputing.co.uk/entry/1000062",
+        "accessed": "2026-07-29"
+      }
+    ],
+    "images": [],
+    "inMuseum": false,
+    "confidence": "high"
+  },
+  {
+    "id": "prism-vtx-5000",
+    "title": { "uk": "Prism VTX 5000", "en": "Prism VTX 5000" },
+    "manufacturer": "Prism",
+    "manufacturerFull": "Prism Micro Products Ltd",
+    "country": "GB",
+    "year": "1983",
+    "desc": {
+      "uk": "Модем 1200/75 бод із термінальним ПЗ у ПЗП — підключав Spectrum до Prestel і мережі Micronet 800; живився просто з порту розширення.",
+      "en": "A 1200/75 baud modem with terminal software in ROM — it linked the Spectrum to Prestel and the Micronet 800 network, powered straight from the expansion port."
+    },
+    "sources": [
+      {
+        "title": { "uk": "Prism VTX5000 — Centre for Computing History", "en": "Prism VTX5000 — Centre for Computing History" },
+        "url": "https://www.computinghistory.org.uk/det/31253/Prism-VTX5000/",
+        "accessed": "2026-07-29"
+      },
+      {
+        "title": { "uk": "Prism VTX5000 Modem — Spectrum Computing", "en": "Prism VTX5000 Modem — Spectrum Computing" },
+        "url": "https://spectrumcomputing.co.uk/entry/1000319/Hardware/Prism_VTX5000_Modem",
+        "accessed": "2026-07-29"
+      }
+    ],
+    "images": [],
+    "inMuseum": false,
+    "confidence": "medium"
   }
 ]

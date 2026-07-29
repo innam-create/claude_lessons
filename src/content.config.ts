@@ -184,9 +184,14 @@ const longreads = defineCollection({
     museum_exhibit: z.object({
       in_museum: z.boolean(),
       inventory_id: z.string().default(''),
+      // Двомовна примітка експоната: мову вибирає normalizeLongread за lang
+      // (fallback note_en → note_uk). EN може бути порожнім — тоді покажемо UA.
       note_uk: z.string().default(''),
+      note_en: z.string().default(''),
     }),
-    disambiguation: z.array(z.string()).default([]),
+    // Розмежувальні примітки — двомовні: на EN-сторінці рендериться .en
+    // (fallback на .uk, як title/lead/thesis). Див. src/lib/longreads.ts.
+    disambiguation: z.array(bilingual).default([]),
     // ТЗ §12: ≥ 2 джерела на матеріал — інакше збірка падає ще на схемі.
     sources: z.array(longreadSource).min(2, 'ТЗ §12: потрібно ≥ 2 джерела'),
     // Зображення живуть у src/assets/longreads/. Порожній масив припустимий

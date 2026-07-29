@@ -32,10 +32,12 @@ museum_exhibit:
   in_museum: true
   inventory_id: ""
   note_uk: "Базова 48-КБ модель у постійній експозиції — та сама машина, що зробила платформу масовою."
+  note_en: "The basic 48K model in the permanent exhibition — the same machine that made the platform a mass success."
 
 # ── Розмежувальні примітки ────────────────────────────────────────
 disambiguation:
-  - "£125 was the launch price of the 16K model; the 48K cost £175. Prices were later (1983) cut to £99 and £129 respectively — don't confuse the launch prices with the reduced ones."
+  - uk: "£125 — стартова ціна 16K-моделі; 48K коштувала £175. Пізніше (1983) ціни знизили до £99 і £129 відповідно — не плутати стартові й знижені."
+    en: "£125 was the launch price of the 16K model; the 48K cost £175. Prices were later (1983) cut to £99 and £129 respectively — don't confuse the launch prices with the reduced ones."
 
 # ── Джерела (ТЗ §12: ≥ 2) ─────────────────────────────────────────
 sources:

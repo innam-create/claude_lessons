@@ -65,8 +65,8 @@ export function normalizeLongread(e: CollectionEntry<'longreads'>): Longread {
     published: d.published,
     lowConf: d.confidence === 'low',
     inMuseum: d.museum_exhibit.in_museum,
-    museumNote: d.museum_exhibit.note_uk,
-    disambiguation: d.disambiguation,
+    museumNote: (lang === 'en' && d.museum_exhibit.note_en) || d.museum_exhibit.note_uk,
+    disambiguation: d.disambiguation.map((x) => x[lang] || x.uk),
     sources: d.sources.map((s) => ({
       title: s.title[lang] || s.title.uk,
       url: s.url,

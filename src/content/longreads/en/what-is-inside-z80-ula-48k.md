@@ -32,10 +32,12 @@ museum_exhibit:
   in_museum: true
   inventory_id: ""
   note_uk: "Базова 48-КБ модель у постійній експозиції — та сама машина, на платі якої видно всі описані тут вузли: процесор Z80, мікросхеми пам'яті та єдиний чип ULA."
+  note_en: "The basic 48K model in the permanent exhibition — the very machine whose board shows all the parts described here: the Z80 processor, the memory chips and the single ULA."
 
 # ── Розмежувальні примітки ────────────────────────────────────────
 disambiguation:
-  - "«48 кілобайт» — це обсяг ОЗП, а не всієї пам'яті. Процесор Z80 бачить 64 КБ адрес: 16 КБ ПЗП унизу плюс 48 КБ ОЗП. Не плутати обсяг ОЗП із адресним простором."
+  - uk: "«48 кілобайт» — це обсяг ОЗП, а не всієї пам'яті. Процесор Z80 бачить 64 КБ адрес: 16 КБ ПЗП унизу плюс 48 КБ ОЗП. Не плутати обсяг ОЗП із адресним простором."
+    en: "“48 kilobytes” is the amount of RAM, not the whole memory. The Z80 sees 64 KB of addresses: 16 KB of ROM at the bottom plus 48 KB of RAM. Don’t confuse the amount of RAM with the address space."
 
 # ── Джерела (ТЗ §12: ≥ 2) ─────────────────────────────────────────
 sources:

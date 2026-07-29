@@ -32,7 +32,8 @@ museum_exhibit:
 
 # ── Розмежувальні примітки ────────────────────────────────────────
 disambiguation:
-  - "Attribute clash — це обмеження кольору, а не роздільної здатності. Точкова сітка Spectrum — 256×192, доволі детальна; «грубою» була саме колірна сітка 32×24 клітинки. Не плутати брак кольору з браком чіткості."
+  - uk: "Attribute clash — це обмеження кольору, а не роздільної здатності. Точкова сітка Spectrum — 256×192, доволі детальна; «грубою» була саме колірна сітка 32×24 клітинки. Не плутати брак кольору з браком чіткості."
+    en: "Attribute clash is a colour limitation, not a resolution one. The Spectrum’s pixel grid is 256×192 — quite detailed; what was coarse was the 32×24 colour-cell grid. Don’t confuse a lack of colour with a lack of sharpness."
 
 # ── Джерела (ТЗ §12: ≥ 2) ─────────────────────────────────────────
 sources:

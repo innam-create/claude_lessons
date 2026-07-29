@@ -35,7 +35,8 @@ museum_exhibit:
 
 # ── Розмежувальні примітки ────────────────────────────────────────
 disambiguation:
-  - "«Клон» у цьому тексті — несанкціонована копія Spectrum, зібрана без ліцензії Sinclair (часто на розсипу дискретної логіки). Не плутати з офіційними ліцензійними варіантами на кшталт Timex — ті виходили за угодою й із фірмовими чипами. Обидва типи описані в каталозі клонів, але це різні речі."
+  - uk: "«Клон» у цьому тексті — несанкціонована копія Spectrum, зібрана без ліцензії Sinclair (часто на розсипу дискретної логіки). Не плутати з офіційними ліцензійними варіантами на кшталт Timex — ті виходили за угодою й із фірмовими чипами. Обидва типи описані в каталозі клонів, але це різні речі."
+    en: "A “clone” in this text is an unlicensed copy of the Spectrum, built without a Sinclair licence (often from discrete logic). Don’t confuse it with official licensed variants such as the Timex — those were made under agreement and with proprietary chips. Both types appear in the clone catalogue, but they are different things."
 
 # ── Джерела (ТЗ §12: ≥ 2) ─────────────────────────────────────────
 sources:

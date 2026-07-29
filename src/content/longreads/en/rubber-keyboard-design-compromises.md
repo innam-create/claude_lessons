@@ -35,7 +35,8 @@ museum_exhibit:
 
 # ── Розмежувальні примітки ────────────────────────────────────────
 disambiguation:
-  - "ZX Spectrum+ (1984, Sinclair) — це не +2. «+» отримав механічну клавіатуру на 58 клавіш, але лишився машиною Sinclair на тій самій платі. +2 (1986) — уже машина Amstrad із клавіатурою друкарської машинки та вбудованим касетником. Не плутати «+» і «+2»."
+  - uk: "ZX Spectrum+ (1984, Sinclair) — це не +2. «+» отримав механічну клавіатуру на 58 клавіш, але лишився машиною Sinclair на тій самій платі. +2 (1986) — уже машина Amstrad із клавіатурою друкарської машинки та вбудованим касетником. Не плутати «+» і «+2»."
+    en: "The ZX Spectrum+ (1984, Sinclair) is not the +2. The “+” gained a 58-key mechanical keyboard but remained a Sinclair machine on the same board. The +2 (1986) was already an Amstrad machine with a typewriter-style keyboard and a built-in cassette deck. Don’t confuse the “+” with the “+2”."
 
 # ── Джерела (ТЗ §12: ≥ 2) ─────────────────────────────────────────
 sources:

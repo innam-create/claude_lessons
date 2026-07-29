@@ -35,7 +35,8 @@ museum_exhibit:
 
 # ── Розмежувальні примітки ────────────────────────────────────────
 disambiguation:
-  - "Три українські машини з нашої колекції легко сплутати — вони з різних міст і заводів: Ікар-64 (Харків, «Хартрон»), Robik (Черкаси, «Ротор») та Орель БК-08 (Дніпро, машинобудівний завод). Це різні конструкції, а не варіанти однієї."
+  - uk: "Три українські машини з нашої колекції легко сплутати — вони з різних міст і заводів: Ікар-64 (Харків, «Хартрон»), Robik (Черкаси, «Ротор») та Орель БК-08 (Дніпро, машинобудівний завод). Це різні конструкції, а не варіанти однієї."
+    en: "Three Ukrainian machines in our collection are easy to confuse — they come from different cities and factories: the Ikar-64 (Kharkiv, Khartron), the Robik (Cherkasy, Rotor) and the Orel BK-08 (Dnipro, machine-building plant). These are distinct designs, not variants of one."
 
 # ── Джерела (ТЗ §12: ≥ 2) ─────────────────────────────────────────
 sources:

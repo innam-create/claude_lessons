@@ -163,7 +163,7 @@ export const ui = {
     'software.intro':
       'Програми та ігри, що виходили на касетах для Spectrum. Кожну позицію звірено з джерелами.',
     'software.note':
-      'Обкладинки та скриншоти додамо, щойно знайдемо їх із вільною ліцензією. Поки що — текстовий каталог.',
+      'Обкладинки та скриншоти самих ігор захищені авторським правом, тож ми наводимо перевірені факти й джерела, а не зображення. Світлина вгорі — вільноліцензійна ілюстрація того, як софт розповсюджувався: на касетах.',
     'software.sources': 'Джерела',
 
     // контакти (ContactsPage.dc.html)
@@ -348,7 +348,7 @@ export const ui = {
     'software.intro':
       'Programs and games that shipped on cassette for the Spectrum. Every entry is checked against its sources.',
     'software.note':
-      'Covers and screenshots will be added once we find freely licensed ones. For now — a text catalogue.',
+      'Covers and screenshots of the games themselves are under copyright, so we give verified facts and sources rather than images. The photo above is a freely-licensed illustration of how software was distributed: on cassette.',
     'software.sources': 'Sources',
 
     'contacts.title': 'Contacts',

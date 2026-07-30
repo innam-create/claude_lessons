@@ -17,10 +17,17 @@ import type { Lang } from '../i18n/ui';
 // на Wikimedia Commons (author Marcin R. Kaźmierczak) — під CC BY 3.0. Не ND і не NC
 // (навіть вільніша за вже дозволену CC-BY-NC-SA-4.0), тож принципів §14 не порушує.
 //
+// CC-BY-2.5 додано за рішенням від 2026-07-29 (ТЗ §14): фото периферії на
+// Wikimedia Commons — Sinclair ZX Microdrive (author Letdorf). Усі окремі
+// знімки Microdrive на Commons під plain CC BY 2.0/2.5, SA-версій цього
+// пристрою немає. Не ND і не NC (вільніша за вже дозволену CC-BY-NC-SA-4.0),
+// тож принципів §14 не порушує.
+//
 // ND-ліцензії сюди не додавати: кадрування під 4:3 — похідний твір (ТЗ §7.4).
 export const LICENSES = [
   'PD',
   'CC0',
+  'CC-BY-2.5',
   'CC-BY-3.0',
   'CC-BY-4.0',
   'CC-BY-SA-2.0',
@@ -49,6 +56,7 @@ export function deriveCommercialUse(license: License): boolean {
 const LICENSE_URLS: Record<License, string | null> = {
   PD: null,
   CC0: 'https://creativecommons.org/publicdomain/zero/1.0/',
+  'CC-BY-2.5': 'https://creativecommons.org/licenses/by/2.5/',
   'CC-BY-3.0': 'https://creativecommons.org/licenses/by/3.0/',
   'CC-BY-4.0': 'https://creativecommons.org/licenses/by/4.0/',
   'CC-BY-SA-2.0': 'https://creativecommons.org/licenses/by-sa/2.0/',
@@ -64,6 +72,7 @@ const LICENSE_URLS: Record<License, string | null> = {
 const LICENSE_LABELS: Record<License, string> = {
   PD: 'Public domain',
   CC0: 'CC0 1.0',
+  'CC-BY-2.5': 'CC BY 2.5',
   'CC-BY-3.0': 'CC BY 3.0',
   'CC-BY-4.0': 'CC BY 4.0',
   'CC-BY-SA-2.0': 'CC BY-SA 2.0',

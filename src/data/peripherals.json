@@ -22,7 +22,19 @@
         "accessed": "2026-07-22"
       }
     ],
-    "images": [],
+    "images": [
+      {
+        "src": "zx-printer.jpg",
+        "alt": {
+          "uk": "Sinclair ZX Printer — чорний блок із написом «sinclair ZX PRINTER» і рулоном сріблястого алюмінізованого паперу зверху; поряд запасний рулон",
+          "en": "Sinclair ZX Printer — a black unit labelled “sinclair ZX PRINTER” with a roll of silver aluminium-coated paper on top; a spare roll beside it"
+        },
+        "license": "PD",
+        "author": "Jbattersby",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Sinclair.zx.thermal.printer.jpg",
+        "accessed": "2026-07-29"
+      }
+    ],
     "inMuseum": false,
     "confidence": "high"
   },
@@ -49,7 +61,19 @@
         "accessed": "2026-07-22"
       }
     ],
-    "images": [],
+    "images": [
+      {
+        "src": "zx-interface-1.jpg",
+        "alt": {
+          "uk": "Sinclair ZX Interface 1 — чорний клиноподібний модуль із логотипом «sinclair» і написом «ZX interface 1», видно край-конектор",
+          "en": "Sinclair ZX Interface 1 — a black wedge-shaped module with the “sinclair” logo and “ZX interface 1” label, its edge connector exposed"
+        },
+        "license": "CC-BY-SA-3.0",
+        "author": "Mauricio González",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Zx_interface_1.png",
+        "accessed": "2026-07-29"
+      }
+    ],
     "inMuseum": false,
     "confidence": "high"
   },
@@ -76,7 +100,19 @@
         "accessed": "2026-07-22"
       }
     ],
-    "images": [],
+    "images": [
+      {
+        "src": "zx-microdrive.jpg",
+        "alt": {
+          "uk": "Sinclair ZX Microdrive — чорний накопичувач із написом «sinclair ZX Microdrive», веселковою смугою, щілиною для картриджа і червоним індикатором",
+          "en": "Sinclair ZX Microdrive — a black drive with the “sinclair ZX Microdrive” logo, the rainbow stripe, a cartridge slot and a red indicator light"
+        },
+        "license": "CC-BY-2.5",
+        "author": "Scott Telford (derivative work: Ubcule)",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Sinclair_ZX_Microdrive_White_BG.jpg",
+        "accessed": "2026-07-29"
+      }
+    ],
     "inMuseum": false,
     "confidence": "high"
   },
@@ -103,7 +139,19 @@
         "accessed": "2026-07-22"
       }
     ],
-    "images": [],
+    "images": [
+      {
+        "src": "zx-interface-2.jpg",
+        "alt": {
+          "uk": "Sinclair ZX Interface 2 — чорний модуль із двома портами джойстиків, слотом для картриджа і написом «ZX Interface 2»",
+          "en": "Sinclair ZX Interface 2 — a black module with two joystick ports, a cartridge slot and the “ZX Interface 2” label"
+        },
+        "license": "CC-BY-SA-3.0",
+        "author": "Mauricio González",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Zx_interface_2.png",
+        "accessed": "2026-07-29"
+      }
+    ],
     "inMuseum": false,
     "confidence": "high"
   },
@@ -133,7 +181,19 @@
         "accessed": "2026-07-22"
       }
     ],
-    "images": [],
+    "images": [
+      {
+        "src": "kempston-joystick-interface.jpg",
+        "alt": {
+          "uk": "Kempston Joystick Interface — чорний ребристий картридж із рельєфним написом «Kempston Joystick Interface», гніздом джойстика і край-конектором",
+          "en": "Kempston Joystick Interface — a black ribbed cartridge with embossed “Kempston Joystick Interface” lettering, a joystick socket and an edge connector"
+        },
+        "license": "PD",
+        "author": "StuartBrady",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Kempston_joystick_interface.jpeg",
+        "accessed": "2026-07-29"
+      }
+    ],
     "inMuseum": false,
     "confidence": "high"
   },
@@ -160,7 +220,19 @@
         "accessed": "2026-07-29"
       }
     ],
-    "images": [],
+    "images": [
+      {
+        "src": "rotronics-wafadrive.jpg",
+        "alt": {
+          "uk": "Rotronics Wafadrive — чорний блок із двома щілинами для стрічкових картриджів і шлейфом край-конектора; спереду два картриджі-«вейфери» з логотипом ROTRONICS",
+          "en": "Rotronics Wafadrive — a black unit with two cartridge slots and an edge-connector ribbon cable; two ROTRONICS “wafer” cartridges lie in front"
+        },
+        "license": "CC-BY-SA-3.0",
+        "author": "Middleman 77",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Wafadrive.jpg",
+        "accessed": "2026-07-29"
+      }
+    ],
     "inMuseum": false,
     "confidence": "high"
   },
@@ -187,7 +259,19 @@
         "accessed": "2026-07-29"
       }
     ],
-    "images": [],
+    "images": [
+      {
+        "src": "mgt-disciple.jpg",
+        "alt": {
+          "uk": "MGT DISCiPLE — чорний клиноподібний інтерфейс із червоним написом «DISCiPLE» і край-конектором; вище — вигляд із торця з роз'ємами",
+          "en": "MGT DISCiPLE — a black wedge-shaped interface with a red “DISCiPLE” label and an edge connector; above, an end-on view showing its ports"
+        },
+        "license": "CC-BY-SA-2.5",
+        "author": "Miguel Durán",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Disciple_01.jpg",
+        "accessed": "2026-07-29"
+      }
+    ],
     "inMuseum": false,
     "confidence": "high"
   },
@@ -214,7 +298,19 @@
         "accessed": "2026-07-29"
       }
     ],
-    "images": [],
+    "images": [
+      {
+        "src": "multiface-one.jpg",
+        "alt": {
+          "uk": "Multiface One — чорний модуль із червоним логотипом «multiface one», червоною кнопкою зверху, бічним портом і край-конектором",
+          "en": "Multiface One — a black module with the red “multiface one” logo, a red button on top, a side port and an edge connector"
+        },
+        "license": "CC-BY-SA-4.0",
+        "author": "AGRR",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Multiface_1.jpg",
+        "accessed": "2026-07-29"
+      }
+    ],
     "inMuseum": false,
     "confidence": "high"
   },

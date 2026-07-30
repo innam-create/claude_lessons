@@ -14,9 +14,9 @@ thesis:
   en: ""
 confidence: "medium"
 reading_time_min: 8
-status: "draft"
+status: "approved"
 authors: ["Музей SNC"]
-published: null
+published: "2026-07-30"
 
 # ── SEO ───────────────────────────────────────────────────────────
 seo:

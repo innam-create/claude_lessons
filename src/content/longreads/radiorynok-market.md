@@ -5,13 +5,13 @@ block: "Б"
 card_id: "Б3"
 title:
   uk: "Радіоринок: як купували пам'ять, плати й піратські касети"
-  en: ""
+  en: "The radio market: how memory, boards and pirated cassettes were bought"
 lead:
   uk: "Клон Spectrum не народжувався в магазині. Його по частинах збирали з того, що продавали на радіоринку: мікросхем «розсипом», плат, прошитих ПЗП і касет із чужими програмами. Розповідаємо про ринок як інфраструктуру, що живила пострадянський Spectrum."
-  en: ""
+  en: "A Spectrum clone was not born in a shop. It was assembled piece by piece from what was sold at the radio market: chips bought loose, boards, flashed ROMs and cassettes with other people’s programs. We look at the market as the infrastructure that fed the post-Soviet Spectrum."
 thesis:
   uk: "Радіоринок був не місцем роздрібної торгівлі, а вузлом дистрибуції заліза й софту: саме тут дефіцитні деталі, прошивки й піратські касети переходили з рук у руки й робили масовий Spectrum технічно можливим."
-  en: ""
+  en: "The radio market was not a place of retail trade but a hub for distributing hardware and software: it was here that scarce parts, firmware and pirated cassettes changed hands and made a mass-market Spectrum technically possible."
 confidence: "medium"
 reading_time_min: 8
 status: "approved"
@@ -22,7 +22,7 @@ published: "2026-07-30"
 seo:
   keywords_uk: ["радіоринок", "ретрокомп'ютинг Україна", "піратські касети Spectrum", "розсип мікросхем", "ПЗП прошивка"]
   description_uk: "Як радіоринки живили пострадянський Spectrum: мікросхеми «розсипом», прошиті ПЗП, плати й піратські касети з іграми. Соціологія ринку деталей і софту."
-  description_en: ""
+  description_en: "How radio markets fed the post-Soviet Spectrum: chips bought loose, flashed ROMs, boards and pirated cassettes with games. A sociology of the market for parts and software."
 
 # ── Блок «Експонат музею» ─────────────────────────────────────────
 # in_museum: false — предметів радіоринку (касет, журналів, деталей) у постійній
@@ -32,14 +32,14 @@ museum_exhibit:
   in_museum: false
   inventory_id: ""
   note_uk: "Предмети, пов'язані з радіоринком (касети з програмами, профільні журнали, окремі деталі), музей збирає для документування цієї теми. У постійній експозиції наразі фізично не представлені."
-  note_en: ""
+  note_en: "Objects connected with the radio market (cassettes with programs, specialist magazines, individual parts) are being collected by the museum to document this topic. They are not currently physically represented in the permanent exhibition."
 
 # ── Розмежувальні примітки ────────────────────────────────────────
 disambiguation:
   - uk: "«Радіоринок» тут — тип майданчика, а не одне конкретне місце: у різних містах він мав свою назву й локацію. Не плутати із сучасними магазинами електроніки — це був стихійний вторинний ринок деталей, плат і касет."
-    en: ""
+    en: "“Radio market” here is a type of venue, not a single specific place: in different cities it had its own name and location. Not to be confused with today’s electronics shops — this was a spontaneous secondary market for parts, boards and cassettes."
   - uk: "«Розсип» — це окремі мікросхеми, які продавали поштучно, а не готові набори чи заводські комплекти. Не плутати з фабричним постачанням елементної бази."
-    en: ""
+    en: "“Loose” (rozsyp) means individual chips sold one by one, not ready-made sets or factory kits. Not to be confused with the factory supply of a component base."
 
 # ── Джерела (ТЗ §12: ≥ 2) ─────────────────────────────────────────
 sources:

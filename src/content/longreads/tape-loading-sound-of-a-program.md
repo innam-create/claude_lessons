@@ -5,13 +5,13 @@ block: "В"
 card_id: "В9"
 title:
   uk: "Звук завантаження: як касета ставала програмою"
-  en: ""
+  en: "The sound of loading: how a cassette became a program"
 lead:
   uk: "Скрегіт і писк із побутового магнітофона, кольорові смуги на рамці екрана й фінальне «R Tape loading error» — так виглядало й звучало завантаження гри на ZX Spectrum. Розбираємо, як звук на касеті ставав програмою в пам'яті."
-  en: ""
+  en: "A screech and a squeal from a home tape recorder, coloured stripes on the screen border and the final “R Tape loading error” — that is how loading a game on the ZX Spectrum looked and sounded. We unpack how sound on a cassette became a program in memory."
 thesis:
   uk: "Касетне завантаження Spectrum — це не метафора, а буквальне аудіокодування: дані записані як послідовність імпульсів різної довжини, і той самий чип ULA, що малює екран, перетворює цей звук на біти, показуючи свою роботу смугами на рамці."
-  en: ""
+  en: "Cassette loading on the Spectrum is not a metaphor but literal audio encoding: the data is recorded as a sequence of pulses of different lengths, and the same ULA chip that draws the screen turns that sound into bits, showing its work as stripes on the border."
 confidence: "medium"
 reading_time_min: 9
 status: "approved"
@@ -22,7 +22,7 @@ published: "2026-07-30"
 seo:
   keywords_uk: ["завантаження з касети", "Spectrum tape loading", "турбозавантажувач", "R Tape loading error", "тон-лідер"]
   description_uk: "Як ZX Spectrum завантажував програми з касети: тон-лідер, блоки заголовка й даних, смуги на рамці, помилка R Tape loading error і турбозавантажувачі."
-  description_en: ""
+  description_en: "How the ZX Spectrum loaded programs from cassette: the pilot tone, header and data blocks, border stripes, the R Tape loading error and turbo loaders."
 
 # ── Блок «Експонат музею» ─────────────────────────────────────────
 museum_exhibit:
@@ -34,7 +34,7 @@ museum_exhibit:
 # ── Розмежувальні примітки ────────────────────────────────────────
 disambiguation:
   - uk: "Кольорові смуги на рамці під час завантаження — не заставка й не «прикраса», а пряма візуалізація сигналу, який ULA зчитує з касети. Якщо смуг немає, а гра все одно вантажиться, — це майже завжди ознака турбозавантажувача, який працює інакше за стандартну підпрограму ПЗП."
-    en: ""
+    en: "The coloured stripes on the border during loading are not a splash screen or “decoration” but a direct visualisation of the signal the ULA reads from the cassette. If there are no stripes and the game still loads, it is almost always a sign of a turbo loader, which works differently from the standard ROM routine."
 
 # ── Джерела (ТЗ §12: ≥ 2) ─────────────────────────────────────────
 sources:

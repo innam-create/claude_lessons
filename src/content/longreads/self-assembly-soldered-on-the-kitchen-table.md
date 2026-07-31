@@ -5,13 +5,13 @@ block: "Б"
 card_id: "Б4"
 title:
   uk: "Самозбірка: комп'ютер, який паяли на кухні"
-  en: ""
+  en: "Self-assembly: the computer soldered together on a kitchen table"
 lead:
   uk: "Готовий Spectrum купити було майже ніде, зате його можна було спаяти — з друкованої схеми, жмені звичайних мікросхем і терпіння. Розповідаємо, чому самозбірка стала масовою і як домашня кухня перетворювалася на складальний цех."
-  en: ""
+  en: "A ready-made Spectrum was almost nowhere to be bought, but it could be soldered together — from a printed schematic, a handful of ordinary chips and patience. We explain why self-assembly became mass and how a home kitchen turned into an assembly shop."
 thesis:
   uk: "Самозбірка Spectrum стала масовою не з самого лише ентузіазму, а з потреби: готових машин бракувало, зате схемотехніка Spectrum була доволі простою, її вдавалося відтворити на звичайних мікросхемах, а самі схеми вільно ходили з рук. Так паяльник на кухні став входом у світ персонального комп'ютера."
-  en: ""
+  en: "Spectrum self-assembly became mass not out of enthusiasm alone but out of necessity: ready-made machines were in short supply, while the Spectrum’s circuitry was fairly simple, could be reproduced from ordinary chips, and the schematics themselves circulated freely from hand to hand. So a soldering iron on the kitchen table became the entry point into the world of the personal computer."
 confidence: "medium"
 reading_time_min: 8
 status: "approved"
@@ -22,7 +22,7 @@ published: "2026-07-30"
 seo:
   keywords_uk: ["збірка Spectrum", "саморобний комп'ютер", "ретрокомп'ютинг Україна", "радіоконструктор", "клони ZX Spectrum"]
   description_uk: "Чому Spectrum масово паяли вдома: дефіцит готових машин, проста схемотехніка на розсипу, друковані схеми й радіоконструктори. Українська культура «зроби сам»."
-  description_en: ""
+  description_en: "Why the Spectrum was mass-soldered at home: a shortage of ready-made machines, simple circuitry from loose chips, printed schematics and radio-construction kits. Ukraine’s do-it-yourself culture."
 
 # ── Блок «Експонат музею» ─────────────────────────────────────────
 # in_museum: false — клон-контекст (ТЗ §8.3). Плашку «В музеї» не ставимо;
@@ -31,14 +31,14 @@ museum_exhibit:
   in_museum: false
   inventory_id: ""
   note_uk: "Саморобну плату, паяльник і друковану схему музей показує як типологію, а не як атрибутований примірник із відомим автором. Конкретний провенанс окремої плати — на звірці; шукаємо документацію й фото від збирачів."
-  note_en: ""
+  note_en: "The museum shows a home-made board, a soldering iron and a printed schematic as a typology, not as an attributed specimen with a known author. The provenance of an individual board is under verification; we are looking for documentation and photos from builders."
 
 # ── Розмежувальні примітки ────────────────────────────────────────
 disambiguation:
   - uk: "Не плутати процесори. У Spectrum-сумісних машинах працював Zilog Z80 (радянський аналог — Т34ВМ1 / КР1858ВМ1, з 1991 р.). КР580ВМ80А — це клон зовсім іншого процесора, Intel 8080, і для Spectrum він не годиться. Плутанина трапляється часто, бо обидва — вісімрозрядні мікросхеми тієї доби."
-    en: ""
+    en: "Don’t confuse the processors. Spectrum-compatible machines ran the Zilog Z80 (the Soviet analogue being the T34VM1 / KR1858VM1, from 1991). The KR580VM80A is a clone of an entirely different processor, the Intel 8080, and it is no good for the Spectrum. The confusion is common because both are eight-bit chips of that era."
   - uk: "Не плутати самозбірку із заводським клоном. Самозбірка — це машина, спаяна аматором зі схеми в себе вдома. Ікар, Robik чи Орель — це серійні заводські клони. Схемотехніка споріднена, але спосіб виготовлення й провенанс різні."
-    en: ""
+    en: "Don’t confuse self-assembly with a factory clone. Self-assembly is a machine soldered by an amateur from a schematic at home. The Ikar, the Robik or the Orel are serial factory clones. The circuitry is related, but the way they were made and their provenance differ."
 
 # ── Джерела (ТЗ §12: ≥ 2) ─────────────────────────────────────────
 sources:

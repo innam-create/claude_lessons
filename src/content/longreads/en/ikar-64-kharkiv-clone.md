@@ -119,6 +119,6 @@ Three machines — Kharkiv, Cherkasy, Dnipro — mean three different factories,
 
 ## The Ikar in the museum’s collection
 
-The Ikar-64 is kept in the museum’s collection — that is where the photograph above comes from (it is our own shot, not a borrowed image). The machine is not currently on physical display in the permanent exhibition, but it is documented in the [clones catalogue](/en/clones/) alongside other European and Ukrainian machines — from the Czechoslovak Didaktik to the Dnipro-made Orel.
+The Ikar-64 is kept in the museum’s collection — that is where the photograph above comes from (it is our own shot, not a borrowed image). The machine is not currently on physical display in the permanent exhibition, but it is documented in the [clones catalogue](/en/clones/) alongside other European, Ukrainian and American machines — from the Czechoslovak Didaktik and the Timex from the USA to the Dnipro-made Orel.
 
 For a Ukrainian museum of computing history, exhibits like this are not exotica but the very heart of the story: it is on them that you can see how a global platform became a local one. Later in this block: the infrastructure that fed all this — the radio market and the culture of self-assembly.

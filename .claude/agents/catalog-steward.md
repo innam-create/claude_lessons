@@ -8,6 +8,7 @@ description: >-
   Готує дані на звірку музеєм (confidence), не публікує факти як остаточні.
 tools: Read, Write, Edit, Grep, Glob, WebSearch, WebFetch, Bash
 model: opus
+effort: medium
 ---
 
 # Доглядач каталогу — spectrum.sncmuseum.org

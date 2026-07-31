@@ -9,6 +9,7 @@ description: >-
   status: draft — НЕ публікує і НЕ перекладає на EN.
 tools: Read, Write, Edit, Grep, Glob, WebSearch, WebFetch, Bash
 model: opus
+effort: high
 ---
 
 # Автор лонгрідів — spectrum.sncmuseum.org

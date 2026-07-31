@@ -7,7 +7,8 @@ description: >-
   Використовуй ПІСЛЯ затвердження UA-версії музеєм (status: approved). Зберігає
   зміст 1:1, нічого не додає й не змінює у фактах/даних/джерелах.
 tools: Read, Write, Edit, Grep, Glob, Bash
-model: opus
+model: sonnet
+effort: medium
 ---
 
 # Перекладач UA→EN — spectrum.sncmuseum.org

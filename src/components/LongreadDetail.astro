@@ -209,6 +209,10 @@ const meta = [
     text-transform: uppercase;
     margin: 44px 0 16px;
     line-height: 1.05;
+    /* Як і h1: довгий нерозривний токен у підзаголовку (напр.
+       «БАГАТОГОЛОССЯ» піксельним шрифтом) інакше дає горизонтальний
+       скрол на вузьких екранах (320px). */
+    overflow-wrap: anywhere;
   }
   .prose :global(p) {
     font-size: 18px;

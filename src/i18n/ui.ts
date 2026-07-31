@@ -46,7 +46,7 @@ export const ui = {
     'home.soon': 'незабаром',
     'home.tile.history': '1980–1992: від задуму Sinclair до кінця епохи.',
     'home.tile.models': 'Офіційні машини: 16K, 48K, +, 128K, +2, +3.',
-    'home.tile.clones': 'Європейські та українські клони Spectrum.',
+    'home.tile.clones': 'Європейські, українські та американські клони Spectrum.',
     'home.tile.software': 'Програми, ігри та легендарні касети.',
     'home.tile.peripherals': 'Друк, джойстики, накопичувачі та інтерфейси.',
     'home.tile.contacts': 'Як дістатися, графік роботи та мапа музею.',
@@ -133,7 +133,7 @@ export const ui = {
     // клони (ТЗ §8.3 / ClonesPage.dc.html)
     'clones.title': 'Клони',
     'clones.intro':
-      'Європейські та українські машини, зібрані «за мотивами» Spectrum. Фотографій із чистою ліцензією обмаль — деякі машини ще шукають своє фото.',
+      'Європейські, українські та американські машини, зібрані «за мотивами» Spectrum — від чехословацьких Didaktik до українських зразків і Timex зі США.',
     'clones.count.suffix': 'машин',
     'clones.draftNote':
       'Чернетка: перелік і атрибуцію клонів музей звіряє з інвентарем перед публікацією. Роки й походження можуть уточнюватися.',
@@ -241,7 +241,7 @@ export const ui = {
     'home.soon': 'coming soon',
     'home.tile.history': '1980–1992: from Sinclair’s idea to the end of an era.',
     'home.tile.models': 'The official machines: 16K, 48K, +, 128K, +2, +3.',
-    'home.tile.clones': 'European and Ukrainian Spectrum clones.',
+    'home.tile.clones': 'European, Ukrainian and American Spectrum clones.',
     'home.tile.software': 'Programs, games and the legendary cassettes.',
     'home.tile.peripherals': 'Printing, joysticks, storage and interfaces.',
     'home.tile.contacts': 'How to get here, opening hours and a map.',
@@ -321,7 +321,7 @@ export const ui = {
 
     'clones.title': 'Clones',
     'clones.intro':
-      'European and Ukrainian machines built “after” the Spectrum. Cleanly-licensed photos are scarce — some machines are still looking for their photo.',
+      'European, Ukrainian and American machines built “after” the Spectrum — from the Czechoslovak Didaktik to Ukrainian models and the Timex from the USA.',
     'clones.count.suffix': 'machines',
     'clones.draftNote':
       'Draft: the museum verifies the list and attribution of clones against its inventory before publishing. Years and origins may be refined.',

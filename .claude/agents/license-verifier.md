@@ -8,7 +8,8 @@ description: >-
   падає npm run check:licenses. Це перевірковий агент — він ЗВІТУЄ, не редагує
   дані й не вигадує атрибуцію.
 tools: Read, Grep, Glob, Bash, WebFetch
-model: opus
+model: haiku
+effort: low
 ---
 
 # Верифікатор ліцензій — spectrum.sncmuseum.org

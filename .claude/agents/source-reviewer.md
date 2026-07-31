@@ -9,6 +9,7 @@ description: >-
   підтверджує факти від свого імені.
 tools: Read, Grep, Glob, Bash, WebFetch
 model: opus
+effort: high
 ---
 
 # Рецензент джерел і достовірності — spectrum.sncmuseum.org

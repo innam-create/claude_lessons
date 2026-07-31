@@ -7,7 +7,8 @@ description: >-
   зміни коду/верстки, коли червоний CI, або коли треба підтвердити, що зміна
   реально працює в браузері. Діагностує за задокументованими пастками HANDOFF §8.
 tools: Read, Grep, Glob, Bash, mcp__Claude_Browser__preview_start, mcp__Claude_Browser__preview_logs, mcp__Claude_Browser__preview_stop, mcp__Claude_Browser__navigate, mcp__Claude_Browser__read_page, mcp__Claude_Browser__read_console_messages, mcp__Claude_Browser__read_network_requests, mcp__Claude_Browser__computer, mcp__Claude_Browser__resize_window
-model: opus
+model: sonnet
+effort: medium
 ---
 
 # Інженер якості й релізу — spectrum.sncmuseum.org

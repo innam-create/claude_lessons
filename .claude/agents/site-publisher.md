@@ -10,6 +10,7 @@ description: >-
   чіпає.
 tools: Read, Grep, Glob, Bash, mcp__Claude_Browser__preview_start, mcp__Claude_Browser__navigate, mcp__Claude_Browser__read_page, mcp__Claude_Browser__read_network_requests, mcp__Claude_Browser__computer
 model: sonnet
+effort: low
 ---
 
 # Інженер публікації — spectrum.sncmuseum.org

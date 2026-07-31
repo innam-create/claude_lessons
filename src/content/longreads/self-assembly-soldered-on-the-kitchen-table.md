@@ -35,7 +35,7 @@ museum_exhibit:
 
 # ── Розмежувальні примітки ────────────────────────────────────────
 disambiguation:
-  - uk: "Не плутати процесори. У Spectrum-сумісних машинах працював Zilog Z80 (радянський аналог — Т34ВМ1 / КР1858ВМ1, з 1991 р.). КР580ВМ80А — це клон зовсім іншого процесора, Intel 8080, і для Spectrum він не годиться. Плутанина трапляється часто, бо обидва — вісімрозрядні мікросхеми тієї доби."
+  - uk: "Не плутати процесори. У Spectrum-сумісних машинах працював Zilog Z80 (радянський аналог — Т34ВМ1 / КР1858ВМ1, з 1991 р.). КР580ВМ80А — це клон зовсім іншого процесора, Intel 8080, і для Spectrum він не годиться. Плутанина трапляється часто, бо обидва — восьмирозрядні мікросхеми тієї доби."
     en: "Don’t confuse the processors. Spectrum-compatible machines ran the Zilog Z80 (the Soviet analogue being the T34VM1 / KR1858VM1, from 1991). The KR580VM80A is a clone of an entirely different processor, the Intel 8080, and it is no good for the Spectrum. The confusion is common because both are eight-bit chips of that era."
   - uk: "Не плутати самозбірку із заводським клоном. Самозбірка — це машина, спаяна аматором зі схеми в себе вдома. Ікар, Robik чи Орель — це серійні заводські клони. Схемотехніка споріднена, але спосіб виготовлення й провенанс різні."
     en: "Don’t confuse self-assembly with a factory clone. Self-assembly is a machine soldered by an amateur from a schematic at home. The Ikar, the Robik or the Orel are serial factory clones. The circuitry is related, but the way they were made and their provenance differ."

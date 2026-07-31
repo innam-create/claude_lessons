@@ -7,10 +7,10 @@ slug: "beeper-music-one-channel-many-notes"
 block: "В"
 card_id: "В11"
 title:
-  uk: "Один канал, багато нот: музика на бипері"
+  uk: "Один канал, багато нот: музика на біпері"
   en: "One channel, many notes: music on the beeper"
 lead:
-  uk: "У 48K ZX Spectrum не було звукового чипа — лише крихітний динамік, яким керує один-єдиний біт. І все ж із цієї «пищалки» програмісти витискали багатоголосі мелодії. Розбираємо, як звучав бипер і що змінив чип AY у моделях 128K."
+  uk: "У 48K ZX Spectrum не було звукового чипа — лише крихітний динамік, яким керує один-єдиний біт. І все ж із цієї «пищалки» програмісти витискали багатоголосі мелодії. Розбираємо, як звучав біпер і що змінив чип AY у моделях 128K."
   en: "The 48K ZX Spectrum had no sound chip — just a tiny speaker driven by a single bit. Yet programmers squeezed multi-voice melodies out of this “beeper”. We unpack how the beeper sounded and what the AY chip changed in the 128K models."
 thesis:
   uk: "«Багатоголосся» на 48K Spectrum — не апаратна властивість, а програмний трюк: процесор так швидко перемикає один біт динаміка, що вухо чує кілька нот одразу. Справжні окремі канали з'явилися лише в 128K із чипом AY-3-8912."
@@ -24,7 +24,7 @@ published: "2026-07-31"
 # ── SEO ───────────────────────────────────────────────────────────
 seo:
   keywords_uk: ["музика ZX Spectrum", "beeper", "AY chip", "1-бітна музика", "AY-3-8912"]
-  description_uk: "Як 48K ZX Spectrum грав музику одним бітом бипера, звідки бралося «багатоголосся» і що додав звуковий чип AY-3-8912 у моделях 128K."
+  description_uk: "Як 48K ZX Spectrum грав музику одним бітом біпера, звідки бралося «багатоголосся» і що додав звуковий чип AY-3-8912 у моделях 128K."
   description_en: "How the 48K ZX Spectrum played music with a single beeper bit, where its “polyphony” came from, and what the AY-3-8912 sound chip added in the 128K models."
 
 # ── Блок «Експонат музею» ─────────────────────────────────────────
@@ -36,13 +36,13 @@ museum_exhibit:
 
 # ── Розмежувальні примітки ────────────────────────────────────────
 disambiguation:
-  - uk: "48K Spectrum не має окремого звукового чипа: звук дає 1-бітний бипер, яким керує ULA через порт вводу-виводу. Чип AY-3-8912 із трьома каналами з'явився лише в моделях 128K/+2/+3. Тому «багатоголосся» на 48K — це програмний трюк (надшвидке перемикання одного біта), а не апаратні канали."
+  - uk: "48K Spectrum не має окремого звукового чипа: звук дає 1-бітний біпер, яким керує ULA через порт вводу-виводу. Чип AY-3-8912 із трьома каналами з'явився лише в моделях 128K/+2/+3. Тому «багатоголосся» на 48K — це програмний трюк (надшвидке перемикання одного біта), а не апаратні канали."
     en: "The 48K Spectrum has no dedicated sound chip: audio comes from a 1-bit beeper driven by the ULA through an I/O port. The three-channel AY-3-8912 chip appeared only in the 128K/+2/+3 models. So polyphony on the 48K is a software trick (ultra-fast toggling of a single bit), not hardware channels."
 
 # ── Джерела (ТЗ §12: ≥ 2) ─────────────────────────────────────────
 sources:
   - title:
-      uk: "ZX Spectrum — Wikipedia (розділ про звук: бипер, десять октав, AY у 128K)"
+      uk: "ZX Spectrum — Wikipedia (розділ про звук: біпер, десять октав, AY у 128K)"
       en: "ZX Spectrum — Wikipedia (sound section: beeper, ten octaves, AY in 128K)"
     url: "https://en.wikipedia.org/wiki/ZX_Spectrum"
     accessed: "2026-07-31"
@@ -66,7 +66,7 @@ sources:
     accessed: "2026-07-31"
     confidence: "medium"
   - title:
-      uk: "ZX-Spectrum-1-Bit-Routines (BEEPERTOY та ін.) — репозиторій движків бипера, utz82 / GitHub"
+      uk: "ZX-Spectrum-1-Bit-Routines (BEEPERTOY та ін.) — репозиторій движків біпера, utz82 / GitHub"
       en: "ZX-Spectrum-1-Bit-Routines (BEEPERTOY et al.) — beeper engine repository, utz82 / GitHub"
     url: "https://github.com/utz82/ZX-Spectrum-1-Bit-Routines"
     accessed: "2026-07-31"

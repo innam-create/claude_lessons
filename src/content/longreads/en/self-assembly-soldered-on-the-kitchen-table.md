@@ -17,9 +17,9 @@ thesis:
   en: "Spectrum self-assembly became mass not out of enthusiasm alone but out of necessity: ready-made machines were in short supply, while the Spectrum’s circuitry was fairly simple, could be reproduced from ordinary chips, and the schematics themselves circulated freely from hand to hand. So a soldering iron on the kitchen table became the entry point into the world of the personal computer."
 confidence: "medium"
 reading_time_min: 8
-status: "approved"
+status: "draft"
 authors: ["SNC Museum"]
-published: "2026-07-30"
+published: null
 
 # ── SEO ───────────────────────────────────────────────────────────
 seo:

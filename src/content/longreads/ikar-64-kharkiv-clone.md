@@ -14,9 +14,9 @@ thesis:
   en: "The Ikar-64 is a vivid example of a Ukrainian Spectrum clone: with no custom ULA, assembled from a few dozen ordinary chips, it shows how a global platform was rebuilt by local effort at a specific factory in a specific city."
 confidence: "medium"
 reading_time_min: 8
-status: "approved"
+status: "draft"
 authors: ["Музей SNC"]
-published: "2026-07-28"
+published: null
 
 # ── SEO ───────────────────────────────────────────────────────────
 seo:

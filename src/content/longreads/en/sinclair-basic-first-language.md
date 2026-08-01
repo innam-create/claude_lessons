@@ -17,9 +17,9 @@ thesis:
   en: "Sinclair BASIC was not an add-on but the very essence of the Spectrum: the language lived in ROM and started instantly, while entering command words with a single keypress lowered the barrier so much that you could write your first program within minutes — hence the machine's educational role."
 confidence: "medium"
 reading_time_min: 9
-status: "approved"
+status: "draft"
 authors: ["SNC Museum"]
-published: "2026-07-31"
+published: null
 
 # ── SEO ───────────────────────────────────────────────────────────
 seo:

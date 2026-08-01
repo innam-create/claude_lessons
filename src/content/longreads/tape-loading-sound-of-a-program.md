@@ -14,9 +14,9 @@ thesis:
   en: "Cassette loading on the Spectrum is not a metaphor but literal audio encoding: the data is recorded as a sequence of pulses of different lengths, and the same ULA chip that draws the screen turns that sound into bits, showing its work as stripes on the border."
 confidence: "medium"
 reading_time_min: 9
-status: "approved"
+status: "draft"
 authors: ["Музей SNC"]
-published: "2026-07-30"
+published: null
 
 # ── SEO ───────────────────────────────────────────────────────────
 seo:

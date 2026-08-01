@@ -136,7 +136,7 @@ export const ui = {
       'Європейські, українські та американські машини, зібрані «за мотивами» Spectrum — від чехословацьких Didaktik до українських зразків і Timex зі США.',
     'clones.count.suffix': 'машин',
     'clones.draftNote':
-      'Чернетка: перелік і атрибуцію клонів музей звіряє з інвентарем перед публікацією. Роки й походження можуть уточнюватися.',
+      'Перелік і атрибуцію клонів музей звіряє з інвентарем перед публікацією. Роки й походження можуть уточнюватися.',
 
     // історія (HistoryHubPage.dc.html)
     'history.title': 'Історія',
@@ -324,7 +324,7 @@ export const ui = {
       'European, Ukrainian and American machines built “after” the Spectrum — from the Czechoslovak Didaktik to Ukrainian models and the Timex from the USA.',
     'clones.count.suffix': 'machines',
     'clones.draftNote':
-      'Draft: the museum verifies the list and attribution of clones against its inventory before publishing. Years and origins may be refined.',
+      'The museum verifies the list and attribution of clones against its inventory before publishing. Years and origins may be refined.',
 
     'history.title': 'History',
     'history.intro':

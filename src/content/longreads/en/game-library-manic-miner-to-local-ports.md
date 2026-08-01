@@ -17,9 +17,9 @@ thesis:
   en: "The strength of the Spectrum library was defined not by hardware but by design ingenuity: small British studios spent years squeezing out of 48 KB effects the machine had “no right” to. And to the post-Soviet player that library arrived distorted — without boxes or manuals, as a solid list of hundreds of games on a pirate cassette."
 confidence: "medium"
 reading_time_min: 10
-status: "approved"
+status: "draft"
 authors: ["SNC Museum"]
-published: "2026-07-31"
+published: null
 
 # ── SEO ───────────────────────────────────────────────────────────
 seo:

@@ -17,9 +17,9 @@ thesis:
   en: "The demoscene turned the ZX Spectrum's limitations into artistic material: effects like multicolour or border graphics are not hardware modes but cycle-exact software tricks that compete to show the “impossible” on the very same machine."
 confidence: "medium"
 reading_time_min: 9
-status: "approved"
+status: "draft"
 authors: ["SNC Museum"]
-published: "2026-07-31"
+published: null
 
 # ── SEO ───────────────────────────────────────────────────────────
 seo:

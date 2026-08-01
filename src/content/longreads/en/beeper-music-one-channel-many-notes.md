@@ -17,9 +17,9 @@ thesis:
   en: "Polyphony on the 48K Spectrum is not a hardware feature but a software trick: the CPU toggles the speaker's single bit so fast that the ear hears several notes at once. Real separate channels arrived only in the 128K with the AY-3-8912 chip."
 confidence: "medium"
 reading_time_min: 9
-status: "approved"
+status: "draft"
 authors: ["SNC Museum"]
-published: "2026-07-31"
+published: null
 
 # ── SEO ───────────────────────────────────────────────────────────
 seo:

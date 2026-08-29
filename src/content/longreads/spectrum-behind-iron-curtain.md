@@ -14,9 +14,9 @@ thesis:
   en: "The Spectrum went mass-market in the post-Soviet space not despite the Iron Curtain but because of it: the embargo cut off official imports, while the machine’s relatively simple, well-understood architecture allowed it to be rebuilt from available parts — first in laboratories, later on kitchen tables."
 confidence: "medium"
 reading_time_min: 9
-status: "draft"
+status: "approved"
 authors: ["Музей SNC"]
-published: null
+published: "2026-08-29"
 
 # ── SEO ───────────────────────────────────────────────────────────
 seo:

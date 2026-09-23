@@ -14,9 +14,9 @@ thesis:
   en: "The radio market was not a place of retail trade but a hub for distributing hardware and software: it was here that scarce parts, firmware and pirated cassettes changed hands and made a mass-market Spectrum technically possible."
 confidence: "medium"
 reading_time_min: 8
-status: "draft"
+status: "approved"
 authors: ["Музей SNC"]
-published: null
+published: "2026-09-23"
 
 # ── SEO ───────────────────────────────────────────────────────────
 seo:
